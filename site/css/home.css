@@ -3,6 +3,9 @@
 @font-face {
     font-family: josefin;
     src: url(../assets/font/JosefinSlab-Italic-VariableFont_wght.ttf);
+
+    font-family: spartan;
+    src: url(../assets/font/League_Spartan/LeagueSpartan-VariableFont_wght.ttf);
   }
 
  /* global */
@@ -159,6 +162,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    
 }
 
 .empresa h2{
@@ -177,3 +181,21 @@ body{
     width: 77vh;
 }
 
+.empresa p{
+    margin-left: 4vh;
+    font-size: 4vh;
+    font-family:spartan ;
+}
+
+.desc{
+    /* display: flex;
+    justify-content: space-around; */
+    margin-inline: 6vw ;
+
+}
+
+.empresa img{
+    margin-right: 4vh;
+    width: 45vw;
+    height: 50vh;
+}
