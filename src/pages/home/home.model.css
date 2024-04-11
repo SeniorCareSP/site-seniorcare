@@ -2,13 +2,14 @@
 
 @font-face {
     font-family: josefin;
-    src: url(../assets/font/JosefinSlab-Italic-VariableFont_wght.ttf);
+    src: url(../../assets/font/JosefinSlab-Italic-VariableFont_wght.ttf);
   }
 
   @font-face {
     font-family: spartan;
-    src: url(../assets/font/LeagueSpartan-VariableFont_wght.ttf);
+    src: url(../../assets/font/LeagueSpartan-VariableFont_wght.ttf);
   }
+  
  /* global */
 
 body{
@@ -16,6 +17,13 @@ body{
     margin: 0;
     background-color: #80C1DE;
     font-family: monospace;
+}
+
+.logo{
+    background-image: url(../../assets/Logo\ horizontal.png);
+    background-size: 100%;
+    width: 20vh;
+    height: 5vh;
 }
 
 /* header/navbar */
