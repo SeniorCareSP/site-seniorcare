@@ -3,3 +3,5 @@ function Cadastro(){
         <div>tela cadastro</div>
     );
 }
+
+export default Cadastro
