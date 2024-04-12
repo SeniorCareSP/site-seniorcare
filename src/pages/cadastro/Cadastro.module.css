@@ -1,0 +1,20 @@
+
+@font-face {
+    font-family: josefin;
+    src: url(../../assets/font/JosefinSlab-Italic-VariableFont_wght.ttf);
+  }
+
+  @font-face {
+    font-family: spartan;
+    src: url(../../assets/font/LeagueSpartan-VariableFont_wght.ttf);
+  }
+
+
+  body{
+    padding: 0;
+    margin: 0;
+    background-color: #3b0608;
+    font-family: monospace;
+}
+
+
