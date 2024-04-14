@@ -1,0 +1,79 @@
+ .porque{
+ 
+    display: flex;
+    /* align-items: center;
+    justify-content: center; */
+    flex-direction: column;
+    background-color: #EDF2FB;
+}
+
+.content {
+  margin-top: 30vh;
+  height: 38vw;
+  font-size: 15px;
+    display: flex;
+    /* align-items: center; */
+    justify-content: space-around;
+    background: linear-gradient(75deg, #252F46 57%, #80C1DE 50%);
+    transform: translateY(-50%);
+    transform-origin: top left;
+}
+
+ .container {
+  margin-top: 5vh;
+  color: #EDF2FB;
+  font-size: 19px;
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-start; Alinhar os itens no canto esquerdo */
+  }
+  
+
+  .Central{
+    width: 75vh;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    display: flex;
+    margin-inline: 5px;
+    align-items: start;
+    justify-content: space-between;
+  }
+
+
+
+
+  .Motivo h1{
+    font-size:45px ;
+  }
+
+  .Motivo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .cor{
+    color: #80C1DE;
+}
+
+
+
+  
+/* .texto-1 .icon{
+   display: flex;
+align-items: end;
+}
+
+
+    /* Alinhar o primeiro parágrafo no canto esquerdo */
+  
+  
+/* .container .texto-3 {
+  justify-content: flex-end;
+    align-self: flex-end; 
+  }
+  
+  .texto-3 {
+    align-self: flex-start;
+  }  */

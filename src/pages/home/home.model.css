@@ -15,7 +15,7 @@
 body{
     padding: 0;
     margin: 0;
-    background-color: #80C1DE;
+    background-color: #2C7595;
     font-family: monospace;
 }
 
@@ -57,7 +57,7 @@ body{
 
 .header div button{
     background-color: #ffff;
-    color: #80C1DE;
+    color: #2C7595;
     border-radius: 0.8vh;
     border: 0;
     width: 7vw;
@@ -66,7 +66,7 @@ body{
 }
 
 /* apresentação */
-
+/* 
 .apresentacao{
     margin-top: 10vh;
 }
@@ -105,7 +105,7 @@ body{
 
 .apresentacao div button{
     background-color: #ffff;
-    color: #80C1DE;
+    color: #2C7595;
     color: #C1231F;
     font-size: medium;
     border-radius: 0.8vh;
@@ -152,11 +152,11 @@ body{
     height: 35vh;
     top: 5vh;
     left: 25vh;
-    background-color: #2C7595;
-}
+    background-color: #80C2DE;
+} */
 
 /* sobre a empresa */
-
+/* 
 .empresa {
     width: 100%;
     flex-direction: column;
@@ -205,10 +205,10 @@ body{
 
 .empresa .descricao img{
     width: 50%;
-}
+} */
 
 /* serviços */
-
+/* 
 .servico{
     display: flex;
     align-items: center;
@@ -279,4 +279,4 @@ body{
     border-top-right-radius: 5vh;
     border-bottom-left-radius: 10%;
     background-color: #509CBD;
-}
+} */

@@ -1,9 +1,10 @@
 import "./home.model.css";
-import Empresa from "../../components/empresa";
-import Servico from "../../components/servico";
-import Apresentacao from "../../components/apresentacao";
-import Porque from "../../components/porque";
-import Navbar from "../../components/navbar";
+import Empresa from "../../components/empresa/empresa";
+import Servico from "../../components/servico/servico";
+import Apresentacao from "../../components/apresentacao/apresentacao";
+import Porque from "../../components/porque/porque";
+import Navbar from "../../components/navbar/navbar";
+import Clientes from "../../components/cliente/cliente";
 import * as React from 'react';
 // import Button from '@mui/material/Button';
 
@@ -19,6 +20,7 @@ function Home() {
       <Empresa />
       <Servico />
       <Porque />
+      <Clientes />
 
     </>
   )
