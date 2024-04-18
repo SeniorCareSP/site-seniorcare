@@ -32,6 +32,7 @@
     width: 77vh;
 }
 
+
 .empresa .descricao{
     display:flex;
     justify-content: space-around;
@@ -39,7 +40,7 @@
 }
 
 .empresa .descricao p{
-    width: 40%;
+    width: 60%;
     font-size: 4vh;
     font-weight: 20;
     font-family: spartan;
@@ -47,4 +48,21 @@
 
 .empresa .descricao img{
     width: 50%;
+}
+
+.empresa img{
+    width: 578px;
+    height: 444px;
+    margin-bottom: 5vh;
+}
+
+.centralizar{
+  
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.empresa spam{
+    color: #930B07;
 }

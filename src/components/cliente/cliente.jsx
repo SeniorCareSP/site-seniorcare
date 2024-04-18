@@ -1,17 +1,25 @@
-// import Style from "./porque.module.css"
+import Styles from "./cliente.module.css"
 import React from "react";
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import { Container, Grid } from "@mui/material";
+import Card from "../Cards/card"
+
+
 function clientes() {
     return (
         
-        <>
-            {/* Eu retiro o que eu dissesobre gostar de css */}
+   <>
+
+        <div className={Styles["cliente"]}>
+         
+          <h1>Clientes</h1>
+          <h1 className={Styles["cor"]}>que aprovam</h1>
+          
+          <div className={Styles["cards-centralizar"]}>
+       <Card/>
+       <Card/>
+       <Card/>
+       <Card/>
+         </div>
+       </div>
         </>
           )
      }

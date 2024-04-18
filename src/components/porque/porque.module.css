@@ -8,15 +8,14 @@
 }
 
 .content {
-  margin-top: 30vh;
   height: 38vw;
   font-size: 15px;
     display: flex;
     /* align-items: center; */
     justify-content: space-around;
     background: linear-gradient(75deg, #252F46 57%, #80C1DE 50%);
-    transform: translateY(-50%);
-    transform-origin: top left;
+    /* transform: translateY(-50%);
+    transform-origin: top left;    Essas linhas quebram o codigo */
 }
 
  .container {
@@ -32,7 +31,7 @@
   .Central{
     width: 75vh;
     margin-top: 7px;
-    margin-bottom: 7px;
+    /* margin-bottom: 7px; */
     display: flex;
     margin-inline: 5px;
     align-items: start;

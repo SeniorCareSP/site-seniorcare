@@ -64,9 +64,6 @@ function Porque() {
                 </h2>
             </div>
             </div>
-            
-
-           
 
         </>
         

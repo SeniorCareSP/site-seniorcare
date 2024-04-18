@@ -1,5 +1,6 @@
 import Style from "./empresa.module.css"
 import React from "react";
+import Imagem from "../../utils/assets/idoso-e-cuidador.png"
 function Empresa() {
     return (
         <div className={Style["empresa"]}>
@@ -9,10 +10,15 @@ function Empresa() {
                 <h1>Empresa</h1>
                 <span className={Style["linha"]}></span>
             </div>
+            <div className={Style["Centralizar"]}>
             <div className={Style["descricao"]}>
-                <p>
-                    Comprometida em atender às necessidades crescentes de uma população que envelhece rapidamente. Em um mundo onde encontrar cuidadores confiáveis para os nossos entes queridos se tornou uma necessidade crucial, assumimos a responsabilidade de oferecer não apenas assistência, mas também conforto e confiança. A Senior Care não é apenas uma empresa; é uma promessa de qualidade, segurança e tranquilidade para sua família. Estamos aqui para garantir que seus entes queridos recebam o cuidado atencioso e dedicado que merecem.
-                </p>
+                <p> O compromisso da Senior Care é <spam>atender</spam> às crescentes <spam>necessidades</spam> de uma população idosa, 
+                    fornecendo cuidadores confiáveis e oferecendo não apenas assistência, 
+                    mas também conforto e confiança. </p>
+            </div>
+            <div className={Style["imagem"]}>
+                <img src={Imagem} alt=""/>
+            </div>
             </div>
         </div>
     );

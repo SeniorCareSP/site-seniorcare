@@ -69,8 +69,8 @@
     z-index: 2;
     position: absolute;
     border-radius: 1vh;
-    width: 65vh;
-    height: 30vh;
+    width: 80vh;
+    height: 45vh;
     top: 20vh;
     left: 8vh;
     background-color: #509CBD;
@@ -80,9 +80,9 @@
     z-index: 1;
     position: absolute;
     border-radius: 1vh;
-    width: 65vh;
+    width: 71.5vh;
     height: 35vh;
     top: 5vh;
-    left: 25vh;
+    left: 27vh;
     background-color: #80C2DE;
 }
