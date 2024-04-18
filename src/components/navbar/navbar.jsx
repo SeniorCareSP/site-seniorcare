@@ -14,7 +14,7 @@ function Navbar() {
                     <a>Sobre</a>
                     <a >Serviços</a>
                     <a>Contato</a>
-                    <a >Cadastre-se!</a>
+                    <a onClick={()=> navigate("/cadastro")}>Cadastre-se!</a>
                     <Button variant="contained" onClick={() => navigate("/login")}>Login</Button>
                 </div>
             </div>

@@ -1,20 +1,56 @@
 
 @font-face {
     font-family: josefin;
-    src: url(../../assets/font/JosefinSlab-Italic-VariableFont_wght.ttf);
+    src: url(../../utils/font/JosefinSlab-Italic-VariableFont_wght.ttf);
   }
 
   @font-face {
     font-family: spartan;
-    src: url(../../assets/font/LeagueSpartan-VariableFont_wght.ttf);
+    src: url(../../utils/font/LeagueSpartan-VariableFont_wght.ttf);
   }
 
+  .card-cadastro{
+    background-color: #ffff;
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+    height: 100vh;
+  }
 
-  body{
-    padding: 0;
-    margin: 0;
-    background-color: #3b0608;
-    font-family: monospace;
-}
+  .corpo {
+    display: flex;
+  }
 
+  .card-cadastro .title{
+    display: flex;
+    color: #077DB0;
+  }
+
+  .imagem{
+    width: 35%;
+    height: 100vh;
+    background-color: black;
+  }
+
+  .card-cadastro .itens{
+    display: flex;
+    flex-direction: column;
+   
+    align-items: center;
+  }
+
+  .card-cadastro .itens .input{
+    width: 30%;
+  }
+
+  .card-cadastro .itens .button{
+    width: 29%;
+    background-color: #077DB0;
+  }
+
+  .card-cadastro .itens a{
+    color: black;
+  }
+
+  /* img */
 

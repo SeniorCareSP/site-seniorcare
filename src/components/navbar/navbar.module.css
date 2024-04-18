@@ -2,12 +2,12 @@
 
 @font-face {
     font-family: josefin;
-    src: url(../../utils/assets/font/JosefinSlab-Italic-VariableFont_wght.ttf);
+    src: url(../../utils/font/JosefinSlab-Italic-VariableFont_wght.ttf);
   }
 
   @font-face {
     font-family: spartan;
-    src: url(../../utils/assets/font/LeagueSpartan-VariableFont_wght.ttf);
+    src: url(../../utils/font/LeagueSpartan-VariableFont_wght.ttf);
   }
   
  /* global */
@@ -20,7 +20,7 @@
 } */
 
 .logo{
-    background-image: url(/home/rafaelaoliveria/site-seniorcare/src/utils/assets/logo.png);
+    background-image: url(../../utils/assets/logo.png);
     background-size: 100%;
     width: 14vh;
     height: 10vh;
