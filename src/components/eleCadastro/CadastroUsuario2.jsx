@@ -3,16 +3,15 @@ import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button';
 import Style from '../../pages/cadastro/Cadastro.module.css';
 import { useNavigate } from "react-router-dom";
+
+import Title from '../tituloCadastro/Title'
+
 function CadastroUsuario2(){
     const navigate = useNavigate();
     return(
         <div className={Style["card-cadastro"]}>
-            <div className={Style["title"]}>
-                <h1>Cadastro / login</h1>
-                <h3>parte 1 de 2</h3>
-            </div>
+            <Title />
             <Stack spacing={3} className={Style["itens"]}>
-                <TextField className={Style["input"]} id="outlined-basic" label="CEP" variant="outlined" />
                 <TextField className={Style["input"]} id="outlined-basic" label="Logradouro" variant="outlined" />
                 <TextField className={Style["input"]} id="outlined-basic" label="Numero" variant="outlined" />
                 <TextField className={Style["input"]} id="outlined-basic" label="Complemento" variant="outlined" />

@@ -3,21 +3,24 @@ import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button';
 import Style from '../../pages/cadastro/Cadastro.module.css';
 import { useNavigate } from "react-router-dom";
+
+import Title from '../tituloCadastro/Title'
+
 function CadastroUsuario1(){
     
     const navigate = useNavigate();
     return(
         <div className={Style["card-cadastro"]}>
-            <div className={Style["title"]}>
-                <h1>Cadastro / login</h1>
-                <h3>parte 1 de 2</h3>
-            </div>
+            <Title />
             <Stack spacing={3} className={Style["itens"]}>
-                <TextField className={Style["input"]} id="outlined-basic" label="Nome Completo" variant="outlined" />
-                <TextField className={Style["input"]} id="outlined-basic" label="E-mail" variant="outlined" />
-                <TextField className={Style["input"]} id="outlined-basic" label="Data De Nascimento" variant="outlined" />
-                <TextField className={Style["input"]} id="outlined-basic" label="Sexo Biológico" variant="outlined" />
-                <TextField className={Style["input"]} id="outlined-basic" label="CPF" variant="outlined" />
+                <TextField className={Style["input"]} id="outlined-basic" label="Email" variant="outlined" />
+                <TextField className={Style["input"]} id="outlined-basic" label="Senha" variant="outlined" />
+                <TextField className={Style["input"]} id="outlined-basic" label="Confirmar Senha" variant="outlined" />
+                <TextField className={Style["input"]} id="outlined-basic" label="CEP" variant="outlined" />
+                <div>
+                    <Button className={Style["button"]} variant="contained">Cuidador</Button>
+                    <Button className={Style["button"]} variant="contained">Resposavel</Button>    
+                </div>
                 <Button className={Style["button"]} onClick={()=> navigate("/cadastro2")} variant="contained">Proximo</Button>
                 <a onClick={()=> navigate("/login")} href=''>Já tenho uma conta</a>
             </Stack>

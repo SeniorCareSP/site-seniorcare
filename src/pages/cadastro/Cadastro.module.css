@@ -52,5 +52,13 @@
     color: black;
   }
 
+  .card-cadastro .select{
+    width: 30%;
+  }
+
+  .card-cadastro .title a{
+    cursor: pointer;
+  }
+  
   /* img */
 

@@ -10,12 +10,13 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
+import Title from '../tituloCadastro/Title'
 
 function CadastroUsuario3() {
 
 
     const [idioma, setIdioma] = React.useState('');
-    const [tipoCadastro, setTipo] = React.useState('');
+
 
     const handleChange = (event) => {
         setIdioma(event.target.value);
@@ -25,31 +26,18 @@ function CadastroUsuario3() {
     const navigate = useNavigate();
     return (
         <div className={Style["card-cadastro"]}>
-            <div className={Style["title"]}>
-                <h1>Cadastro / login</h1>
-                <h3>parte 1 de 2</h3>
-            </div>
+            <Title />
             <Stack spacing={3} className={Style["itens"]}>
-
-                <FormControl fullWidth>
+                <FormControl fullWidth className={Style["select"]}>
                     <InputLabel id="demo-simple-select-label">Idioma</InputLabel>
                     <Select labelId="demo-simple-select-label" id="demo-simple-select" value={idioma} label="idioma" onChange={handleChange}>
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
+                        <MenuItem value={10}>Inglês</MenuItem>
+                        <MenuItem value={20}>Portugues</MenuItem>
+                        <MenuItem value={30}>Espanhol</MenuItem>
                     </Select>
                 </FormControl>
-                
-                <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Quero me cadastrar como</InputLabel>
-                    <Select labelId="demo-simple-select-label" id="demo-simple-select" value={tipoCadastro} label="Quero me cadastrar como" onChange={handleChange}>
-                        <MenuItem value={10}>Idoso</MenuItem>
-                        <MenuItem value={20}>Cuidador</MenuItem>
-                    </Select>
-                </FormControl>
-                <Button className={Style["button"]} onClick={() => navigate("/cadastro4")} variant="contained">Proximo</Button>
-                <Button className={Style["button"]} onClick={() => navigate("/cadastr2")} variant="contained">Voltar</Button>
-
+                <Button className={Style["button"]} onClick={() => navigate("/cadastro/cuidador")} variant="contained">Proximo</Button>
+                <Button className={Style["button"]} onClick={() => navigate("/cadastro2")} variant="contained">Voltar</Button>
             </Stack>
         </div>
     );
