@@ -1,27 +1,21 @@
-import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack'
-import Button from '@mui/material/Button';
 import Style from '../../pages/cadastro/Cadastro.module.css';
 import { useNavigate } from "react-router-dom";
 import * as React from 'react';
-
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-
+import ButtonAzul from '../botao/BotaoAzul';
+import ButtonBranco from '../botao/BotaoBranco';
 import Title from '../tituloCadastro/Title'
 
 function CadastroUsuario3() {
 
-
     const [idioma, setIdioma] = React.useState('');
-
-
     const handleChange = (event) => {
         setIdioma(event.target.value);
     };
-
 
     const navigate = useNavigate();
     return (
@@ -36,8 +30,8 @@ function CadastroUsuario3() {
                         <MenuItem value={30}>Espanhol</MenuItem>
                     </Select>
                 </FormControl>
-                <Button className={Style["button"]} onClick={() => navigate("/cadastro/cuidador")} variant="contained">Proximo</Button>
-                <Button className={Style["button"]} onClick={() => navigate("/cadastro2")} variant="contained">Voltar</Button>
+                <ButtonAzul onClick={() => navigate("/cadastro/cuidador")}>Proximo</ButtonAzul>
+                <ButtonBranco onClick={() => navigate("/cadastro2")} >Voltar</ButtonBranco>
             </Stack>
         </div>
     );

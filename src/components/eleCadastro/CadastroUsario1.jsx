@@ -1,28 +1,29 @@
-import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack'
-import Button from '@mui/material/Button';
 import Style from '../../pages/cadastro/Cadastro.module.css';
 import { useNavigate } from "react-router-dom";
-
+import InputTexfield from '../Input/Input';
+import ButtonAzul from '../botao/BotaoAzul';
+import BtnBrancoS from '../botao/BtnBrancoS';
+import BtnAzulS from '../botao/BtnAzulS';
 import Title from '../tituloCadastro/Title'
 
-function CadastroUsuario1(){
-    
+function CadastroUsuario1() {
+
     const navigate = useNavigate();
-    return(
+    return (
         <div className={Style["card-cadastro"]}>
             <Title />
             <Stack spacing={3} className={Style["itens"]}>
-                <TextField className={Style["input"]} id="outlined-basic" label="Email" variant="outlined" />
-                <TextField className={Style["input"]} id="outlined-basic" label="Senha" variant="outlined" />
-                <TextField className={Style["input"]} id="outlined-basic" label="Confirmar Senha" variant="outlined" />
-                <TextField className={Style["input"]} id="outlined-basic" label="CEP" variant="outlined" />
+                <InputTexfield label="Email" />
+                <InputTexfield label="senha" />
+                <InputTexfield label="confirmar senha" />
+                <InputTexfield label="CEP" />
                 <div>
-                    <Button className={Style["button"]} variant="contained">Cuidador</Button>
-                    <Button className={Style["button"]} variant="contained">Resposavel</Button>    
+                    <BtnAzulS >Cuidador</BtnAzulS>
+                    <BtnBrancoS >Resposavel</BtnBrancoS>
                 </div>
-                <Button className={Style["button"]} onClick={()=> navigate("/cadastro2")} variant="contained">Proximo</Button>
-                <a onClick={()=> navigate("/login")} href=''>Já tenho uma conta</a>
+                <ButtonAzul onClick={() => navigate("/cadastro2")}>Proximo</ButtonAzul>
+                <a onClick={() => navigate("/login")} href=''>Já tenho uma conta</a>
             </Stack>
         </div>
     );

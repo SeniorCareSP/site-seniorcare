@@ -6,7 +6,7 @@ function ImagemCuidador(){
     const navigate = useNavigate();
     return(
         <div className={Style['imagem']}>
-            <Button className={Style["button"]} variant="contained" onClick={()=> navigate("/")}>voltar</Button>
+            <div className={Style['button-voltar']} onClick={()=> navigate("/")}></div>
         </div>
     );
 }

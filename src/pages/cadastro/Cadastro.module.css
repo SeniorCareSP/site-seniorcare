@@ -1,9 +1,4 @@
 
-@font-face {
-    font-family: josefin;
-    src: url(../../utils/font/JosefinSlab-Italic-VariableFont_wght.ttf);
-  }
-
   @font-face {
     font-family: spartan;
     src: url(../../utils/font/LeagueSpartan-VariableFont_wght.ttf);
@@ -13,7 +8,7 @@
     background-color: #ffff;
     display: flex;
     flex-direction: column;
-    width: 65%;
+    width: 100%;
     height: 100vh;
   }
 
@@ -24,28 +19,20 @@
   .card-cadastro .title{
     display: flex;
     color: #077DB0;
-  }
-
-  .imagem{
-    width: 35%;
-    height: 100vh;
-    background-color: black;
+    font-size: 6vh;
+    font-weight: bolder;
   }
 
   .card-cadastro .itens{
     display: flex;
     flex-direction: column;
-   
     align-items: center;
   }
 
-  .card-cadastro .itens .input{
-    width: 30%;
-  }
-
-  .card-cadastro .itens .button{
-    width: 29%;
-    background-color: #077DB0;
+  .card-cadastro .itens div{
+    display: flex;
+    justify-content: space-between;
+    width: 18vw;
   }
 
   .card-cadastro .itens a{
@@ -58,7 +45,23 @@
 
   .card-cadastro .title a{
     cursor: pointer;
+    color: #52A4C8;
   }
   
   /* img */
+  
+  .imagem{
+    width: 50%;
+    height: 100vh;
+    /* background-image: url(../../utils/assets/velhaRuiva.jpeg); */
+    background-size: cover;
+  }
 
+  .imagem .button-voltar{
+    background-image: url(../../utils/assets/setaVoltar.png);
+    margin: 5vh;
+    cursor: pointer;
+    background-size: cover;
+    width: 3vw;
+    height: 6.3vh;
+  }

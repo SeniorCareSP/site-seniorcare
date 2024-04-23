@@ -6,6 +6,7 @@ import Cadastro from "./pages/cadastro/Cadastro"
 import Cadastro2 from './pages/cadastro/Cadastro2';
 import Cadastro3 from './pages/cadastro/Cadastro3';
 import Cuidador1 from './pages/cadastro/Cuidador1';
+import Cuidador2 from './pages/cadastro/Cuidador2';
 function Router() {
   return (
     <BrowserRouter>                                        
@@ -17,6 +18,7 @@ function Router() {
         <Route path='/cadastro2' element={<Cadastro2 />} />
         <Route path='/cadastro3' element={<Cadastro3 />} />
         <Route path='/cadastro/cuidador' element={<Cuidador1 />} />
+        <Route path={'/cadastro/cuidador2'} element={<Cuidador2 />} />
       </Routes>
     </BrowserRouter>
   );
