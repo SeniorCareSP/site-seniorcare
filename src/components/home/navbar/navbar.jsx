@@ -1,4 +1,5 @@
 
+
 import React from "react";
 import Style from "./navbar.module.css"
 import { useNavigate } from "react-router-dom";
@@ -11,11 +12,15 @@ function Navbar() {
             <div className={Style["header"]}>
                 <div>
                     <span className={Style["logo"]}></span>
+                    <div className={Style["opcoes"]}>
                     <a>Sobre</a>
                     <a >Serviços</a>
-                    <a>Contato</a>
+                    <a>FAQ</a>
+                    </div>
+                    <div className= {Style["cadastro"]}>
                     <a onClick={()=> navigate("/cadastro")}>Cadastre-se!</a>
                     <Button variant="contained" onClick={() => navigate("/login")}>Login</Button>
+                    </div>
                 </div>
             </div>
         </>

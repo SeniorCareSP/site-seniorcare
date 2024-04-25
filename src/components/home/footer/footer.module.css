@@ -1,0 +1,44 @@
+.footer{
+    margin-top: 12vh;
+     width: 100%;
+     height: 70vh;
+     flex-direction: column;
+     display: flex;
+      align-items: center;
+     justify-content: center;
+     background-color: #EDF2FB;
+   
+}
+
+
+/* .footer .forma{
+    border-bottom-right-radius: 87%;
+    border-bottom-left-radius: 87%;
+    background-color:  #2C7595;
+    width: 100%;
+    height: 35vh;
+} */
+
+.Informacoes{
+     position: absolute;
+     background-color: #ffffff;
+     height: 28vh;
+     width: 74vw;
+     border-radius: 3vh;
+     box-shadow: 2px 2px 3px #222222;
+    margin-bottom: 7vh;
+}
+
+.Informacoes div {
+    padding: 25px;
+    padding-left: 10vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.Informacoes .inputs{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}

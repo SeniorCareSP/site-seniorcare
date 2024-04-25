@@ -1,12 +1,14 @@
 import "./home.model.css";
-import Empresa from "../../components/empresa/empresa";
-import Servico from "../../components/servico/servico";
-import Apresentacao from "../../components/apresentacao/apresentacao";
-import Porque from "../../components/porque/porque";
-import Navbar from "../../components/navbar/navbar";
-import Clientes from "../../components/cliente/cliente";
-import Disponivel from "../../components/disponivel/cuidadores";
-import AccordionTransition from "../../components/perguntas/perguntas"
+import Empresa from "../../components/home/empresa/empresa";
+import Servico from "../../components/home/servico/servico";
+import Apresentacao from "../../components/home/apresentacao/apresentacao";
+import Porque from "../../components/home/porque/porque";
+import Navbar from "../../components/home/navbar/navbar";
+import Clientes from "../../components/home/cliente/cliente";
+import Disponivel from "../../components/home/disponivel/cuidadores";
+import AccordionTransition from "../../components/home/perguntas/perguntas";
+import JunteSe from "../../components/home/Junte-se/junteSe";
+import Footer  from "../../components/home/footer/footer";
 import * as React from 'react';
 // import Button from '@mui/material/Button';
 
@@ -25,6 +27,9 @@ function Home() {
       <Clientes />
       <Disponivel/>
       <AccordionTransition/>
+      <JunteSe/>
+      <Footer/>
+
     </>
   )
 }

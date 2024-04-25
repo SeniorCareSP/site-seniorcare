@@ -1,6 +1,6 @@
 import Style from "./empresa.module.css"
 import React from "react";
-import Imagem from "../../utils/assets/idoso-e-cuidador.png"
+import Imagem from "../../../utils/assets/idoso-e-cuidador.png"
 function Empresa() {
     return (
         <div className={Style["empresa"]}>

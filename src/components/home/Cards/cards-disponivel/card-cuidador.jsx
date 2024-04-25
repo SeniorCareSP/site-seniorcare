@@ -1,6 +1,6 @@
 import Styles from "../cards-disponivel/card-cuidador.module.css"
 import StarIcon from '@mui/icons-material/Star';
-import Imagem  from "../../../utils/assets/Ellipse 25.png"
+import Imagem  from "../../../../utils/assets/Ellipse 25.png"
 function cardCuidador(){
     return(
  <>

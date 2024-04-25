@@ -1,8 +1,8 @@
 import Style from "./porque.module.css"
 import React from "react";
-import Mao from "../../utils/assets/Honesty.png"
-import Healthy from "../../utils/assets/Healthy Food.png"
-import Approval from "../../utils/assets/Approval.png"
+import Mao from "../../../utils/assets/Honesty.png"
+import Healthy from "../../../utils/assets/Healthy Food.png"
+import Approval from "../../../utils/assets/Approval.png"
 import { Grid } from "@mui/material";
 function Porque() {
     return (

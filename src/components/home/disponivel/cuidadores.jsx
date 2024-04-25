@@ -1,12 +1,12 @@
 import React from "react";
-import CardCuidador from "../../components/Cards/cards-disponivel/card-cuidador"
+import CardCuidador from "../Cards/cards-disponivel/card-cuidador";
 import Style from "./cuidadores.module.css"
 function disponivel(){
     return(
 <>
        <div className={Style["cuidador"]}>
          <div className={Style["cards"]}>
-            <CardCuidador/>
+            <CardCuidador />
             <CardCuidador/>
             <CardCuidador/>
             <CardCuidador/>

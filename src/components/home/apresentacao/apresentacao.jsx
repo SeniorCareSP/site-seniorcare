@@ -1,7 +1,7 @@
 
 import React from "react";
 import Style from "./apresentacao.module.css"
-import idosos from "../../utils/assets/idosos.png"
+import idosos from "../../../utils/assets/idosos.png"
 function Apresentacao() {
     return (
         <div className={Style["apresentacao"]}>
