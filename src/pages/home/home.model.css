@@ -9,6 +9,11 @@
     font-family: spartan;
     src: url(../../utils/font/LeagueSpartan-VariableFont_wght.ttf);
   }
+
+  @font-face {
+    font-family: montserrat;
+    src: url(../../utils/font/Montserrat-VariableFont_wght.ttf);
+  }
   
  /* global */
 

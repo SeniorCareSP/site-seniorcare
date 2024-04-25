@@ -43,8 +43,9 @@
 .empresa .descricao p{
     width: 60%;
     font-size: 4vh;
-    font-weight: 20;
-    font-family: spartan;
+    font-style: normal;
+    font-weight: 70;
+    font-family: montserrat;
 }
 
 .empresa .descricao img{

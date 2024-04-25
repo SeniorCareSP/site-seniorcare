@@ -83,7 +83,7 @@ export default function CustomizedAccordions() {
       </Accordion>
       <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
         <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
-          <Typography sx={{color: "white"}}>Collapsible Group Item #3</Typography>
+          <Typography sx={{color: "white"}}>Posso me cadastrar e não trabalhar todos os dias?</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
@@ -96,7 +96,7 @@ export default function CustomizedAccordions() {
       </Accordion>
       <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
         <AccordionSummary aria-controls="panel4d-content" id="panel4d-header">
-          <Typography sx={{color: "white"}}>Collapsible Group Item #4</Typography>
+          <Typography sx={{color: "white"}}>Posso cadastrar mais de um idoso?</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>

@@ -39,6 +39,50 @@
 
 .Informacoes .inputs{
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   flex-direction: row;
 }
+
+.Info{
+    margin-top: 45vh;
+    width: 55vw;
+    display: flex;
+    flex-direction: row;
+    height: 6vh;
+    margin-right: 48vh;
+}
+
+.Info img{
+    height: 2.7vh;
+    width: 15vw;
+    margin-left: 56vh;
+    
+}
+
+.Info .opcoes {
+    /* margin-left: vh; */
+    font-size: 1.8vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.opcoes a {
+    margin-left: 9vh;
+}
+
+/* .Info .opcoes{
+    margin-left: 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    background-color: aqua; 
+} */
+
+ .linha{
+    height: 0.3vh;
+     background-color: rgba(43, 61, 81, 0.2) ;
+     width: 73.7vw;    
+ }
