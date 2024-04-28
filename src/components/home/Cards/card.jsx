@@ -2,11 +2,16 @@
 import { Margin } from "@mui/icons-material";
 import Styles from "./card.module.css"
 import StarIcon from '@mui/icons-material/Star';
+import Icom from "../../../utils/assets/Ellipse 43.png";
 function card() {
     return (
 
    <div className={Styles["cliente"]}>
+     <div className={Styles["imagem"]}>
+   <img src={Icom} alt=""/>
+   </div>
    <section className={Styles.card}>
+  
     <div className={Styles["strelas"]}>
    <StarIcon sx={{marginRight: 1}}/>   <StarIcon sx={{marginRight: 1}}/>   <StarIcon sx={{marginRight: 1}}/>   <StarIcon sx={{marginRight: 1}}/>   <StarIcon sx={{marginRight: 1}}/>  
    </div>

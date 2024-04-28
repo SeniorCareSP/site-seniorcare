@@ -1,6 +1,7 @@
 import * as React from 'react';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
+import Box from '@mui/joy/Box';
 import FormHelperText from '@mui/joy/FormHelperText';
 import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
@@ -25,6 +26,9 @@ export default function InputSubscription() {
   };
 
   return (
+
+    
+    <Box sx={{ width: '100%' }}>
     <form onSubmit={handleSubmit} id="demo">
       <FormControl>
         <FormLabel
@@ -32,11 +36,15 @@ export default function InputSubscription() {
             '--FormLabel-color': theme.vars.palette.primary.plainColor,
           })}
         >
-          MUI Newsletter
         </FormLabel>
         <Input
-          sx={{ '--Input-decoratorChildHeight': '45px' }}
-          placeholder="mail@mui.com"
+          sx={{ 
+           "--Input-radius": "12px",
+          "--Input-gap": "13vw",
+          "--Input-minHeight": "76px",
+          "--Input-paddingInline": "65px",
+          "--Input-decoratorChildHeight": "54px"}}
+          placeholder="email@gmail.com"
           type="email"
           required
           value={data.email}
@@ -50,9 +58,9 @@ export default function InputSubscription() {
               color="primary"
               loading={data.status === 'loading'}
               type="submit"
-              sx={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
+              sx={{ borderTopLeftRadius: 6, borderBottomLeftRadius: 6 }}
             >
-              Subscribe
+              Inscreva-se Agora
             </Button>
           }
         />
@@ -60,7 +68,7 @@ export default function InputSubscription() {
           <FormHelperText
             sx={(theme) => ({ color: theme.vars.palette.danger[400] })}
           >
-            Oops! something went wrong, please try again later.
+            Oops! Algo deu errado.
           </FormHelperText>
         )}
 
@@ -68,10 +76,16 @@ export default function InputSubscription() {
           <FormHelperText
             sx={(theme) => ({ color: theme.vars.palette.primary[400] })}
           >
-            You are all set!
+            Perfeito, já recebemos seu e-mail!
           </FormHelperText>
         )}
       </FormControl>
+  
     </form>
+    </Box>
+
+
+
+    
   );
 }

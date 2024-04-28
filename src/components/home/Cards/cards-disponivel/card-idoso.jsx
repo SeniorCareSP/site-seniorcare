@@ -1,8 +1,8 @@
 import Styles from "../cards-disponivel/card-cuidador.module.css"
 import StarIcon from '@mui/icons-material/Star';
-import Imagem  from "../../../../utils/assets/Ellipse 25.png"
+import Imagem  from "../../../../utils/assets/Ellipse 26.png"
 import IconlessCheckbox from "./dias"
-function cardCuidador(){
+function cardIdoso(){
     return(
  <>
     <div className={Styles["cliente"]}>
@@ -46,4 +46,4 @@ function cardCuidador(){
     );
 }
 
-export default cardCuidador;
+export default cardIdoso;
