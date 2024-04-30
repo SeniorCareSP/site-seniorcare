@@ -4,7 +4,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 190vh;
+    height: 170vh;
     background-color: #2C7595;
  
 }
@@ -20,7 +20,7 @@
 
 
 
-.cuidador div button{
+.cuidador  button{
     margin-top: 5px;
     background-color: #ffff;
     color: #2C7595;
@@ -33,4 +33,11 @@
     cursor: pointer;
 }
 
+
+.cuidador .texto{
+    color: #ffffff;
+    font-size: 4vh;
+    margin-right: 25vh;
+    margin-top: 12vh;
+}
 

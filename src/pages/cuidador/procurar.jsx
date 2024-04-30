@@ -8,6 +8,7 @@ function procurar(){
         <>
         <div className={Style["procura"]}>
           <Navbar/>
+          <div className={[]}/>
           <Card/>
           </div>
         </>

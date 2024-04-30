@@ -2,3 +2,12 @@
     background-color: #ffffff;
     height: 100%;
 } */
+
+.procura .cards{
+    display: grid;
+    margin: 30px;
+    grid-template-columns: repeat(3, 25vw);
+    padding: 30px;
+    align-items: center;
+    justify-content: center;
+}
