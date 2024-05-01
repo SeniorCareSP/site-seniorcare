@@ -6,20 +6,25 @@ import ButtonAzul from '../botao/BotaoAzul';
 import ButtonBranco from '../botao/BotaoBranco';
 import Title from '../tituloCadastro/Title'
 
-function CadastroUsuario2(){
+function CadastroUsuario2() {
     const navigate = useNavigate();
-    return(
+    return (
         <div className={Style["card-cadastro"]}>
-            <Title />
-            <Stack spacing={3} className={Style["itens"]}>
-                <InputTexfield label="Logradouro" />
-                <InputTexfield label="Numero" />
-                <InputTexfield label="Complemento" />
-                <InputTexfield label="Cidade" />
-                <InputTexfield label="Bairro" />
-                <ButtonAzul onClick={()=> navigate("/cadastro3")} variant="contained">Proximo</ButtonAzul>
-                <ButtonBranco onClick={()=> navigate("/cadastro")} variant="contained">Voltar</ButtonBranco>
-            </Stack>
+            <div className={Style["linha"]}></div>
+            <div className={Style["content"]}>
+                <Stack spacing={6}>
+                    <Title />
+                    <Stack spacing={3} className={Style["itens"]}>
+                        <InputTexfield label="Logradouro" />
+                        <InputTexfield label="Numero" />
+                        <InputTexfield label="Complemento" />
+                        <InputTexfield label="Cidade" />
+                        <InputTexfield label="Bairro" />
+                        <ButtonAzul onClick={() => navigate("/cadastro3")} variant="contained">Proximo</ButtonAzul>
+                        <ButtonBranco onClick={() => navigate("/cadastro")} variant="contained">Voltar</ButtonBranco>
+                    </Stack>
+                </Stack>
+            </div>
         </div>
     );
 }

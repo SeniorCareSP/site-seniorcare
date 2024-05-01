@@ -3,6 +3,7 @@ import TextField from '@mui/material/TextField';
 
 
 const InputTexfield = styled(TextField)({
+  width:"20vw",
   '& label.Mui-focused': {
     color: '#077DB0',
 
@@ -10,21 +11,19 @@ const InputTexfield = styled(TextField)({
     borderBottomColor: '#B2BAC2',
 
   },'& .MuiOutlinedInput-root': {
-
     '& fieldset': {
       borderColor: '#077DB0',
       borderWidth: 3,
       borderRadius: '1.5vh',
       
-      
     },'&:hover fieldset': {
       borderColor: '#077DB0',
-      
+    
     },
     '&.Mui-focused fieldset': {
       borderColor: '#077DB0',
     }
-
+    
   }
 });
 

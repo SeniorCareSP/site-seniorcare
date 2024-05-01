@@ -1,16 +1,16 @@
-import CadastroCuidador2 from "../../components/eleCadastroCuidador/CadastroCuidador2";
+import CadastroCuidador3 from "../../components/eleCadastroCuidador/CadastroCuidador3";
 import Imagem1 from "../../components/ImagemCadastro/imgaemCuidador";
 import Style from './Cadastro.module.css';
 
-function Cuidador2(){
+function Cuidador3(){
     return(
         <>
         <div className={Style['corpo']}>
             <Imagem1 />
-            <CadastroCuidador2 />
+            <CadastroCuidador3 />
         </div>
         </>
     );
 }
 
-export default Cuidador2;
+export default Cuidador3;

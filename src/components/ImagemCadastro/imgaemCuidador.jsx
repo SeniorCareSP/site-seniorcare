@@ -1,4 +1,3 @@
-import Button from '@mui/material/Button';
 import { useNavigate } from "react-router-dom";
 import Style from '../../pages/cadastro/Cadastro.module.css';
 

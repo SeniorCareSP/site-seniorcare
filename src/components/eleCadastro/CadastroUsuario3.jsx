@@ -20,19 +20,24 @@ function CadastroUsuario3() {
     const navigate = useNavigate();
     return (
         <div className={Style["card-cadastro"]}>
-            <Title />
-            <Stack spacing={3} className={Style["itens"]}>
-                <FormControl fullWidth className={Style["select"]}>
-                    <InputLabel id="demo-simple-select-label">Idioma</InputLabel>
-                    <Select labelId="demo-simple-select-label" id="demo-simple-select" value={idioma} label="idioma" onChange={handleChange}>
-                        <MenuItem value={10}>Inglês</MenuItem>
-                        <MenuItem value={20}>Portugues</MenuItem>
-                        <MenuItem value={30}>Espanhol</MenuItem>
-                    </Select>
-                </FormControl>
-                <ButtonAzul onClick={() => navigate("/cadastro/cuidador")}>Proximo</ButtonAzul>
-                <ButtonBranco onClick={() => navigate("/cadastro2")} >Voltar</ButtonBranco>
-            </Stack>
+            <div className={Style["linha"]}></div>
+            <div className={Style["content"]}>
+                <Stack spacing={6}>
+                    <Title />
+                    <Stack spacing={3} className={Style["itens"]}>
+                        <FormControl fullWidth className={Style["select"]}>
+                            <InputLabel id="demo-simple-select-label">Idioma</InputLabel>
+                            <Select labelId="demo-simple-select-label" id="demo-simple-select" value={idioma} label="idioma" onChange={handleChange}>
+                                <MenuItem value={10}>Inglês</MenuItem>
+                                <MenuItem value={20}>Portugues</MenuItem>
+                                <MenuItem value={30}>Espanhol</MenuItem>
+                            </Select>
+                        </FormControl>
+                        <ButtonAzul onClick={() => navigate("/cadastro/cuidador")}>Proximo</ButtonAzul>
+                        <ButtonBranco onClick={() => navigate("/cadastro2")} >Voltar</ButtonBranco>
+                    </Stack>
+                </Stack>
+            </div>
         </div>
     );
 }

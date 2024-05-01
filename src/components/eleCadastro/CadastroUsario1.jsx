@@ -12,19 +12,24 @@ function CadastroUsuario1() {
     const navigate = useNavigate();
     return (
         <div className={Style["card-cadastro"]}>
-            <Title />
-            <Stack spacing={3} className={Style["itens"]}>
-                <InputTexfield label="Email" />
-                <InputTexfield label="senha" />
-                <InputTexfield label="confirmar senha" />
-                <InputTexfield label="CEP" />
-                <div>
-                    <BtnAzulS >Cuidador</BtnAzulS>
-                    <BtnBrancoS >Resposavel</BtnBrancoS>
-                </div>
-                <ButtonAzul onClick={() => navigate("/cadastro2")}>Proximo</ButtonAzul>
-                <a onClick={() => navigate("/login")} href=''>Já tenho uma conta</a>
-            </Stack>
+            <div className={Style["linha"]}></div>
+            <div className={Style["content"]}>
+                <Stack spacing={6}>
+                    <Title />
+                    <Stack spacing={3} className={Style["itens"]}>
+                        <InputTexfield label="Email" />
+                        <InputTexfield label="senha" />
+                        <InputTexfield label="confirmar senha" />
+                        <InputTexfield label="CEP" />
+                        <Stack direction="row" spacing={2}>
+                            <BtnAzulS >Cuidador</BtnAzulS>
+                            <BtnBrancoS >Resposavel</BtnBrancoS>
+                        </Stack>
+                        <ButtonAzul onClick={() => navigate("/cadastro2")}>Proximo</ButtonAzul>
+                        <a onClick={() => navigate("/login")} href=''>Já tenho uma conta</a>
+                    </Stack>
+                </Stack>
+            </div>
         </div>
     );
 }

@@ -1,4 +1,3 @@
-
 import Style from "../../pages/login/Login.module.css"
 import Stack from '@mui/material/Stack'
 import InputTexfield from '../Input/Input';
@@ -13,18 +12,22 @@ function EleLogin() {
   return (
     <>
       <div className={Style["card-cadastro"]}>
-        <div className={Style["title"]}>
-          <span>Login / <a onClick={() => navigate("/cadastro")}>Cadastro</a></span>
+        <div className={Style["linha"]}></div>
+        <div className={Style["content"]}>
+          <Stack spacing={6}>
+            <div className={Style["title"]}>
+              <span>Login / <a onClick={() => navigate("/cadastro")}>Cadastro</a></span>
+            </div>
+            <Stack spacing={5} className={Style["itens"]}>
+              <InputTexfield label="Email" />
+              <InputTexfield label="Senha" type="password" />
+              <a href="">Esqueceu a senha?</a>
+              <ButtonAzul className={Style["button"]} onClick={() => navigate("/")} variant="contained">Entrar</ButtonAzul>
+              <a href="" onClick={() => navigate("/")}>Voltar</a>
+            </Stack>
+          </Stack>
         </div>
-        <Stack spacing={5} className={Style["itens"]}>
-          <InputTexfield label="Email" />
-          <InputTexfield label="Senha" type="password"/>
-          <a href="">Esqueceu a senha?</a>
-          <ButtonAzul className={Style["button"]} onClick={() => navigate("/cadastro2")} variant="contained">Proximo</ButtonAzul>
-          <a href="" onClick={() => navigate("/")}>Voltar</a>
-        </Stack>
       </div>
-
     </>
   )
 }
