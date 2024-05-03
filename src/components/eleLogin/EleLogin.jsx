@@ -13,7 +13,6 @@ function EleLogin() {
   const [senha, setSenha] = useState("");
 
   const handleInputChange = (event, setStateFunction) => {
-    console.log(event.target.value);
     setStateFunction(event.target.value);
   }
 
@@ -30,10 +29,19 @@ function EleLogin() {
       senha
     }
 
-    api.post('', {
+    api.post('/login', {
       email,
       senha
-    }).then(() => {
+    }).then(response => {
+      const { userId, email,tipoUsuario, nome, token } = response.data;
+      
+      // Use os dados conforme necessário
+      console.log(`Usuário ID: ${userId}`);
+      //console.log(`Nome: ${nome}`);
+      //console.log(`Email: ${email}`);
+      //console.log(`Token: ${token}`);
+      localStorage.setItem('idUsuario', userId);
+      localStorage.setItem('token', token);
       console.log("Cadastro feito com sucesso!");
       navigate("/login");
     }).catch(() => {
@@ -57,9 +65,9 @@ function EleLogin() {
             </div>
             <Stack spacing={5} className={Style["itens"]}>
               <InputTexfield label="Email" value={email} onChange={(e) => handleInputChange(e, setEmail)} />
-              <InputTexfield label="Senha" value={email} onChange={(e) => handleInputChange(e, setSenha)} type="password" />
+              <InputTexfield label="Senha" value={senha} onChange={(e) => handleInputChange(e, setSenha)} type="password" />
               <a href="">Esqueceu a senha?</a>
-              <ButtonAzul className={Style["button"]} onClick={() => navigate("/")} variant="contained">Entrar</ButtonAzul>
+              <ButtonAzul className={Style["button"]} onClick={handleSave} variant="contained">Entrar</ButtonAzul>
               <a href="" onClick={() => navigate("/")}>Voltar</a>
             </Stack>
           </Stack>
