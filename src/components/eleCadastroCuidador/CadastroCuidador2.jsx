@@ -7,9 +7,11 @@ import BtnBrancoS from '../botao/BtnBrancoS';
 import VisuallyHiddenInput from '../botao/Upload';
 import ButtonAzul from '../botao/BotaoAzul';
 import ButtonBranco from '../botao/BotaoBranco';
-
+import ToggleButtonGroup from '@mui/joy/ToggleButtonGroup';
+import Button from '@mui/joy/Button';
+import InputTexfield from '../Input/Input';
 function CadastroCuidador2() {
-
+    const [value, setValue] = React.useState(['default']);
     const navigate = useNavigate();
     return (
         <div className={Style["card-cadastro"]}>
@@ -20,14 +22,18 @@ function CadastroCuidador2() {
                     <Stack spacing={3} className={Style["itens"]}>
                         <h3>Sobre você:</h3>
                         <Stack direction="row" spacing={2}>
-                            <BtnBrancoS>Sei dirigir</BtnBrancoS>
-                            <BtnBrancoS>Fumo</BtnBrancoS>
-                            <BtnBrancoS>Tenho certificado de Cuidados Geriatricos</BtnBrancoS>
+                            <ToggleButtonGroup spacing={2} color="primary" value={value} onChange={(event, newValue) => { setValue(newValue) }}>
+                                <Button value="dirigir">Sei dirigir</Button>
+                                <Button value="fumo">Fumo</Button>
+                                <Button value="cuidados">Certificado de Cuidados Geriatricos</Button>
+                            </ToggleButtonGroup>
                         </Stack>
                         <Stack direction="row" spacing={2}>
-                            <BtnBrancoS>Tenho diploma de Enfermagem</BtnBrancoS>
-                            <BtnBrancoS>Tenho certificado Primeiros Socorros</BtnBrancoS>
-                            <BtnBrancoS>Tenho certificado Boa Conduta</BtnBrancoS>
+                            <ToggleButtonGroup spacing={2} color="primary" value={value} onChange={(event, newValue) => { setValue(newValue) }}>
+                                <Button value="trabCasa">Diploma de Enfermagem</Button>
+                                <Button value="culinaria">Certificado Primeiros Socorros</Button>
+                                <Button value="curativos">Certificado Boa Conduta</Button>
+                            </ToggleButtonGroup>
                         </Stack>
                         <h3>Envie seus certificados</h3>
                         <Stack direction="row" justifyContent={"center"}>
@@ -36,6 +42,8 @@ function CadastroCuidador2() {
                                 <VisuallyHiddenInput type="file" />
                             </ButtonAzul>
                         </Stack>
+                        <h3>Apresente-se</h3>
+                        <InputTexfield label="apresentação" />
                         <h3>Envie uma foto:</h3>
                         <Stack direction="row" justifyContent={"center"}>
                             <ButtonAzul component="label" role={undefined} variant="contained" tabIndex={-1}>

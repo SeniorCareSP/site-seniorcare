@@ -3,12 +3,13 @@ import Style from '../../pages/cadastro/Cadastro.module.css';
 import { useNavigate } from "react-router-dom";
 import InputTexfield from '../Input/Input';
 import ButtonAzul from '../botao/BotaoAzul';
-import BtnBrancoS from '../botao/BtnBrancoS';
-import BtnAzulS from '../botao/BtnAzulS';
 import Title from '../tituloCadastro/Title'
+import * as React from 'react';
+import Button from '@mui/joy/Button';
+import ToggleButtonGroup from '@mui/joy/ToggleButtonGroup';
 
 function CadastroUsuario1() {
-
+    const [value, setValue] = React.useState('md');
     const navigate = useNavigate();
     return (
         <div className={Style["card-cadastro"]}>
@@ -22,8 +23,10 @@ function CadastroUsuario1() {
                         <InputTexfield label="confirmar senha" />
                         <InputTexfield label="CEP" />
                         <Stack direction="row" spacing={2}>
-                            <BtnAzulS >Cuidador</BtnAzulS>
-                            <BtnBrancoS >Resposavel</BtnBrancoS>
+                            <ToggleButtonGroup value={value} spacing={2} color="primary" onChange={(event, newValue) => {setValue(newValue)}}>
+                                <Button value="cuidador">Cuidador</Button>
+                                <Button value="responsavel">Responsavel</Button>
+                            </ToggleButtonGroup>
                         </Stack>
                         <ButtonAzul onClick={() => navigate("/cadastro2")}>Proximo</ButtonAzul>
                         <a onClick={() => navigate("/login")} href=''>Já tenho uma conta</a>

@@ -7,9 +7,11 @@ import Title from '../tituloCadastro/Title'
 import ButtonAzul from '../botao/BotaoAzul';
 import ButtonBranco from '../botao/BotaoBranco';
 import BtnBrancoS from '../botao/BtnBrancoS';
+import ToggleButtonGroup from '@mui/joy/ToggleButtonGroup';
+import Button from '@mui/joy/Button';
 
 function CadastroCuidador1() {
-
+    const [value, setValue] = React.useState(['default']);
     const navigate = useNavigate();
     return (
         <div className={Style["card-cadastro"]}>
@@ -22,13 +24,17 @@ function CadastroCuidador1() {
                         <InputTexfield label="Preço por hora" />
                         <div className={Style["div_ajuda"]}>
                             <h3>Como posso ajudar:</h3>
-                            <Stack direction="row" spacing={1} className={Style["ajuda"]}>
-                                <BtnBrancoS>Trabalho de casa</BtnBrancoS>
-                                <BtnBrancoS>culinaria</BtnBrancoS>
-                                <BtnBrancoS>curativos</BtnBrancoS>
+                            <Stack direction="row" spacing={3} className={Style["dias-semana"]}>
+                                <ToggleButtonGroup spacing={2} color="primary" value={value} onChange={(event, newValue) => { setValue(newValue) }}>
+                                    <Button value="trabCasa">Trabalho de casa</Button>
+                                    <Button value="culinaria">Culinaria</Button>
+                                    <Button value="curativos">Curativos</Button>
+                                </ToggleButtonGroup>
                             </Stack>
                             <Stack direction="row" spacing={1} className={Style["ajuda"]} justifyContent={"center"}>
-                                <BtnBrancoS>banho</BtnBrancoS>
+                                <ToggleButtonGroup spacing={2} color="primary" value={value} onChange={(event, newValue) => { setValue(newValue) }}>
+                                    <Button value="banho">Banho</Button>
+                                </ToggleButtonGroup>
                             </Stack>
                         </div>
                         <ButtonAzul onClick={() => navigate("/cadastro/cuidador2")}> Proximo</ButtonAzul>
