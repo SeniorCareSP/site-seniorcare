@@ -23,10 +23,15 @@ function CadastroUsuario1() {
                         <InputTexfield label="confirmar senha" />
                         <InputTexfield label="CEP" />
                         <Stack direction="row" spacing={2}>
+<<<<<<< HEAD
                             <ToggleButtonGroup value={value} spacing={2} color="primary" onChange={(event, newValue) => {setValue(newValue)}}>
                                 <Button value="cuidador">Cuidador</Button>
                                 <Button value="responsavel">Responsavel</Button>
                             </ToggleButtonGroup>
+=======
+                            <BtnBrancoS >Cuidador</BtnBrancoS>
+                            <BtnBrancoS >Resposavel</BtnBrancoS>
+>>>>>>> ec584c642b209d6c1f3c2bbf959ad72f5ca55b14
                         </Stack>
                         <ButtonAzul onClick={() => navigate("/cadastro2")}>Proximo</ButtonAzul>
                         <a onClick={() => navigate("/login")} href=''>Já tenho uma conta</a>
