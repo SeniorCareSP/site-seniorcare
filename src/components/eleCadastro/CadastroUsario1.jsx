@@ -22,7 +22,7 @@ function CadastroUsuario1() {
                         <InputTexfield label="confirmar senha" />
                         <InputTexfield label="CEP" />
                         <Stack direction="row" spacing={2}>
-                            <BtnAzulS >Cuidador</BtnAzulS>
+                            <BtnBrancoS >Cuidador</BtnBrancoS>
                             <BtnBrancoS >Resposavel</BtnBrancoS>
                         </Stack>
                         <ButtonAzul onClick={() => navigate("/cadastro2")}>Proximo</ButtonAzul>
