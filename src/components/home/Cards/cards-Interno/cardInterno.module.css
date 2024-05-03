@@ -2,11 +2,11 @@
     margin-top: 5vh;
     margin-left: 20px;
     width: 365px;
-    height:439px; 
+    height:410px; 
     background-color:  #ffffff;
     color: #000000;
     border-radius: 0px;
-    box-shadow: 3px 3px 6px #222222;
+    box-shadow: 10px 10px 10px #01072339;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -30,18 +30,18 @@ justify-content: space-around;
 .card .centro-top img{
 width: 16vh;
 height: 16vh;
-padding: 5px; /* Espaço entre o contorno e a imagem */
+padding: 3px; 
 }
 
 .card .centro-top .Icons img{
     width: 3vh;
     height: 3vh;
-    padding: 5px; 
+    padding: 2px; 
 }
 
 .card .Icons{
     width: 22vh;
-    height: 5vh;
+    height: 7vh;
     display: flex;
     justify-content: end;
     flex-direction: row;
@@ -76,9 +76,10 @@ flex-direction: column;
 }
 
 
-.card h3{
+.card p{
     font-family: montserrat;
-    font-weight: 100px;
+    font-weight: none;
+    font-size: 2vh;
 }
 
 .card  button{
@@ -92,8 +93,13 @@ flex-direction: column;
     cursor: pointer;
 }
 
-
+ 
 .card .centralizar button{
    display: flex;
    align-items: center;
+}
+
+h3{
+    font-weight: none;
+    font-style: none;
 }

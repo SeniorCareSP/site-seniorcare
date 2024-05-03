@@ -6,10 +6,10 @@ import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 export default function SelectIndicator() {
   return (
     <Select
-      placeholder="Maximo de número de idosos"
+      placeholder="Trabalho regular"
       indicator={<KeyboardArrowDown />}
       multiple
-      color="primary"
+     backgroundColor="#135B7A"
       variant="solid"
       
       sx={{
@@ -27,10 +27,8 @@ export default function SelectIndicator() {
         },
       }}
     >
-      <Option value="dog">Dog</Option>
-      <Option value="cat">Cat</Option>
-      <Option value="fish">Fish</Option>
-      <Option value="bird">Bird</Option>
+      <Option value="sim">Sim</Option>
+      <Option value="nao">Não</Option>
     </Select>
   );
 }

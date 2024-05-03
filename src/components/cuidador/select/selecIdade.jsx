@@ -6,14 +6,14 @@ import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 export default function SelectIndicator() {
   return (
     <Select
-      placeholder="Maximo de número de idosos"
+      placeholder="Idade do idoso"
       indicator={<KeyboardArrowDown />}
       multiple
       color="primary"
       variant="solid"
       
       sx={{
-        borderRadius:8,
+        borderRadius: 8,
         width: 290,
         height: 43,
         '&.MuiSelect-root': {
@@ -27,10 +27,11 @@ export default function SelectIndicator() {
         },
       }}
     >
-      <Option value="dog">Dog</Option>
-      <Option value="cat">Cat</Option>
-      <Option value="fish">Fish</Option>
-      <Option value="bird">Bird</Option>
+      <Option value="50-60">50 - 60</Option>
+      <Option value="60-70">60 - 70</Option>
+      <Option value="70-80">70 - 80</Option>
+      <Option value="80-90">80 - 90</Option>
+      <Option value="90+">90+</Option>
     </Select>
   );
 }

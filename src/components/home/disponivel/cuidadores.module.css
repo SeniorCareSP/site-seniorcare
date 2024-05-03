@@ -4,7 +4,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 170vh;
+    height: 189vh;
     background-color: #2C7595;
  
 }
@@ -37,7 +37,18 @@
 .cuidador .texto{
     color: #ffffff;
     font-size: 4vh;
-    margin-right: 25vh;
-    margin-top: 12vh;
+    margin-right: 78vh;
 }
 
+/* Cuidadores cuidador   mun4j */
+#root div .cuidadores_cuidador__Mun4j{
+    transform:translatex(9px) translatey(8px);
+   }
+   
+   /* Cuidadores texto  bc0j */
+   #root div .cuidadores_texto__xBc0J{
+    padding-bottom:2px;
+    transform:translatex(-71px) translatey(67px);
+   }
+   
+   

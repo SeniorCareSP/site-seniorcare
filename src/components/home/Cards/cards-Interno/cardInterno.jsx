@@ -41,9 +41,9 @@ function cardIdoso() {
 
           <div className={Styles["contexto"]}>
             <div className={Styles["centralizar"]}>
-              <h3>José é um idoso que precisa de cuidados devido à fragilidade
+              <p>José é um idoso que precisa de cuidados devido à fragilidade
                  física e dificuldades de locomoção causadas pela idade avançada. Ele ...
-               </h3>
+               </p>
               
             <Button variant="contained">Saiba mais</Button>
             
