@@ -9,6 +9,7 @@ import Cuidador1 from './pages/cadastro/Cuidador1';
 import Cuidador2 from './pages/cadastro/Cuidador2';
 import Cuidador3 from './pages/cadastro/Cuidador3';
 import Procurar from './pages/cuidador/procurar';
+import Finalizado from './pages/cadastro/Finalizado';
 function Router() {
   return (
     <BrowserRouter>                                        
@@ -23,6 +24,7 @@ function Router() {
         <Route path={'/cadastro/cuidador2'} element={<Cuidador2 />} />
         <Route path={'/cadastro/cuidador3'} element={<Cuidador3 />} />
         <Route path={'/procurar'} element={<Procurar />} />
+        <Route path={'/cadastro/concluido'} element={<Finalizado/>}/>
       </Routes>
     </BrowserRouter>
   );
