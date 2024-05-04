@@ -33,9 +33,8 @@ function EleLogin() {
       email,
       senha
     }).then(response => {
-      const { userId, email,tipoUsuario, nome, token } = response.data;
+      const { userId, email,tipoDeUsuario, nome, token } = response.data;
       
-      // Use os dados conforme necessário
       console.log(`Usuário ID: ${userId}`);
       //console.log(`Nome: ${nome}`);
       //console.log(`Email: ${email}`);

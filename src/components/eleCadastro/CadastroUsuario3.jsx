@@ -1,20 +1,48 @@
-import Stack from '@mui/material/Stack'
+import Stack from '@mui/material/Stack';
 import Style from '../../pages/cadastro/Cadastro.module.css';
 import { useNavigate } from "react-router-dom";
 import * as React from 'react';
 
 import ButtonAzul from '../botao/BotaoAzul';
 import ButtonBranco from '../botao/BotaoBranco';
-import Title from '../tituloCadastro/Title'
+import Title from '../tituloCadastro/Title';
 import CustomizedHook from '../Input/InpIdioma';
-function CadastroUsuario3() {
+import api from "../../api";
 
+function CadastroUsuario3() {
     const [idioma, setIdioma] = React.useState('');
+    const navigate = useNavigate();
+
     const handleChange = (event) => {
+        console.log(event.target.value)
         setIdioma(event.target.value);
     };
 
-    const navigate = useNavigate();
+    const handleSave = () => {
+        const dadosCadastro = localStorage.getItem("cadastro");
+        if (dadosCadastro) {
+            const json = JSON.parse(dadosCadastro);
+           // json.idiomas = [idioma];
+            localStorage.setItem("cadastro", JSON.stringify(json));
+
+            if(json.tipoDeUsuario === "CUIDADOR") {
+                navigate("/cadastro/cuidador");
+
+                console.log("Requisição para cadastrar cuidador");
+            } else {
+                api.post('/criar-cuidador', json)
+                    .then(response =>{
+                        navigate("/login");
+                        console.log("Cadastro feito com sucesso!");
+                    })
+                    .catch(() => {
+                        console.log(JSON.stringify(json));
+                        console.log("Ocorreu um erro ao cadastrar, por favor, tente novamente.");
+                    });
+            }
+        }
+    };
+
     return (
         <div className={Style["card-cadastro"]}>
             <div className={Style["linha"]}></div>
@@ -22,9 +50,9 @@ function CadastroUsuario3() {
                 <Stack spacing={6}>
                     <Title />
                     <Stack spacing={3} className={Style["itens"]}>
-                        <CustomizedHook />
-                        <ButtonAzul onClick={() => navigate("/cadastro/cuidador")}>Proximo</ButtonAzul>
-                        <ButtonBranco onClick={() => navigate("/cadastro2")} >Voltar</ButtonBranco>
+                        <CustomizedHook value={idioma} onChange={handleChange} />
+                        <ButtonAzul onClick={(event) => handleSave(event)}>Proximo</ButtonAzul>
+                        <ButtonBranco onClick={() => navigate("/cadastro2")}>Voltar</ButtonBranco>
                     </Stack>
                 </Stack>
             </div>

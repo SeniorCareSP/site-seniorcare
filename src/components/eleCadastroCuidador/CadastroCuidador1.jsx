@@ -12,7 +12,9 @@ import Button from '@mui/joy/Button';
 
 function CadastroCuidador1() {
     const [value, setValue] = React.useState(['default']);
+    
     const navigate = useNavigate();
+
     return (
         <div className={Style["card-cadastro"]}>
             <div className={Style["linha"]}></div>
