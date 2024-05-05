@@ -7,9 +7,9 @@ import List from '@mui/joy/List';
 import EditNoteRoundedIcon from '@mui/icons-material/EditNoteRounded';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import ChatListItem from './ChatListItem';
-import { ChatProps } from '../types';
-import { toggleMessagesPane } from '../utils';
+import ChatListItem from './ChatListItem.tsx';
+import { ChatProps } from '../types.tsx';
+import { toggleMessagesPane } from '../utils.ts';
 
 type ChatsPaneProps = {
   chats: ChatProps[];

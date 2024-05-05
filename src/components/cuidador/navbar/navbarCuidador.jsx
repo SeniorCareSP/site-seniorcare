@@ -17,7 +17,7 @@ function Navbar() {
                     <div className={Style["opcoes"]}>
                     <a>Procurar</a>
                     <a >Favoritos</a>
-                   <a>Conversas</a>
+                   <a onClick={() => navigate("/chat")} >Conversas</a>
                     </div>
                     <div className= {Style["cadastro"]}>
                         <img className={Style["icon"]} src={Door} alt=""/>

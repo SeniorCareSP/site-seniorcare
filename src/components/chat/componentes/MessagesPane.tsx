@@ -2,11 +2,11 @@ import * as React from 'react';
 import Box from '@mui/joy/Box';
 import Sheet from '@mui/joy/Sheet';
 import Stack from '@mui/joy/Stack';
-import AvatarWithStatus from './AvatarWithStatus';
-import ChatBubble from './ChatBubble';
-import MessageInput from './MessageInput';
-import MessagesPaneHeader from '../componentes/MessagesPaneHeader';
-import { ChatProps, MessageProps } from '../types';
+import AvatarWithStatus from './AvatarWithStatus.tsx';
+import ChatBubble from './ChatBubble.tsx';
+import MessageInput from './MessageInput.tsx';
+import MessagesPaneHeader from '../componentes/MessagesPaneHeader.tsx';
+import { ChatProps, MessageProps } from '../types.tsx';
 
 type MessagesPaneProps = {
   chat: ChatProps;

@@ -30,8 +30,8 @@ import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import BrightnessAutoRoundedIcon from '@mui/icons-material/BrightnessAutoRounded';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
-import ColorSchemeToggle from './ColorSchemeToggle';
-import { closeSidebar } from '../utils';
+import ColorSchemeToggle from '../componentes/ColorSchemeToggle.tsx';
+import { closeSidebar } from '../utils.ts';
 
 function Toggler(props: {
   defaultExpanded?: boolean;
@@ -269,7 +269,9 @@ export default function Sidebar() {
             </ListItemButton>
           </ListItem>
         </List>
-        <Card
+
+        
+        {/* <Card
           invertedColors
           variant="soft"
           color="warning"
@@ -289,7 +291,8 @@ export default function Sidebar() {
           <Button size="sm" variant="solid">
             Upgrade plan
           </Button>
-        </Card>
+        </Card> */}
+        
       </Box>
       <Divider />
       <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
