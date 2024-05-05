@@ -27,7 +27,8 @@ export default function MessagesPane(props: MessagesPaneProps) {
         height: { xs: 'calc(100dvh - var(--Header-height))', lg: '100dvh' },
         display: 'flex',
         flexDirection: 'column',
-        backgroundColor: 'background.level1',
+        backgroundColor: 'background.level1', 
+        // background do fundo da conversa
       }}
     >
       <MessagesPaneHeader sender={chat.sender} />

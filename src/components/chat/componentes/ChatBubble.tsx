@@ -8,7 +8,7 @@ import Typography from '@mui/joy/Typography';
 import CelebrationOutlinedIcon from '@mui/icons-material/CelebrationOutlined';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import InsertDriveFileRoundedIcon from '@mui/icons-material/InsertDriveFileRounded';
-import { MessageProps } from '../Types/types';
+import { MessageProps } from '../types.tsx';
 
 type ChatBubbleProps = MessageProps & {
   variant: 'sent' | 'received';

@@ -11,6 +11,7 @@ import Cuidador3 from './pages/cadastro/Cuidador3';
 import Procurar from './pages/cuidador/procurar';
 import Finalizado from './pages/cadastro/Finalizado';
 import Chat from './pages/chat/teste';
+import Fav from "./pages/cuidador/favorito";
 function Router() {
   return (
     <BrowserRouter>                                        
@@ -26,6 +27,7 @@ function Router() {
         <Route path={'/cadastro/cuidador3'} element={<Cuidador3 />} />
         <Route path={'/procurar'} element={<Procurar />} />
         <Route path={'/cadastro/concluido'} element={<Finalizado/>}/>
+        <Route path={'/chat'} element={<Chat/>}/>
         <Route path={'/chat'} element={<Chat/>}/>
       </Routes>
     </BrowserRouter>
