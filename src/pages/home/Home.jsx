@@ -8,7 +8,7 @@ import Clientes from "../../components/home/cliente/cliente";
 import Disponivel from "../../components/home/disponivel/cuidadores";
 import AccordionTransition from "../../components/home/perguntas/perguntas";
 import JunteSe from "../../components/home/Junte-se/junteSe";
-import Footer  from "../../components/home/footer/footer";
+import Footer from "../../components/home/footer/footer";
 import * as React from 'react';
 // import Button from '@mui/material/Button';
 
@@ -16,9 +16,10 @@ import * as React from 'react';
 
 function Home() {
 
- 
+
   return (
     <>
+
       <Navbar />
       <Apresentacao />
       <Empresa />

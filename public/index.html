@@ -5,10 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="Music box criado para a matéria de pesquisa e inovação dasptech" />
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <title>Index</title>
 </head>
 <body>
     <noscript>Você precisa habilitar o JavaScript da página.</noscript>
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+          <div class="vw-plugin-top-wrapper"></div>
+        </div>
+      </div>
     <div id="root"></div>
 </body>
 </html>
+<script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+</script>
