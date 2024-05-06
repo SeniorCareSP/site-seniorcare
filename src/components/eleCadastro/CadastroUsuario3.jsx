@@ -2,12 +2,12 @@ import Stack from '@mui/material/Stack';
 import Style from '../../pages/cadastro/Cadastro.module.css';
 import { useNavigate } from "react-router-dom";
 import * as React from 'react';
-
 import ButtonAzul from '../botao/BotaoAzul';
 import ButtonBranco from '../botao/BotaoBranco';
 import Title from '../tituloCadastro/Title';
 import CustomizedHook from '../Input/InpIdioma';
 import api from "../../api";
+import DatePicker from '../Input/DatePicker';
 
 function CadastroUsuario3() {
     const [idioma, setIdioma] = React.useState('');
@@ -51,6 +51,7 @@ function CadastroUsuario3() {
                     <Title />
                     <Stack spacing={3} className={Style["itens"]}>
                         <CustomizedHook value={idioma} onChange={handleChange}/> 
+                        <DatePicker/>
                         <ButtonAzul onClick={(event) => handleSave(event)}>Proximo</ButtonAzul>
                         <ButtonBranco onClick={() => navigate("/cadastro2")}>Voltar</ButtonBranco>
                     </Stack>
