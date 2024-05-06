@@ -81,8 +81,8 @@ function CadastroUsuario1() {
                     <Stack spacing={3} className={Style["itens"]}>
                         <InputTexfield label="Email" value={email} onChange={(e) => handleInputChange(e, setEmail)} />
                         <InputTexfield label="Nome" value={nome} onChange={(e) => handleInputChange(e, setNome)} />
-                        <InputTexfield label="senha" value={senha} onChange={(e) => handleInputChange(e, setSenha)} />
-                        <InputTexfield label="confirmar senha" value={confirmarSenha} onChange={(e) => handleInputChange(e, setConfirmarSenha)} />
+                        <InputTexfield label="senha" value={senha} type={"password"} onChange={(e) => handleInputChange(e, setSenha)} />
+                        <InputTexfield label="confirmar senha" type={"password"} value={confirmarSenha} onChange={(e) => handleInputChange(e, setConfirmarSenha)} />
                         <InputTexfield label="CEP" value={cep} onChange={(e) => handleInputChange(e, setCep)} />
                         <Stack direction="row" spacing={2}>
                             <ToggleButtonGroup value={tipoUsuario} spacing={2} color="primary" onChange={handleChange}>

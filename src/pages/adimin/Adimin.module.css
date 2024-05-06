@@ -1,0 +1,64 @@
+.container{
+    width: 100%;
+    height: 100Vh;
+    display: flex;
+    background-color: white;
+    justify-content: flex-start;
+}
+
+.container .card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+}
+
+.container .card .fotousu{
+    display: flex;
+    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .card .fotousu span{
+    width: 10vh;
+    height: 10vh;
+    background-color: #252F46;
+    border-radius: 100%;
+}
+
+.container .card .inputs{
+    display: flex;
+    justify-content: center;
+}
+
+.container .card .btns{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .card-sidebar{
+    display: flex;
+    align-items: center;
+    height: 100vh;
+}
+
+
+.container .card-sidebar .sidebar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 15vh;
+    height: 90vh;
+    position: absolute;
+    background-color: #252F46;
+    border-radius: 1vh;
+    margin-left: 2vh;
+}
+/* 
+.container .card-sidebar .sidebar img{
+    width: 8vh;
+} */
+
