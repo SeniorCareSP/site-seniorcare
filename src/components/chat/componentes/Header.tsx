@@ -3,6 +3,8 @@ import GlobalStyles from '@mui/joy/GlobalStyles';
 import IconButton from '@mui/joy/IconButton';
 import Sheet from '@mui/joy/Sheet';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+import BrightnessAutoRoundedIcon from '@mui/icons-material/BrightnessAutoRounded';
+import ColorSchemeToggle from '../componentes/ColorSchemeToggle.tsx';
 import { toggleSidebar } from '../utils.ts';
 
 export default function Header() {
@@ -15,7 +17,7 @@ export default function Header() {
         position: 'fixed',
         top: 0,
         width: '100vw',
-        height: 'var(--Header-height)',
+        height: 'var(--Header-heigh',
         zIndex: 9995,
         p: 2,
         gap: 1,
@@ -27,13 +29,17 @@ export default function Header() {
       <GlobalStyles
         styles={(theme) => ({
           ':root': {
-            '--Header-height': '52px',
+            '--Header-height': '25px',
             [theme.breakpoints.up('lg')]: {
-              '--Header-height': '0px',
+              '--Header-height': '2px',
             },
           },
         })}
       />
+         <IconButton variant="soft" color="primary" size="sm">
+          <BrightnessAutoRoundedIcon />
+        </IconButton>
+        <ColorSchemeToggle sx={{ ml: 'auto' }} />
       <IconButton
         onClick={() => toggleSidebar()}
         variant="outlined"

@@ -13,6 +13,7 @@ import Finalizado from './pages/cadastro/Finalizado';
 import Chat from './pages/chat/teste';
 import Editperfil from './pages/adimin/EditPerfil';
 import CadastroAdm from './components/admCadastro/cadastroAdm';
+import Favorito from "./pages/cuidador/favorito";
 
 function Router() {
   return (
@@ -32,6 +33,13 @@ function Router() {
         <Route path='/chat' element={<Chat/>}/>
         <Route path='/editPerfil' element={<Editperfil/>}/>
         <Route path='/cadastroAdm' element={<CadastroAdm/>}/>
+        <Route path={'/cadastro/cuidador2'} element={<Cuidador2 />} />
+        <Route path={'/cadastro/cuidador3'} element={<Cuidador3 />} />
+        <Route path={'/procurar'} element={<Procurar />} />
+        <Route path={'/cadastro/concluido'} element={<Finalizado/>}/>
+        <Route path={'/chat'} element={<Chat/>}/>
+        <Route path={'/favorito'} element={<Favorito/>}/>
+
       </Routes>
     </BrowserRouter>
   );

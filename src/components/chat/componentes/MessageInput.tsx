@@ -10,6 +10,8 @@ import FormatItalicRoundedIcon from '@mui/icons-material/FormatItalicRounded';
 import StrikethroughSRoundedIcon from '@mui/icons-material/StrikethroughSRounded';
 import FormatListBulletedRoundedIcon from '@mui/icons-material/FormatListBulletedRounded';
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
+import { createTheme } from '@mui/material/styles';
+
 
 export type MessageInputProps = {
   textAreaValue: string;
@@ -18,6 +20,23 @@ export type MessageInputProps = {
 };
 
 export default function MessageInput(props: MessageInputProps) {
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      light: '#757ce8',
+      main: '#3f50b5',
+      dark: '#002884',
+      contrastText: '#fff',
+    },
+    secondary: {
+      light: '#ff7961',
+      main: '#f44336',
+      dark: '#ba000d',
+      contrastText: '#000',
+    },
+  },
+});
   const { textAreaValue, setTextAreaValue, onSubmit } = props;
   const textAreaRef = React.useRef<HTMLDivElement>(null);
   const handleClick = () => {
@@ -49,14 +68,14 @@ export default function MessageInput(props: MessageInputProps) {
                 py: 1,
                 pr: 1,
                 borderTop: '1px solid',
-                borderColor: 'divider',
+                borderColor: 'primary',
               }}
             >
               <div>
-                <IconButton size="sm" variant="plain" color="neutral">
+                <IconButton size="sm" variant="plain" color="primary">
                   <FormatBoldRoundedIcon />
                 </IconButton>
-                <IconButton size="sm" variant="plain" color="neutral">
+                <IconButton size="sm" variant="plain" color="primary">
                   <FormatItalicRoundedIcon />
                 </IconButton>
                 <IconButton size="sm" variant="plain" color="neutral">
@@ -84,7 +103,7 @@ export default function MessageInput(props: MessageInputProps) {
           }}
           sx={{
             '& textarea:first-of-type': {
-              minHeight: 72,
+              minHeight: 42,
             },
           }}
         />

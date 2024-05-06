@@ -23,6 +23,7 @@
 .header{
     background-color: #077DB0;
     padding: 1vh;
+    height: 7vh;
     display: flex;
     border-bottom: 0.2vh #ffff solid;
     justify-content: space-between;
@@ -79,8 +80,8 @@
 
 .header .cadastro  img{
         padding-right: 2vh;
-         width: 8.6vh;
-        height: 8vh;
+         width: 7vh;
+        height: 5vh;
       
  }
 

@@ -74,7 +74,7 @@ export default function MessagesPaneHeader(props: MessagesPaneHeaderProps) {
         </div>
       </Stack>
       <Stack spacing={1} direction="row" alignItems="center">
-        <Button
+        {/* <Button
           startDecorator={<PhoneInTalkRoundedIcon />}
           color="neutral"
           variant="outlined"
@@ -84,7 +84,7 @@ export default function MessagesPaneHeader(props: MessagesPaneHeaderProps) {
           }}
         >
           Call
-        </Button>
+        </Button> */}
         <Button
           color="neutral"
           variant="outlined"

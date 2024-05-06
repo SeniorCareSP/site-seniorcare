@@ -13,6 +13,7 @@ export default function MyProfile() {
       sx={{
         flex: 1,
         width: '100%',
+        height: '90vh',
         mx: 'auto',
         pt: { xs: 'var(--Header-height)', sm: 0 },
         display: 'grid',
@@ -32,6 +33,7 @@ export default function MyProfile() {
           transition: 'transform 0.4s, width 0.4s',
           zIndex: 100,
           width: '100%',
+          height: '90vh',
           top: 52,
         }}
       >
