@@ -1,0 +1,19 @@
+.calendario .card-calendario{
+    border: solid #077DB0 0.5vh;
+    padding: 3vh;
+    border-radius: 2vh;
+    width: 32vw;
+}
+
+.calendario .calendario-titulo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 33vw;
+    justify-content: space-between;
+}
+
+.calendario .dias-semana{
+    display: flex;
+    justify-content: space-between;
+}

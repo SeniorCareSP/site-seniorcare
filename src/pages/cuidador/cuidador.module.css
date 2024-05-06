@@ -3,7 +3,7 @@
     height: 120vh;
     display: flex;
     align-items: center;
-     flex-direction: column;
+    flex-direction: column;
 }
 
 .procura .cards{
@@ -38,7 +38,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-     font-size: 2.0vh;
+    font-size: 2.0vh;
 }
 
 .favorito .cards{
@@ -57,21 +57,21 @@
 }
 
 .texto img{
-     margin-top: 12vh;
-     display: flex;
-     flex-direction: column;
-   }
+    margin-top: 12vh;
+    display: flex;
+    flex-direction: column;
+}
 
-img{
+/* img{
  height: 19vh;
  width: 11vh;
-}
+} */
 
 .linha{
     height: 0.3vh;
-     background-color: rgba(43, 61, 81, 0.2) ;
-     width: 74.7vw;  
-     margin-top: 2vh;  
+    background-color: rgba(43, 61, 81, 0.2) ;
+    width: 74.7vw;  
+    margin-top: 2vh;  
  }
 
 

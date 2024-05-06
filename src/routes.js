@@ -14,6 +14,7 @@ import Chat from './pages/chat/teste';
 import Editperfil from './pages/adimin/EditPerfil';
 import CadastroAdm from './components/admCadastro/cadastroAdm';
 import Favorito from "./pages/cuidador/favorito";
+import AtualizarPerfil from './pages/confUser/AtualizarPerfil';
 
 function Router() {
   return (
@@ -39,7 +40,7 @@ function Router() {
         <Route path={'/cadastro/concluido'} element={<Finalizado/>}/>
         <Route path={'/chat'} element={<Chat/>}/>
         <Route path={'/favorito'} element={<Favorito/>}/>
-
+        <Route path={'/atualizar'} element={<AtualizarPerfil/>}/>
       </Routes>
     </BrowserRouter>
   );

@@ -17,14 +17,16 @@ function EditProfile() {
                     </Stack>
                     <Stack spacing={5}>
                         <Stack spacing={5} direction={"row"} className={Style["inputs"]}>
-                            <Stack spacing={3}>
-                                <InputTexfield label="Nome completo" />
-                                <InputTexfield label="Senha" type={"password"} />
-                                <InputTexfield label="Telefone" />
+                        <Stack spacing={3}>
+                                <InputTexfield label="Nome" />
+                                <InputTexfield label="Sobre" />
                             </Stack>
                             <Stack spacing={3}>
-                                <InputTexfield label="E-mail" />
-                                <InputTexfield label="Confirmar senha" type={"password"} />
+                                <InputTexfield label="CEP" />
+                                <InputTexfield label="Rua" />
+                                <InputTexfield label="Numero" />
+                                <InputTexfield label="Bairro" />
+                                <InputTexfield label="Cidade" />
                             </Stack>
                         </Stack>
                         <Stack className={Style["btns"]} spacing={3}>

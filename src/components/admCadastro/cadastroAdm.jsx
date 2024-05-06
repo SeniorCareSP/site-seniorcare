@@ -7,9 +7,9 @@ import { Stack } from '@mui/material';
 function CadastroAdm() {
     return (
         <>
-            <div className={Style["container"]}> 
+            <div className={Style["container"]}>
 
-                <Stack className={Style["card"]}> 
+                <Stack className={Style["card"]}>
 
                     <Stack spacing={3} className={Style["fotousu"]}>
                         <span></span>
@@ -18,12 +18,15 @@ function CadastroAdm() {
                     <Stack spacing={5}>
                         <Stack spacing={5} direction={"row"} className={Style["inputs"]}>
                             <Stack spacing={3}>
-                                <InputTexfield label="Nome completo" />
-                                <InputTexfield label="E-mail" />
+                                <InputTexfield label="Nome" />
+                                <InputTexfield label="Sobre" />
                             </Stack>
                             <Stack spacing={3}>
-                                <InputTexfield label="Telefone" />
-                                <InputTexfield label="Confirmar senha" type={"password"} />
+                                <InputTexfield label="CEP" />
+                                <InputTexfield label="Rua" />
+                                <InputTexfield label="Numero" />
+                                <InputTexfield label="Bairro" />
+                                <InputTexfield label="Cidade" />
                             </Stack>
                         </Stack>
                         <Stack className={Style["btns"]} spacing={3}>
