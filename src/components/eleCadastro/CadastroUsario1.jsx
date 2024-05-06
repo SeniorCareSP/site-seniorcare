@@ -57,6 +57,7 @@ function CadastroUsuario1() {
                 senha: senha,
                 tipoDeUsuario: tipoUsuario,
                 idiomas: [],
+                dtNascimento: "",
                 enderecos: [{   
                     cep: cep,
                     logradouro: endereco.logradouro,
