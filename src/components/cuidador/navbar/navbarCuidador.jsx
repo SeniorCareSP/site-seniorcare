@@ -20,7 +20,7 @@ function Navbar() {
                    <a onClick={() => navigate("/chat")}>Conversas</a>
                     </div>
                     <div className= {Style["cadastro"]}>
-                        <img className={Style["icon"]} src={Door} alt=""/>
+                        <img className={Style["icon"]} src={Door} alt=""  onClick={() => navigate("/login")}/>
                     {/* <Button variant="contained" onClick={() => navigate("/login")}>Login</Button> */}
                     <img src={Perfil} alt=""/>
                     </div>

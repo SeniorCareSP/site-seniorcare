@@ -22,16 +22,16 @@ function CadastroUsuario3() {
         const dadosCadastro = localStorage.getItem("cadastro");
         if (dadosCadastro) {
             const json = JSON.parse(dadosCadastro);
-           // json.idiomas = [idioma];
             localStorage.setItem("cadastro", JSON.stringify(json));
-
-            if(json.tipoDeUsuario === "CUIDADOR") {
+                
+            if(json.tipoDeUsuario === "CUIDADOR") {     
                 navigate("/cadastro/cuidador");
 
                 console.log("Requisição para cadastrar cuidador");
             } else {
-                api.post('/criar-cuidador', json)
+                api.post('/criar-responsavel', json)
                     .then(response =>{
+                        localStorage.clear();
                         navigate("/login");
                         console.log("Cadastro feito com sucesso!");
                     })
@@ -50,7 +50,7 @@ function CadastroUsuario3() {
                 <Stack spacing={6}>
                     <Title />
                     <Stack spacing={3} className={Style["itens"]}>
-                        <CustomizedHook value={idioma} onChange={handleChange} />
+                        <CustomizedHook value={idioma} onChange={handleChange}/> 
                         <ButtonAzul onClick={(event) => handleSave(event)}>Proximo</ButtonAzul>
                         <ButtonBranco onClick={() => navigate("/cadastro2")}>Voltar</ButtonBranco>
                     </Stack>

@@ -12,7 +12,7 @@ import BookmarkIcon from '@mui/icons-material/Bookmark';
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 
-function cardIdoso() {
+function cardIdoso({nome, descricao, idade}) {
   return (
     <>
       <div className={Styles["cliente"]}>
@@ -34,18 +34,17 @@ function cardIdoso() {
           </div> */}
        
           <div className={Styles["info"]}>
-            Pedro Lucca<br/>
-            1 idoso: 70 anos.
+            {nome}<br/>
+           {/* idade: {idade}.*/}
              
           </div>
 
           <div className={Styles["contexto"]}>
             <div className={Styles["centralizar"]}>
-              <p>José é um idoso que precisa de cuidados devido à fragilidade
-                 física e dificuldades de locomoção causadas pela idade avançada. Ele ...
+              <p>{descricao}
                </p>
               
-            <Button variant="contained">Saiba mais</Button>
+            <Button variant="contained">Iniciar Conversa</Button>
             
             </div> 
           
