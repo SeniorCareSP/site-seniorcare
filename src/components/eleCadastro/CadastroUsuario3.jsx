@@ -11,6 +11,12 @@ import DatePicker from '../Input/DatePicker';
 
 function CadastroUsuario3() {
     const [idioma, setIdioma] = React.useState('');
+    const [dtNasc, setDtNasc] = React.useState('');
+
+    const handleInputChange = (event, setStateFunction) => {
+        setStateFunction(event.target.value);
+    }
+
     const navigate = useNavigate();
 
     const handleChange = (event) => {
@@ -22,8 +28,9 @@ function CadastroUsuario3() {
         const dadosCadastro = localStorage.getItem("cadastro");
         if (dadosCadastro) {
             const json = JSON.parse(dadosCadastro);
+            json.dtNascimento = dtNasc;
             localStorage.setItem("cadastro", JSON.stringify(json));
-                
+            
             if(json.tipoDeUsuario === "CUIDADOR") {     
                 navigate("/cadastro/cuidador");
 
@@ -51,7 +58,7 @@ function CadastroUsuario3() {
                     <Title />
                     <Stack spacing={3} className={Style["itens"]}>
                         <CustomizedHook value={idioma} onChange={handleChange}/> 
-                        <DatePicker/>
+                        <DatePicker value={dtNasc} onChange={(e) => handleInputChange(e, setDtNasc)}/>
                         <ButtonAzul onClick={(event) => handleSave(event)}>Proximo</ButtonAzul>
                         <ButtonBranco onClick={() => navigate("/cadastro2")}>Voltar</ButtonBranco>
                     </Stack>
