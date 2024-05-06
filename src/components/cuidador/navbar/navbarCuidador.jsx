@@ -16,7 +16,7 @@ function Navbar() {
                     <span className={Style["logo"]}></span>
                     <div className={Style["opcoes"]}>
                     <a onClick={() => navigate("/procurar")}>Procurar</a>
-                    <a onClick={() => navigate("/procurar")}>Favoritos</a>
+                    <a onClick={() => navigate("/favorito")}>Favoritos</a>
                    <a onClick={() => navigate("/chat")}>Conversas</a>
                     </div>
                     <div className= {Style["cadastro"]}>

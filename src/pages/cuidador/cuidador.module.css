@@ -26,3 +26,63 @@
     
 }
 
+.favorito {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 90.8vh;
+
+    
+}
+.favorito .texto{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+     font-size: 2.0vh;
+}
+
+.favorito .cards{
+    display: grid;
+    margin: 4px;
+    margin-left: none;
+    grid-template-columns: repeat(3, 25vw);
+    align-items: center;
+    justify-content: center;
+}
+
+.favorito .texto p{
+    position: absolute;
+    margin-top: 9vh;
+    margin-bottom: none;
+}
+
+.texto img{
+     margin-top: 12vh;
+     display: flex;
+     flex-direction: column;
+   }
+
+img{
+ height: 19vh;
+ width: 11vh;
+}
+
+.linha{
+    height: 0.3vh;
+     background-color: rgba(43, 61, 81, 0.2) ;
+     width: 74.7vw;  
+     margin-top: 2vh;  
+ }
+
+
+.favorito  button{
+    margin-top: 5px;
+    background-color: #252F46;
+    color: #ffffff;
+    font-size: medium;
+    border: 0;
+    width: 16vw;
+    height: 5vh;
+    cursor: pointer;
+}
