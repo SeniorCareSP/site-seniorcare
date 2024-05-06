@@ -6,9 +6,12 @@ import configicon from '../../utils/assets/settingsicon.png'
 import docicon from '../../utils/assets/docsicon.png'
 import importanticon from '../../utils/assets/importanticon.png'
 import logouticon from '../../utils/assets/Logout.png'
-import logo from '../../utils/assets/logo.png'
-import logoazul from '../../utils/assets/Logo-azul.png'
+import { useNavigate } from "react-router-dom";
+
 function SidebarDash(){
+
+    const navigate = useNavigate();
+
     return(
         <>
         <div className={Style["card-sidebar"]}>
@@ -23,7 +26,8 @@ function SidebarDash(){
                         <img src={importanticon} alt="" width={50}/>
                     </Stack>
                     <Stack>
-                        <img src={logouticon} alt="" width={50}/>
+                        {/* Chamar handleLogout ao clicar no ícone de logout */}
+                        <img src={logouticon} alt="" width={50} />
                     </Stack>
                 </Stack>
             </div>

@@ -20,8 +20,10 @@ function CadastroUsuario1() {
     const navigate = useNavigate();
 
     const handleChange = (event, newValue) => {
+     console.log("Novo valor selecionado:", newValue);
         setValue(newValue);
     };
+
 
     const handleInputChange = (event, setStateFunction) => {
         setStateFunction(event.target.value);
@@ -88,7 +90,7 @@ function CadastroUsuario1() {
                         <Stack direction="row" spacing={2}>
                             <ToggleButtonGroup value={tipoUsuario} spacing={2} color="primary" onChange={handleChange}>
                                 <Button value="CUIDADOR"  >Cuidador</Button>
-                                <Button value="RESPONSAVEL">Responsavel</Button>
+                                <Button value="RESPONSAVEL">Responsavel</Button>    
                             </ToggleButtonGroup>
                         </Stack>
                         <ButtonAzul onClick={(event) => handleSave(event)}>Proximo</ButtonAzul>
