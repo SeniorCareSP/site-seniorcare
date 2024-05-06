@@ -20,7 +20,7 @@ function CadastroUsuario1() {
     const navigate = useNavigate();
 
     const handleChange = (event, newValue) => {
-        console.log("Novo valor selecionado:", newValue);
+     console.log("Novo valor selecionado:", newValue);
         setValue(newValue);
     };
 

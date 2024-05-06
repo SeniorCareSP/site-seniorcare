@@ -9,6 +9,17 @@ import Button from '@mui/material/Button';
 
 function Navbar() {
     const navigate = useNavigate();
+
+    
+    const handleLogout = () => {
+        // Limpar o armazenamento local
+        localStorage.clear();
+        
+        navigate("/");
+        
+        console.log("Usuário deslogado!");
+    }
+
     return (
         <>
             <div className={Style["header"]}>
