@@ -27,10 +27,9 @@ export default function SelectIndicator() {
         },
       }}
     >
-      <Option value="dog">Dog</Option>
-      <Option value="cat">Cat</Option>
-      <Option value="fish">Fish</Option>
-      <Option value="bird">Bird</Option>
+      <Option value="1">1</Option>
+      <Option value="2">2</Option>
+      <Option value="3">3</Option>
     </Select>
   );
 }

@@ -1,0 +1,22 @@
+.erro{
+    background-color: #ffffff;
+    width: "100%";
+
+}
+
+.erro a{
+    margin-top: 6vh;
+    margin-left: 22vh;
+    display: flex;
+    align-items: center;
+}
+
+.erro .textinho{
+    display: flex;
+    align-items: center;
+
+}
+
+.erro img{
+    margin-left: 12vh;
+}

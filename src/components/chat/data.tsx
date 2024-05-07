@@ -162,13 +162,13 @@ export const chats: ChatProps[] = [
       },
       {
         id: '5',
-        content: 'Séria possível negociar alguns domingos?',
+        content: 'Séria possível negóciar alguns domingos?',
         timestamp: 'Wednesday 10:00am',
         sender: users[1],
       },
       {
         id: '6',
-        content: 'Make sure to take lots of pictures!',
+        content: 'Infelizmente não, se quiser estou livre ás sextas',
         timestamp: 'Wednesday 10:05am',
         sender: 'You',
       },
@@ -180,7 +180,7 @@ export const chats: ChatProps[] = [
     messages: [
       {
         id: '1',
-        content: 'Hey!',
+        content: 'Oii!',
         timestamp: '5 mins ago',
         sender: users[2],
         unread: true,
@@ -194,20 +194,20 @@ export const chats: ChatProps[] = [
       {
         id: '1',
         content:
-          'Hey Olivia, I was thinking about doing some home improvement work.',
+          'Olá Olivia, queria saber se está livre nas segundas.',
         timestamp: 'Wednesday 9:00am',
         sender: users[3],
       },
       {
         id: '2',
         content:
-          'That sounds interesting! What kind of improvements are you considering?',
+          'Oii, tudo bem? Estou sim, qual horário?',
         timestamp: 'Wednesday 9:05am',
         sender: 'You',
       },
       {
         id: '3',
-        content: 'I am planning to repaint the walls and replace the old furniture.',
+        content: 'Estava em mente das 13h ás 18.',
         timestamp: 'Wednesday 9:15am',
         sender: users[3],
       },
@@ -247,7 +247,7 @@ export const chats: ChatProps[] = [
     messages: [
       {
         id: '1',
-        content: 'Heyo',
+        content: 'Oiee, tudo bem?',
         timestamp: '5 mins ago',
         sender: 'You',
         unread: true,

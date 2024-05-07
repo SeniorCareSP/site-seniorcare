@@ -21,7 +21,7 @@ function card() {
             <div className={Styles["contexto"]}>
                   <h3>Eu nunca tive tanta facilidade em encontrar alguem
                     confiavem para cuidar da minha bisa! otimos profissionais,
-                     melhor decisão que eu tomei foi confiar</h3>
+                      melhor decisão que eu tomei foi confiar</h3>
                           <div className={Styles.card_footer}>
                             <p>  Mariana Nascimento<br/>
                             Responsável</p>
