@@ -87,10 +87,9 @@ export default function CustomizedAccordions() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor
-            sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
+          Os cuidadores que escolhem a Senior Care são dispostos de um calendário semanal,
+           onde selecionam os dias e periodos que estão disponiveis para prover cuidados, sendo ele regular ou ocasional. 
+           O mesmo se aplica para os responsáveis de idosos.
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -100,7 +99,9 @@ export default function CustomizedAccordions() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-             SLAAAAAAAAAAAAAAAAAAAAAA 
+          Sim, é possivel! Quando o responsável se cadastra pela primeira vez, 
+          ele deve cadastrar no minimo um idoso que precisa da Senior Care, mas não se preocupe, 
+          você poderá adicionar outros idosos de sua responsabilidade mais tarde, ao editar o perfil.
           </Typography>
         </AccordionDetails>
       </Accordion>

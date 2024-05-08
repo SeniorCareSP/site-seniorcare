@@ -9,7 +9,7 @@ function footer(){
     return(
 
             <> 
-            <div className={Style["footer"]}>
+            <div id="section4" className={Style["footer"]}>
             {/* <div className={Style["forma"]}></div> */}
             <div className={Style["Informacoes"]}>
                 <div className={Style["centraliza"]}>

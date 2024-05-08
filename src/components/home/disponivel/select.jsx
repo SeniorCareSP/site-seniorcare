@@ -1,23 +1,45 @@
 import React, { useState } from 'react';
+import { styled } from '@mui/material/styles';
 import Select, { selectClasses } from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 
 export default function SelectIndicator({ value, onChange }) {
   
+
+// const SelectDispo = styled(Select)({
+//   color: '#ffffff',
+//   backgroundColor: '#2C7595',
+//   borderRadius: '1.2vh',
+//   fontSize: '1.7vh',
+//   width: '19vw',
+//   height: '5.5vh',
+//   '&:hover': {
+//       backgroundColor: '#2C7595',
+//   },
+// });
+
   return (
     <Select
-      variant='soft'
+      // variant='soft'
       placeholder="Selecione"
       indicator={<KeyboardArrowDown />}
       value={value} // Definindo o valor selecionado
       onChange={onChange} // Função de retorno de chamada para enviar de volta o valor selecionado
       sx={{
-        width: 240,
+        width: 280,
+        height: '5vh',
+        borderRadius: '1vh',
+        fontSize: '1.7vh',
+        color: '#ffffff',
+        backgroundColor: '#2C7595',
+        ":hover":{ backgroundColor: '#2C7595'},
+
         [`& .${selectClasses.indicator}`]: {
           transition: '0.2s',
           [`&.${selectClasses.expanded}`]: {
             transform: 'rotate(-180deg)',
+            backgroundColor: '#2C7595',
           },
         },
       }}

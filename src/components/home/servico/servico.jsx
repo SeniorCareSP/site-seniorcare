@@ -3,7 +3,7 @@ import Style from "./servico.module.css"
 function Servico() {
     return (
         <frameElement>
-        <div className={Style["servico"]}>
+        <div id="section3" className={Style["servico"]}>
             <span className={Style["obj1"]}></span>
             <h1>Serviços</h1>
             <p>

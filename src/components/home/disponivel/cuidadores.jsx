@@ -8,7 +8,7 @@ import React, { useState } from "react";
 import Select, { selectClasses } from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
-
+import BtBranco from "../../botao/btBranco";
  function Disponivel() {
    const navigate = useNavigate();
    const [selectedOption, setSelectedOption] = useState('');
@@ -17,8 +17,9 @@ import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
    return (
 
      <>
-       <div >
+      
          <div className={Style["cuidador"]}>
+          <div className={Style["centraliza"]}>
           <div className={Style["texto"]}>
           Disponiveis agora
           </div>
@@ -26,6 +27,7 @@ import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
             onLoad={(e) => setSelectedOption(e.target.innerText)}
              onChange={(e) => setSelectedOption(e.target.innerText)}
            />
+           </div>
            <div className={Style["cards"]}>
             
              {
@@ -63,13 +65,13 @@ import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
                </>
              )}
            </div>
-           <div>
-             <button onClick={() => navigate("/procurar")}>
+           <div className={Style["btn"]}>
+             <BtBranco  onClick={() => navigate("/procurar")}>
                Ver Todos Os Cuidadores
-             </button>
+             </BtBranco>
            </div>
          </div>
-       </div>
+      
     </>
   );
  }
