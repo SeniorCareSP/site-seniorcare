@@ -30,6 +30,7 @@ export default function SelectIndicator({ value, onChange }) {
         width: 280,
         height: '5vh',
         borderRadius: '1vh',
+        border: 1,
         fontSize: '1.7vh',
         color: '#ffffff',
         backgroundColor: '#2C7595',

@@ -6,8 +6,6 @@ import Title from '../tituloCadastro/Title'
 import ButtonAzul from '../botao/BotaoAzul';
 import ButtonBranco from '../botao/BotaoBranco';
 import Calendario from '../calendario/Calendario';
-import IconButton from '@mui/joy/IconButton';
-import ToggleButtonGroup from '@mui/joy/ToggleButtonGroup';
 import api from "../../api";
 
 function CadastroCuidador3() {
@@ -33,7 +31,6 @@ function CadastroCuidador3() {
 
         }
     };
-
 
     return (
         <div className={Style["card-cadastro"]}>

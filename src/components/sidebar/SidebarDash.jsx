@@ -1,4 +1,4 @@
-import Style from '../../pages/adimin/Adimin.module.css'
+import Style from '../../pages/admin/Admin.module.css'
 import { Stack } from "@mui/material"
 import iconusu from '../../utils/assets/usericon.png'
 import dashicon from '../../utils/assets/graphicon.png'

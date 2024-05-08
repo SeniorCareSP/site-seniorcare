@@ -10,7 +10,7 @@
 
 .cards{
     display: grid;
-    margin: 12px;
+    margin: 22px;
     grid-template-columns: repeat(3, 25vw);
     padding: 30px;
     align-items: center;

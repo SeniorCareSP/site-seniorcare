@@ -39,6 +39,9 @@ export default function IconlessCheckbox() {
                 disableIcon
                 variant="soft"
                 label={item}
+                sx={{
+                  background: '#2C7595',
+                }}
               />
             </ListItem>
           ))}
