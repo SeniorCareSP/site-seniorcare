@@ -1,4 +1,4 @@
-import Style from '../../pages/cadastro/Cadastro.module.css';
+import Style from './Calendario.module.css';
 import Stack from '@mui/material/Stack'
 import * as React from 'react';
 import IconButton from '@mui/joy/IconButton';

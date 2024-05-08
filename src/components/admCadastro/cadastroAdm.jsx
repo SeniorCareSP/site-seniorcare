@@ -1,4 +1,4 @@
-import Style from '../../pages/adimin/Adimin.module.css'
+import Style from '../../pages/admin/Admin.module.css'
 import InputTexfield from '../Input/Input';
 import ButtonAzul from '../botao/BotaoAzul';
 import ButtonBranco from '../botao/BotaoBranco';

@@ -11,7 +11,7 @@ import Cuidador3 from './pages/cadastro/Cuidador3';
 import Procurar from './pages/cuidador/procurar';
 import Finalizado from './pages/cadastro/Finalizado';
 import Chat from './pages/chat/teste';
-import Editperfil from './pages/adimin/EditPerfil';
+import Editperfil from './pages/admin/EditPerfil';
 import CadastroAdm from './components/admCadastro/cadastroAdm';
 import Favorito from "./pages/cuidador/favorito";
 import AtualizarPerfil from './pages/confUser/AtualizarPerfil';
@@ -32,7 +32,7 @@ function Router() {
         <Route path='/procurar' element={<Procurar />} />
         <Route path='/cadastro/concluido' element={<Finalizado/>}/>
         <Route path='/chat' element={<Chat/>}/>
-        <Route path='/editPerfil' element={<Editperfil/>}/>
+        <Route path='/editar/perfil' element={<Editperfil/>}/>
         <Route path='/cadastroAdm' element={<CadastroAdm/>}/>
         <Route path={'/cadastro/cuidador2'} element={<Cuidador2 />} />
         <Route path={'/cadastro/cuidador3'} element={<Cuidador3 />} />
@@ -40,7 +40,7 @@ function Router() {
         <Route path={'/cadastro/concluido'} element={<Finalizado/>}/>
         <Route path={'/chat'} element={<Chat/>}/>
         <Route path={'/favorito'} element={<Favorito/>}/>
-        <Route path={'/atualizar'} element={<AtualizarPerfil/>}/>
+        <Route path={'/atualizar/usuario'} element={<AtualizarPerfil/>}/>
       </Routes>
     </BrowserRouter>
   );

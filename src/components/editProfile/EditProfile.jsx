@@ -1,4 +1,4 @@
-import Style from '../../pages/adimin/Adimin.module.css'
+import Style from '../../pages/admin/Admin.module.css'
 import InputTexfield from '../Input/Input';
 import ButtonAzul from '../botao/BotaoAzul';
 import ButtonBranco from '../botao/BotaoBranco';
@@ -32,15 +32,14 @@ function EditProfile() {
                     <Stack spacing={5}>
                         <Stack spacing={5} direction={"row"} className={Style["inputs"]}>
                         <Stack spacing={3}>
-                                <InputTexfield label="Nome" />
-                                <InputTexfield label="Sobre" />
+                                <InputTexfield label="Nome completo" />
+                                <InputTexfield label="Senha" type="password" />
+                                <InputTexfield label="Telefone(opicional)" />
                             </Stack>
                             <Stack spacing={3}>
-                                <InputTexfield label="CEP" />
-                                <InputTexfield label="Rua" />
-                                <InputTexfield label="Numero" />
-                                <InputTexfield label="Bairro" />
-                                <InputTexfield label="Cidade" />
+                                <InputTexfield label="Email" type='email'/>
+                                <InputTexfield label="Confrmar senha" type='password' />
+
                             </Stack>
                         </Stack>
                         <Stack className={Style["btns"]} spacing={3}>
