@@ -2,6 +2,7 @@ import Styles from "../cards-disponivel/card-cuidador.module.css"
 import StarIcon from '@mui/icons-material/Star';
 import Imagem  from "../../../../utils/assets/Ellipse 25.png"
 import IconlessCheckbox from "./dias"
+import { Style } from "@mui/icons-material";
 function cardCuidador(){
     return(
  <>
@@ -22,10 +23,13 @@ function cardCuidador(){
             <div className={Styles["contexto"]}>
             <div className={Styles["centralizar"]}>
                   <h3>Disponivel na:</h3>
-                  <h3>3 anos de<br/>
+                  <h3 className={Style['tempo']}>3 anos de<br/>
                       experiencia</h3>
                   </div>
-                  <IconlessCheckbox/>
+                  <div className={Styles["dias"]}>  
+                   <IconlessCheckbox/>
+                  </div>
+               
                           {/* <div className={Styles.card_footer}>
                            <a className={Style["quadrado"]}>Do</a> 
                            <a className={Style["quadrado"]}>Se</a> 

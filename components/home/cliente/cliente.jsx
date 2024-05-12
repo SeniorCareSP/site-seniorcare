@@ -37,8 +37,7 @@ function clientes() {
         
         <div className={Styles["cliente"]}>
           <div className={Styles["titulo"]}>
-          <h1>Clientes</h1>
-          <h1 className={Styles["cor"]}>que aprovam</h1>
+          <h1>Clientes que aprovam</h1>
           </div>
           
           {/* <div className={Styles["cards-centralizar"]}> */}

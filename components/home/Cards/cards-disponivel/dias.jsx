@@ -9,7 +9,17 @@ import Typography from '@mui/joy/Typography';
 
 export default function IconlessCheckbox() {
   return (
-    <Box sx={{ width: 373 }}>
+    <Box sx={{
+       width: {
+          xs: 100, //0
+          sm: 200, //600
+          md: 300, //900
+          lg: 350, //1200
+          xl: 320,
+       },
+     
+      
+    }}>
       <Typography id="topping" level="body-sm" fontWeight="lg" mb={1}>
 
       </Typography>
@@ -20,7 +30,8 @@ export default function IconlessCheckbox() {
           sx={{
             '--color': '#252F46',
             '--List-gap': '8px',
-            
+        
+          
           }}
         >
           {[
@@ -40,6 +51,14 @@ export default function IconlessCheckbox() {
                 variant="soft"
                 label={item}
                 sx={{
+                  width: {
+                    xs: 100, //0
+                    sm: 200, //600
+                    md: 10, //900
+                    lg: 12, //1200
+                    xl: 14, //1536
+                 },
+                
                   background: '#2C7595',
                 }}
               />
