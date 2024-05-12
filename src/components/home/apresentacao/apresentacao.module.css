@@ -80,7 +80,7 @@
     z-index: 1;
     position: absolute;
     border-radius: 1vh;
-    width: 33.2rem;
+    width: 37.2rem;
     height: 35vh;
     top: 5vh;
     left: 27vh;
@@ -88,3 +88,53 @@
 }
 
 
+@media screen and (max-width: 1700px) {
+ 
+  
+  }
+  
+  @media screen and (max-width: 1600px) {
+   
+    
+  }
+  
+  @media screen and (max-width: 1450px) {
+    
+      
+  
+  }
+  
+  @media screen and (max-width: 1330px) {
+    
+
+  }
+  
+  
+  @media screen and (max-width: 1250px) {
+    .card {
+        width: 25vw;
+        height: 49vh;
+    }
+  
+    .centralizar .tempo {
+      width: 1vw;
+      height: 5vh;
+      /* Aplicando line-clamp para limitar o texto a duas linhas */
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+    }
+  
+    .card  h3 {
+       width: 10vh;
+  }
+  }
+  @media screen and (max-width: 900px) {
+    .card{
+        width: 35vw;
+        height: 45vh;
+    }
+  }
