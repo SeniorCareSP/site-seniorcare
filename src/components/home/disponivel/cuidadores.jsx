@@ -23,6 +23,7 @@ import BtBranco from "../../botao/btBranco";
           <div className={Style["texto"]}>
           Disponiveis agora
           </div>
+          
            <SelectIndicator
             onLoad={(e) => setSelectedOption(e.target.innerText)}
              onChange={(e) => setSelectedOption(e.target.innerText)}

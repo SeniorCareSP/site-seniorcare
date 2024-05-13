@@ -13,8 +13,8 @@ function card() {
    <section className={Styles.card}>
   
     <div className={Styles["strelas"]}>
-   <StarIcon sx={{marginRight: 1}}/>   <StarIcon sx={{marginRight: 1}}/>   <StarIcon sx={{marginRight: 1}}/>   <StarIcon sx={{marginRight: 1}}/>   <StarIcon sx={{marginRight: 1}}/>  
-   </div>
+   <StarIcon sx={{marginRight: { lg:0.3 , xg:1 } }}/>    <StarIcon sx={{marginRight: { lg:0.3 , xg:1 } }}/>   <StarIcon sx={{marginRight: { lg:0.3 , xg:1 } }}/>   <StarIcon sx={{marginRight: { lg:0.3 , xg:1 } }}/>   <StarIcon sx={{marginRight: { lg:0.3 , xg:1 } }}/> 
+    </div>
       <div className={Styles["Centralizar"]}>
         <div className={Styles["linha"]}>
         </div>

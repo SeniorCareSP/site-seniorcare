@@ -7,7 +7,7 @@ import { Grid } from "@mui/material";
 function Porque() {
     return (
         <>
-        <div className={Style["content"]}>
+        <div id="section5" className={Style["content"]}>
         <div className={Style["container"]}>
 
             <div className={Style["Central"]}>
@@ -18,7 +18,7 @@ function Porque() {
                 par <spam className={Style["cor"]}> melhorar a qualidade</spam> de vida <br/>
                 dos idosos e suas famílias.</p> 
                 </div>
-                <div className={Style["icon"]}>
+                <div className={Style["icon1"]}>
                 <spam><img src={Mao} alt ="icone"/></spam>
                 </div>
                 </div>
@@ -26,7 +26,7 @@ function Porque() {
 
             <div className={Style["Central"]}>
 
-                <div className={Style["Icon"]}>
+                <div className={Style["icon2"]}>
                     <span><img src={Healthy}/></span>
                 </div>
 
@@ -47,7 +47,7 @@ function Porque() {
                     para garantir os mais altos padrões <br/>
                     de qualidade.</p> 
                 </div>
-                <div className={Style["Icon"]}>
+                <div className={Style["icon3"]}>
                     <span><img src={Approval}/></span>
                 </div>
             </div>

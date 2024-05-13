@@ -41,7 +41,7 @@
     width: 20vh;
     height: 20vh;
     left: 0vh;
-    top: 219.5%;
+    top: calc(229.7vh - 7.8vw);
     border-top-right-radius: 20%;
     border-bottom-right-radius: 70%;
     background-color: #80C1DE;
@@ -70,3 +70,27 @@
     border-bottom-left-radius: 10%;
     background-color: #509CBD;
 }
+
+
+
+@media screen and (max-width: 1600px) {
+    .servico .obj1{
+        position: absolute;
+        width: 20vh;
+        height: 20vh;
+        left: 0vh;
+        top: 204.7%;
+    }
+      
+  }
+
+ 
+
+  @media screen and (max-width: 1515px ) {
+    .servico .obj1 {
+        /* width: 10vw;
+        height: 10vw; */
+        top: calc(213vh - 5.2vw);
+    }
+      
+  }

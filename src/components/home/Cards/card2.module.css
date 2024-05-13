@@ -114,6 +114,56 @@
      }
     }
 
+
+    @media screen and (max-width: 1250px) {
+        .card {
+            width: 18vw;
+            height: 28vh;
+        }
+        .imagem img{
+            position:absolute;
+            z-index: 5;
+            margin-top: 1vh;
+            margin-left: 20vh;
+            width: 6vh;
+        
+         }
+    }
+
+    @media screen and (max-width: 1160px) {
+        .card {
+            width: 20vw;
+            height: 28vh;
+        }
+        .imagem img{
+            position:absolute;
+            z-index: 5;
+            margin-top: 1vh;
+            margin-left: 17vh;
+            width: 6vh;
+        
+         }
+         .card h3{
+            color: #ffffff;
+            font-size: 1.4vh;
+        }
+        
+    }
+
+    @media screen and (max-width: 130px) {
+        .card {
+            width: 20vw;
+            height: 28vh;
+        }
+        .imagem img{
+            position:absolute;
+            z-index: 5;
+            margin-top: 1vh;
+            margin-left: 18vh;
+            width: 6vh;
+        
+         }
+    }
    
    
    

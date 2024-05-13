@@ -122,16 +122,28 @@
         position:absolute;
         z-index: 5;
         margin-top: 1vh;
-        margin-left: 21vh;
-        width: 7vh;
+        margin-left: 20vh;
+        width: 6vh;
     
      }
 }
 
-@media screen and (max-width: 900px) {
-    .card-musica {
-        width: 35vw;
-        height: 45vh;
+@media screen and (max-width: 1160px) {
+    .card {
+        width: 20vw;
+        height: 28vh;
+    }
+    .imagem img{
+        position:absolute;
+        z-index: 5;
+        margin-top: 1vh;
+        margin-left: 17vh;
+        width: 6vh;
+    
+     }
+     .card h3{
+        color: #ffffff;
+        font-size: 1.4vh;
     }
 }
  /*

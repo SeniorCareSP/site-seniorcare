@@ -39,15 +39,15 @@
     justify-content: space-around;
     margin-bottom: 10vh;
     font-weight: 170;
-    font-family: montserrat;
+    font-family: spartan;
 
 }
 
 .empresa .descricao p{
     width: 60%;
     font-size: 4vh;
-    font-weight: 170;
-    font-family: montserrat;
+    font-weight: 290;
+    font-family: spartan;
 }
 
 .empresa .descricao img{

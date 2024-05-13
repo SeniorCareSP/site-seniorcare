@@ -171,6 +171,7 @@ padding: 5px; /* Espaço entre o contorno e a imagem */
   .card  h3 {
      width: 10vh;
 }
+
 }
 @media screen and (max-width: 900px) {
   .card{

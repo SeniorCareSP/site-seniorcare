@@ -28,6 +28,7 @@ export default function SelectIndicator({ value, onChange }) {
       onChange={onChange} // Função de retorno de chamada para enviar de volta o valor selecionado
       sx={{
         width: 280,
+        marginBottom: 4,
         height: '5vh',
         borderRadius: '1vh',
         border: 1,

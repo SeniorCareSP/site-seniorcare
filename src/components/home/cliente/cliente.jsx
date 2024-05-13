@@ -20,7 +20,7 @@ function SamplePrevArrow(props) {
 }
 
 function clientes() {
-  const settings = {
+  const defaultSettings = {
     dots: true,
     infinite: true,
     speed: 500,
@@ -29,32 +29,47 @@ function clientes() {
       nextArrow:  <SamplePrevArrow />,
       prevArrow: <SamplePrevArrow />
     };
-    
-   
-  
+    // Configurações adicionais para telas menores
+  const responsiveSettings = [
+    {
+      breakpoint: 1160,
+      settings: {
+        slidesToShow: 3
+      }
+    },
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1
+      }
+    }
+  ];
 
-    return (
-        
-        <div className={Styles["cliente"]}>
-          <div className={Styles["titulo"]}>
-          <h1>Clientes que aprovam</h1>
-          </div>
-          
-          {/* <div className={Styles["cards-centralizar"]}> */}
-         {/* </div> */}
-         <div className={Styles["slider"]}>
-         <Slider {...settings}>
-       <Card/>
-       <Card2/>
-       <Card/>
-       <Card2/>
-       <Card/>
-       <Card2/>
-       </Slider>
-       </div>
-       </div>
-      
-          )
-     }
-        
-        export default clientes;
+  const settings = { ...defaultSettings, slidesToShow: 4, responsive: responsiveSettings };
+
+  return (
+    <div className={Styles["cliente"]}>
+      <div className={Styles["titulo"]}>
+        <h1>Clientes que aprovam</h1>
+      </div>
+      <div className={Styles["slider"]}>
+        <Slider {...settings}>
+          <Card />
+          <Card2 />
+          <Card />
+          <Card2 />
+          <Card />
+          <Card2 />
+        </Slider>
+      </div>
+    </div>
+  );
+}
+
+export default clientes;
