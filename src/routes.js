@@ -15,6 +15,7 @@ import Editperfil from './pages/admin/EditPerfil';
 import CadastroAdm from './components/admCadastro/cadastroAdm';
 import Favorito from "./pages/cuidador/favorito";
 import AtualizarPerfil from './pages/confUser/AtualizarPerfil';
+import AnaliseDocs from './pages/admin/AnaliseDocs';
 
 function Router() {
   return (
@@ -34,13 +35,14 @@ function Router() {
         <Route path='/chat' element={<Chat/>}/>
         <Route path='/editar/perfil' element={<Editperfil/>}/>
         <Route path='/cadastroAdm' element={<CadastroAdm/>}/>
-        <Route path={'/cadastro/cuidador2'} element={<Cuidador2 />} />
-        <Route path={'/cadastro/cuidador3'} element={<Cuidador3 />} />
-        <Route path={'/procurar'} element={<Procurar />} />
-        <Route path={'/cadastro/concluido'} element={<Finalizado/>}/>
-        <Route path={'/chat'} element={<Chat/>}/>
-        <Route path={'/favorito'} element={<Favorito/>}/>
-        <Route path={'/atualizar/usuario'} element={<AtualizarPerfil/>}/>
+        <Route path='/cadastro/cuidador2' element={<Cuidador2 />} />
+        <Route path='/cadastro/cuidador3' element={<Cuidador3 />} />
+        <Route path='/procurar' element={<Procurar />} />
+        <Route path='/cadastro/concluido' element={<Finalizado/>}/>
+        <Route path='/chat' element={<Chat/>}/>
+        <Route path='/favorito' element={<Favorito/>}/>
+        <Route path='/atualizar/usuario' element={<AtualizarPerfil/>}/>
+        <Route path='/admin/analiseDocs' element={<AnaliseDocs/>}/>
       </Routes>
     </BrowserRouter>
   );

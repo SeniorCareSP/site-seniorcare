@@ -1,0 +1,43 @@
+.card-sidebar{
+    display: flex;
+    align-items: center;
+    height: 100vh;
+}
+
+
+.card-sidebar .sidebar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 15vh;
+    height: 90vh;
+    position: absolute;
+    background-color: #252F46;
+    border-radius: 1vh;
+    margin-left: 2vh;
+    transition: 0.5s;
+}
+
+.card-icons .opt-sidebar{
+    display: flex;
+    flex-direction: column;
+    margin-top: 5vh;
+}
+
+.card-icons h2{
+    display: flex;
+    color: white;
+    width: 5vw;
+    height: auto;
+}
+
+.card-icons img{
+    width: 3vw;
+    height: 6vh;
+}
+
+.card-icons span{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

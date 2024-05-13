@@ -6,7 +6,7 @@ import { Stack } from '@mui/material';
 import SidebarDash from '../sidebar/SidebarDash';
 import SimpleSelect from '../Input/Select';
 
-function CadastroAdm() {
+function AnaliseDocumento() {
     return (
         <>
             <div className={Style["container"]}>
@@ -20,11 +20,11 @@ function CadastroAdm() {
                     <Stack spacing={5}>
                         <Stack spacing={5} direction={"row"} className={Style["inputs"]}>
                             <Stack spacing={3}>
-                                <InputTexfield label="Nome completo" />
-                                <InputTexfield label="E-mail" />
+                                <InputTexfield label="certificado1" />
+                                <InputTexfield label="certificado2" />
                             </Stack>
                             <Stack spacing={3}>
-                                <InputTexfield label="Telefone(opcional)" />
+                                <SimpleSelect label="s" />
                                 <SimpleSelect label="Permissão" />
                             </Stack>
                         </Stack>
@@ -41,4 +41,4 @@ function CadastroAdm() {
     )
 }
 
-export default CadastroAdm;
+export default AnaliseDocumento;
