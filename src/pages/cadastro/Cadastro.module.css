@@ -91,18 +91,4 @@
     height: 15vh;
   }
   
-  .imagem{
-    width: 50%;
-    height: 100vh;
-    /* background-image: url(../../utils/assets/velhaRuiva.jpeg); */
-    background-size: cover;
-  }
 
-  .imagem .button-voltar{
-    background-image: url(../../utils/assets/setaVoltar.png);
-    margin: 5vh;
-    cursor: pointer;
-    background-size: cover;
-    width: 3vw;
-    height: 6.3vh;
-  }

@@ -16,6 +16,7 @@ import CadastroAdm from './components/admCadastro/cadastroAdm';
 import Favorito from "./pages/cuidador/favorito";
 import AtualizarPerfil from './pages/confUser/AtualizarPerfil';
 import AnaliseDocs from './pages/admin/AnaliseDocs';
+import Erro from './pages/404/erro';
 
 function Router() {
   return (
@@ -23,7 +24,7 @@ function Router() {
       <Routes>       
 				<Route path={"/"} element={<Home />} />             
 				<Route path="/login" element={<Login />} />    
-				<Route path="*" element={<h1>404</h1>} />    
+				<Route path="*" element={<Erro/>}/>    
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path='/cadastro2' element={<Cadastro2 />} />
         <Route path='/cadastro3' element={<Cadastro3 />} />

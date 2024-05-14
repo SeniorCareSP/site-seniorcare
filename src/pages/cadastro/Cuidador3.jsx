@@ -1,12 +1,12 @@
 import CadastroCuidador3 from "../../components/eleCadastroCuidador/CadastroCuidador3";
-import Imagem1 from "../../components/ImagemCadastro/imgaemCuidador";
+import ImgLogin from '../../components/eleLogin/ImgLogin';
 import Style from './Cadastro.module.css';
 
 function Cuidador3(){
     return(
         <>
         <div className={Style['corpo']}>
-            <Imagem1 />
+            <ImgLogin />
             <CadastroCuidador3 />
         </div>
         </>

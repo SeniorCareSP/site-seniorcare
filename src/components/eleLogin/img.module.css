@@ -1,0 +1,13 @@
+.imagem{
+    width: 80vw;
+    height: 100vh;
+    background-size: cover;
+}
+
+.imagem .button-voltar{
+    margin: 5vh;
+    cursor: pointer;
+    background-size: cover;
+    width: 3vw;
+    height: 6.3vh;
+}
