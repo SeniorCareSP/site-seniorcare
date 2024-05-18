@@ -14,7 +14,7 @@ export default function IconlessCheckbox() {
           xs: 100, //0
           sm: 200, //600
           md: 300, //900
-          lg: 350, //1200
+          lg: 300, //1200
           xl: 320,
        },
      

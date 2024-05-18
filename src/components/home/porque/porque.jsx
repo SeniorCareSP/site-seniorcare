@@ -1,74 +1,107 @@
-import Style from "./porque.module.css"
-import React from "react";
-import Mao from "../../../utils/assets/Honesty.png"
-import Healthy from "../../../utils/assets/Healthy Food.png"
-import Approval from "../../../utils/assets/Approval.png"
-import { Grid } from "@mui/material";
-function Porque() {
-    return (
-        <>
-        <div id="section5" className={Style["content"]}>
-        <div className={Style["container"]}>
-
-            <div className={Style["Central"]}>
-            <div className={Style["texto-1"]}>
-               <spam className={Style["titulo"]}>Bem-estar em Primeiro Lugar </spam> <br/>
-              <p> A Sênior Care oferece uma <br/>
-                solução abrangente e acessível <br/>
-                par <spam className={Style["cor"]}> melhorar a qualidade</spam> de vida <br/>
-                dos idosos e suas famílias.</p> 
-                </div>
-                <div className={Style["icon1"]}>
-                <spam><img src={Mao} alt ="icone"/></spam>
-                </div>
-                </div>
-            
-
-            <div className={Style["Central"]}>
-
-                <div className={Style["icon2"]}>
-                    <span><img src={Healthy}/></span>
-                </div>
-
-                <div className={Style["texto-2"]}>
-                <spam className={Style["titulo-2"]}> Confiabilidade Garantida</spam> 
-                   <p>Perfis detalhados,  <spam className={Style["cor"]}> avaliações </spam><br/>
-                      de clientes agendamento<br/>
-                       flexível e segurança..</p> 
-                </div>
-              
+import styles from "./porque.module.css";
+import "./global.css";
+import Approval from "../../../utils/assets/Approval.png";
+import healthFood from "../../../utils/assets/Healthy Food.png";
+import Honesty from "../../../utils/assets/Honesty.png";
+const PorQue = () => {
+  return (
+    <div className={styles.porQue}>
+        <div className={styles.content}>
+      <section className={styles.approvalParent}>
+        <img
+          className={styles.approvalIcon}
+          loading="lazy"
+          alt=""
+          src={Approval}
+        />
+        <h1 className={styles.porQueEscolher}>
+          Por que Escolher a Sênior Care?
+        </h1>
+      </section>
+      <div className={styles.teste}>
+      <footer className={styles.wellbeingFeaturesParent}>
+        <div className={styles.wellbeingFeatures}>
+          <div className={styles.bemEstarEmPrimeiroLugarAParent}>
+            <div className={styles.bemEstarEmPrimeiroContainer}>
+              <p className={styles.bemEstarEmPrimeiroLugar}>
+                <span>
+                  <b className={styles.bemEstarEmPrimeiro}>
+                    Bem-estar em Primeiro Lugar
+                  </b>
+                </span>
+                <span>
+                  <span>{` `}</span>
+                </span>
+              </p>
+              <p className={styles.aSniorCareOfereceUmaSolu}>
+                <span>
+                  <span>
+                    A Sênior Care oferece uma solução abrangente e acessível
+                    para
+                  </span>
+                  <span className={styles.melhorarAQualidade}>
+                    {" "}
+                    melhorar a qualidade
+                  </span>
+                  <span className={styles.deVidaDos}>
+                    {" "}
+                    de vida dos idosos e suas famílias.
+                  </span>
+                </span>
+              </p>
             </div>
-
-            <div className={Style["Central"]}>
-                <div className={Style["texto-3"]}>
-                <spam className={Style["titulo-3"]}>Simplicidade e Conveniência</spam>
-                   <p>  Os cuidadores da Sênior Care são <br/>
-                   <spam className={Style["cor"]}>selecionados e verificados</spam> com rigor <br/>
-                    para garantir os mais altos padrões <br/>
-                    de qualidade.</p> 
-                </div>
-                <div className={Style["icon3"]}>
-                    <span><img src={Approval}/></span>
-                </div>
+            <div className={styles.foodIcon}>
+              <img
+                className={styles.healthyFoodIcon}
+                loading="lazy"
+                alt=""
+                src={healthFood}
+              />
             </div>
+          </div>
+          <div className={styles.confiabilidadeGarantidaOsCuWrapper}>
+            <div className={styles.confiabilidadeGarantidaOsContainer}>
+              <p className={styles.confiabilidadeGarantida}>
+                <span>
+                  <b>Confiabilidade Garantida</b>
+                </span>
+              </p>
+              <p className={styles.osCuidadoresDaSniorCareS}>
+                <span>
+                  <span>{`Os cuidadores da Sênior Care são `}</span>
+                  <span
+                    className={styles.selecionadosEVerificados}
+                  >{`selecionados e verificados `}</span>
+                  <span>
+                    com rigor para garantir os mais altos padrões de qualidade.
+                  </span>
+                </span>
+              </p>
             </div>
-          
+          </div>
+        </div>
+        <div className={styles.honestyParent}>
+          <img
+            className={styles.honestyIcon}
+            loading="lazy"
+            alt=""
+            src={Honesty}
+          />
+          <div className={styles.simplicidadeEConveninciaContainer}>
+            <p className={styles.simplicidadeEConvenincia}>
+              <b>Simplicidade e Conveniência</b>
+            </p>
+            <p className={styles.perfisDetalhadosAvaliaes}>
+              Perfis detalhados, avaliações de clientes, agendamento flexível e
+              segurança.
+            </p>
+          </div>
+        </div>
+      </footer>
+      </div>
+      </div>
+    </div>
+  );
+};
 
-            <div className={Style["Motivo"]}>
-                <h1>
-                    Por que
-                </h1>
-                <h2>
-                    Escolher a<br/>
-                     Senior Care? 
-                </h2>
-            </div>
-            </div>
-
-        </>
-        
-    );
-
-}
-
-export default Porque;
+export default PorQue;

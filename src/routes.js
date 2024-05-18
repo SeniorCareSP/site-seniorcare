@@ -17,6 +17,7 @@ import Favorito from "./pages/cuidador/favorito";
 import AtualizarPerfil from './pages/confUser/AtualizarPerfil';
 import AnaliseDocs from './pages/admin/AnaliseDocs';
 import Erro from './pages/404/erro';
+import Perfil from './pages/Perfil/VisualizaoInterna'
 
 function Router() {
   return (
@@ -44,6 +45,7 @@ function Router() {
         <Route path='/favorito' element={<Favorito/>}/>
         <Route path='/atualizar/usuario' element={<AtualizarPerfil/>}/>
         <Route path='/admin/analiseDocs' element={<AnaliseDocs/>}/>
+        <Route path='/perfil' element={<Perfil/>}/>
       </Routes>
     </BrowserRouter>
   );

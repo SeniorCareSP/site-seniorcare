@@ -8,11 +8,10 @@
         color: #000000;
         border-radius: 0px;
         box-shadow: 3px 3px 6px #222222;
-        padding: 20px;
+        /* padding: 20px; */
         display: flex;
         flex-direction: column;
         align-items: space-around;
-     
         border-radius: 5px;
     }
 
@@ -27,6 +26,12 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    padding-inline: 1vh;
+}
+
+.card .dias{
+ display: flex;
+ justify-content: center;
 }
 
 .card .centro-top img{
@@ -61,11 +66,30 @@ padding: 5px; /* Espaço entre o contorno e a imagem */
 }
 
 
-
-@media screen and (max-width: 1700px) {
+@media screen and (max-width: 1920px ) {
   .card {
       width: 20vw;
-      height: 47vh;
+      height: 57vh;
+     
+  }
+  .card img{
+    margin-top: 1.6vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 6vw;
+      height: 15vh;
+     
+  }
+
+  
+}
+
+
+@media screen and (max-width: 1800px) {
+  .card {
+      width: 20vw;
+      max-height: 47vh;
   }
 
 
@@ -73,8 +97,8 @@ padding: 5px; /* Espaço entre o contorno e a imagem */
 
 @media screen and (max-width: 1600px) {
   .card {
-      width: 20vw;
-      height: 47vh;
+      width: 22vw;
+      max-height: 48vh;
   }
   .card img{
     margin-top: 1.6vh;
@@ -90,7 +114,7 @@ padding: 5px; /* Espaço entre o contorno e a imagem */
 
 @media screen and (max-width: 1450px) {
   .card {
-      width: 21.8vw;
+      width: 24.8vw;
       height: 47vh;
   }
   .card img{
@@ -100,6 +124,7 @@ padding: 5px; /* Espaço entre o contorno e a imagem */
       align-items: center;
       width: 6vw;
       height: 15vh;
+     
   }
 }
 

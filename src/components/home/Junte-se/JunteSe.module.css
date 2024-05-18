@@ -186,3 +186,17 @@
     height: 47vh;
 }
 
+
+@media screen and (max-width: 1920px) {
+    .JunteSe .img2 {
+        position: relative; /* Adicione position: relative */
+        z-index: 4; /* Adicione um z-index maior do que o .obj4 */
+        height: 50vh;
+        width: 36vh;
+        margin-top: 8vh;
+        left: 73vh;
+        display: flex;
+         justify-content: flex-end;
+    }
+    
+}

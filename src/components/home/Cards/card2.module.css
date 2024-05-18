@@ -53,6 +53,23 @@
 }
 
 
+/* @media screen and (max-width: 1534px) {
+    .card {
+        width: 18vw;
+        height: 23vh;
+    }
+
+    .imagem img{
+        position:absolute;
+        z-index: 5;
+        margin-top: 1vh;
+        margin-left: 21vh;
+        width: 7vh;
+        background-color: #252F46;
+     }
+} */
+
+
 @media screen and (max-width: 1700px) {
     .card {
         width: 18vw;

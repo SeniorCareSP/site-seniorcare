@@ -8,11 +8,13 @@ import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
+import { useNavigate } from "react-router-dom";
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 
-function cardIdoso({nome, descricao, idade}) {
+function CardIdoso({nome, descricao, idade}) {
+  const navigate = useNavigate();
   return (
     <>
       <div className={Styles["cliente"]}>
@@ -44,7 +46,7 @@ function cardIdoso({nome, descricao, idade}) {
               <p>{descricao}
                </p>
               
-            <Button variant="contained">Iniciar Conversa</Button>
+            <Button variant="contained" onClick={() => navigate("/procurar")}>Saiba Mais</Button>
             
             </div> 
           
@@ -56,4 +58,4 @@ function cardIdoso({nome, descricao, idade}) {
   );
 }
 
-export default cardIdoso;
+export default CardIdoso;
