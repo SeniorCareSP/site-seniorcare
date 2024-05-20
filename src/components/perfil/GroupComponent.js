@@ -1,7 +1,9 @@
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./GroupComponent.module.css";
-
+import dsjak from "../../utils/assets/dsjak-4@2x.png"
+import ellipse from "../../utils/assets/ellipse-24@2x.png"
+import { el } from "date-fns/locale";
 const GroupComponent = () => {
   const navigate = useNavigate();
 
@@ -46,7 +48,7 @@ const GroupComponent = () => {
           className={styles.dsjak4Icon}
           loading="lazy"
           alt=""
-          src="/dsjak-4@2x.png"
+          src={dsjak}
         />
       </div>
       <div className={styles.searchBar}>
@@ -67,7 +69,7 @@ const GroupComponent = () => {
           className={styles.icon}
           loading="lazy"
           alt=""
-          src="/ellipse-24@2x.png"
+          src={ellipse}
         />
       </div>
     </div>

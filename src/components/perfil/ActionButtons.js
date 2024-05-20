@@ -1,6 +1,9 @@
 import { useCallback } from "react";
 import styles from "./ActionButtons.module.css";
-
+import chatImg from "../../utils/assets/chat@2x.png"
+import empityFlag from "../../utils/assets/empty-flag@2x.png"
+import heart from "../../utils/assets/heart@2x.png"
+import academic from "../../utils/assets/academic@2x.png"
 const ActionButtons = () => {
   const onGroupButtonClick = useCallback(() => {
     // Please sync "Chat" to the project
@@ -16,14 +19,14 @@ const ActionButtons = () => {
                 className={styles.emptyFlagIcon}
                 loading="lazy"
                 alt=""
-                src="/empty-flag@2x.png"
+                src={empityFlag}
               />
               <div className={styles.heartContainer}>
                 <img
                   className={styles.heartIcon}
                   loading="lazy"
                   alt=""
-                  src="/heart@2x.png"
+                  src={heart}
                 />
               </div>
             </div>
@@ -34,7 +37,7 @@ const ActionButtons = () => {
                 <div className={styles.frameChild} />
                 <b className={styles.conversar}>Conversar</b>
               </div>
-              <img className={styles.chatIcon} alt="" src="/chat@2x.png" />
+              <img className={styles.chatIcon} alt="" src={chatImg} />
             </button>
             <div className={styles.careInformation}>
               <div className={styles.informationContent}>
@@ -44,7 +47,7 @@ const ActionButtons = () => {
                       className={styles.academicIcon}
                       loading="lazy"
                       alt=""
-                      src="/academic@2x.png"
+                      src={academic}
                     />
                     <div className={styles.bioLabel}>
                       <h3 className={styles.idoso}>1 idoso</h3>

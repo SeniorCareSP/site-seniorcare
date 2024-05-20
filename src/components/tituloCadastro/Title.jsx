@@ -6,7 +6,7 @@ function Title() {
     return (
         <>
             <div className={Style["title"]}>
-                <span><a onClick={() => navigate("/login")}>Login</a> / Cadastro</span>
+                <span><a onClick={() => navigate("/login")}>Login</a> | Cadastro</span>
             </div>
         </>
     );

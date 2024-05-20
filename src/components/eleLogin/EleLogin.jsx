@@ -61,7 +61,7 @@ function EleLogin() {
         <div className={Style["content"]}>
           <Stack spacing={6}>
             <div className={Style["title"]}>
-              <span>Login / <a onClick={() => navigate("/cadastro")}>Cadastro</a></span>
+              <span>Login | <a onClick={() => navigate("/cadastro")}>Cadastro</a></span>
             </div>
             <Stack spacing={5} className={Style["itens"]}>
               <InputTexfield label="Email" value={email} onChange={(e) => handleInputChange(e, setEmail)} />

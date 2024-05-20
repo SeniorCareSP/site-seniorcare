@@ -1,6 +1,8 @@
 import ReviewComponents from "./ReviewComponents";
 import styles from "./ProfileHeader.module.css";
-
+import component from "../../utils/assets/component-5@2x.png"
+import star from "../../utils/assets/star-6.svg"
+import rectangle from "../../utils/assets/rectangle-53@2x.png"
 const ProfileHeader = () => {
   return (
     <div className={styles.profileHeader}>
@@ -10,7 +12,7 @@ const ProfileHeader = () => {
             className={styles.component5Icon}
             loading="lazy"
             alt=""
-            src="/component-5@2x.png"
+            src={component}
           />
           <div className={styles.userName}>
             <div className={styles.idosos}>Idosos</div>
@@ -25,31 +27,31 @@ const ProfileHeader = () => {
                 className={styles.starListIcon}
                 loading="lazy"
                 alt=""
-                src="/star-6.svg"
+                src={star}
               />
               <img
                 className={styles.starListIcon1}
                 loading="lazy"
                 alt=""
-                src="/star-7.svg"
+                src={star}
               />
               <img
                 className={styles.starListIcon2}
                 loading="lazy"
                 alt=""
-                src="/star-8.svg"
+                src={star}
               />
               <img
                 className={styles.starListIcon3}
                 loading="lazy"
                 alt=""
-                src="/star-9.svg"
+                src={star}
               />
               <img
                 className={styles.starListIcon4}
                 loading="lazy"
                 alt=""
-                src="/star-10.svg"
+                src={star}
               />
             </div>
           </div>
@@ -57,7 +59,7 @@ const ProfileHeader = () => {
             className={styles.ratingSeparatorIcon}
             loading="lazy"
             alt=""
-            src="/rectangle-53@2x.png"
+            src={rectangle}
           />
         </div>
       </div>
