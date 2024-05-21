@@ -96,24 +96,24 @@
       
   }
 
-  @media screen and (max-width: 1600px) {
+  @media screen and (min-width: 1600px) {
     .servico .obj1{
         position: absolute;
-        top: 12vh;
+        top: 211.6vh;
         
      
     }
 
 .servico .obj2{
     position: absolute;
-    margin-top: 3vh;
+    margin-top: 13vh;
 }
 
 .servico .obj3{
     position: absolute;
     width: 40vh;
     height: 35vh;
-    top: 253vh;
+    top: 257vh;
 
 }
       

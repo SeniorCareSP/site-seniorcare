@@ -55,7 +55,7 @@
  @media screen and (max-width: 1700px) {
     .card {
         width: 18vw;
-        height: 27vh;
+        height: 20vh;
     }
 
     .imagem img{
@@ -86,7 +86,7 @@
 @media screen and (max-width: 1450px) {
     .card-musica {
         width: 24vw;
-        height: 45vh;
+        height: 25vh;
     }
     .imagem img{
         position:absolute;

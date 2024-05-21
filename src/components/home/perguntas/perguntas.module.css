@@ -9,14 +9,20 @@
 }
  .centralizar .pergunta{
     width: 67%;
-    height: 90vh;
+    height: 78vh;
     flex-direction: row;
     display: flex;
     align-items: center;
     background-color: #252F46;
 }
 
+.pergunta .menu{
+    height: 22vh;
+    width: 78vh;
+    padding-left: 3vh;
+}
 .pergunta .texto{
+    display: flex;
     width: 100%;
     padding-left: 60px;
     padding-right: 60px;
@@ -24,7 +30,6 @@
 }
 
 .pergunta h1{
-    
     color: white;
     padding-bottom: 15vh;
 }
@@ -32,8 +37,8 @@
 
 .centralizar  img{
  margin-top: 3px;
-width: 45vw;
-height: 90vh;
+width: 36vw;
+height: 78vh;
 margin-bottom: none;
 }
 

@@ -66,10 +66,10 @@ padding: 5px; /* Espaço entre o contorno e a imagem */
 }
 
 
-@media screen and (max-width: 1920px ) {
+@media screen and (min-width: 1920px ) {
   .card {
       width: 20vw;
-      height: 57vh;
+      height: 55vh;
      
   }
   .card img{
@@ -89,7 +89,7 @@ padding: 5px; /* Espaço entre o contorno e a imagem */
 @media screen and (max-width: 1800px) {
   .card {
       width: 20vw;
-      max-height: 47vh;
+      max-height: 51vh;
   }
 
 
@@ -98,7 +98,7 @@ padding: 5px; /* Espaço entre o contorno e a imagem */
 @media screen and (max-width: 1600px) {
   .card {
       width: 22vw;
-      max-height: 48vh;
+      max-height: 51vh;
   }
   .card img{
     margin-top: 1.6vh;
@@ -115,7 +115,7 @@ padding: 5px; /* Espaço entre o contorno e a imagem */
 @media screen and (max-width: 1450px) {
   .card {
       width: 24.8vw;
-      height: 47vh;
+      height: 50vh;
   }
   .card img{
     margin-top: 1.6vh;

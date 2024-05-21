@@ -7,33 +7,72 @@ import importanticon from '../../utils/assets/importanticon.png';
 import logouticon from '../../utils/assets/Logout.png';
 import { useNavigate } from "react-router-dom";
 import Style from './sidebarDash.module.css';
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 function SidebarDash() {
-
     const navigate = useNavigate();
+    const [isOpen, setIsOpen] = useState(false);
     const [size, setSize] = useState('15vh');
     const [textPerfil, setPerfil] = useState('');
     const [textDash, setDash] = useState('');
     const [textConfig, setConfig] = useState('');
     const [textDoc, setDoc] = useState('');
     const [textI, setI] = useState('');
-    const [textSair, setSair] = useState('')
+    const [textSair, setSair] = useState('');
 
+    const sidebarRef = useRef(null);
 
-    const abrir = () => {
+    const toggleSidebar = () => {
+        if (isOpen) {
+            closeSidebar();
+        } else {
+            openSidebar();
+        }
+    };
+
+    const openSidebar = () => {
         setSize('16vw');
-        setPerfil(<h2>perfil</h2>);
-        setDash(<h2>Dashboard</h2>);
-        setConfig(<h2>Administarar usuarios</h2>);
-        setDoc(<h2>Analisar documentos</h2> );
-        setI(<h2>Analisar denuncias</h2>);
-        setSair(<h2>Sair</h2>);
-    }
+        setPerfil(<a onClick={() => navigate("/editar/perfil")}>Perfil</a>);
+        setDash(<a onClick={() => navigate("*")}>Dashboard</a>);
+        setConfig(<a onClick={() => navigate("*")}>Administrar usuarios</a>);
+        setDoc(<a onClick={() => navigate("/admin/analiseDocs")}>Analisar documentos</a>);
+        setI(<a onClick={() => navigate("/editar/perfil")}>Analisar denuncias</a>);
+        setSair(<a onClick={() => navigate("/")}>Sair</a>);
+        setIsOpen(true);
+    };
+
+    const closeSidebar = () => {
+        setSize('15vh');
+        setPerfil('');
+        setDash('');
+        setConfig('');
+        setDoc('');
+        setI('');
+        setSair('');
+        setIsOpen(false);
+    };
+
+    const handleClickOutside = (event) => {
+        if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+            closeSidebar();
+        }
+    };
+
+    useEffect(() => {
+        if (isOpen) {
+            document.addEventListener('click', handleClickOutside, true);
+        } else {
+            document.removeEventListener('click', handleClickOutside, true);
+        }
+        return () => {
+            document.removeEventListener('click', handleClickOutside, true);
+        };
+    }, [isOpen]);
 
     return (
         <>
-            <div className={Style["card-sidebar"]} onClick={abrir}>
+            <div className={Style["mask"]} style={{ display: isOpen ? 'block' : 'none' }}></div>
+            <div className={Style["card-sidebar"]} onClick={toggleSidebar} ref={sidebarRef}>
                 <div className={Style["sidebar"]} style={{ width: size }}>
                     <div className={Style["card-icons"]}>
                         <Stack spacing={6} className={Style["opt-sidebar"]}>
@@ -42,26 +81,25 @@ function SidebarDash() {
                                 {textPerfil}
                             </span>
                             <span>
-                                <img src={dashicon} alt="" />
+                                <img src={dashicon} alt="icone de dashboard" />
                                 {textDash}
                             </span>
                             <span>
-                                <img src={configicon} alt="" />
+                                <img src={configicon} alt="icone de configurações" />
                                 {textConfig}
                             </span>
                             <span>
-                                <img src={docicon} alt="" />
+                                <img src={docicon} alt="icone de documentos" />
                                 {textDoc}
                             </span>
                             <span>
-                                <img src={importanticon} alt="" />
+                                <img src={importanticon} alt="icone de importantes" />
                                 {textI}
                             </span>
                         </Stack>
-                        <Stack>
-                            {/* Chamar handleLogout ao clicar no ícone de logout */}
+                        <Stack className={Style["iconOut"]}>
                             <span>
-                                <img src={logouticon} alt="" />
+                                <img src={logouticon} alt="icone de logout" />
                                 {textSair}
                             </span>
                         </Stack>
@@ -69,7 +107,7 @@ function SidebarDash() {
                 </div>
             </div>
         </>
-    )
+    );
 }
 
 export default SidebarDash;

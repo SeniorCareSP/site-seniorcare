@@ -8,8 +8,8 @@ import SelectSimple from './SelectSimple';
 
 
 function SimpleSelect() {
-  const [age, setAge] = React.useState('');
-
+  
+  const [age, setAge] = React.useState(10);
   const handleChange = (event: SelectChangeEvent) => {
     setAge(event.target.value);
   };
@@ -21,7 +21,29 @@ function SimpleSelect() {
           id="demo-simple-select"
           value={age}
           onChange={handleChange}
-        >
+          sx={{  borderRadius: '1.3vh',
+
+          '& .MuiOutlinedInput-notchedOutline': {
+            borderColor: '#077DB0',
+            borderWidth: 2,
+          },
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            borderColor: '#077DB0',
+            borderWidth: 2,
+          },
+          '&.Mui-error .MuiOutlinedInput-notchedOutline': {
+            borderColor: '#077DB0',
+            borderWidth: 2,
+          },'& .MuiOutlinedInput-notchedOutline': {
+            borderColor: '#077DB0',
+            borderWidth: 2,
+          },
+          '&:hover .MuiOutlinedInput-notchedOutline': {
+            borderColor: '#077DB0',
+          },
+
+        }}
+      >
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>

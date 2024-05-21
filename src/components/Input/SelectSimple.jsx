@@ -6,6 +6,7 @@ const SelectSimple = styled(Select)({
     borderColor: "red",
     width: "20vw",
     borderWidth: 10 ,
+    
 
     // '& label.Mui-focused': {
     //     color: '#077DB0',
