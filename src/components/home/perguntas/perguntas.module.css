@@ -42,7 +42,20 @@ height: 78vh;
 margin-bottom: none;
 }
 
+@media screen and (min-width: 1910px) {
+    .centralizar  img{
+        margin-top: 3px;
+       width: 33vw;
+       height: 78vh;
+       margin-bottom: none;
+       }
 
+       .pergunta .menu{
+        height: 22vh;
+        width: 55vh;
+        padding-left: 3vh;
+    }
+}
 /* .pergunta h1 {
     position: fixed;
     top: 0;

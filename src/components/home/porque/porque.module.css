@@ -1,4 +1,5 @@
 .approvalIcon {
+  margin-top: 3vh;
   height: 100px;
   width: 100px;
   position: relative;
@@ -6,8 +7,9 @@
 }
 .porQueEscolher {
   margin: 0;
+  margin-top: 2vh;
   height: 53.8px;
-  width: 926px;
+  width: 145vh;
   position: relative;
   font-size: inherit;
   font-weight: 700;
@@ -16,8 +18,10 @@
   flex-shrink: 0;
   max-width: 100%;
 }
+
 .approvalParent {
-  width: 1365px;
+  width: 195vh; /* approval*/
+  /* background-color: aqua; */
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -55,6 +59,7 @@
   line-height: 32px;
 }
 .healthyFoodIcon {
+  margin-right: 56vh;
   height: 79px;
   width: 79px;
   position: relative;
@@ -69,7 +74,8 @@
   padding: 0 var(--padding-xl) 0 var(--padding-207xl);
 }
 .bemEstarEmPrimeiroLugarAParent {
-  width: 671px;
+  width: 117vh;
+  /* background-color: #c43c07; */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -90,7 +96,7 @@
   margin: 0;
 }
 .confiabilidadeGarantidaOsContainer {
-  width: 654px;
+  width: 80vh;  /* segunda estrofe */
   position: relative;
   line-height: 32px;
   display: inline-block;
@@ -109,14 +115,15 @@
   font-family: var(--font-league-spartan);
 }
 .wellbeingFeatures {
-  width: 1039px;
+  width: 140vh;
+  /* background-color: #252F46; */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   gap: 42px;
-  min-width: 1039px;
-  max-width: 100%;
+  /* min-width: 1039px;
+  max-width: 100%; */
 }
 .honestyIcon {
   width: 100px;
@@ -137,11 +144,12 @@
   line-height: 32px;
 }
 .honestyParent {
-  width: 556px;
+  width: 52vh;
+  margin-left: 10vh;
   flex-direction: column;
   justify-content: flex-start;
   gap: 28px;
-  min-width: 556px;
+  /* min-width: 556px; */
 }
 .honestyParent,
 .porQue,
@@ -161,7 +169,8 @@
   font-family: var(--font-open-sans);
 }
 .porQue {
-  width: 110%;
+  width: 100%;
+  max-height: 97vh;
   flex-direction: column;
   justify-content: flex-start;
   padding: 0 0 73px;
@@ -181,6 +190,84 @@
 .porQue .teste{
  margin-left: 5vh ;
   
+}
+
+
+
+
+
+@media screen and (min-width: 1920px) {
+
+  /* .approvalParent {
+    width: 100%;
+    display: flex;
+    max-width: 100%;
+   
+  } */
+  /* .porQue .teste{
+    margin-left: none ;
+     
+   }
+  .porQue {
+    width: 100%;
+  } */
+  .porQueEscolher {
+    margin: 0;
+    height: 53.8px;
+    width: 100%;
+    position: relative;
+    font-size: inherit;
+    font-weight: 700;
+    font-family: inherit;
+    display: inline-block;
+    flex-shrink: 0;
+    width: 100%;
+  }
+
+  .bemEstarEmPrimeiroLugarAParent {
+    
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0 var(--padding-xl) 0 0;
+    box-sizing: border-box;
+    gap: var(--gap-8xs);
+    max-width: 20%;
+  }
+
+  .porQue .wellbeingFeatures {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 42px;
+    max-width: 49%;
+  }
+
+  .honestyParent {
+    width: 115vh;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 68px;
+    background-color: aqua;
+ 
+  }
+
+
+
+.porQue .teste{
+  margin-left: 15vh ;
+   
+ }
+
+  .honestyParent,
+  .wellbeingFeatures {
+    flex: 1;
+  }
+  .wellbeingFeaturesParent {
+    flex-wrap: wrap;
+  }
 }
 @media screen and (max-width: 1625px) {
   .honestyParent,
@@ -204,7 +291,7 @@
     font-size: var(--font-size-32xl);
   }
   .wellbeingFeatures {
-    gap: 21px;
+    gap: 35px;
   }
   .honestyParent {
     min-width: 100%;

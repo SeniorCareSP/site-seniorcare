@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Style from "./servico.module.css"
+import Imagem from "../../../utils/assets/nuvem.png"
+import Imagem1 from "../../../utils/assets/nuvem1.png"
 function Servico() {
     const navigate = useNavigate();
     return (
@@ -12,8 +14,11 @@ function Servico() {
                 Não importa se você precisa de um cuidador em tempo integral para auxiliar em casa ou ocasionalmente durante a semana - o Senior Care ajuda você a se conectar e conversar com cuidadores qualificados perto de você.
             </p>
             <button onClick={()=> navigate("/cadastro")}>Comece agora</button>
-            <span className={Style["obj2"]}></span>
-            <span className={Style["obj3"]}></span>
+          
+            {/* <span className={Style["obj2"]}></span> */}
+           
+            <img src={Imagem} alt=""  className={Style["obj2"]} />
+            <img src={Imagem1} alt=""  className={Style["obj1"]} />
         </div>
         </frameElement>
     );
