@@ -4,8 +4,8 @@
     position: relative;
     margin-top: 5vh;
     margin-bottom: 2vh;
-    width: 300px;
-    height: 300px;
+    width: 18vw;
+    height: 34vh;
     background-color:  #252F46;
     color: #ffffff;
     border-radius: 0px;
@@ -27,8 +27,7 @@
 .linha {
          margin-top: 4px;
         background-color: #ffffff;
-        height: 20
-        vh;
+        height: 20vh;
         width: 0.5vh;
 }
 
@@ -48,32 +47,34 @@
     position:absolute;
     z-index: 5;
     margin-top: 1vh;
-    margin-left: 24vh;
+    margin-left: 32vh;
+    width: 8.9vh;
 
 }
 
 
-/* @media screen and (max-width: 1534px) {
+@media screen and (max-width: 1920px) {
     .card {
         width: 18vw;
-        height: 23vh;
+        height: 34vh;
+        /* background-color: rgb(255, 196, 0); */
     }
 
     .imagem img{
         position:absolute;
         z-index: 5;
         margin-top: 1vh;
-        margin-left: 21vh;
-        width: 7vh;
-        background-color: #252F46;
+        margin-left: 32vh;
+        width: 8.9vh;
+    
      }
-} */
+}
 
-
-@media screen and (max-width: 1700px) {
+/* @media screen and (min-width: 1700px) {
     .card {
         width: 18vw;
-        height: 28vh;
+        height: 34vh;
+        background-color: rgb(72, 255, 0);
     }
 
     .imagem img{
@@ -84,18 +85,19 @@
         width: 7vh;
     
      }
-}
+} */
 
-@media screen and (max-width: 1670px) {
+@media screen and (min-width: 1670px) {
     .card {
-        width: 18vw;
+        width: 17vw;
         height: 28vh;
+      
     }
     .imagem img{
         position:absolute;
         z-index: 5;
         margin-top: 1vh;
-        margin-left: 24vh;
+        margin-left: 32vh;
         width: 7vh;
     
      }
@@ -105,6 +107,7 @@
     .card {
         width: 18vw;
         height: 28vh;
+        background-color: rgb(17, 0, 255);
     }
     .imagem img{
         position:absolute;
@@ -120,6 +123,7 @@
     .card {
         width: 17vw;
         height: 29vh;
+        background-color: aquamarine;
     }
     .imagem img{
         position:absolute;
@@ -136,6 +140,7 @@
         .card {
             width: 18vw;
             height: 28vh;
+            background-color: black;
         }
         .imagem img{
             position:absolute;
@@ -149,8 +154,9 @@
 
     @media screen and (max-width: 1160px) {
         .card {
-            width: 20vw;
+            width: 18vw;
             height: 28vh;
+
         }
         .imagem img{
             position:absolute;
@@ -166,8 +172,8 @@
         }
         
     }
-
-    @media screen and (max-width: 130px) {
+/* 
+    @media screen and (min-width: 130px) {
         .card {
             width: 20vw;
             height: 28vh;
@@ -183,4 +189,4 @@
     }
    
    
-   
+    */

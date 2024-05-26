@@ -157,12 +157,11 @@
     border: 5px solid rgb(255, 255, 255); 
     border-radius: 7vh;
     width: 66vw;
-    height: 34vh;
+    height: 35vh;
     right: 31vh;
- 
     
 }
- 
+
 .centraliza .textinho{
    margin-top: 10vh;
    font-size: 2.1vh;
@@ -175,28 +174,149 @@
    
 }
 
+/* .JunteSe .teste {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: #C1231F;
+} */
+
 
 .Forma .forma{
-    margin-top: 5vh;
+    margin-top: 6vh;
     position: absolute;
     border-bottom-right-radius: 67%;
     border-bottom-left-radius: 67%;
     background-color:  #2C7595;
     width: 100%;
-    height: 47vh;
+    height: 40vh;
 }
 
 
 @media screen and (max-width: 1920px) {
+
+    .centraliza .textinho{
+         margin-left: 6vh;
+        padding: 38px;
+      /* Centralize horizontalmente */
+     }
+
+     .JunteSe  button{
+        border: 0;
+        width: 24vw;
+        height: 8vh;
+        cursor: pointer;
+        top: 38vh;
+        left: 58vh;
+        z-index: 6;
+        box-shadow: 0 5px 4px rgba(0, 0, 0, 0.5);
+    }
+
+     .centraliza .borda {
+        position: absolute;
+        top: 7vh;
+        left: 3vh;
+        padding: 10px 20px; /* Ajuste conforme necessário */
+        border: 5px solid rgb(255, 255, 255); /* Defina a cor e a espessura da borda */
+        border-radius: 5vh; /* Arredonda a borda somente no lado esquerdo */
+        width: 56vh;
+        height: 63vh;
+        z-index: 4;
+    }
+
+    .centraliza .obj4 {
+        position: absolute;
+        width: 60vh;
+        height: 66vh;
+        top: 10vh;
+        left: 1vh;
+        border-radius: 5vh;
+        background-color: #80C1DE;
+        z-index: 3;
+       
+    }
+     .JunteSe .img1{
+        height: 67vh;
+        width: 49vh;
+        margin-top: 8vh;
+        margin-left: 18vh;
+         display: flex;
+         justify-content: flex-start;
+    
+    }
+    
+
     .JunteSe .img2 {
         position: relative; /* Adicione position: relative */
         z-index: 4; /* Adicione um z-index maior do que o .obj4 */
         height: 50vh;
         width: 36vh;
-        margin-top: 8vh;
-        left: 43vh;
+        margin-top: 1vh;
+        margin-left: 16vh;
         display: flex;
          justify-content: flex-end;
+    }
+
+    .centraliza .borda1 {
+        position: absolute;
+        right: 34vh;
+        top: 89vh;
+        padding: 10px 20px; 
+        border: 5px solid rgb(255, 255, 255); 
+        border-radius: 78vh; 
+        width: 37vh;
+        height: 37vh;
+        z-index: 3;
+       
+    }
+
+    .centraliza .obj5 {
+        position: absolute;
+        width: 40vh;
+        height: 40vh;
+        top: 86vh;
+        right: 34vh;
+        border-radius: 78vh;
+        background-color: #252F46;
+        z-index: 2;
+       
+    }
+
+    .JunteSe   .botao{
+        /* Botão 2 */
+        position: absolute;
+        border: 0;
+        width: 18vw;
+        height: 8vh;
+        cursor: pointer;
+        top: 110vh;
+        left: 75vh;
+        z-index: 6;
+        box-shadow: 0 5px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .centraliza .textinho{
+        margin-top: 16vh;
+        font-size: 2.1vh;
+        background-color: #ffffff;
+        border-radius: 4vh;
+        width: 60vw;
+        height: 20vh; 
+        padding: 38px;
+      /* Centralize horizontalmente */
+        
+     }
+
+     .centraliza .borda2 {
+        top: 138vh;
+        position: absolute;
+        padding: 10px 20px; 
+        border: 5px solid rgb(255, 255, 255); 
+        border-radius: 7vh;
+        width: 68vw;
+        height: 35vh;
+        right: 29vh;
+        
     }
     
 }

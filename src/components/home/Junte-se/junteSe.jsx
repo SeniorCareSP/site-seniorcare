@@ -24,7 +24,8 @@ function JunteSe() {
              <img src={Imagem2} alt=""/>
             </div>
            
-           
+
+           <div className={Style["teste"]}>
             <div className={Style["borda2"]}> </div>
             <div className={Style["textinho"]}>
                 <p>
@@ -35,6 +36,7 @@ function JunteSe() {
                   responsabilidades. Afinal, o acesso a cuidadores acessíveis, flexíveis e confiáveis é o objetivo do
                    Senior Care.
                 </p>
+            </div>
             </div>
              </div>
              <div className={Style["Forma"]}>

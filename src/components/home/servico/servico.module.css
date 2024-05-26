@@ -76,7 +76,7 @@
 @media screen and (max-width: 1920px) {
     .servico .obj1{
         position: absolute;
-        margin-top: 2.9vh;
+      
         
     }
 
@@ -101,25 +101,26 @@
   }
 
   @media screen and (min-width: 1600px) {
-    .servico .obj1{
-        position: absolute;
-        top: 211.6vh;
-        
-     
-    }
 
-.servico .obj2{
-    position: absolute;
-    /* margin-top: 13vh; */
-}
 
-.servico .obj3{
-    position: absolute;
-    width: 40vh;
-    height: 35vh;
-    top: 257vh;
+.servico .obj1{
+            position: absolute;
+            width: 20vh;
+            height: 20vh;
+            left: 0vh;
+            top: 0;
+            border-top-right-radius: 20%;
+            border-bottom-right-radius: 70%;
+            background-color: #80C1DE;
+        }
 
-}
+        servico .obj2{
+            position: absolute;
+            /* margin-top: 3vh; */
+        }
+ 
+
+
       
   }
 
