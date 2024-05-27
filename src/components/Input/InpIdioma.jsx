@@ -156,7 +156,15 @@ const Listbox = styled('ul')(
 `,
 );
 
-export default function CustomizedHook() {
+const idiomas = [
+  { idioma: "Português" },
+  { idioma: "Inglês" },
+  { idioma: "Japonês" },
+  { idioma: "Espanhol" },
+  { idioma: "Alemão" },
+];
+
+export default function CustomizedHook({ value, onChange }) {
   const {
     getRootProps,
     getInputLabelProps,
@@ -165,15 +173,17 @@ export default function CustomizedHook() {
     getListboxProps,
     getOptionProps,
     groupedOptions,
-    value,
+    value: selectedOptions,
     focused,
     setAnchorEl,
   } = useAutocomplete({
     id: 'selecIdioma',
-    defaultValue: [idiomas[0]],
+    defaultValue: [],
     multiple: true,
     options: idiomas,
-    getOptionLabel: (option) => option.title,
+    getOptionLabel: (option) => option.idioma,
+    value, // Setting the value from props
+    onChange, // Setting the onChange from props
   });
 
   return (
@@ -181,8 +191,8 @@ export default function CustomizedHook() {
       <div {...getRootProps()}>
         <Label {...getInputLabelProps()}>Selecione o idioma</Label>
         <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
-          {value.map((option, index) => (
-            <StyledTag label={option.title} {...getTagProps({ index })} />
+          {selectedOptions.map((option, index) => (
+            <StyledTag label={option.idioma} {...getTagProps({ index })} />
           ))}
           <input {...getInputProps()} />
         </InputWrapper>
@@ -191,7 +201,7 @@ export default function CustomizedHook() {
         <Listbox {...getListboxProps()}>
           {groupedOptions.map((option, index) => (
             <li {...getOptionProps({ option, index })}>
-              <span>{option.title}</span>
+              <span>{option.idioma}</span>
               <CheckIcon fontSize="small" />
             </li>
           ))}
@@ -201,11 +211,7 @@ export default function CustomizedHook() {
   );
 }
 
-// Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
-const idiomas = [
-    {title:"Português"},
-    {title:"Ingles"},
-    {title:"Japones"},
-    {title:"Espanhol"},
-    {title:"Alemão"},
-];
+CustomizedHook.propTypes = {
+  value: PropTypes.array.isRequired,
+  onChange: PropTypes.func.isRequired,
+};

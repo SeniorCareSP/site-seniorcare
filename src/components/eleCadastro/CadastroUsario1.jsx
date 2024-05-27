@@ -56,16 +56,14 @@ function CadastroUsuario1() {
                 email: email,
                 senha: senha,
                 tipoDeUsuario: tipoUsuario,
-                idiomas: [],
-                dtNascimento: "",
-                enderecos: [{   
+                endereco: {   
                     cep: cep,
                     logradouro: endereco.logradouro,
                     complemento: "",
                     numero: "",
                     cidade: endereco.localidade,
                     bairro: endereco.bairro
-                }]
+                }
             };
 
             localStorage.setItem("cadastro", JSON.stringify(dadosCadastros));

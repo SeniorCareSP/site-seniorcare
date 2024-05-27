@@ -27,11 +27,11 @@ function CadastroUsuario2() {
         if (dadosCadastro) {
             const json = JSON.parse(dadosCadastro);
 
-            setLogradouro(json.enderecos[0].logradouro);
-            setNumero(json.enderecos[0].numero);
-            setComplemento(json.enderecos[0].complemento);
-            setCidade(json.enderecos[0].cidade);
-            setBairro(json.enderecos[0].bairro);
+            setLogradouro(json.endereco.logradouro);
+            setNumero(json.endereco.numero);
+            setComplemento(json.endereco.complemento);
+            setCidade(json.endereco.cidade);
+            setBairro(json.endereco.bairro);
         }
     }, []);
 
@@ -42,11 +42,11 @@ function CadastroUsuario2() {
         const dadosCadastro = localStorage.getItem("cadastro");
         if (dadosCadastro) {
             const json = JSON.parse(dadosCadastro);
-            json.enderecos[0].logradouro = logradouro;
-            json.enderecos[0].numero = numero;
-            json.enderecos[0].complemento = complemento;
-            json.enderecos[0].cidade = cidade;
-            json.enderecos[0].bairro = bairro;
+            json.endereco.logradouro = logradouro;
+            json.endereco.numero = numero;
+            json.endereco.complemento = complemento;
+            json.endereco.cidade = cidade;
+            json.endereco.bairro = bairro;
     
             localStorage.setItem("cadastro", JSON.stringify(json));
         }

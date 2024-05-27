@@ -11,8 +11,40 @@ import ToggleButtonGroup from '@mui/joy/ToggleButtonGroup';
 import Button from '@mui/joy/Button';
 import InputTexfield from '../Input/Input';
 function CadastroCuidador2() {
-    const [value, setValue] = React.useState(['default']);
+    const [value, setValue] = React.useState([]);
+    const [apresentacao, setApresentacao] = React.useState("");
+
     const navigate = useNavigate();
+
+
+    const handleInputChange = (event, setStateFunction) => {
+        console.log(event.target.value);
+        setStateFunction(event.target.value);
+        console.log(value);
+    };
+
+    const handleSave = () => {
+        const dadosCadastro = localStorage.getItem("cadastro");
+        if (dadosCadastro) {
+            const json = JSON.parse(dadosCadastro);
+            
+            json.apresentacao = apresentacao;
+            var caracteristicas = [];
+    
+            for (let index = 0; index < value.length; index++) {
+                caracteristicas[index] = {"nome":value[index]};       
+            }
+            json.caracteristicas = caracteristicas;
+            localStorage.setItem("cadastro", JSON.stringify(json));
+
+            console.log(json);
+            navigate("/cadastro/cuidador3");
+
+ 
+        }
+    };
+
+
     return (
         <div className={Style["card-cadastro"]}>
             <div className={Style["linha"]}></div>
@@ -43,7 +75,7 @@ function CadastroCuidador2() {
                             </ButtonAzul>
                         </Stack>
                         <h3>Apresente-se</h3>
-                        <InputTexfield label="apresentação" />
+                        <InputTexfield label="apresentação" value={apresentacao} onChange={(e) => handleInputChange(e, setApresentacao)} />
                         <h3>Envie uma foto:</h3>
                         <Stack direction="row" justifyContent={"center"}>
                             <ButtonAzul component="label" role={undefined} variant="contained" tabIndex={-1}>
@@ -51,7 +83,7 @@ function CadastroCuidador2() {
                                 <VisuallyHiddenInput type="file" />
                             </ButtonAzul>
                         </Stack>
-                        <ButtonAzul onClick={() => navigate("/cadastro/cuidador3")}> Proximo</ButtonAzul>
+                        <ButtonAzul onClick={() => handleSave()}> Proximo</ButtonAzul>
                         <ButtonBranco onClick={() => navigate("/cadastro/cuidador")} >Voltar</ButtonBranco>
                     </Stack>
 

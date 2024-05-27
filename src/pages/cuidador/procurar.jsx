@@ -6,7 +6,8 @@ import SelectIdade from "../../components/cuidador/select/selecIdade";
 import SelectTrabalho from "../../components/cuidador/select/selectPeriodo";
 import Remover from "../../components/cuidador/checkbox/Button";
 import React, { useState, useEffect } from "react";
-import api from "../../api";
+import apiCuidador from "../../api/Usuario/apiCuidador";
+import apiResponsavel from "../../api/Usuario/apiResponsavel";
 import moment from 'moment';
 
 function Procurar() { // Renomeando a função para começar com letra maiúscula
@@ -18,14 +19,27 @@ function Procurar() { // Renomeando a função para começar com letra maiúscul
 
   function recuperarValorDoCard() {
     const tipoDeUsuario = localStorage.getItem("tipoUsuario");
-    const url = tipoDeUsuario === "CUIDADOR" ? "/cuidadores" : "/responsaveis";
-    api.get(url).then((response) => {
-      const { data } = response;
-      console.log(response)
-      setCardsData(data)
-    }).catch(() => {
-      console.log("Deu erro, tente novamente!") // Caso haja um erro na requisição, exibe uma mensagem no console
-    })
+    const usuario = tipoDeUsuario;
+
+    if (usuario === "CUIDADOR") {
+      apiResponsavel.get().then((response) => {
+        const { data } = response;
+        console.log(response)
+        setCardsData(data)
+      }).catch(() => {
+        console.log("Deu erro, tente novamente!") // Caso haja um erro na requisição, exibe uma mensagem no console
+      })
+    } else {
+      apiCuidador.get().then((response) => {
+        const { data } = response;
+        console.log(response)
+        setCardsData(data)
+      }).catch(() => {
+        console.log("Deu erro, tente novamente!") // Caso haja um erro na requisição, exibe uma mensagem no console
+      })
+    }
+
+
   }
 
   function calcularIdade(dataNascimento) {

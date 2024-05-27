@@ -4,7 +4,7 @@ import InputTexfield from '../Input/Input';
 import { useNavigate } from "react-router-dom";
 import React, { useState } from 'react';
 import ButtonAzul from "../botao/BotaoAzul";
-import api from "../../api";
+import api from "../../api/Usuario/apiUsuario";
 function EleLogin() {
 
   const navigate = useNavigate()
@@ -33,14 +33,14 @@ function EleLogin() {
       email,
       senha
     }).then(response => {
-      const { userId, email,tipoDeUsuario, nome, token } = response.data;
+      const { userId, email,tipoUsuario, nome, token } = response.data;
       
         console.log(`Usuário ID: ${userId}`);
         //console.log(`Nome: ${nome}`);
         //console.log(`Email: ${email}`);
         //console.log(`Token: ${token}`);
       localStorage.setItem('idUsuario', userId);
-      localStorage.setItem('tipoUsuario', tipoDeUsuario);
+      localStorage.setItem('tipoUsuario', tipoUsuario);
       localStorage.setItem('token', token);
       console.log("Cadastro feito com sucesso!");
       navigate("/procurar");
