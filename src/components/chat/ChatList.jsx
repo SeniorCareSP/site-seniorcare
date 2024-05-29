@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './ChatList.module.css';
+import logo from '../../utils/assets/logoapertadinha.svg'
 
 const users = [
   // Lista de usuários exemplo
@@ -16,8 +17,8 @@ const ChatList = () => {
   return (
     <div className={styles.chatList}>
       <div className={styles.header}>
-        <img src="path/to/heart-icon.png" alt="Heart" />
-        <div className={styles.titles}>
+      <img src={logo} alt = "Logo"/>
+              <div className={styles.titles}>
           <span className={styles.home}>Home</span>
           <span className={styles.conversas}>Conversas</span>
           <span className={styles.favoritos}>Favoritos</span>
@@ -25,11 +26,12 @@ const ChatList = () => {
       </div>
       <input
         type="text"
-        placeholder="Search..."
+        placeholder="Pesquisar..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         className={styles.searchBar}
       />
+      <hr />
       <div className={styles.users}>
         {filteredUsers.map(user => (
           <div key={user.id} className={styles.user}>

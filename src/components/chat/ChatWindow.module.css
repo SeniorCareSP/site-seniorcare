@@ -1,8 +1,7 @@
 .chatWindow {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    width: 100vw; /* Largura em relação à largura da tela */
+    width: 90vw; /* Largura em relação à largura da tela */
     max-width: calc(100% - 300px); /* Largura máxima */
     overflow-x: hidden;
     overflow-y: hidden;
@@ -50,8 +49,13 @@
     display: flex;
     align-items: center;
     padding: 10px;
-    background-color: #1a237e;
+    background-color: #016894;
     width: 100%;
+  }
+
+  .emojiPicker{
+    top: 444px;
+    position: absolute;
   }
   
   .navbarItems {

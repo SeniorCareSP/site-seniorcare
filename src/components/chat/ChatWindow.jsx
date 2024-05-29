@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import EmojiPicker from 'emoji-picker-react';
 import styles from './ChatWindow.module.css';
+import zIndex from '@mui/material/styles/zIndex';
 
 const messages = [
   // Lista de mensagens exemplo
@@ -48,12 +49,15 @@ const ChatWindow = () => {
           </div>
         ))}
       </div>
+      
+        <div className={styles.emojiPicker}>{showEmojiPicker && (
+          <EmojiPicker onEmojiClick={handleEmojiClick} pickerStyle={{ bottom: '60px', left: '10px' }} />
+        )}
+        </div>
+
       <div className={styles.inputBar}>
         <button className={styles.emojiButton} onClick={() => setShowEmojiPicker(!showEmojiPicker)}>😊</button>
-        {showEmojiPicker && (
-          <EmojiPicker onEmojiClick={handleEmojiClick} pickerStyle={{ position: 'absolute', bottom: '60px', left: '10px' }} />
-        )}
-        <input
+                <input
           type="text"
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
@@ -61,6 +65,7 @@ const ChatWindow = () => {
         />
         <button className={styles.sendButton} onClick={handleSendMessage}>➡️</button>
       </div>
+      
     </div>
   );
 };

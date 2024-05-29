@@ -1,34 +1,43 @@
 .chatList {
     background-color: #2C7595;
     color: white;
-    width: 30vw; /* Largura em relação à largura da tela */
-    max-width: 300px; /* Largura máxima */
+    width: 40vw; /* Largura em relação à largura da tela */
+    max-width: 400px; /* Largura máxima */
     overflow-y: auto;
     overflow-x: hidden;
     height: 100vh; /* Altura da tela */
   }
   
   .header {
+    font-size: 16px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 20px;
+  }
+
+  .header img { 
+    height: 40px;
   }
   
   .titles {
     display: flex;
-    gap: 10px;
+    gap: 30px;
     margin-left: 10px;
   }
   
   .home {
+    margin-left: 5px;
     color: darkred;
   }
   
   .searchBar {
-    width: 100%;
+    width: 65%;
     padding: 10px;
+    margin-left: 80px;
     margin-bottom: 10px;
+    border-radius: 9px;
+    border-style: double;
+    border-color: #80C1DE;
   }
   
   .users {
