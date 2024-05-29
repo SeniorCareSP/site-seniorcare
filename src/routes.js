@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route} from 'react-router-dom';
 
 import Home from "./pages/home/Home";
 import Login from './pages/login/Login';
@@ -10,7 +10,6 @@ import Cuidador2 from './pages/cadastro/Cuidador2';
 import Cuidador3 from './pages/cadastro/Cuidador3';
 import Procurar from './pages/cuidador/procurar';
 import Finalizado from './pages/cadastro/Finalizado';
-import Chat from './pages/chat/teste';
 import Editperfil from './pages/admin/EditPerfil';
 import CadastroAdm from './components/admCadastro/cadastroAdm';
 import Favorito from "./pages/cuidador/favorito";
@@ -19,14 +18,16 @@ import AnaliseDocs from './pages/admin/AnaliseDocs';
 import Erro from './pages/404/erro';
 import Perfil from './pages/Perfil/VisualizaoInterna';
 import Dashboard from './pages/admin/Dashboard';
+import React from 'react';
+import Chat from './pages/chat/Chat'
 
 function Router() {
   return (
     <BrowserRouter>                                        
       <Routes>       
-				<Route path="/" element={<Home/>}/>             
 				<Route path="*" element={<Erro/>}/>    
-
+        <Route path="/" element={<Home />} />
+        <Route path="/chat" element={<Chat />} />
 
         {/*====================================
               Relacionandas com o banco
@@ -43,7 +44,6 @@ function Router() {
         {/*====================================
           =====================================*/ }
 
-        <Route path='/chat' element={<Chat/>}/>
         <Route path='/usuarios/perfil' element={<Perfil/>}/>
         <Route path='/atualizar/usuario' element={<AtualizarPerfil/>}/>
         <Route path='/favoritos' element={<Favorito/>}/>
