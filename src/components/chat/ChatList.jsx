@@ -9,9 +9,9 @@ const users = [
   { id: 3, name: 'Igor', message: 'Vixi!', photo: 'https://via.placeholder.com/50' },
   { id: 4, name: 'Rafaela', message: 'Ah não sei voce que sabe', photo: 'https://via.placeholder.com/50' },
   { id: 5, name: 'Gustavo', message: 'É por causa que', photo: 'https://via.placeholder.com/50' },
-  { id: 6, name: 'Frizza', message: 'Aoba!', photo: 'https://via.placeholder.com/50' },
+  { id: 6, name: 'Frizza', message: 'Ripa na chulipa, e pimba na gorduchinha!', photo: 'https://via.placeholder.com/50' },
   { id: 7, name: 'Monteiro', message: 'Oloko bicho...', photo: 'https://via.placeholder.com/50' },
-  { id: 8, name: 'Reis', message: 'Pq pra um relacionamento dar certo', photo: 'https://via.placeholder.com/50' },
+  { id: 8, name: 'Reis', message: 'Pq pra um relacionamento dar certo depende das duas partes.', photo: 'https://via.placeholder.com/50' },
   { id: 9, name: 'Isabela', message: 'Figma e UX e UI', photo: 'https://via.placeholder.com/50' },
   { id: 10, name: 'Celia', message: 'Ainda faltam 0.22s para o intervalo!', photo: 'https://via.placeholder.com/50' },
   // Adicione mais usuários conforme necessário

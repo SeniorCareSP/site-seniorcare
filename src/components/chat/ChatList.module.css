@@ -3,7 +3,7 @@
     color: white;
     width: 40vw; /* Largura em relação à largura da tela */
     max-width: 400px; /* Largura máxima */
-    overflow-y: auto;
+    overflow-y: hidden;
     overflow-x: hidden;
     height: 100vh; /* Altura da tela */
   }
@@ -45,7 +45,22 @@
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+    margin-left: 1%;
     height: calc(100% - 50px); /* Altura da lista de usuários */
+  }
+
+  .users::-webkit-scrollbar{
+    background-color: #060f25;
+    width: 3px;
+    border-radius: 9px;
+    padding: 9%;
+    /* tentar dar uma separadinha da borda */
+  }
+
+  .users::-webkit-scrollbar-thumb{
+    border-radius: 9px;
+
+    background-color: #80C1DE;
   }
   
   .user {
@@ -62,6 +77,7 @@
   
   .userInfo {
     display: flex;
+
     flex-direction: column;
   }
   
@@ -70,7 +86,7 @@
   }
   
   .userMessage {
-    color: gray;
+    color: #ffffff;
     overflow: hidden; /* Esconde o overflow */
     white-space: nowrap; /* Não quebra a linha */
     text-overflow: ellipsis; /* Adiciona reticências quando o texto ultrapassa */

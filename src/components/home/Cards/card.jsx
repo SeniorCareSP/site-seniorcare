@@ -8,7 +8,7 @@ function card() {
 
    <div className={Styles["cliente"]}>
      <div className={Styles["imagem"]}>
-   <img src={Icom} alt=""/>
+   <img src={Icom} alt="icone"/>
    </div>
    <section className={Styles.card}>
   
