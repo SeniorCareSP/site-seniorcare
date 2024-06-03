@@ -62,7 +62,7 @@ const ChatWindow = () => {
       <div className={styles.inputBar}>
         <button className={styles.emojiButton} onClick={() => setShowEmojiPicker(!showEmojiPicker)}>
           <img src={Emoji} alt="emojis" className={styles.emojiMessage} />
-          
+        
           </button>
                 <input
           type="text"

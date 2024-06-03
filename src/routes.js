@@ -20,14 +20,22 @@ import Perfil from './pages/Perfil/VisualizaoInterna';
 import Dashboard from './pages/admin/Dashboard';
 import React from 'react';
 import Chat from './pages/chat/Chat'
-
+import ResetPasswordStep1 from './components/recuperacaoSenha/ResetPasswordStep1.jsx';
+import ResetPasswordStep2 from './components/recuperacaoSenha/ResetPasswordStep2.jsx';
+import ResetPasswordStep3 from './components/recuperacaoSenha/ResetpasswordStep3.jsx';
+import ResetPasswordStep4 from './components/recuperacaoSenha/ResetPasswordStep4.jsx';
 function Router() {
   return (
     <BrowserRouter>                                        
       <Routes>       
 				<Route path="*" element={<Erro/>}/>    
         <Route path="/" element={<Home />} />
+
         <Route path="/chat" element={<Chat />} />
+        <Route path="/reset-password-1" element={<ResetPasswordStep1 />} />
+        <Route path="/reset-password-2" element={<ResetPasswordStep2 />} />
+        <Route path="/reset-password-3" element={<ResetPasswordStep3 />} />
+        <Route path="/reset-password-4" element={<ResetPasswordStep4 />} />
 
         {/*====================================
               Relacionandas com o banco

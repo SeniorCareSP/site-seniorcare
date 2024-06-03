@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import Style from "./navbar.module.css"
 import { useNavigate } from "react-router-dom";
@@ -7,7 +5,6 @@ import Button from '@mui/material/Button';
 
 function Navbar() {
     const navigate = useNavigate();
-
 
     const scrollToSection = (sectionId) => {
         const section = document.getElementById(sectionId);
