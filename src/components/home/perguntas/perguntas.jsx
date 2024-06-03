@@ -64,8 +64,8 @@ export default function CustomizedAccordions() {
         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
           <Typography sx={{color: "white"}}>Como posso acessar o suporte?</Typography>
         </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
+        <AccordionDetails sx={{color: "white", backgroundColor:"#252F46"}}>
+          <Typography >
           Para entrar em contato com o nosso time de suporte, envie um e-mail para seniorcare@gmail.com ou 
           através da plataforma SpiceWorks pelo link www.spiceworks/seniorcarecaregivers.
           </Typography>
@@ -75,7 +75,7 @@ export default function CustomizedAccordions() {
         <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
           <Typography sx={{color: "white"}}>Como faço para entrar em contato com o cuidador</Typography>
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails sx={{color: "white", backgroundColor:"#252F46"}}>
           <Typography>
           A Senior care provêm uma plataforma completa para os clientes, onde esses têm acesso a um chat integrado a aplicação,
            e assim, fazer o próprio contado cuidador-idoso em total segurança..
@@ -86,7 +86,7 @@ export default function CustomizedAccordions() {
         <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
           <Typography sx={{color: "white"}}>Posso me cadastrar e não trabalhar todos os dias?</Typography>
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails  sx={{color: "white", backgroundColor:"#252F46"}}>
           <Typography>
           Os cuidadores que escolhem a Senior Care são dispostos de um calendário semanal,
            onde selecionam os dias e periodos que estão disponiveis para prover cuidados, sendo ele regular ou ocasional. 
@@ -98,7 +98,7 @@ export default function CustomizedAccordions() {
         <AccordionSummary aria-controls="panel4d-content" id="panel4d-header">
           <Typography sx={{color: "white"}}>Posso cadastrar mais de um idoso?</Typography>
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails  sx={{color: "white", backgroundColor:"#252F46"}}>
           <Typography>
           Sim, é possivel! Quando o responsável se cadastra pela primeira vez, 
           ele deve cadastrar no minimo um idoso que precisa da Senior Care, mas não se preocupe, 

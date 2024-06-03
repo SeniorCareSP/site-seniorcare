@@ -14,7 +14,7 @@ const ResetPasswordStep4 = () => {
       <div className={styles.leftSide}>
       <img src={voltar} className={styles.backButton} onClick={()=> navigate("/")}/>
         <h1>Redefina sua senha</h1>
-        <p>Sua senha foi redefinida com sucesso! Clique no botão abaixo para ir para a página de <span className={styles.loginLink} onClick={() => navigate('/login')}>login</span>.</p>
+        <p className={styles.paragrafo}>Sua senha foi redefinida com sucesso! Clique no botão abaixo para ir para a página de <span className={styles.loginLink} onClick={() => navigate('/login')}>login</span>.</p>
         <div className={styles.spacing}>
         <ButtonAzul onClick={() => navigate('/login')}>Página Login</ButtonAzul>
         </div>

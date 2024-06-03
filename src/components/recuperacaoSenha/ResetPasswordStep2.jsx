@@ -15,7 +15,7 @@ const ResetPasswordStep2 = () => {
       <div className={styles.leftSide}>
       <img src={voltar} className={styles.backButton} onClick={()=> navigate("/")}/>
         <h1>Redefina sua senha</h1>
-        <p>Ajuda está a caminho. O link foi enviado com sucesso, caso o endereço de e-mail digitado esteja cadastrado.</p>
+        <p className={styles.paragrafo}>Ajuda está a caminho. O link foi enviado com sucesso, caso o endereço de e-mail digitado esteja cadastrado.</p>
         <div className={styles.spacing}>
         <ButtonAzul onClick={() => navigate('/home')}>Página inicial</ButtonAzul>
         </div>

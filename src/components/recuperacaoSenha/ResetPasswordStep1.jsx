@@ -19,7 +19,7 @@ const ResetPasswordStep1 = () => {
       <div className={styles.leftSide}>
       <img src={voltar} className={styles.backButton} onClick={()=> navigate("/")}/>
         <h1>Redefina sua senha</h1>
-        <p>Digite o seu endereço de e-mail e nós enviaremos um link para resetar sua senha.</p>
+        <p className={styles.paragrafo}>Digite o seu endereço de e-mail e nós enviaremos um link para resetar sua senha.</p>
         <div className={styles.spacing}>
           <InputTexfield label="Email" />
         </div>
