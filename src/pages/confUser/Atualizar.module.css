@@ -1,14 +1,133 @@
 .corpo {
     background-color: white;
-    height: 90.9vh;
+    height: 270vh;
+    max-height: 350;
 }
 
+
 .corpo .info-usuario{
-    
+    width: 25vw;
+    height: 60vh;
+    background-color: white;
+    border-radius: 0px;
+    box-shadow: 5px 5px 10px #222222;
+    display: flex;
+    align-items: center;
+    margin-left:3vh ;
+}
+
+.corpo .centraliza{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+}
+
+.corpo .ajuste{
+  display: flex;
+  margin-left: 3vh;
+  width: 23vh;
+  justify-content: space-around;
+}
+
+.corpo .foto-usu{
+  margin-top: 3vh;
+  width: 20vh;
+  height: 20vh;
+  top: 88vh;
+  right: 34vh;
+  border-radius: 78vh;
+  background-color: #596469;
+}
+
+
+.corpo .endereco{
+    width: 50vw;
+    height: 60vh;
+    background-color: white;
+    border-radius: 0px;
+    box-shadow: 5px 5px 10px #222222;
+    display: flex;
+    justify-content: space-around;
+}
+
+.corpo .calendario{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5vh;
 }
 
 .corpo .itens {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    border-radius: 0px;
+    box-shadow: 5px 5px 10px #222222;
+    background-color: white;
+    width: 65vw;
+    height: 85vh;
 }
+
+/* dentro do card*/
+.corpo .adiciona{ 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 0px;
+    box-shadow: 5px 5px 10px #222222;
+    background-color: white;
+    width: 65vw;
+    height: 65vh;
+    margin-bottom: 5vh;
+}
+.corpo .idoso{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5vh;
+}
+
+
+.card {
+    width: 46vh;
+    padding: 16px;
+    border:  2px solid #077DB0;
+    border-radius: 8px;
+    margin-bottom: 3vh;
+  }
+
+  .img{
+    width: 15vh;
+    height: 5vh;
+  }
+
+.corpo .ajuste{ 
+    width: 30vh;
+    height: 15vh;
+    display: flex;
+  }
+
+.ajuste .img{
+width: 10vh;
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+margin-bottom: 5vh;
+margin-left: 1vh;
+  }
+
+  .texto h2{
+    margin-top: 3.5vh;
+    font-size: 4vh;
+    margin-left: 32vh;
+    color: #077DB0;
+  }
+
+  .ajuste span{
+    font-size: 3vh;
+    margin-top: 7vh;
+    margin-right: 5vh;
+  }
