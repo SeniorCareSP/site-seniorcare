@@ -1,0 +1,192 @@
+
+.card {
+    z-index: 2;
+    position: relative;
+    margin-top: 5vh;
+    margin-bottom: 2vh;
+    width: 18vw;
+    height: 34vh;
+    background-color:  #252F46;
+    color: #ffffff;
+    border-radius: 0px;
+    box-shadow: 5px 5px 10px #222222;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: space-around;
+    border-radius: 5px;
+}
+
+
+.card .Centralizar  {
+    margin-top: 4vh;
+    display: flex;
+    justify-content: space-around;
+
+}
+.linha {
+         margin-top: 4px;
+        background-color: #ffffff;
+        height: 20vh;
+        width: 0.5vh;
+}
+
+.card .linha{
+ margin-right: 10px;
+}
+.card .strelas{
+    display: flex;
+   padding-right: 5px;
+}
+
+.card h3{
+    color: #ffffff;
+}
+
+ .imagem img{
+    position:absolute;
+    z-index: 5;
+    margin-top: 1vh;
+    margin-left: 32vh;
+    width: 8.9vh;
+
+}
+
+
+@media screen and (max-width: 1920px) {
+    .card {
+        width: 18vw;
+        height: 34vh;
+        /* background-color: rgb(255, 196, 0); */
+    }
+
+    .imagem img{
+        position:absolute;
+        z-index: 5;
+        margin-top: 1vh;
+        margin-left: 32vh;
+        width: 8.9vh;
+    
+     }
+}
+
+/* @media screen and (min-width: 1700px) {
+    .card {
+        width: 18vw;
+        height: 34vh;
+        background-color: rgb(72, 255, 0);
+    }
+
+    .imagem img{
+        position:absolute;
+        z-index: 5;
+        margin-top: 1vh;
+        margin-left: 21vh;
+        width: 7vh;
+    
+     }
+} */
+
+@media screen and (min-width: 1670px) {
+    .card {
+        width: 17vw;
+        height: 28vh;
+      
+    }
+    .imagem img{
+        position:absolute;
+        z-index: 5;
+        margin-top: 1vh;
+        margin-left: 32vh;
+        width: 7vh;
+    
+     }
+}
+
+@media screen and (max-width: 1450px) {
+    .card {
+        width: 18vw;
+        height: 28vh;
+        background-color: rgb(17, 0, 255);
+    }
+    .imagem img{
+        position:absolute;
+        z-index: 5;
+        margin-top: 1vh;
+        margin-left: 22vh;
+        width: 7vh;
+    
+     }
+}
+
+@media screen and (max-width: 1340px) {
+    .card {
+        width: 17vw;
+        height: 29vh;
+        background-color: aquamarine;
+    }
+    .imagem img{
+        position:absolute;
+        z-index: 5;
+        margin-top: 1vh;
+        margin-left: 20vh;
+        width: 6vh;
+    
+     }
+    }
+
+
+    @media screen and (max-width: 1250px) {
+        .card {
+            width: 18vw;
+            height: 28vh;
+            background-color: black;
+        }
+        .imagem img{
+            position:absolute;
+            z-index: 5;
+            margin-top: 1vh;
+            margin-left: 20vh;
+            width: 6vh;
+        
+         }
+    }
+
+    @media screen and (max-width: 1160px) {
+        .card {
+            width: 18vw;
+            height: 28vh;
+
+        }
+        .imagem img{
+            position:absolute;
+            z-index: 5;
+            margin-top: 1vh;
+            margin-left: 17vh;
+            width: 6vh;
+        
+         }
+         .card h3{
+            color: #ffffff;
+            font-size: 1.4vh;
+        }
+        
+    }
+/* 
+    @media screen and (min-width: 130px) {
+        .card {
+            width: 20vw;
+            height: 28vh;
+        }
+        .imagem img{
+            position:absolute;
+            z-index: 5;
+            margin-top: 1vh;
+            margin-left: 18vh;
+            width: 6vh;
+        
+         }
+    }
+   
+   
+    */

@@ -1,0 +1,181 @@
+
+.apresentacao{
+    margin-top: 10vh;
+}
+
+.apresentacao .texto{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-left: 10vh;
+    height: 50vh;
+}
+
+.apresentacao div{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.apresentacao .texto p{
+    display: flex;
+    height: 15vh;
+    position: relative;
+    top: 10vh;
+}
+
+.apresentacao .texto h1{
+    color: #ffff;
+    font-size: 5vh;
+    width: 70%;
+    
+}
+
+.apresentacao div h1 span{
+    color: #930B07;
+}
+
+.apresentacao div button{
+    background-color: #ffff;
+    color: #2C7595;
+    color: #930B07;
+    font-size: medium;
+    border-radius: 0.8vh;
+    border: 0;
+    width: 15vw;
+    height: 7vh;
+    cursor: pointer;
+}
+
+.apresentacao .forma{
+    border-top-right-radius: 50%;
+    border-top-left-radius: 50%;
+    background-color: #EDF2FB;
+    width: 100%;
+    height: 55vh;
+}
+
+.apresentacao .imagem_idosos{
+    position: absolute;
+    top: 30vh;
+    left: 49.5vw;
+}
+
+.apresentacao .imagem_idosos img{
+    z-index: 3;
+}
+
+.apresentacao .imagem_idosos .cube1{
+    z-index: 2;
+    position: absolute;
+    border-radius: 1vh;
+    width: 60%;
+    height: 48%;
+    top: 17vh;
+    left: 8vh;
+    background-color: #509CBD;
+}
+
+.apresentacao .imagem_idosos .cube2{
+    z-index: 1;
+    position: absolute;
+    border-radius: 1vh;
+    width: 67%;
+    height: 49%;
+    top: 5vh;
+    left: 27vh;
+    background-color: #80C2DE;
+}
+
+
+@media screen and (max-width: 1600px) {
+    .apresentacao .imagem_idosos .cube1 {
+        width: 63%;
+        height: 46%;
+        top: 25%;
+        left: 5%;
+    }
+
+    .apresentacao .imagem_idosos .cube2 {
+        width: 70%;
+        height: 50%;
+        top: 8%;
+        left: 27%;
+    }
+
+    .apresentacao .imagem_idosos{
+        position: absolute;
+        top: 30vh;
+        left: 50%;
+    }
+
+    .apresentacao .forma{
+        border-top-right-radius: 35%;
+        border-top-left-radius: 50%;
+        width: 100%;
+        height: 45vh;
+    }
+}
+
+
+@media screen and (max-width: 1420px) {
+    .apresentacao .imagem_idosos .cube1 {
+        width: 63%;
+        height: 46%;
+        top: 25%;
+        left: 5%;
+    }
+
+    .apresentacao .imagem_idosos .cube2 {
+        width: 70%;
+        height: 50%;
+        top: 8%;
+        left: 27%;
+    }
+
+    .apresentacao .imagem_idosos{
+        position: absolute;
+        top: 30vh;
+        left: 50%;
+    }
+
+    .apresentacao .forma{
+        border-top-right-radius: 24%;
+        border-top-left-radius: 50%;
+        width: 100%;
+        height: 45vh;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .apresentacao .imagem_idosos .cube1 {
+        width: 50%;
+        height: 25%;
+        top: 8%;
+        left: 5%;
+    }
+
+    .apresentacao .imagem_idosos .cube2 {
+        width: 55%;
+        height: 20%;
+        top: 2%;
+        left: 10%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .apresentacao .imagem_idosos .cube1 {
+        width: 60%;
+        height: 20%;
+        top: 6%;
+        left: 5%;
+    }
+
+    .apresentacao .imagem_idosos .cube2 {
+        width: 65%;
+        height: 15%;
+        top: 1%;
+        left: 5%;
+    }
+}
+

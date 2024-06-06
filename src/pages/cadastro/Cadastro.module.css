@@ -1,20 +1,94 @@
 
-@font-face {
-    font-family: josefin;
-    src: url(../../assets/font/JosefinSlab-Italic-VariableFont_wght.ttf);
-  }
-
   @font-face {
     font-family: spartan;
-    src: url(../../assets/font/LeagueSpartan-VariableFont_wght.ttf);
+    src: url(../../utils/font/LeagueSpartan-VariableFont_wght.ttf);
   }
 
+  .card-cadastro{
+    background-color: #ffff;
+    display: flex;
+    width: 100%;
+    height: 100vh;
+  }
 
-  body{
-    padding: 0;
-    margin: 0;
-    background-color: #3b0608;
-    font-family: monospace;
-}
+  .card-cadastro .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
 
+  .card-cadastro .linha{
+    height: 100vh;
+    width: 0.5vh;
+    margin-left: 3vh;
+    background-color: #80C1DE;
+  }
+
+  .corpo {
+    display: flex;
+  }
+
+  .card-cadastro .title{
+    display: flex;
+    color: #077DB0;
+    font-size: 6vh;
+    font-weight: bolder;
+    justify-content: center;
+  }
+
+  .card-cadastro .itens{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-cadastro .itens a{
+    color: black;
+  }
+
+  .card-cadastro .select{
+    width: 30%;
+  }
+
+  .card-cadastro .title a{
+    cursor: pointer;
+    color: #52A4C8;
+  }
+
+  .card-cadastro .itens .div_ajuda{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .card-cadastro .itens .ajuda{
+    display: flex;
+    justify-content: center;
+    margin-top: 2vh;
+  }
+
+  .cadastro-sucesso{
+    background-color: white;
+    height: 100vh;
+    color: #077DB0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* img */
+
+  .cadastro-sucesso .imagem-sucesso{
+    background-image: url(../../utils/assets/Checkmark.png);
+    background-color: #077DB0;
+    background-size: cover;
+    width: 8vw;
+    border: solid #077DB0 4vh;
+    border-radius: 100%;
+    height: 15vh;
+  }
+  
 

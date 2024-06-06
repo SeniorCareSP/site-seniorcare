@@ -1,0 +1,80 @@
+/* ElderList.css */
+.elder-list-container {
+    width: 70vh;
+    padding: 16px;
+    border:  2px solid #077DB0;
+    border-radius: 8px;
+  }
+  
+  .elder-list {
+    color: white;
+    max-height: 300px; /* Definindo a altura máxima da lista */
+    overflow-y: auto; /* Adicionando barra de rolagem vertical quando necessário */
+  }
+  
+  .elder-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    margin-bottom: 12px;
+    /* border: 2px solid #077DB0; */
+    border-radius: 8px;
+    background-color: #077DB0;
+  }
+  
+  .elder-info {
+    flex: 1;
+  }
+  
+  .elder-actions {
+    display: flex;
+    background-color: transparent;
+  }
+  
+  .action-button {
+    margin-left: 8px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .add-elder-button {
+    margin-top: 16px;
+    padding: 12px 16px;
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    background-color: transparent;
+    color: #007bff;
+    cursor: pointer;
+  }
+
+  /* ElderList.css */
+.elder-list-container {
+  padding: 20px;
+}
+
+.elder-card {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.add-elder-button {
+  display: flex;
+  align-items: center;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.add-elder-button svg {
+  margin-right: 5px;
+}
+
+  
