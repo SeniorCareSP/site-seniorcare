@@ -1,0 +1,53 @@
+.container{
+    width: 100%;
+    height: 100Vh;
+    display: flex;
+    background-color: white;
+    justify-content: flex-start;
+}
+
+.container .card{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 80%;
+    margin-left: 15%;
+}
+
+.chart-avaliacao{
+    box-shadow: 2px 2px 2px  rgb(118, 118, 118);
+    border-radius: 1vh;
+}
+
+.kpi1{
+    background-color: #077DB0;
+    border-radius: 1vh;
+    color: white;
+    height: 25vh;
+    width: 25vw;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+}
+
+.map img{
+    width: 80%;
+}
+
+.kpi2 div{
+    width: 13vw;
+    height: 12vh;
+    border-radius: 1vh;
+    box-shadow: 2px 2px 2px  rgb(118, 118, 118);
+    padding: 5%;
+}
+
+.kpi2 div h1{
+    color: #C1231F;
+}
+
+.kpi2 div p{
+    width: 90%;
+
+}
