@@ -32,7 +32,7 @@
   },
   "scripts": {
     "start": "node ./site/App.js",
-    "postinstall": "cd site && npm ci",
+    "postinstall": "cd site && npm install",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
