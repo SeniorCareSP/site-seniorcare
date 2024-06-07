@@ -1,5 +1,4 @@
 import { Stack } from "@mui/material";
-import ChartGenero from "./ChartGenero";
 import ChartAvaliacao from "./ChartAvaliacao";
 import SidebarDash from "../sidebar/SidebarDash";
 
