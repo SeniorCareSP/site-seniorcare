@@ -23,21 +23,21 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-        working-directory: ./site-seniorcare/site
+        working-directory: ./site
 
       - name: Build the project
         run: npm run build
-        working-directory: ./site-seniorcare/site
+        working-directory: ./site
 
       - name: Zip artifact for deployment
         run: zip -r release.zip *
-        working-directory: ./site-seniorcare/site/public
+        working-directory: ./site/public
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: node-app
-          path: ./site-seniorcare/site/public/release.zip
+          path: ./site/public/release.zip
 
   deploy:
     runs-on: ubuntu-latest
