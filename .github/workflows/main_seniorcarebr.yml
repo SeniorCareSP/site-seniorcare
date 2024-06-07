@@ -12,6 +12,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
 
     steps:
       - uses: actions/checkout@v4
@@ -21,23 +22,22 @@ jobs:
         with:
           node-version: '18.x'
 
-      - name: Install dependencies
-        run: npm install
-        working-directory: ./site-seniorcare/site/public
-
-      - name: Build the project
-        run: npm run build
-        working-directory: ./site-seniorcare/site/public
+      - name: npm install, build, and test
+        run: |
+          npm install
+          npm run build --if-present
+          npm run test --if-present
+        working-directory: ./site/public
 
       - name: Zip artifact for deployment
         run: zip -r release.zip .
-        working-directory: ./site-seniorcare/site/public/build
+        working-directory: ./site/public/build
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: node-app
-          path: ./site-seniorcare/site/public/build/release.zip
+          path: ./site/public/build/release.zip
 
   deploy:
     runs-on: ubuntu-latest
@@ -70,4 +70,4 @@ jobs:
         with:
           app-name: 'seniorcarebr'
           slot-name: 'Production'
-          package: ./site-seniorcare/site/public/build
+          package: ./site/public/build
