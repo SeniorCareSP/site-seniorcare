@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import styles from "./GroupComponent.module.css";
 import dsjak from "../../utils/assets/dsjak-4@2x.png"
 import ellipse from "../../utils/assets/ellipse-24@2x.png"
-import { el } from "date-fns/locale";
 const GroupComponent = () => {
   const navigate = useNavigate();
 

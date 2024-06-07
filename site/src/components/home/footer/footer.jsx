@@ -1,7 +1,5 @@
 import React from "react";
-import TextField from '@mui/material/TextField';
 import Style from "./footer.module.css";
-import Inputs from "./input"
 import Icons from "../../../utils/assets/Social (1).png";
 import Logo from "../../../utils/assets/Logo-azul.png"
 import InputSubscription from "./input";

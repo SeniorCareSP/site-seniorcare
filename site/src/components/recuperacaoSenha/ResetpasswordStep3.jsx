@@ -6,7 +6,6 @@ import ButtonAzul from '../botao/BotaoAzul';
 import ButtonBranco from '../botao/BotaoBranco';
 import InputTexfield from '../Input/Input';
 import voltar from '../../utils/assets/setaVoltar.png'
-import Style from '../eleLogin/ImgLogin';
 
 const ResetPasswordStep3 = () => {
   const navigate = useNavigate();
@@ -30,7 +29,7 @@ const ResetPasswordStep3 = () => {
         </div>
       </div>
       <div className={styles.rightSide}>
-      <img src={logo} alt = "Logo"/>
+      <img src={logo} alt = 'Logo'/>
       </div>
     </div>
   );

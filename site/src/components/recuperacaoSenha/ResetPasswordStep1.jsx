@@ -6,10 +6,6 @@ import ButtonAzul from '../botao/BotaoAzul';
 import ButtonBranco from '../botao/BotaoBranco';
 import InputTexfield from '../Input/Input';
 import voltar from '../../utils/assets/setaVoltar.png'
-import Style from '../eleLogin/ImgLogin';
-
-
-
 
 const ResetPasswordStep1 = () => {
   const navigate = useNavigate();

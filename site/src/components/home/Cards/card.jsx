@@ -1,5 +1,3 @@
-
-import { Margin } from "@mui/icons-material";
 import Styles from "./card.module.css"
 import StarIcon from '@mui/icons-material/Star';
 import Icom from "../../../utils/assets/Ellipse 43.png";

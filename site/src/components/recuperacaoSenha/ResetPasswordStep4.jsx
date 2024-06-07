@@ -4,7 +4,6 @@ import styles from './ResetPasswordStep4.module.css';
 import logo from '../../utils/assets/logoapertadinha.svg'
 import ButtonAzul from '../botao/BotaoAzul';
 import voltar from '../../utils/assets/setaVoltar.png'
-import Style from '../eleLogin/ImgLogin';
 
 const ResetPasswordStep4 = () => {
   const navigate = useNavigate();

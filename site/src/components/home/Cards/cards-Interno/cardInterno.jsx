@@ -1,19 +1,16 @@
 import Styles from "../cards-Interno/cardInterno.module.css";
 import { Button } from "@mui/material";
 import Imagem from "../../../../utils/assets/Rectangle 53.png";
-import Like from "../../../../utils/assets/Heart.png";
 import Flag from "../../../../utils/assets/Empty Flag.png";
 import Checkbox from '@mui/material/Checkbox';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
-import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { useNavigate } from "react-router-dom";
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 
-function CardIdoso({nome, descricao, idade}) {
+function CardIdoso({nome, descricao}) {
   const navigate = useNavigate();
   return (
     <>

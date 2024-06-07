@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import React, { useState } from 'react';
 import ButtonAzul from "../botao/BotaoAzul";
 import api from "../../api/Usuario/apiUsuario";
+
 function EleLogin() {
 
   const navigate = useNavigate()
@@ -66,9 +67,9 @@ function EleLogin() {
             <Stack spacing={5} className={Style["itens"]}>
               <InputTexfield label="Email" value={email} onChange={(e) => handleInputChange(e, setEmail)} />
               <InputTexfield label="Senha" value={senha} onChange={(e) => handleInputChange(e, setSenha)} type="password" />
-              <a href="">Esqueceu a senha?</a>
+              <a onClick={() => navigate("/reset-password-1")}>Esqueceu a senha?</a>
               <ButtonAzul className={Style["button"]} onClick={handleSave} variant="contained">Entrar</ButtonAzul>
-              <a href="" onClick={() => navigate("/")}>Voltar</a>
+              <a onClick={() => navigate("/")}>Voltar</a>
             </Stack>
           </Stack>
         </div>

@@ -9,7 +9,6 @@ import ElderList from "./idosoComponent";
 import ToggleButtonGroup from '@mui/joy/ToggleButtonGroup';
 import Button from '@mui/joy/Button';
 import ImgLogin from '../../components/eleLogin/ImgLogin';
-import { red } from "@mui/material/colors";
 
 function EleAtualizarPerfil() {
     const [value, setValue] = React.useState(['default']);

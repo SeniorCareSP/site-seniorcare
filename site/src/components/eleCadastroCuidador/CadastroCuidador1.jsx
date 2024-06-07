@@ -6,10 +6,8 @@ import InputTexfield from '../Input/Input';
 import Title from '../tituloCadastro/Title'
 import ButtonAzul from '../botao/BotaoAzul';
 import ButtonBranco from '../botao/BotaoBranco';
-import BtnBrancoS from '../botao/BtnBrancoS';
 import ToggleButtonGroup from '@mui/joy/ToggleButtonGroup';
 import Button from '@mui/joy/Button';
-import apiCuidador from '../../api/Usuario/apiCuidador';
 function CadastroCuidador1() {
     const [value, setValue] = React.useState([]);
     const [experiencia, setExperiencia] = React.useState("");

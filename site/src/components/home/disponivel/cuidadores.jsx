@@ -4,10 +4,6 @@ import React, { useState } from "react";
  import Style from "./cuidadores.module.css";
  import SelectIndicator from "./select";
  import { useNavigate } from "react-router-dom";
-
-import Select, { selectClasses } from '@mui/joy/Select';
-import Option from '@mui/joy/Option';
-import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import BtBranco from "../../botao/btBranco";
  function Disponivel() {
    const navigate = useNavigate();
