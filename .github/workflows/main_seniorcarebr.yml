@@ -12,7 +12,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
 
     steps:
       - uses: actions/checkout@v4
@@ -31,13 +30,13 @@ jobs:
 
       - name: Zip artifact for deployment
         run: zip -r release.zip .
-        working-directory: ./site/public/build
+        working-directory: ./site/public
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: node-app
-          path: ./site/public/build/release.zip
+          path: ./site/public/release.zip
 
   deploy:
     runs-on: ubuntu-latest
@@ -70,4 +69,4 @@ jobs:
         with:
           app-name: 'seniorcarebr'
           slot-name: 'Production'
-          package: ./site/public/build
+          package: ./site/public
