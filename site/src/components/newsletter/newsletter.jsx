@@ -24,7 +24,11 @@ function NewsletterComponente() {
                 </div>
                 <div className={Style.formGroup}>
                 <div className={Style.spacing}>
-                <InputTexfield label="Mensagem" sx={{ width: "100vh",}} />
+                <InputTexfield label="Mensagem" sx={{ width: "100vh",}}  multiline
+          rows={4}
+          variant="outlined"
+          fullWidth
+          margin="normal" />
                 </div>
                 </div>
                 <div className={Style.buttonGroup}>
