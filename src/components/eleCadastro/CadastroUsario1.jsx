@@ -8,8 +8,6 @@ import React, { useEffect, useState } from "react";
 import Button from '@mui/joy/Button';
 import axios from "axios";
 import ToggleButtonGroup from '@mui/joy/ToggleButtonGroup';
-import Alert from '@mui/material/Alert';
-import CheckIcon from '@mui/icons-material/Check';
 import FormHelperText from '@mui/joy/FormHelperText';
 
 
@@ -45,18 +43,13 @@ function CadastroUsuario1() {
 
         // validação email
         if (!email) {
-            setErrorEmail(
-                <FormHelperText sx={(theme) => ({ color: theme.vars.palette.danger[400] })}>
-                    Campo obrigatório.
-                </FormHelperText>);
+
+            setErrorEmail(true);
+            
             isValid = false;
         } else if (!/\S+@\S+\.\S+/.test(email)) {
 
-            setErrorEmail(
-                <FormHelperText sx={(theme) => ({ color: theme.vars.palette.danger[400] })}>
-                    Oops! Algo deu errado.
-                </FormHelperText>
-            );
+            setErrorEmail(true);
             
             isValid = false;
         } else {

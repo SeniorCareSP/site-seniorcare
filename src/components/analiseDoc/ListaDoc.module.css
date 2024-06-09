@@ -1,0 +1,15 @@
+.container{
+    width: 100%;
+    height: 100Vh;
+    display: flex;
+    background-color: white;
+    justify-content: flex-start;
+}
+
+.container .card{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 80%;
+    margin-left: 15%;
+}

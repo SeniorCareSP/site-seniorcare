@@ -20,6 +20,7 @@ import Perfil from './pages/Perfil/VisualizaoInterna';
 import Dashboard from './pages/admin/Dashboard';
 import React from 'react';
 import Chat from './pages/chat/Chat'
+import ListagemDoc from './pages/admin/ListagemDoc.jsx';
 import ResetPasswordStep1 from './components/recuperacaoSenha/ResetPasswordStep1.jsx';
 import ResetPasswordStep2 from './components/recuperacaoSenha/ResetPasswordStep2.jsx';
 import ResetPasswordStep3 from './components/recuperacaoSenha/ResetpasswordStep3.jsx';
@@ -60,6 +61,7 @@ function Router() {
         <Route path='/admin/editar' element={<Editperfil/>}/>
         <Route path='/admin/analiseDocs' element={<AnaliseDocs/>}/>
         <Route path='/admin/dashboard' element={<Dashboard/>}/>
+        <Route path='/admin/listagemDocs' element={<ListagemDoc/>}/>
       </Routes>
     </BrowserRouter>
   );
