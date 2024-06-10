@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiUsuario = axios.create({
-    baseURL: "http://localhost:8080/usuarios"
+    baseURL: 'https://seniorcarejava.azurewebsites.net/usuarios' ||  "http://localhost:8080/usuarios"
 })
 
 
