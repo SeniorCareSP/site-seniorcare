@@ -65,6 +65,7 @@ function Procurar() { // Renomeando a função para começar com letra maiúscul
                 nome={data.nome}
                 descricao={data.apresentacao}
                 idade={calcularIdade(data.dtNascimento)}
+                
               />
             </div>
           ))}
