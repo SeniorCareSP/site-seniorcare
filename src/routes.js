@@ -25,6 +25,7 @@ import ResetPasswordStep1 from './components/recuperacaoSenha/ResetPasswordStep1
 import ResetPasswordStep2 from './components/recuperacaoSenha/ResetPasswordStep2.jsx';
 import ResetPasswordStep3 from './components/recuperacaoSenha/ResetpasswordStep3.jsx';
 import ResetPasswordStep4 from './components/recuperacaoSenha/ResetPasswordStep4.jsx';
+import Denuncias from './pages/admin/Denuncias.jsx';
 function Router() {
   return (
     <BrowserRouter>                                        
@@ -62,6 +63,7 @@ function Router() {
         <Route path='/admin/analiseDocs' element={<AnaliseDocs/>}/>
         <Route path='/admin/dashboard' element={<Dashboard/>}/>
         <Route path='/admin/listagemDocs' element={<ListagemDoc/>}/>
+        <Route path='/admin/denuncias' element={<Denuncias/>}/>
       </Routes>
     </BrowserRouter>
   );
