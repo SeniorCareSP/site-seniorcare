@@ -3,7 +3,6 @@ import Style from '../../pages/cadastro/Cadastro.module.css';
 import { useNavigate } from "react-router-dom";
 import * as React from 'react';
 import Title from '../tituloCadastro/Title'
-import BtnBrancoS from '../botao/BtnBrancoS';
 import VisuallyHiddenInput from '../botao/Upload';
 import ButtonAzul from '../botao/BotaoAzul';
 import ButtonBranco from '../botao/BotaoBranco';

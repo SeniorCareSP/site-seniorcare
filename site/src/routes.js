@@ -18,6 +18,7 @@ import AnaliseDocs from './pages/admin/AnaliseDocs';
 import Erro from './pages/404/erro';
 import Perfil from './pages/Perfil/VisualizaoInterna';
 import Dashboard from './pages/admin/Dashboard';
+import Newsletter from './pages/newsletter/Newsletter';
 import React from 'react';
 import Chat from './pages/chat/Chat'
 import ResetPasswordStep1 from './components/recuperacaoSenha/ResetPasswordStep1.jsx';
@@ -60,6 +61,8 @@ function Router() {
         <Route path='/admin/editar' element={<Editperfil/>}/>
         <Route path='/admin/analiseDocs' element={<AnaliseDocs/>}/>
         <Route path='/admin/dashboard' element={<Dashboard/>}/>
+        <Route path='/admin/newsletter' element={<Newsletter/>}/>
+
       </Routes>
     </BrowserRouter>
   );

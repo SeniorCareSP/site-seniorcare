@@ -4,7 +4,7 @@ import './ElderList.css'; // Importando o arquivo CSS para estilização
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import { Card, CardContent, Typography, IconButton, Box, Button } from '@mui/material';
+import { IconButton, Box} from '@mui/material';
 import AddElderModal from './AddElderModal';
 
 function ElderCard({ name, condition, age }) {

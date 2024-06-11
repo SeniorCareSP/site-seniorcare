@@ -10,7 +10,6 @@ import AccordionTransition from "../../components/home/perguntas/perguntas";
 import JunteSe from "../../components/home/Junte-se/junteSe";
 import Footer from "../../components/home/footer/footer";
 import * as React from 'react';
-// import Button from '@mui/material/Button';
 
 
 

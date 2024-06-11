@@ -5,20 +5,19 @@ import Style from "./navbarCuidador.module.css";
 import Door from "../../../utils/assets/Logout.png";
 import Perfil from "../../../utils/assets/Ellipse 24.png"
 import { useNavigate } from "react-router-dom";
-import Button from '@mui/material/Button';
 
 function Navbar() {
     const navigate = useNavigate();
 
     
-    const handleLogout = () => {
-        // Limpar o armazenamento local
-        localStorage.clear();
+    // const handleLogout = () => {
+    //     // Limpar o armazenamento local
+    //     localStorage.clear();
         
-        navigate("/");
+    //     navigate("/");
         
-        console.log("Usuário deslogado!");
-    }
+    //     console.log("Usuário deslogado!");
+    // }
 
     return (
         <>

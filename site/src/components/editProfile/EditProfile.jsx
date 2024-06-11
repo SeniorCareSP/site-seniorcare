@@ -3,13 +3,13 @@ import InputTexfield from '../Input/Input';
 import ButtonAzul from '../botao/BotaoAzul';
 import ButtonBranco from '../botao/BotaoBranco';
 import { Stack } from '@mui/material';
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import SidebarDash from '../sidebar/SidebarDash';
 function EditProfile() {
 
-    const handleInputChange = (event, setStateFunction) => {
-        setStateFunction(event.target.value);
-    }
+    // const handleInputChange = (event, setStateFunction) => {
+    //     setStateFunction(event.target.value);
+    // }
 
     const [email, setEmail] = useState("");
     const [nome, setNome] = useState("");

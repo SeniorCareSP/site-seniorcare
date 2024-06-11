@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import InputTexfield from '../Input/Input';
 import ButtonAzul from '../botao/BotaoAzul';
 import Title from '../tituloCadastro/Title'
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Button from '@mui/joy/Button';
 import axios from "axios";
 import ToggleButtonGroup from '@mui/joy/ToggleButtonGroup';
