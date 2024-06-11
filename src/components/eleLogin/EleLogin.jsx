@@ -36,14 +36,19 @@ function EleLogin() {
       const { userId, email,tipoUsuario, nome, token } = response.data;
       
         console.log(`Usuário ID: ${userId}`);
-        //console.log(`Nome: ${nome}`);
-        //console.log(`Email: ${email}`);
-        //console.log(`Token: ${token}`);
+            //console.log(`Nome: ${nome}`);
+            //console.log(`Email: ${email}`);
+            //console.log(`Token: ${token}`);
       localStorage.setItem('idUsuario', userId);
       localStorage.setItem('tipoUsuario', tipoUsuario);
       localStorage.setItem('token', token);
       console.log("Cadastro feito com sucesso!");
-      navigate("/procurar");
+
+      if(tipoUsuario === "ADMINISTRADOR" ){
+        navigate("/admin/dashboard")
+      }else{
+        navigate("/procurar");
+      }
     }).catch(() => {
       console.log(JSON.stringify(objetoAdicionado));
       console.log("Ocorreu um erro ao cadastrar, por favor, tente novamente.")

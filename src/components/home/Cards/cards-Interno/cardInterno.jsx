@@ -11,7 +11,7 @@ import ModalDenuncia from '../../../cuidador/denuncia/denuncia'; // Ajuste o cam
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
-function CardIdoso({ nome, descricao, idade }) {
+function CardIdoso({ nome, descricao, idade, favoritado, handleToggleFavorite }) {
   const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
 
@@ -23,6 +23,10 @@ function CardIdoso({ nome, descricao, idade }) {
     setOpenModal(false);
   };
 
+  const handleFavoriteToggle = () => {
+    handleToggleFavorite(); // Chama a função para favoritar/desfavoritar
+  };
+
   return (
     <>
       <div className={Styles.cliente}>
@@ -31,7 +35,7 @@ function CardIdoso({ nome, descricao, idade }) {
             <img src={Imagem} alt="" />
             <div className={Styles.Icons}>
               <img src={Flag} alt="" onClick={handleOpenModal} style={{ cursor: 'pointer' }} />
-              <Checkbox {...label} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
+              <Checkbox defaultChecked={favoritado} {...label} icon={<FavoriteBorder />} checkedIcon={<Favorite />} onClick={handleFavoriteToggle} />
             </div>
           </div>
           <div className={Styles.info}>
@@ -42,7 +46,7 @@ function CardIdoso({ nome, descricao, idade }) {
             <div className={Styles.centralizar}>
               <p>{descricao}</p>
               <div className={Styles.botao}>
-                <Button variant="contained" onClick={() => navigate('/procurar')}>
+                <Button variant="contained" onClick={() => navigate('/usuarios/perfil')}>
                   Saiba Mais
                 </Button>
               </div>
