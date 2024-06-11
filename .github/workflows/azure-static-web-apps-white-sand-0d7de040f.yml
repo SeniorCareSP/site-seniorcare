@@ -19,6 +19,40 @@ jobs:
         with:
           submodules: true
           lfs: false
+
+      - name: Set up Node.js version
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./site
+
+      - name: Build the project
+        run: npm run build
+        working-directory: ./site
+        env:
+          PORT: 8080
+
+      - name: Zip artifact for deployment
+        run: zip -r release.zip *
+        working-directory: ./site/build
+
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v3
+        with:
+          name: node-app
+          path: ./site/build/release.zip
+
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v3
+        with:
+          name: node-app
+
+      - name: Unzip artifact for deployment
+        run: unzip release.zip
+
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -26,12 +60,9 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_WHITE_SAND_0D7DE040F }}
           repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
           action: "upload"
-          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
-          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "./site" # App source code path
+          app_location: "./site/build" # App source code path
           api_location: "" # Api source code path - optional
-          output_location: "./site" # Built app content directory - optional
-          ###### End of Repository/Build Configurations ######
+          output_location: "./site/build" # Built app content directory - optional
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
