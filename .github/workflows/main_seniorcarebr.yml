@@ -73,3 +73,8 @@ jobs:
           app-name: 'seniorcarebr'
           slot-name: 'Production'
           package: release.zip
+
+      - name: Start the Node server
+        run: npm run serve
+        env:
+        PORT: 8080
