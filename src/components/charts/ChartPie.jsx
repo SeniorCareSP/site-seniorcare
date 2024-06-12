@@ -14,7 +14,7 @@ export default function ChartPie() {
         },
       ]}
       width={400}
-      height={200}
+      height={230}
     />
   );
 }

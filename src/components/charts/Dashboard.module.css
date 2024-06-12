@@ -51,3 +51,15 @@
     width: 90%;
 
 }
+
+.chart-pie{
+    box-shadow: 2px 2px 2px  rgb(118, 118, 118);
+    border-radius: 1vh;
+    padding: 5%;
+    width: 26vw;
+}
+
+.chart-genero{
+    box-shadow: 2px 2px 2px  rgb(118, 118, 118);
+    border-radius: 1vh;
+}

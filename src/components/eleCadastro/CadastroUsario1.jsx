@@ -26,6 +26,13 @@ function CadastroUsuario1() {
     const [errorConfSenha, setErrorConfSenha] = useState(false);
     const [errorCep, setErrorCep] = useState(false);
 
+    // alertas 
+    const [mensgemEmail, setMensagemEmail] = useState('');
+    const [mensagemNome, setMensagemNome] = useState('');
+    const [mensagemSenha, setMensagemSenha] = useState('');
+    const [mensagemConfSenha, setMensagemConfSenha] = useState('');
+    const [mensagemCep, setMensagemCep] = useState('');
+
     const navigate = useNavigate();
 
     const handleChange = (event, newValue) => {
@@ -45,56 +52,68 @@ function CadastroUsuario1() {
         if (!email) {
 
             setErrorEmail(true);
-            
+            setMensagemEmail("Preencha este campo")
             isValid = false;
         } else if (!/\S+@\S+\.\S+/.test(email)) {
 
             setErrorEmail(true);
-            
+            setMensagemEmail("Insira um email valido")
             isValid = false;
         } else {
             setErrorEmail(false);
+            setMensagemEmail("")
         }
 
         // validação de nome
         if (!nome) {
             setErrorNome(true);
+            setMensagemNome("Preecha este campo");
             isValid = false;
         } else {
+            setMensagemNome("");
             setErrorNome(false);
         }
 
         // validação de senha
         if (!senha) {
             setErrorSenha(true);
+            setMensagemSenha("Preencha este campo");
             isValid = false;
         } else if (senha.length < 6) {
             setErrorSenha(true);
+            setMensagemSenha("Senha deve ter no minimo 6 digitos");
             isValid = false;
         } else {
             setErrorSenha(false);
+            setMensagemSenha("");
         }
 
         // validação de confirmar senha
         if (!confirmarSenha) {
             setErrorConfSenha(true);
+            setMensagemConfSenha("Preencha este campo");
             isValid = false;
         } else if (confirmarSenha !== senha) {
             setErrorConfSenha(true);
+            setMensagemConfSenha("As senhas são diferentes");
             isValid = false;
         } else {
             setErrorConfSenha(false);
+            setMensagemConfSenha("");
         }
 
         // validação de cep
         if (!cep) {
             setErrorCep(true);
+            setMensagemCep("Preencha este campo");
             isValid = false;
-        } else if (!/^\d{5}-?\d{3}$/.test(cep)) {
+        } else if (cep.length != 8) {
             setErrorCep(true);
+            setMensagemCep("CEP Invalido");
             isValid = false;
         } else {
             setErrorCep(false);
+            setMensagemCep("");
         }
 
 
@@ -133,22 +152,23 @@ function CadastroUsuario1() {
         }
     }
 
-
-
-
-
     return (
         <div className={Style["card-cadastro"]}>
             <div className={Style["linha"]}></div>
             <div className={Style["content"]}>
                 <Stack spacing={6}>
                     <Title />
-                    <Stack spacing={3} className={Style["itens"]}>
-                        <InputTexfield error={errorEmail} label="Email" value={email} onChange={(e) => handleInputChange(e, setEmail)} />
-                        <InputTexfield error={errorNome} label="Nome" value={nome} onChange={(e) => handleInputChange(e, setNome)} />
-                        <InputTexfield error={errorSenha} label="senha" value={senha} type={"password"} onChange={(e) => handleInputChange(e, setSenha)} />
-                        <InputTexfield error={errorConfSenha} label="confirmar senha" type={"password"} value={confirmarSenha} onChange={(e) => handleInputChange(e, setConfirmarSenha)} />
-                        <InputTexfield error={errorCep} label="CEP" value={cep} onChange={(e) => handleInputChange(e, setCep)} />
+                    <Stack spacing={2} className={Style["itens"]}>
+                        <InputTexfield helperText={mensgemEmail} error={errorEmail} label="Email" value={email} onChange={(e) => handleInputChange(e, setEmail)} />
+                        
+                        <InputTexfield helperText={mensagemNome} error={errorNome} label="Nome" value={nome} onChange={(e) => handleInputChange(e, setNome)} />
+                        
+                        <InputTexfield helperText={mensagemSenha} error={errorSenha} label="senha" value={senha} type={"password"} onChange={(e) => handleInputChange(e, setSenha)} />
+                        
+                        <InputTexfield helperText={mensagemConfSenha} error={errorConfSenha} label="confirmar senha" type={"password"} value={confirmarSenha} onChange={(e) => handleInputChange(e, setConfirmarSenha)} />
+                        
+                        <InputTexfield helperText={mensagemCep} error={errorCep} label="CEP" value={cep} onChange={(e) => handleInputChange(e, setCep)} />
+                        
                         <Stack direction="row" spacing={2}>
                             <ToggleButtonGroup value={tipoUsuario} spacing={2} color="primary" onChange={handleChange}>
                                 <Button value="CUIDADOR"  >Cuidador</Button>

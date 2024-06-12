@@ -4,7 +4,6 @@ import ChartAvaliacao from "./ChartAvaliacao";
 import SidebarDash from "../sidebar/SidebarDash";
 import Style from "./Dashboard.module.css";
 import ChartPie from "./ChartPie";
-import map from "../../utils/assets/mapa.png"
 
 function EleDashbord() {
     return (
@@ -14,46 +13,45 @@ function EleDashbord() {
                 <div className={Style["card"]}>
                     <div className={Style["title-dash"]}>
                         <h1>Dashboard</h1>
-
                     </div>
-                    <Stack spacing={3} direction={'row'}>
-                        <div className={Style["kpi1"]}>
-                            <Stack>
-                                <h4>Visitas Hoje</h4>
-                                <h1>100</h1>
-                            </Stack>
-                            <Stack>
-                                <p>total de visitas</p>
-                            </Stack>
-                        </div>
-                        <span className={Style["chart-avaliacao"]}>
-                            <ChartAvaliacao />
-                        </span>
-
-                    </Stack>
-                    <Stack direction={'row'}>
-                        <Stack>
-                            <Stack spacing={3} direction={'row'} className={Style["kpi2"]}>
-                                <div>
-                                    <h1>3</h1>
-                                    <p>Denuncias aguardando analise.</p>
-                                </div>
-                                <div>
-                                    <h1>70</h1>
-                                    <p>Documentos aguardando analise.</p>
-                                </div>
-                            </Stack>
-                            <span>
-                                <ChartGenero />
-                            </span>
-                        </Stack>
-                        <Stack >
-                            <div className={Style["map"]}>
-                                <img src={map} alt="" />
+                    <Stack spacing={3}>
+                        <Stack spacing={5} direction={'row'}>
+                            <div className={Style["kpi1"]}>
+                                <Stack>
+                                    <h4>Visitas Hoje</h4>
+                                    <h1>100</h1>
+                                </Stack>
+                                <Stack>
+                                    <p>total de visitas</p>
+                                </Stack>
                             </div>
-                            <span>
-                                <ChartPie />
+                            <span className={Style["chart-avaliacao"]}>
+                                <ChartAvaliacao />
                             </span>
+
+                        </Stack>
+                        <Stack direction={'row'} spacing={8}>
+                            <Stack spacing={4}>
+                                <Stack spacing={4} direction={'row'} className={Style["kpi2"]}>
+                                    <div>
+                                        <h1>3</h1>
+                                        <p>Denuncias aguardando analise.</p>
+                                    </div>
+                                    <div>
+                                        <h1>70</h1>
+                                        <p>Documentos aguardando analise.</p>
+                                    </div>
+                                </Stack>
+                                <span className={Style["chart-genero"]}>
+                                    <ChartGenero />
+                                </span>
+                            </Stack>
+                            <Stack >
+                                <span className={Style["chart-pie"]}>
+                                    <h2>Cuidadores</h2>
+                                    <ChartPie />
+                                </span>
+                            </Stack>
                         </Stack>
                     </Stack>
                 </div>
