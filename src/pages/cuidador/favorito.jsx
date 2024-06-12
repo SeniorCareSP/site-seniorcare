@@ -70,6 +70,8 @@ function Favoritos() {
                                     idade={calcularIdade(data.dtNascimento)}
                                     favoritado={true}
                                     handleToggleFavorite={() => handleFavoriteToggle(data.idUsuario)}
+                                    tipoUsuario = {data.tipoDeUsuario}
+                                    idUsuario={data.idUsuario}
                                 />
                             </div>
                         ))

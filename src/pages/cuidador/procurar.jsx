@@ -128,6 +128,8 @@ function Procurar() {
                 idade={calcularIdade(data.dtNascimento)}
                 favoritado={data.favoritado}
                 handleToggleFavorite={() => handleFavoriteToggle(data.idUsuario)} // Passa a função handleFavoriteToggle com o ID do cuidador como argumento
+                tipoUsuario = {data.tipoDeUsuario}
+                idUsuario={data.idUsuario}
               />
             </div>
           ))}

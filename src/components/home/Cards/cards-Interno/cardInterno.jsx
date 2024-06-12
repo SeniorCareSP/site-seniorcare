@@ -8,12 +8,28 @@ import Imagem from '../../../../utils/assets/Rectangle 53.png';
 import Like from '../../../../utils/assets/Heart.png';
 import Flag from '../../../../utils/assets/Empty Flag.png';
 import ModalDenuncia from '../../../cuidador/denuncia/denuncia'; // Ajuste o caminho conforme necessário
-
+import apiCuidador from '../../../../api/Usuario/apiCuidador';
+import apiResponsavel from '../../../../api/Usuario/apiResponsavel';
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
-function CardIdoso({ nome, descricao, idade, favoritado, handleToggleFavorite }) {
+function CardIdoso({ nome, descricao, idade, favoritado, handleToggleFavorite, tipoUsuario, idUsuario }) {
   const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
+
+
+
+  async function dadosDoUsuario(idUsuario, tipo) {
+    let data;
+    if (tipo === "CUIDADOR") {
+      const response = await apiCuidador.get('/'+idUsuario);
+      data = response.data;
+    } else {
+      const response = await apiResponsavel.get('/'+idUsuario);
+      data = response.data;
+    }
+    localStorage.setItem("cadastro", JSON.stringify(data));
+    navigate("/usuarios/perfil");
+  }
 
   const handleOpenModal = () => {
     setOpenModal(true);
@@ -46,7 +62,7 @@ function CardIdoso({ nome, descricao, idade, favoritado, handleToggleFavorite })
             <div className={Styles.centralizar}>
               <p>{descricao}</p>
               <div className={Styles.botao}>
-                <Button variant="contained" onClick={() => navigate('/usuarios/perfil')}>
+                <Button variant="contained" onClick={() => dadosDoUsuario(idUsuario, tipoUsuario)}>
                   Saiba Mais
                 </Button>
               </div>
