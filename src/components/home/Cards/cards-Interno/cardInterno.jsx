@@ -8,12 +8,28 @@ import Imagem from '../../../../utils/assets/Rectangle 53.png';
 import Like from '../../../../utils/assets/Heart.png';
 import Flag from '../../../../utils/assets/Empty Flag.png';
 import ModalDenuncia from '../../../cuidador/denuncia/denuncia'; // Ajuste o caminho conforme necessário
-
+import apiCuidador from '../../../../api/Usuario/apiCuidador';
+import apiResponsavel from '../../../../api/Usuario/apiResponsavel';
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
-function CardIdoso({ nome, descricao, idade }) {
+function CardIdoso({ nome, descricao, idade, favoritado, handleToggleFavorite, tipoUsuario, idUsuario }) {
   const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
+
+
+
+  async function dadosDoUsuario(idUsuario, tipo) {
+    let data;
+    if (tipo === "CUIDADOR") {
+      const response = await apiCuidador.get('/'+idUsuario);
+      data = response.data;
+    } else {
+      const response = await apiResponsavel.get('/'+idUsuario);
+      data = response.data;
+    }
+    localStorage.setItem("cadastro", JSON.stringify(data));
+    navigate("/usuarios/perfil");
+  }
 
   const handleOpenModal = () => {
     setOpenModal(true);
@@ -21,6 +37,10 @@ function CardIdoso({ nome, descricao, idade }) {
 
   const handleCloseModal = () => {
     setOpenModal(false);
+  };
+
+  const handleFavoriteToggle = () => {
+    handleToggleFavorite(); // Chama a função para favoritar/desfavoritar
   };
 
   return (
@@ -31,7 +51,7 @@ function CardIdoso({ nome, descricao, idade }) {
             <img src={Imagem} alt="" />
             <div className={Styles.Icons}>
               <img src={Flag} alt="" onClick={handleOpenModal} style={{ cursor: 'pointer' }} />
-              <Checkbox {...label} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
+              <Checkbox defaultChecked={favoritado} {...label} icon={<FavoriteBorder />} checkedIcon={<Favorite />} onClick={handleFavoriteToggle} />
             </div>
           </div>
           <div className={Styles.info}>
@@ -42,7 +62,7 @@ function CardIdoso({ nome, descricao, idade }) {
             <div className={Styles.centralizar}>
               <p>{descricao}</p>
               <div className={Styles.botao}>
-                <Button variant="contained" onClick={() => navigate('/procurar')}>
+                <Button variant="contained" onClick={() => dadosDoUsuario(idUsuario, tipoUsuario)}>
                   Saiba Mais
                 </Button>
               </div>

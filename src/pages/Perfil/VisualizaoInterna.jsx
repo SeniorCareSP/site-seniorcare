@@ -16,7 +16,7 @@ const VisualizaoInterna = () => {
                 <div className={styles.contactInfo}>
                   <div className={styles.contactName}>
                     <div className={styles.pedroLucca40}>
-                      Pedro Lucca, 40 anos
+                      Nome, idade
                     </div>
                     <div className={styles.nameSeparator}>
                       <img
@@ -24,6 +24,7 @@ const VisualizaoInterna = () => {
                         loading="lazy"
                         alt=""
                       />
+                      
                     </div>
                   </div>
                 </div>

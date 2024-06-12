@@ -51,12 +51,12 @@ function Router() {
         <Route path='/cadastro/cuidador3' element={<Cuidador3/>}/>
         <Route path='/cadastro/concluido' element={<Finalizado/>}/>
         <Route path='/procurar' element={<Procurar/>}/>
+        <Route path='/favoritos' element={<Favorito/>}/>
         {/*====================================
           =====================================*/ }
 
         <Route path='/usuarios/perfil' element={<Perfil/>}/>
         <Route path='/atualizar/usuario' element={<AtualizarPerfil/>}/>
-        <Route path='/favoritos' element={<Favorito/>}/>
 
         <Route path='/admin/cadastro' element={<CadastroAdm/>}/>
         <Route path='/admin/editar' element={<Editperfil/>}/>

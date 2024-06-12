@@ -115,7 +115,7 @@ function CadastroUsuario1() {
             setErrorCep(false);
             setMensagemCep("");
         }
-
+        console.log(isValid);
 
         return isValid;
 
@@ -123,8 +123,12 @@ function CadastroUsuario1() {
 
     const handleSave = async (event) => {
         event.preventDefault(); // Aqui está ocorrendo o erro
-        validate();
-        if (validate == true) {
+        var vali = validate();
+        
+        console.log(validate());
+
+
+        if (vali == true) {
             try {
                 const response = await axios.get("https://viacep.com.br/ws/" + cep + "/json/");
                 const endereco = response.data;
