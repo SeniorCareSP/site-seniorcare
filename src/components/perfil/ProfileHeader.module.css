@@ -254,6 +254,13 @@
   color: var(--color-steelblue-300);
   font-family: var(--font-montserrat);
 }
+
+@media screen and (max-width: 1575px) {
+  .profileHeader {
+    flex-wrap: wrap;
+  }
+}
+
 @media screen and (max-width: 1575px) {
   .profileHeader {
     flex-wrap: wrap;

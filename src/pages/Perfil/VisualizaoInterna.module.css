@@ -143,6 +143,17 @@
   line-height: normal;
   letter-spacing: normal;
 }
+
+@media screen and (max-width: 1920px) {
+  .contactName {
+    flex-wrap: wrap;
+  }
+  .profile {
+    padding-bottom: 3vh;
+    box-sizing: border-box;
+   
+  }
+}
 @media screen and (max-width: 1575px) {
   .contactName {
     flex-wrap: wrap;
