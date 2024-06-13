@@ -13,6 +13,7 @@ import Style from './cuidador.module.css';
 
 function Procurar() {
   const [cardsData, setCardsData] = useState([]);
+  const idUsuario = localStorage.getItem("idUsuario");
 
   useEffect(() => {
     recuperarValorDoCard();
@@ -49,7 +50,6 @@ function Procurar() {
   }
 
   async function verificarFavorito(idCuidador) {
-    const idUsuario = localStorage.getItem("idUsuario");
 
     if (idUsuario) {
       try {
@@ -111,6 +111,8 @@ function Procurar() {
 
   return (
     <>
+
+    
       <Navbar />
       <div className={Style["procura"]}>
         <div className={Style["filtro"]}>
@@ -130,6 +132,9 @@ function Procurar() {
                 handleToggleFavorite={() => handleFavoriteToggle(data.idUsuario)} // Passa a função handleFavoriteToggle com o ID do cuidador como argumento
                 tipoUsuario = {data.tipoDeUsuario}
                 idUsuario={data.idUsuario}
+                usuarioDenunciador={idUsuario}
+                usuarioDenunciado={data.idUsuario}
+
               />
             </div>
           ))}

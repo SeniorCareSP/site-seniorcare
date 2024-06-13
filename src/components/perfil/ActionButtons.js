@@ -60,7 +60,7 @@ const ActionButtons = () => {
                     física e dificuldades de locomoção causadas pela idade
                     avançada. Ele requer assistência para realizar atividades
                     básicas da vida diária, como tomar banho, se vestir,
-                    preparar...
+                    preparar... 
                   </p>
                 </div>
               </div>

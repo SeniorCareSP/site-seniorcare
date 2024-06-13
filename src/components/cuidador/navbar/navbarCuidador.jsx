@@ -10,13 +10,13 @@ import Button from '@mui/material/Button';
 function Navbar() {
     const navigate = useNavigate();
 
-    
+
     const handleLogout = () => {
         // Limpar o armazenamento local
         localStorage.clear();
-        
+
         navigate("/");
-        
+
         console.log("Usuário deslogado!");
     }
 
@@ -26,14 +26,17 @@ function Navbar() {
                 <div>
                     <span className={Style["logo"]}></span>
                     <div className={Style["opcoes"]}>
-                    <a onClick={() => navigate("/procurar")}>Procurar</a>
-                    <a onClick={() => navigate("/favoritos")}>Favoritos</a>
-                   <a onClick={() => navigate("/chat")}>Conversas</a>
+                        <a onClick={() => navigate("/procurar")}>Procurar</a>
+                        {"RESPONSAVEL" === localStorage.getItem("tipoUsuario") && (
+                            <a onClick={() => navigate("/favoritos")}>Favoritos</a>
+
+                        )}
+                        <a onClick={() => navigate("/chat")}>Conversas</a>
                     </div>
-                    <div className= {Style["cadastro"]}>
-                        <img className={Style["icon"]} src={Door} alt=""  onClick={() => navigate("/login")}/>
-                    {/* <Button variant="contained" onClick={() => navigate("/login")}>Login</Button> */}
-                    <img src={Perfil} alt=""/>
+                    <div className={Style["cadastro"]}>
+                        <img className={Style["icon"]} src={Door} alt="" onClick={() => navigate("/login")} />
+                        {/* <Button variant="contained" onClick={() => navigate("/login")}>Login</Button> */}
+                        <img src={Perfil} alt="" />
                     </div>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Home from "./pages/home/Home";
 import Login from './pages/login/Login';
@@ -28,9 +28,9 @@ import ResetPasswordStep4 from './components/recuperacaoSenha/ResetPasswordStep4
 import Denuncias from './pages/admin/Denuncias.jsx';
 function Router() {
   return (
-    <BrowserRouter>                                        
-      <Routes>       
-				<Route path="*" element={<Erro/>}/>    
+    <BrowserRouter>
+      <Routes>
+        <Route path="*" element={<Erro />} />
         <Route path="/" element={<Home />} />
 
         <Route path="/chat" element={<Chat />} />
@@ -42,28 +42,28 @@ function Router() {
         {/*====================================
               Relacionandas com o banco
           =====================================*/ }
-				<Route path="/login" element={<Login/>}/>    
-        <Route path="/cadastro" element={<Cadastro/>}/>
-        <Route path='/cadastro2' element={<Cadastro2/>}/>
-        <Route path='/cadastro3' element={<Cadastro3/>}/>
-        <Route path='/cadastro/cuidador' element={<Cuidador1/>}/>
-        <Route path='/cadastro/cuidador2' element={<Cuidador2/>}/>
-        <Route path='/cadastro/cuidador3' element={<Cuidador3/>}/>
-        <Route path='/cadastro/concluido' element={<Finalizado/>}/>
-        <Route path='/procurar' element={<Procurar/>}/>
-        <Route path='/favoritos' element={<Favorito/>}/>
+        <Route path="/login" element={<Login />} />
+        <Route path="/cadastro" element={<Cadastro />} />
+        <Route path='/cadastro2' element={<Cadastro2 />} />
+        <Route path='/cadastro3' element={<Cadastro3 />} />
+        <Route path='/cadastro/cuidador' element={<Cuidador1 />} />
+        <Route path='/cadastro/cuidador2' element={<Cuidador2 />} />
+        <Route path='/cadastro/cuidador3' element={<Cuidador3 />} />
+        <Route path='/cadastro/concluido' element={<Finalizado />} />
+        <Route path='/procurar' element={<Procurar/>} />
+        <Route path='/favoritos' element={<Favorito/>} />
         {/*====================================
           =====================================*/ }
 
-        <Route path='/usuarios/perfil' element={<Perfil/>}/>
-        <Route path='/atualizar/usuario' element={<AtualizarPerfil/>}/>
+        <Route path='/usuarios/perfil' element={<Perfil />} />
+        <Route path='/atualizar/usuario' element={<AtualizarPerfil />} />x
 
-        <Route path='/admin/cadastro' element={<CadastroAdm/>}/>
-        <Route path='/admin/editar' element={<Editperfil/>}/>
-        <Route path='/admin/analiseDocs' element={<AnaliseDocs/>}/>
-        <Route path='/admin/dashboard' element={<Dashboard/>}/>
-        <Route path='/admin/listagemDocs' element={<ListagemDoc/>}/>
-        <Route path='/admin/denuncias' element={<Denuncias/>}/>
+        <Route path='/admin/cadastro' element={<CadastroAdm />} />
+        <Route path='/admin/editar' element={<Editperfil />} />
+        <Route path='/admin/analiseDocs' element={<AnaliseDocs />} />
+        <Route path='/admin/dashboard' element={<Dashboard />} />
+        <Route path='/admin/listagemDocs' element={<ListagemDoc />} />
+        <Route path='/admin/denuncias' element={<Denuncias />} />
       </Routes>
     </BrowserRouter>
   );
