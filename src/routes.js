@@ -16,7 +16,7 @@ import Favorito from "./pages/cuidador/favorito";
 import AtualizarPerfil from './pages/confUser/AtualizarPerfil';
 import AnaliseDocs from './pages/admin/AnaliseDocs';
 import Erro from './pages/404/erro';
-import Perfil from './pages/Perfil/VisualizaoInterna';
+import Perfil from './pages/Perfil/perfil2.jsx';
 import Dashboard from './pages/admin/Dashboard';
 import React from 'react';
 import Chat from './pages/chat/Chat'

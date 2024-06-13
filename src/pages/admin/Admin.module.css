@@ -53,9 +53,6 @@
     /* align-items: center; */
 }
 
-.tela {
-
-}
 
 .container .tela h2{
     width: 23vh;
@@ -68,6 +65,19 @@
     background-color: #252F46;
     border-radius: 100%;
 }
+
+
+ 
+
+.container .tela .box{
+   display: flex;
+   justify-content: center;
+}
+
+.container .tela .conversa{
+    margin-top: 2.5vh;
+ }
+
 
 
 
