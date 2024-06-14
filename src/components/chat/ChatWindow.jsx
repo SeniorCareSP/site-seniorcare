@@ -11,13 +11,13 @@ import apiChat from '../../api/Usuario/apiChat';
 const ChatWindow = () => {
   const [newMessage, setNewMessage] = useState('');
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-  const [chatMessages, setChatMessages] = useState([{ content: 'Carregando mensagens...' }]);
-  const [latestMessage, setLatestMessage] = useState(null); // Estado para armazenar a mensagem mais recente
+  const [chatMessages, setChatMessages] = useState([]);
+  const [latestMessage, setLatestMessage] = useState();
   const recipienteId = localStorage.getItem('recipienteId');
   const idUsuario = localStorage.getItem('idUsuario');
   const messagesEndRef = useRef(null);
-  let stompClient = useRef(null);
-  const messageTopic = `${localStorage.getItem('message')}`;
+  const stompClient = useRef(null);
+  const messageTopic = localStorage.getItem('message');
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -37,15 +37,15 @@ const ChatWindow = () => {
 
   useEffect(() => {
     const socket = new SockJS('http://localhost:8080/websocket');
-    stompClient = Stomp.over(socket);
-
-    stompClient.connect({}, (frame) => {
+    stompClient.current = Stomp.over(socket);
+  
+    stompClient.current.connect({}, (frame) => {
       console.log('Conectado:', frame);
-      stompClient.subscribe(`/topic/${messageTopic}`, (message) => {
+      stompClient.current.subscribe(`/topic/${messageTopic}`, (message) => {
         showMessage(message.body);
       });
     });
-
+  
     return () => {
       if (stompClient.current) {
         stompClient.current.disconnect(() => {
@@ -53,24 +53,19 @@ const ChatWindow = () => {
         });
       }
     };
-  }, []);
+  }, [messageTopic]);
+  
 
   const showMessage = (message) => {
-    console.log('Mensagem recebida:', message); // Verifique o conteúdo recebido no console
+    console.log('Mensagem recebida:', message);
+    const parsedMessage = JSON.parse(message); // Se necessário, parse a mensagem recebida
 
-    try {
-      const parsedMessage = JSON.parse(message); // Tente analisar a mensagem como JSON
-
-      if (parsedMessage && parsedMessage.content && parsedMessage.senderId) {
-        setLatestMessage(parsedMessage); // Armazene a mensagem mais recente no estado
-        scrollToBottom();
-      } else {
-        console.error('Mensagem recebida não contém conteúdo válido:', parsedMessage);
-      }
-    } catch (error) {
-      console.error('Erro ao processar mensagem recebida:', error);
-    }
+    
+  
+    // Também atualiza o estado chatMessages com a nova mensagem recebida
+    setChatMessages( parsedMessage);
   };
+  
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -88,7 +83,6 @@ const ChatWindow = () => {
 
       try {
         await apiChat.post('/chat', message);
-        showMessage(JSON.stringify(message)); // Adiciona a nova mensagem localmente
         setNewMessage('');
       } catch (error) {
         console.error('Erro ao enviar mensagem:', error);
@@ -107,9 +101,9 @@ const ChatWindow = () => {
           <div className={styles.noMessages}>Nenhuma conversa iniciada até o momento.</div>
         ) : (
           <>
-            <div className='sexo'></div>
+            {/* Exibir informações do usuário aqui */}
             <img src={Icone} alt="User" />
-            <div className={styles.userInfo}>
+            <div className={styles.userInfo} >
               <div className={styles.userName}>User Name</div>
               <div className={styles.userDistance}>0,7km</div>
             </div>
@@ -121,15 +115,19 @@ const ChatWindow = () => {
         {chatMessages.map((msg, index) => (
           <div key={index} className={`${styles.message} ${msg.senderId === idUsuario ? styles.sentMessage : styles.receivedMessage}`}>
             <img src="https://via.placeholder.com/50" alt={msg.senderId} className={styles.messagePhoto} />
-            <div className={styles.messageText}>{msg.content}</div>
+            <div className={styles.messageText} style={{
+              backgroundColor: msg.senderId == idUsuario ? '#2C7595' : '#80C1DE'
+            }}>{msg.content}</div>
           </div>
         ))}
-        {latestMessage && ( // Renderize a mensagem mais recente diretamente
-          <div className={`${styles.message} ${latestMessage.senderId === idUsuario ? styles.sentMessage : styles.receivedMessage}`}>
-            <img src="https://via.placeholder.com/50" alt={latestMessage.senderId} className={styles.messagePhoto} />
-            <div className={styles.messageText}>{latestMessage.content}</div>
-          </div>
-        )}
+
+{latestMessage && (
+  <div className={`${styles.message} ${latestMessage.senderId === idUsuario ? styles.sentMessage : styles.receivedMessage}`}>
+    <img src="https://via.placeholder.com/50" alt={latestMessage.senderId} className={styles.messagePhoto} />
+    <div className={styles.messageText}>{latestMessage.content}</div>
+  </div>
+)}
+
         <div ref={messagesEndRef}></div> {/* Elemento de referência para rolar a lista */}
       </div>
 

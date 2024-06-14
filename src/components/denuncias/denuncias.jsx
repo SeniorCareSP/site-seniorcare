@@ -20,22 +20,22 @@ function Denuncias() {
                     </Stack>
 
                     <Stack direction={"column"} marginRight="26vw" marginLeft="4vh" >
-                        <Typography variant="body2">Tags:</Typography>
+                        <Typography variant="body2"></Typography>
                         <Stack direction="row" spacing={3} >
                             <Typography variant="body2" sx={{
-                                backgroundColor: "#077DB0", borderRadius: "0.6vh",
+                                 borderRadius: "0.6vh",
                                 justifyContent: "center", display: "flex", paddingTop: "0.7vh", width: "5.9vw", height: "4vh", color: "#ffff", fontSize: "2.3vh"
-                            }}>Abuso</Typography>
+                            }}></Typography>
 
                             <Typography variant="body2" sx={{
-                                backgroundColor: "#077DB0", borderRadius: "0.6vh",
+                                borderRadius: "0.6vh",
                                 justifyContent: "center", display: "flex", paddingTop: "0.7vh", width: "5.9vw", height: "4vh", color: "#ffff", fontSize: "2.3vh"
-                            }}>Mal trato</Typography>
+                            }}> </Typography>
 
                             <Typography variant="body2" sx={{
-                                backgroundColor: "#077DB0", borderRadius: "0.6vh",
+                                 borderRadius: "0.6vh",
                                 justifyContent: "center", display: "flex", paddingTop: "0.7vh", width: "5.9vw", height: "4vh", color: "#ffff", fontSize: "2.3vh"
-                            }}>Mal uso</Typography>
+                            }}></Typography>
                         </Stack>
                     </Stack>
                     
@@ -102,9 +102,7 @@ function Denuncias() {
                     </Stack>
 
                     <Stack display="flex" direction="column" width="15vw" className={Style["conversa"]}>
-                        <Button variant="contained" color="error">
-                            Ver conversas
-                        </Button>
+                   
                         <Stack display="flex" direction="column">
                             <RadioGroup defaultValue="banir" name="banir-manter" >
                                 <FormControlLabel value="banir" control={<Radio />} label="Banir conta" />

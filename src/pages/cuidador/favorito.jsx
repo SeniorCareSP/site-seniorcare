@@ -56,13 +56,18 @@ function Favoritos() {
         <>
             <Navbar />
             <div className={Style["favorito"]}>
-                
-                <div className={Style["linha"]}>
-                    
-                </div>
-                <div className={Style["cards"]}>
-                    {cardsData.length > 0 ? (
-                        cardsData.map((data, index) => (
+                {cardsData.length === 0 ? (
+                    <div className={Style["texto"]}>
+                        <p>Você ainda não adicionou nenhum <br />
+                            cuidador a sua lista de favoritos.</p>
+                        <img src={Img} alt='Logo' />
+                        <ButtonAzulEscuro onClick={() => navigate("/procurar")}>
+                            Procurar Cuidadores
+                        </ButtonAzulEscuro>
+                    </div>
+                ) : (
+                    <div className={Style["cards"]}>
+                        {cardsData.map((data, index) => (
                             <div key={index}>
                                 <Card
                                     nome={data.nome}
@@ -70,27 +75,18 @@ function Favoritos() {
                                     idade={calcularIdade(data.dtNascimento)}
                                     favoritado={true}
                                     handleToggleFavorite={() => handleFavoriteToggle(data.idUsuario)}
-                                    tipoUsuario = {data.tipoDeUsuario}
+                                    tipoUsuario={data.tipoDeUsuario}
                                     idUsuario={data.idUsuario}
                                 />
                             </div>
-                        ))
-                    ) : (
-                            
-
-                        <div className={Style["texto"]}>
-                            <p>Você ainda não adicionou nenhum <br />
-                                cuidador a sua lista de favoritos.</p>
-                            <img src={Img} alt='Logo' />
-                            <ButtonAzulEscuro onClick={() => navigate("/procurar")}>
-                                Procurar Cuidadores
-                            </ButtonAzulEscuro>
-                        </div>
-                    )}
-                </div>
+                        ))}
+                    </div>
+                )}
+                <div className={Style["linha"]}></div>
             </div>
         </>
     );
+    
 }
 
 export default Favoritos;

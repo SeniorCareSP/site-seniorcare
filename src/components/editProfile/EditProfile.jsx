@@ -53,7 +53,7 @@ function EditProfile() {
         };
         console.log(dadosAtualizarAdm);
         try {
-            await apiAdm.post(`/${idUsuario}`, dadosAtualizarAdm);
+            await apiAdm.put(`/${idUsuario}`, dadosAtualizarAdm);
             localStorage.clear();
             window.location.reload(); // Alterado para recarregar a página corretamente
             console.log("Update feito com sucesso!");
