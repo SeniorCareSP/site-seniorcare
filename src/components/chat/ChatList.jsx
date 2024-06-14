@@ -12,8 +12,12 @@ const ChatList = ({ onUserClick }) => {
     async function fetchUsers() {
       var idUsuario = localStorage.getItem('idUsuario');
       try {
-        const response = await apiChat.get('/chats/' + idUsuario);
-        setUsers(response.data); // Atualiza o estado com os dados da API
+        const response = await apiChat.get(`/chats/${idUsuario}`);
+        if (Array.isArray(response.data)) {
+          setUsers(response.data); // Atualiza o estado com os dados da API se for um array
+        } else {
+          console.error('Erro: a resposta da API não é um array de usuários.');
+        }
       } catch (error) {
         console.error('Erro ao buscar usuários:', error);
       }
@@ -22,7 +26,7 @@ const ChatList = ({ onUserClick }) => {
     fetchUsers();
   }, []); // Chama apenas uma vez ao montar o componente
 
-  const handleUserClick = async (userId,chatId) => {
+  const handleUserClick = async (userId, chatId) => {
     try {
       localStorage.setItem('recipienteId', userId);
       localStorage.setItem('message', chatId);
@@ -34,7 +38,8 @@ const ChatList = ({ onUserClick }) => {
   };
 
   const filteredUsers = users.filter(user =>
-    user.usuario2.nome.toLowerCase().includes(search.toLowerCase())
+    user?.usuario2?.nome.toLowerCase().includes(search.toLowerCase()) ||
+    user?.usuario2?.message.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -60,12 +65,12 @@ const ChatList = ({ onUserClick }) => {
           <div
             key={user.id}
             className={Styles.user}
-            onClick={() => handleUserClick(user.usuario2.id, user.chatId)}
+            onClick={() => handleUserClick(user.usuario2.idUsuario, user.chatId)}
           >
-            <img src={user.usuario2.photo} alt={user.usuario2.nome} className={Styles.userPhoto} />
+            <img src={user?.usuario2?.photo} alt={user?.usuario2?.nome} className={Styles.userPhoto} />
             <div className={Styles.userInfo}>
-              <div className={Styles.userName}>{user.usuario2.nome}</div>
-              <div className={Styles.userMessage}>{user.usuario2.message}</div>
+              <div className={Styles.userName}>{user?.usuario2?.nome}</div>
+              <div className={Styles.userMessage}>{user?.usuario2?.message}</div>
             </div>
           </div>
         ))}

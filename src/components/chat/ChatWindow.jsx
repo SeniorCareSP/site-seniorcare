@@ -11,14 +11,13 @@ import apiChat from '../../api/Usuario/apiChat';
 const ChatWindow = () => {
   const [newMessage, setNewMessage] = useState('');
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const [chatMessages, setChatMessages] = useState([{ content: 'Carregando mensagens...' }]);
+  const [latestMessage, setLatestMessage] = useState(null); // Estado para armazenar a mensagem mais recente
   const recipienteId = localStorage.getItem('recipienteId');
   const idUsuario = localStorage.getItem('idUsuario');
-  let stompClient = null;
-
   const messagesEndRef = useRef(null);
-
-  // Inicializa o estado com uma mensagem indicando carregamento
-  const [chatMessages, setChatMessages] = useState([{ content: 'Carregando mensagens...' }]);
+  let stompClient = useRef(null);
+  const messageTopic = `${localStorage.getItem('message')}`;
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -41,30 +40,36 @@ const ChatWindow = () => {
     stompClient = Stomp.over(socket);
 
     stompClient.connect({}, (frame) => {
-      console.log('Connected: ' + frame);
-      const messageTopic = `/topic/${localStorage.getItem('message')}`;
-      stompClient.subscribe(messageTopic, (message) => {
-        try {
-          const parsedMessage = JSON.parse(message.body);
-          showMessage(parsedMessage); // Chama showMessage para processar a mensagem recebida
-        } catch (error) {
-          console.error('Erro ao processar mensagem recebida:', error);
-        }
+      console.log('Conectado:', frame);
+      stompClient.subscribe(`/topic/${messageTopic}`, (message) => {
+        showMessage(message.body);
       });
     });
 
     return () => {
-      if (stompClient) {
-        stompClient.disconnect(() => {
-          console.log('Disconnected');
+      if (stompClient.current) {
+        stompClient.current.disconnect(() => {
+          console.log('Desconectado');
         });
       }
     };
-  }, [recipienteId]);
+  }, []);
 
   const showMessage = (message) => {
-    setChatMessages((prevMessages) => [...prevMessages, message]);
-    scrollToBottom();
+    console.log('Mensagem recebida:', message); // Verifique o conteúdo recebido no console
+
+    try {
+      const parsedMessage = JSON.parse(message); // Tente analisar a mensagem como JSON
+
+      if (parsedMessage && parsedMessage.content && parsedMessage.senderId) {
+        setLatestMessage(parsedMessage); // Armazene a mensagem mais recente no estado
+        scrollToBottom();
+      } else {
+        console.error('Mensagem recebida não contém conteúdo válido:', parsedMessage);
+      }
+    } catch (error) {
+      console.error('Erro ao processar mensagem recebida:', error);
+    }
   };
 
   const scrollToBottom = () => {
@@ -74,7 +79,7 @@ const ChatWindow = () => {
   const handleSendMessage = async () => {
     if (newMessage.trim()) {
       const message = {
-        chatId: 'chat123',
+        chatId: messageTopic,
         senderId: idUsuario,
         recipientId: recipienteId,
         content: newMessage,
@@ -83,7 +88,7 @@ const ChatWindow = () => {
 
       try {
         await apiChat.post('/chat', message);
-        showMessage(message); // Adiciona a nova mensagem localmente
+        showMessage(JSON.stringify(message)); // Adiciona a nova mensagem localmente
         setNewMessage('');
       } catch (error) {
         console.error('Erro ao enviar mensagem:', error);
@@ -102,6 +107,7 @@ const ChatWindow = () => {
           <div className={styles.noMessages}>Nenhuma conversa iniciada até o momento.</div>
         ) : (
           <>
+            <div className='sexo'></div>
             <img src={Icone} alt="User" />
             <div className={styles.userInfo}>
               <div className={styles.userName}>User Name</div>
@@ -118,6 +124,12 @@ const ChatWindow = () => {
             <div className={styles.messageText}>{msg.content}</div>
           </div>
         ))}
+        {latestMessage && ( // Renderize a mensagem mais recente diretamente
+          <div className={`${styles.message} ${latestMessage.senderId === idUsuario ? styles.sentMessage : styles.receivedMessage}`}>
+            <img src="https://via.placeholder.com/50" alt={latestMessage.senderId} className={styles.messagePhoto} />
+            <div className={styles.messageText}>{latestMessage.content}</div>
+          </div>
+        )}
         <div ref={messagesEndRef}></div> {/* Elemento de referência para rolar a lista */}
       </div>
 
