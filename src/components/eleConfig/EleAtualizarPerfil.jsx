@@ -8,7 +8,7 @@ import ButtonAzul from "../botao/BotaoAzul";
 import ElderList from "./idosoComponent";
 import ToggleButtonGroup from '@mui/joy/ToggleButtonGroup';
 import Button from '@mui/joy/Button';
-import ImgLogin from '../../components/eleLogin/ImgLogin';
+import ImgLogin from '../eleLogin/ImgLogin';
 import { red } from "@mui/material/colors";
 
 function EleAtualizarPerfil() {
