@@ -11,6 +11,7 @@ import Cuidador3 from './pages/cadastro/Cuidador3.jsx';
 import Procurar from './pages/cuidador/procurar.jsx';
 import Finalizado from './pages/cadastro/Finalizado.jsx';
 import Editperfil from './pages/admin/EditPerfil.jsx';
+import ListagemDenuncia from './pages/admin/ListgemDenuncia.jsx';
 import CadastroAdm from './components/admCadastro/cadastroAdm.jsx';
 import Favorito from "./pages/cuidador/favorito.jsx";
 import AtualizarPerfil from './pages/confUser/AtualizarPerfil.jsx';
@@ -68,6 +69,7 @@ function Router() {
         <Route path='/admin/dashboard' element={<Dashboard />} />
         <Route path='/admin/listagemDocs' element={<ListagemDoc />} />
         <Route path='/admin/denuncias' element={<Denuncias />} />
+        <Route path='/admin/listagemDenuncia' element={<ListagemDenuncia/>}/>
       </Routes>
     </BrowserRouter>
   );
