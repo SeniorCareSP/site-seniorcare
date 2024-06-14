@@ -7,7 +7,7 @@
     overflow-x: hidden;
     height: 100vh; /* Altura da tela */
   }
-  
+
   .header {
     font-size: 16px;
     display: flex;
@@ -46,11 +46,12 @@
     flex-direction: column;
     overflow-y: auto;
     margin-left: 1%;
-    height: calc(100% - 50px); /* Altura da lista de usuários */
+    height: calc(100% - 50px); 
   }
 
   .users::-webkit-scrollbar{
     background-color: #060f25;
+
     width: 3px;
     border-radius: 9px;
     padding: 9%;
@@ -68,8 +69,12 @@
     align-items: center;
     padding: 10px;
     border-bottom: 1px solid #ccc;
+    height: 5vh;
+    cursor: pointer;
   }
-  
+  .user:active{
+    color: blue;
+    }
   .userPhoto {
     border-radius: 50%;
     margin-right: 10px;
