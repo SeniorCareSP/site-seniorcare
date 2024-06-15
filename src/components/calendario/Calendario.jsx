@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Stack, Typography, Button, Checkbox } from '@mui/material';
-import Styles from './perfil.modules.css';
+// import Styles from './perfil.modules.css';
 import Navbar from '../cuidador/navbar/navbarCuidador';
 import IconChat from '../../utils/assets/Chat.png';
 import IMG from '../../utils/assets/Rectangle 53.png';
@@ -64,11 +64,10 @@ function Perfil2() {
   }
 
   return (
-    <Box className={Styles.container2} sx={{ width: '100%', backgroundColor: 'white' }}>
+    <Box  sx={{ width: '100%', backgroundColor: 'white' }}>
       <Navbar />
 
       <Box
-        className={Styles.tela}
         display="flex"
         flexDirection="row"
         justifyContent="space-around"
