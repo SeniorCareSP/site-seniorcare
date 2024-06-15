@@ -24,7 +24,7 @@ function CardIdoso({ nome, descricao, idade, favoritado, handleToggleFavorite, t
       const response = await apiResponsavel.get(`/${idUsuario}`);
       data = response.data;
     }
-    localStorage.setItem("cadastro", JSON.stringify(data));
+    localStorage.setItem("dadosUsuario", JSON.stringify(data));
     navigate("/usuarios/perfil");
   }
 
