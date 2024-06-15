@@ -60,9 +60,13 @@ function Router() {
 
         <Route path='/admin/cadastro' element={<CadastroAdm />} />
         <Route path='/admin/editar' element={<Editperfil />} />
+        <Route path='/admin/listagemDenuncia' element={<ListagemDenuncia/>}/>
+        <Route path='/admin/denuncias' element={<Denuncias />} />
 
         {/*====================================
           =====================================*/ }
+
+
 
         <Route path="/chat" element={<Chat />} />
 
@@ -73,8 +77,7 @@ function Router() {
         <Route path='/admin/analiseDocs' element={<AnaliseDocs />} />
         <Route path='/admin/dashboard' element={<Dashboard />} />
         <Route path='/admin/listagemDocs' element={<ListagemDoc />} />
-        <Route path='/admin/denuncias' element={<Denuncias />} />
-        <Route path='/admin/listagemDenuncia' element={<ListagemDenuncia/>}/>
+
       </Routes>
     </BrowserRouter>
   );
