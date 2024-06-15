@@ -5,6 +5,7 @@ import SidebarDash from '../sidebar/SidebarDash';
 import Documento from '../eleDocumento/Documento';
 import InputPesquisa from '../Input/InputPesquisa';
 import apiDenuncia from '../../api/Usuario/apiDenuncia';
+import ButtonAzul from '../botao/BotaoAzul';
 
 function ListaDenun() {
   const [denuncias, setDenuncias] = useState([]);
@@ -79,10 +80,10 @@ function ListaDenun() {
           <h1>Análise de Denúncias</h1>
         </Stack>
         <Stack className={Style.filtros} direction={"row"} spacing={7}>
-          <InputPesquisa value={searchTerm} onChange={e => setSearchTerm(e.target.value)} />
           <Stack spacing={2}>
             <p>Filtrar por:</p>
-            <Stack direction={'row'} spacing={5}>
+            <Stack direction={'row'} spacing={5} className={Style["tipo-filtros"]}>
+              <InputPesquisa value={searchTerm} onChange={e => setSearchTerm(e.target.value)} />
               <TextField
                 select
                 label="Status"
@@ -92,7 +93,7 @@ function ListaDenun() {
                 size="small"
                 style={{ minWidth: 120 }}
               >
-                <MenuItem value=""><em>Todos</em></MenuItem>
+                <MenuItem value="">Nenhum</MenuItem>
                 <MenuItem value="Aberto">Aberto</MenuItem>
                 <MenuItem value="Fechado">Fechado</MenuItem>
               </TextField>
@@ -105,12 +106,13 @@ function ListaDenun() {
                 variant="outlined"
                 size="small"
               />
+              <ButtonAzul variant="contained" color="primary" onClick={toggleOrdenacao}>
+                {ordenacaoAscendente ? 'Mais antigos primeiro' : 'Mais recentes primeiro'}
+              </ButtonAzul>
+              <span className={Style.foto}></span>
             </Stack>
           </Stack>
-          <Button variant="contained" color="primary" onClick={toggleOrdenacao}>
-            {ordenacaoAscendente ? 'Mais antigos primeiro' : 'Mais recentes primeiro'}
-          </Button>
-          <span className={Style.foto}></span>
+
         </Stack>
 
         <Stack spacing={17} className={Style.tags} direction={"row"}>
@@ -122,14 +124,14 @@ function ListaDenun() {
         </Stack>
 
         {filteredDenuncias.map((denuncia) => (
-          <Stack key={denuncia.id}>
-            <Documento 
-              idDenunciado = {denuncia.usuarioDenunciado.idUsuario}
+          <Stack key={denuncia.id} spacing={3} paddingBottom={3}>
+            <Documento
+              idDenunciado={denuncia.usuarioDenunciado.idUsuario}
               idDenuncia={denuncia.id}
-              nome={denuncia.usuarioDenunciado.nome} 
-              tag={denuncia.info[0]} 
-              data={new Date(denuncia.dataDenuncia).toLocaleDateString()} 
-              status={denuncia.status} 
+              nome={denuncia.usuarioDenunciado.nome}
+              tag={denuncia.info[0]}
+              data={new Date(denuncia.dataDenuncia).toLocaleDateString()}
+              status={denuncia.status}
             />
           </Stack>
         ))}

@@ -19,6 +19,7 @@ import AnaliseDocs from './pages/admin/AnaliseDocs.jsx';
 import Erro from './pages/404/erro.jsx';
 import Perfil from './pages/Perfil/perfil2.jsx';
 import Dashboard from './pages/admin/Dashboard.jsx';
+import ListagemUsuarios from './pages/admin/ListagemUsu.jsx';
 import React from 'react';
 import Chat from './pages/chat/Chat.jsx'
 import ListagemDoc from './pages/admin/ListagemDoc.jsx';
@@ -77,6 +78,7 @@ function Router() {
         <Route path='/admin/analiseDocs' element={<AnaliseDocs />} />
         <Route path='/admin/dashboard' element={<Dashboard />} />
         <Route path='/admin/listagemDocs' element={<ListagemDoc />} />
+        <Route path='/admin/listagemUsuarios' element={<ListagemUsuarios/>}/>
 
       </Routes>
     </BrowserRouter>

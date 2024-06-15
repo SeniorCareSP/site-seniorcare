@@ -4,7 +4,6 @@ import TextField from '@mui/material/TextField';
 
 const InputPesquisa = styled(TextField)({
   width:"20vw",
-  height:"2vh",
   '& label.Mui-focused': {
     color: '#077DB0',
 
