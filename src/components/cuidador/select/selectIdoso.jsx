@@ -3,7 +3,7 @@ import Select, { selectClasses } from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 
-export default function SelectIndicator() {
+export default function SelectIndicatorIdoso() {
   return (
     <Select
       placeholder="Número máximo de idosos"

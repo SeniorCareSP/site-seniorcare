@@ -5,16 +5,16 @@ import Stack from '@mui/material/Stack'
 import InputTexfield from "../Input/Input";
 import Style from '../../pages/confUser/Atualizar.module.css'
 import ButtonAzul from "../botao/BotaoAzul";
-import ElderList from "./idosoComponent";
 import ToggleButtonGroup from '@mui/joy/ToggleButtonGroup';
 import Button from '@mui/joy/Button';
+import { Typography, getFormHelperTextUtilityClasses } from '@mui/material';
 import Voltar from "../../utils/assets/setaVoltar.png"
+import BasicSelectIdoso from "./SelectIdoso";
 import { useNavigate } from "react-router-dom";
 import apiAdm from '../../api/Usuario/apiAdm';
 
 
-function EleAtualizarPerfil() {
-    // const [value, setValue] = React.useState(['default']);
+function AtualizarPerfilCuidador() {
     const [value, setValue] = React.useState([]);
 
     const handleInputChange = (event, setStateFunction) => {
@@ -48,6 +48,7 @@ function EleAtualizarPerfil() {
                 setBairro(data.bairro);
                 setNumero(data.numero);
                 setCidade(data.cidade);
+                setPrecoHora(data.precoHora);
             } catch (error) {
                 console.error("Erro ao buscar dados do cuidador:", error);
             }
@@ -69,6 +70,7 @@ function EleAtualizarPerfil() {
             bairro: bairro,
             numero: numero,
             cidade: cidade,
+            precoHora: precoHora,
             tipoDeUsuario: "ADMINISTRADOR", // ???????????
         };
         console.log(dadosAtualizarCuidador);
@@ -126,10 +128,13 @@ function EleAtualizarPerfil() {
                 </Stack>
             
                 <div className={Style["idoso"]}>
-                    <Stack direction="row" spacing="3" className={Style["adiciona"]}>
-                       <ElderList/>
-                       {/* <Stack spacing={6}>
-                
+                    <Stack  display= "flex" direction="row" spacing="3" className={Style["adiciona"]}>
+                       {/* <ElderList/> */}
+                       <Stack spacing={4} display="display" justifyContent="space-around" direction="row" >
+               <Stack display="flex" >
+                <Typography >
+                    Posso ajudar com:
+                </Typography>
                     <div className={Style["card"]}>
                     <Stack spacing={3} className={Style["opcoes"]}>
                         <Stack direction="row" spacing={2}>
@@ -144,17 +149,32 @@ function EleAtualizarPerfil() {
                                 <Button value="trabCasa">Banho</Button>
                                  </ToggleButtonGroup>
                         </Stack>
-                    </Stack>
+                        </Stack>
                     </div>
-    </Stack>*/}
-                    </Stack> 
+                    </Stack>
+                      <Stack display="flex" j spacing={2}>
+                        <Stack>
+                         <Typography>
+                             Preço por hora:
+                          </Typography>
+                          <InputTexfield value={precoHora}  onChange={(e) => handleInputChange(e, setPrecoHora)} />
+                         </Stack>
+                    <Stack>
+                       <Typography>
+                            Quantos idosos posso cuidar:
+                        </Typography>
+                         < BasicSelectIdoso/>
+                    </Stack>
+                    </Stack>
+                    </Stack>
+                    </Stack>
                    
                 </div>
 
                 <div className={Style["calendario"]}>
                 <Stack spacing={3} className={Style["itens"]}>
                     <Calendario />
-                    <ButtonAzul>Salvar Alterações</ButtonAzul>
+                    <ButtonAzul onClick={handleSave}>Salvar Alterações</ButtonAzul>
                 </Stack>
                 </div>
             </div>
@@ -163,4 +183,4 @@ function EleAtualizarPerfil() {
     )
 }
 
-export default EleAtualizarPerfil;
+export default AtualizarPerfilCuidador;
