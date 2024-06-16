@@ -41,7 +41,7 @@ function Perfil2() {
     const chatData = {
       senderId: idUsuario, // Usuário atual como remetente
       recipientId: usuario.idUsuario, // ID do destinatário (usuário exibido no perfil)
-      content: 'Iniciando chat...', // Mensagem de início do chat
+      content: '', // Mensagem de início do chat
       timestamp: new Date().toISOString(),
     };
 
@@ -130,9 +130,12 @@ function Perfil2() {
 
             {localStorage.getItem('tipoUsuario') === 'RESPONSAVEL' && (
               <Stack width="43vh">
-                <Typography sx={{ color: '#077DB0', fontSize: '2.3vh' }}>Conteúdo se for responsável</Typography>
-                <Typography>Outro conteúdo</Typography>
-                <Typography>Mais conteúdo</Typography>
+                <Typography sx={{ color: '#077DB0', fontSize: '2.3vh' }}>Características:</Typography>
+                {usuario.caracteristicas.map(caracteristica => (
+                  <Typography key={caracteristica.idCaracteristica}>
+                    {caracteristica.nome}
+                  </Typography>
+                ))}
               </Stack>
             )}
           </Stack>
@@ -141,7 +144,8 @@ function Perfil2() {
             <Typography sx={{ color: '#077DB0', fontSize: '3vh', marginBotton: '2vh', alignContent: 'center', justifyContent: 'center', marginLeft: '3vh' }}>
               Dias que precisa de cuidado
             </Typography>
-            <CalendarioPerfil />
+            {/* Verifica se usuario.agenda existe antes de passar para CalendarioPerfil */}
+            <CalendarioPerfil disponibilidade={usuario.agenda?.disponibilidade || [[false, false, false], [false, false, false], [false, false, false], [false, false, false], [false, false, false], [false, false, false], [false, false, false]]} />
           </Box>
         </Box>
       </Box>
