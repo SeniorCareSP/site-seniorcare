@@ -2,7 +2,9 @@ import * as React from 'react';
 import { BarChart } from '@mui/x-charts/BarChart';
 
 
+
 export default function ChartAvaliacao() {
+
   return (
     <BarChart
       series={[
@@ -10,7 +12,7 @@ export default function ChartAvaliacao() {
       ]}
       height={190}
       width={550}
-      xAxis={[{ data: ['50', '60', '70', '80'], scaleType: 'band' }]}
+      xAxis={[{ data: ['Trabalho de casa', 'Curativos', 'Culinaria' , 'Banho'], scaleType: 'band' }]}
       margin={{ top: 10, bottom: 30, left: 40, right: 10 }}
     />
   );
