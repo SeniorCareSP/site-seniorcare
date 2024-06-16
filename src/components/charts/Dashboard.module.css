@@ -53,13 +53,14 @@
 }
 
 .chart-pie{
+    text-align: center;
     box-shadow: 2px 2px 2px  rgb(118, 118, 118);
     border-radius: 1vh;
-    padding: 5%;
-    width: 26vw;
+    /* width: 30vw; */
 }
 
 .chart-genero{
+    text-align: center;
     box-shadow: 2px 2px 2px  rgb(118, 118, 118);
     border-radius: 1vh;
 }
