@@ -15,6 +15,7 @@ import ListagemDenuncia from './pages/admin/ListgemDenuncia.jsx';
 import CadastroAdm from './components/admCadastro/cadastroAdm.jsx';
 import Favorito from "./pages/cuidador/favorito.jsx";
 import AtualizarPerfil from './pages/confUser/AtualizarPerfil.jsx';
+import AtualizarPerfilCuidador from './pages/cuidador/editar.jsx';  
 import AnaliseDocs from './pages/admin/AnaliseDocs.jsx';
 import Erro from './pages/404/erro.jsx';
 import Perfil from './pages/Perfil/perfil2.jsx';
@@ -57,21 +58,24 @@ function Router() {
         <Route path='/cadastro/concluido' element={<Finalizado />} />
         <Route path='/procurar' element={<Procurar/>} />
         <Route path='/favoritos' element={<Favorito/>} />
-        <Route path='/usuarios/perfil' element={<Perfil />} />
 
 
         <Route path='/admin/cadastro' element={<CadastroAdm />} />
         <Route path='/admin/editar' element={<Editperfil />} />
         <Route path='/admin/listagemDenuncia' element={<ListagemDenuncia/>}/>
         <Route path='/admin/denuncias' element={<Denuncias />} />
-        <Route path="/chat" element={<Chat />} />
-          
+
         {/*====================================
           =====================================*/ }
 
+        <Route path="/chat" element={<Chat />} />
         <Route path='/admin/listagemUsuarios' element={<ListagemUsuarios/>}/>
 
+
+        <Route path='/usuarios/perfil' element={<Perfil />} />
+
         <Route path='/atualizar/usuario' element={<AtualizarPerfil />} />
+        <Route path='/atualizar/cuidador' element={<AtualizarPerfilCuidador />} />
 
         <Route path='/admin/dashboard' element={<Dashboard />} />
 

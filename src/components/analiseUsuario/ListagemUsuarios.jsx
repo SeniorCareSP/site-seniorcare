@@ -6,10 +6,11 @@ import Documento2 from '../eleDocumento/Documento2';
 import InputPesquisa from '../Input/InputPesquisa';
 import apiUsuario from '../../api/Usuario/apiUsuario';
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 
 function ListaUsuarios() {
     const [usuarios, setUsuarios] = useState([]);
-
+    const navigate = useNavigate();
 
   useEffect(() => {
     recuperarValorDoCard();
@@ -38,7 +39,7 @@ function ListaUsuarios() {
                         <Stack spacing={2}>
                             <p>Filtrar por:</p>
                             <Stack direction={'row'} spacing={3} className={Style["tipo-filtro"]}>
-                                <BtnAzulS sx={{width:"12vw",}}>Cadastrar usuário</BtnAzulS>
+                                <BtnAzulS sx={{width:"12vw",}} onClick={() => navigate('/admin/cadastro')}>Cadastrar usuário</BtnAzulS>
                                 <InputPesquisa/>
                                 <BtnAzulS>Permissão</BtnAzulS>
                                 <BtnAzulS>A-Z</BtnAzulS>
