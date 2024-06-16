@@ -4,9 +4,28 @@ import { Stack } from '@mui/material';
 import SidebarDash from '../sidebar/SidebarDash';
 import Documento2 from '../eleDocumento/Documento2';
 import InputPesquisa from '../Input/InputPesquisa';
-
+import apiUsuario from '../../api/Usuario/apiUsuario';
+import React, { useState, useEffect } from "react";
 
 function ListaUsuarios() {
+    const [usuarios, setUsuarios] = useState([]);
+
+
+  useEffect(() => {
+    recuperarValorDoCard();
+  }, []);
+    async function recuperarValorDoCard() {
+        const tipoDeUsuario = localStorage.getItem("tipoUsuario");
+        let data;
+    
+        try {
+          
+            
+          
+        } catch (error) {
+          console.log("Deu erro, tente novamente!");
+        }
+      }
     return (
         <>   
             <div className={Style["container"]}>
@@ -32,9 +51,9 @@ function ListaUsuarios() {
                     <Stack spacing={17} className={Style["tags"]} direction={"row"}>
                         <p>foto</p>
                         <p>Nome</p>
-                        <p>Permissão</p>
+                        <p>TIpo Usuario</p>
                         <p>Telefone</p>
-                        <p>Ingresso</p>
+                        <p>Data De Cadastro</p>
                         <p>E-mail</p>
                     </Stack>
                     <Stack spacing={3} paddingBottom={3}>

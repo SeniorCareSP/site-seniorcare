@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Style from './Documento.module.css';
 import trash from '../../utils/assets/Trash.png'
 import edit from "../../utils/assets/Edit.png"
-
+import apiUsuario from '../../api/Usuario/apiUsuario';
 
 function Documento2() {
   const [selected, setSelected] = useState(false);
@@ -36,7 +36,7 @@ function Documento2() {
         <p>telefone</p>
         <p>data</p>
         <p>email</p>
-        <img src={edit} alt="info"  className={Style["info-icon"]} />
+        {/* <img src={edit} alt="info"  className={Style["info-icon"]} /> */}
         <img src={trash} alt="info"  className={Style["info-icon"]} />
       </Stack>
     </div>

@@ -17,3 +17,8 @@
     display: flex;
     justify-content: space-between;
 }
+
+.selected {
+    background-color: #4caf50; /* Cor de fundo para os botões selecionados */
+    color: #ffffff; /* Cor do texto para os botões selecionados */
+}

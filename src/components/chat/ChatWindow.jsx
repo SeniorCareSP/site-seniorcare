@@ -12,7 +12,6 @@ const ChatWindow = () => {
   const [newMessage, setNewMessage] = useState('');
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [chatMessages, setChatMessages] = useState([]);
-  const [latestMessage, setLatestMessage] = useState();
   const recipienteId = localStorage.getItem('recipienteId');
   const idUsuario = localStorage.getItem('idUsuario');
   const messagesEndRef = useRef(null);
@@ -38,14 +37,15 @@ const ChatWindow = () => {
   useEffect(() => {
     const socket = new SockJS('http://localhost:8080/websocket');
     stompClient.current = Stomp.over(socket);
-  
+
     stompClient.current.connect({}, (frame) => {
       console.log('Conectado:', frame);
+
       stompClient.current.subscribe(`/topic/${messageTopic}`, (message) => {
         showMessage(message.body);
       });
     });
-  
+
     return () => {
       if (stompClient.current) {
         stompClient.current.disconnect(() => {
@@ -54,18 +54,27 @@ const ChatWindow = () => {
       }
     };
   }, [messageTopic]);
-  
 
   const showMessage = (message) => {
     console.log('Mensagem recebida:', message);
-    const parsedMessage = JSON.parse(message); // Se necessário, parse a mensagem recebida
 
-    
-  
-    // Também atualiza o estado chatMessages com a nova mensagem recebida
-    setChatMessages( parsedMessage);
+    // Aqui vamos assumir que a mensagem é um texto simples
+    const parsedMessage = {
+      chatId: messageTopic,
+      senderId: idUsuario,
+      recipientId: recipienteId,
+      content: message,
+      timestamp: new Date().toISOString(),
+    };
+
+    console.log('Mensagem recebida (JSON):', JSON.stringify(parsedMessage));
+
+
+    if (parsedMessage.content.trim()) {
+      setChatMessages(prevMessages => [...prevMessages, parsedMessage]);
+      scrollToBottom();
+    }
   };
-  
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -94,6 +103,12 @@ const ChatWindow = () => {
     setNewMessage(prevMessage => prevMessage + emojiObject.emoji);
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      handleSendMessage();
+    }
+  };
+
   return (
     <div className={styles.chatWindow}>
       <div className={styles.header}>
@@ -103,7 +118,7 @@ const ChatWindow = () => {
           <>
             {/* Exibir informações do usuário aqui */}
             <img src={Icone} alt="User" />
-            <div className={styles.userInfo} >
+            <div className={styles.userInfo}>
               <div className={styles.userName}>User Name</div>
               <div className={styles.userDistance}>0,7km</div>
             </div>
@@ -113,21 +128,15 @@ const ChatWindow = () => {
 
       <div className={`${styles.messages} ${recipienteId === null ? styles.messagesNoRecipient : ''}`}>
         {chatMessages.map((msg, index) => (
-          <div key={index} className={`${styles.message} ${msg.senderId === idUsuario ? styles.sentMessage : styles.receivedMessage}`}>
-            <img src="https://via.placeholder.com/50" alt={msg.senderId} className={styles.messagePhoto} />
-            <div className={styles.messageText} style={{
-              backgroundColor: msg.senderId == idUsuario ? '#2C7595' : '#80C1DE'
-            }}>{msg.content}</div>
-          </div>
+          msg.content && (
+            <div key={index} className={`${styles.message} ${msg.senderId === idUsuario ? styles.sentMessage : styles.receivedMessage}`}>
+              <img src="https://via.placeholder.com/50" alt={msg.senderId} className={styles.messagePhoto} />
+              <div className={styles.messageText} style={{
+                backgroundColor: msg.senderId == idUsuario ? '#2C7595' : '#80C1DE'
+              }}>{msg.content}</div>
+            </div>
+          ) 
         ))}
-
-{latestMessage && (
-  <div className={`${styles.message} ${latestMessage.senderId === idUsuario ? styles.sentMessage : styles.receivedMessage}`}>
-    <img src="https://via.placeholder.com/50" alt={latestMessage.senderId} className={styles.messagePhoto} />
-    <div className={styles.messageText}>{latestMessage.content}</div>
-  </div>
-)}
-
         <div ref={messagesEndRef}></div> {/* Elemento de referência para rolar a lista */}
       </div>
 
@@ -141,6 +150,7 @@ const ChatWindow = () => {
             value={newMessage}
             placeholder='Escreva aqui...'
             onChange={(e) => setNewMessage(e.target.value)}
+            onKeyDown={handleKeyDown}
             className={styles.input}
           />
           <button className={styles.sendButton} onClick={handleSendMessage}>
