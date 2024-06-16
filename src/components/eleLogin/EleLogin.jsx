@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import React, { useState } from 'react';
 import ButtonAzul from "../botao/BotaoAzul";
 import api from "../../api/Usuario/apiUsuario";
+import { Alert } from "@mui/joy";
 function EleLogin() {
 
   const navigate = useNavigate()
@@ -12,15 +13,47 @@ function EleLogin() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
+  const [errorEmail, setErrorEmail] = useState(false);
+  const [errorSenha, setErrorSenha] = useState(false);
+  const [mensagemEmail, setMensagemEmail] = useState('');
+  const [mensagemSenha, setMensagemSenha] = useState('');
+  const [mensagemLogin, setMensagemLogin] = useState('');
+
   const handleInputChange = (event, setStateFunction) => {
     setStateFunction(event.target.value);
   }
-
   const handleSave = (event) => {
     event.preventDefault();
+    var isValid = true;
 
-    if (senha == "" || email == "") {
-      console.log("Existem Campos nulos!");
+    // validação de email
+    if (!email) {
+      setErrorEmail(true);
+      setMensagemEmail("Preencha este campo")
+      isValid = false;
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+
+      setErrorEmail(true);
+      setMensagemEmail("Insira um email valido")
+      isValid = false;
+    } else {
+      setErrorEmail(false);
+      setMensagemEmail("")
+    }
+
+    // validação de senha
+    if (!senha) {
+      setErrorSenha(true);
+      setMensagemSenha("Preencha este campo");
+      isValid = false;
+    } else {
+      setErrorSenha(false);
+      setMensagemSenha("");
+    }
+
+    // verificando se é possivel fazer login
+    if (isValid == false) {
+      console.log("impossivel fazer login");
       return;
     }
 
@@ -33,20 +66,31 @@ function EleLogin() {
       email,
       senha
     }).then(response => {
-      const { userId, email,tipoUsuario, nome, token } = response.data;
-      
-        console.log(`Usuário ID: ${userId}`);
-            //console.log(`Nome: ${nome}`);
-            //console.log(`Email: ${email}`);
-            //console.log(`Token: ${token}`);
+      const { userId, email, tipoUsuario, nome, token, status } = response.data;
+      if (response.status == 204){
+        console.log('usuario não encontrado');
+        setMensagemLogin(<Alert severity="error">Usuário não existe ou senha incorreta</Alert>)
+        return;
+      }
+
+      if(status == false){
+        console.log('Conta suspensa');
+        setMensagemLogin(<Alert severity="error">Esta conta esta suspensa!</Alert>)
+        return;
+      }
+
+      console.log(`Usuário ID: ${userId}`);
+      //console.log(`Nome: ${nome}`);
+      //console.log(`Email: ${email}`);
+      //console.log(`Token: ${token}`);
       localStorage.setItem('idUsuario', userId);
       localStorage.setItem('tipoUsuario', tipoUsuario);
       localStorage.setItem('token', token);
-      console.log("Cadastro feito com sucesso!");
+      console.log("Login feito com sucesso!");
 
-      if(tipoUsuario === "ADMINISTRADOR" ){
+      if (tipoUsuario === "ADMINISTRADOR") {
         navigate("/admin/dashboard")
-      }else{
+      } else {
         navigate("/procurar");
       }
     }).catch(() => {
@@ -54,10 +98,6 @@ function EleLogin() {
       console.log("Ocorreu um erro ao cadastrar, por favor, tente novamente.")
     })
   }
-
-
-
-
 
   return (
     <>
@@ -69,8 +109,9 @@ function EleLogin() {
               <span>Login | <a onClick={() => navigate("/cadastro")}>Cadastro</a></span>
             </div>
             <Stack spacing={5} className={Style["itens"]}>
-              <InputTexfield label="Email" value={email} onChange={(e) => handleInputChange(e, setEmail)} />
-              <InputTexfield label="Senha" value={senha} onChange={(e) => handleInputChange(e, setSenha)} type="password" />
+              <InputTexfield helperText={mensagemEmail} error={errorEmail} label="Email" value={email} onChange={(e) => handleInputChange(e, setEmail)} />
+              <InputTexfield helperText={mensagemSenha} error={errorSenha} label="Senha" value={senha} onChange={(e) => handleInputChange(e, setSenha)} type="password" />
+              {mensagemLogin}
               <a href="">Esqueceu a senha?</a>
               <ButtonAzul className={Style["button"]} onClick={handleSave} variant="contained">Entrar</ButtonAzul>
               <a href="" onClick={() => navigate("/")}>Voltar</a>

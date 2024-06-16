@@ -68,8 +68,6 @@ function Router() {
         {/*====================================
           =====================================*/ }
 
-
-
         <Route path="/chat" element={<Chat />} />
         <Route path='/admin/listagemUsuarios' element={<ListagemUsuarios/>}/>
 
