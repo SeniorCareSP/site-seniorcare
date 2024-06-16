@@ -65,7 +65,7 @@ function Router() {
         <Route path='/admin/listagemDenuncia' element={<ListagemDenuncia/>}/>
         <Route path='/admin/denuncias' element={<Denuncias />} />
         <Route path="/chat" element={<Chat />} />
-
+          
         {/*====================================
           =====================================*/ }
 
