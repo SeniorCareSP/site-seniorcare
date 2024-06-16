@@ -6,7 +6,7 @@ export default function ChartAvaliacao() {
   return (
     <BarChart
       series={[
-        { data: [10, 3, 2, 1], label: "Avaliação dos usarios", color: '#2C7595'},
+        { data: [10, 3, 2, 1], label: "Tipo de ajuda", color: '#2C7595'},
       ]}
       height={190}
       width={550}

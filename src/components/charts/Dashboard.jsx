@@ -30,8 +30,8 @@ function EleDashbord() {
                             </span>
 
                         </Stack>
-                        <Stack direction={'row'} spacing={8}>
-                            <Stack spacing={4}>
+                        <Stack direction={'row'} spacing={3}>
+                            <Stack spacing={2}>
                                 <Stack spacing={4} direction={'row'} className={Style["kpi2"]}>
                                     <div>
                                         <h1>3</h1>
@@ -43,6 +43,7 @@ function EleDashbord() {
                                     </div>
                                 </Stack>
                                 <span className={Style["chart-genero"]}>
+                                    <h2>Faixa etatia dos idosos</h2>
                                     <ChartGenero />
                                 </span>
                             </Stack>
