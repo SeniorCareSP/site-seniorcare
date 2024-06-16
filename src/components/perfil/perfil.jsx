@@ -8,7 +8,7 @@ import Senhor from '../../utils/assets/Senhor.png';
 import Favorite from '@mui/icons-material/Favorite';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Flag from '../../utils/assets/Empty Flag.png';
-import Calendario from '../calendario/Calendario';
+import CalendarioPerfil from '../calendario/CalendarioPerfil';
 import apiChat from '../../api/Usuario/apiChat';
 import { useNavigate } from 'react-router-dom';
 
@@ -141,7 +141,7 @@ function Perfil2() {
             <Typography sx={{ color: '#077DB0', fontSize: '3vh', marginBotton: '2vh', alignContent: 'center', justifyContent: 'center', marginLeft: '3vh' }}>
               Dias que precisa de cuidado
             </Typography>
-            <Calendario />
+            <CalendarioPerfil />
           </Box>
         </Box>
       </Box>

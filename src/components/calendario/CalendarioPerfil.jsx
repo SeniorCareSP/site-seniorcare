@@ -4,7 +4,7 @@ import * as React from 'react';
 import IconButton from '@mui/joy/IconButton';
 import ToggleButtonGroup from '@mui/joy/ToggleButtonGroup';
 
-function Calendario({ onChange }) {
+function CalendarioPerfil({ onChange }) {
     const initialState = Array(7).fill().map(() => Array(3).fill(false));
     const [value, setValue] = React.useState(initialState);
     const [value2, setValue2] = React.useState([['']]);
@@ -58,4 +58,4 @@ function Calendario({ onChange }) {
     );
 }
 
-export default Calendario;
+export default CalendarioPerfil;

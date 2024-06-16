@@ -70,15 +70,18 @@ function Router() {
 
 
         <Route path="/chat" element={<Chat />} />
+        <Route path='/admin/listagemUsuarios' element={<ListagemUsuarios/>}/>
 
 
         <Route path='/usuarios/perfil' element={<Perfil />} />
-        <Route path='/atualizar/usuario' element={<AtualizarPerfil />} />x
 
-        <Route path='/admin/analiseDocs' element={<AnaliseDocs />} />
+        <Route path='/atualizar/usuario' element={<AtualizarPerfil />} />
+
         <Route path='/admin/dashboard' element={<Dashboard />} />
+
+        
+        <Route path='/admin/analiseDocs' element={<AnaliseDocs />} />
         <Route path='/admin/listagemDocs' element={<ListagemDoc />} />
-        <Route path='/admin/listagemUsuarios' element={<ListagemUsuarios/>}/>
 
       </Routes>
     </BrowserRouter>
