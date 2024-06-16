@@ -57,23 +57,19 @@ function Router() {
         <Route path='/cadastro/concluido' element={<Finalizado />} />
         <Route path='/procurar' element={<Procurar/>} />
         <Route path='/favoritos' element={<Favorito/>} />
+        <Route path='/usuarios/perfil' element={<Perfil />} />
 
 
         <Route path='/admin/cadastro' element={<CadastroAdm />} />
         <Route path='/admin/editar' element={<Editperfil />} />
         <Route path='/admin/listagemDenuncia' element={<ListagemDenuncia/>}/>
         <Route path='/admin/denuncias' element={<Denuncias />} />
+        <Route path="/chat" element={<Chat />} />
 
         {/*====================================
           =====================================*/ }
 
-
-
-        <Route path="/chat" element={<Chat />} />
         <Route path='/admin/listagemUsuarios' element={<ListagemUsuarios/>}/>
-
-
-        <Route path='/usuarios/perfil' element={<Perfil />} />
 
         <Route path='/atualizar/usuario' element={<AtualizarPerfil />} />
 

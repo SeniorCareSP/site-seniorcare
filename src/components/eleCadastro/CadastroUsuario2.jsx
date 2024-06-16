@@ -8,7 +8,7 @@ import Title from '../tituloCadastro/Title';
 import React, { useEffect, useState } from "react";
 
 function CadastroUsuario2() {
-    const navigate = useNavigate();
+    const navigate = useNavigate();     
 
     const [logradouro, setLogradouro] = useState("");
     const [numero, setNumero] = useState("");
@@ -16,7 +16,7 @@ function CadastroUsuario2() {
     const [cidade, setCidade] = useState("");
     const [bairro, setBairro] = useState("");
 
-
+    
 
     const handleInputChange = (event, setStateFunction) => {
         setStateFunction(event.target.value);   

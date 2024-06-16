@@ -68,6 +68,7 @@ const ChatWindow = () => {
     };
 
     console.log('Mensagem recebida (JSON):', JSON.stringify(parsedMessage));
+    
 
 
     if (parsedMessage.content.trim()) {

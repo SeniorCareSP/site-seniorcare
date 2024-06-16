@@ -13,7 +13,7 @@ function Calendario({ onChange }) {
         const newValue = value.map((day, i) =>
             day.map((period, j) => (i === dayIndex && j === periodIndex ? !period : period))
         );
-        
+
         setValue(newValue);
         onChange(newValue);
     };
@@ -30,11 +30,11 @@ function Calendario({ onChange }) {
                 </Stack>
             </span>
 
-             <Stack className={Style["card-calendario"]} spacing={2}>
+            <Stack className={Style["card-calendario"]} spacing={2}>
                 {days.map((day, dayIndex) => (
                     <Stack direction="row" spacing={3} className={Style["dias-semana"]} key={day}>
                         <h3>{day}</h3>
-                        <ToggleButtonGroup spacing={2} value={value2} onChange={(event, newValue) => {setValue2(newValue)}} color="primary">
+                        <ToggleButtonGroup spacing={2} value={value2} onChange={(event, newValue) => { setValue2(newValue) }} color="primary">
                             {periods.map((period, periodIndex) => (
                                 <IconButton
                                     key={period}
@@ -47,13 +47,12 @@ function Calendario({ onChange }) {
                         </ToggleButtonGroup>
                     </Stack>
                 ))}
-            </Stack> 
+            </Stack>
 
 
-            
-            
+
+
         </div>
     );
 }
-
 export default Calendario;

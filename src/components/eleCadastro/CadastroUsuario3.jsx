@@ -35,7 +35,7 @@ function CadastroUsuario3() {
             const json = JSON.parse(dadosCadastro);
 
             json.dtNascimento = dtNasc;
-            json.genero = selectedStatus;
+            json.sexoBiologico = selectedStatus;
             json.idiomas = idioma;
             localStorage.setItem("cadastro", JSON.stringify(json));
 
