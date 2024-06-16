@@ -14,8 +14,8 @@ export default function SelectIndicator() {
       
       sx={{
         borderRadius: 8,
-        width: 290,
-        height: 43,
+        width: 260,
+        height: 40,
         '&.MuiSelect-root': {
           backgroundColor: '#135B7A', // Cor desejada
         },

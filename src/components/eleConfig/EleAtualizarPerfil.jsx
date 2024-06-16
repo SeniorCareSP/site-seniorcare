@@ -8,7 +8,7 @@ import ButtonAzul from "../botao/BotaoAzul";
 import ElderList from "./idosoComponent";
 import ToggleButtonGroup from '@mui/joy/ToggleButtonGroup';
 import Button from '@mui/joy/Button';
-import ImgLogin from '../eleLogin/ImgLogin';
+import Voltar from "../../utils/assets/setaVoltar.png"
 import { red } from "@mui/material/colors";
 
 function EleAtualizarPerfil() {
@@ -18,12 +18,12 @@ function EleAtualizarPerfil() {
             <Navbar />
             
             <div className={Style["corpo"]}>
-                    <div className={Style["ajuste"]}>
+                    <Stack spacing={2} display="flex" direction="row"  justifyContent="space-around" className={Style["ajuste"]}>
                     <div className={Style["img"]}>
-                    <ImgLogin />
+                    <img src={Voltar} alt="" width="45vh" height="35vh"/>
                     <span>Voltar</span>
                     </div>
-                    </div>
+                    </Stack>
                     <div className={Style["texto"]}>
                     <h2>Edição de perfil</h2>
                     </div>

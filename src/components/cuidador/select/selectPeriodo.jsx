@@ -9,13 +9,13 @@ export default function SelectIndicator() {
       placeholder="Trabalho regular"
       indicator={<KeyboardArrowDown />}
       multiple
-     backgroundColor="#135B7A"
+    //  backgroundColor="#135B7A"
       variant="solid"
       
       sx={{
         borderRadius:8,
-        width: 290,
-        height: 43,
+        width: 260,
+        height: 40,
         '&.MuiSelect-root': {
           backgroundColor: '#135B7A', // Cor desejada
         },

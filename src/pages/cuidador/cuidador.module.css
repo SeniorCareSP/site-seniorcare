@@ -17,11 +17,11 @@
 
 .procura .filtro{
     display: flex;
-    justify-content: space-evenly;
-    width: 71vw;
+    justify-content: space-around;
+    width: 81vw;
     flex-direction: row;
     margin-top: 1vh;
-    margin-left: 8vh;
+    margin-left: 13vh;
     margin-right: 2vh;
 }
 
