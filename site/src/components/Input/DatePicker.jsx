@@ -1,22 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import TextField from '@mui/material/TextField';
 import { format } from 'date-fns';
 
-function DatePicker() {
-  const [selectedDate, setSelectedDate] = useState('');
-
-  const handleDateChange = (event) => {
-    setSelectedDate(event.target.value);
-  };
-
+function DatePicker({ value, onChange }) {
   return (
     <div>
       <TextField
         id="date"
         label="Data de nascimento"
         type="date"
-        value={selectedDate}
-        onChange={handleDateChange}
+        value={value}
+        onChange={onChange}
         InputLabelProps={{
           shrink: true,
         }}

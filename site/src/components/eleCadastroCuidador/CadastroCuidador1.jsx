@@ -8,6 +8,10 @@ import ButtonAzul from '../botao/BotaoAzul';
 import ButtonBranco from '../botao/BotaoBranco';
 import ToggleButtonGroup from '@mui/joy/ToggleButtonGroup';
 import Button from '@mui/joy/Button';
+<<<<<<< HEAD:site/src/components/eleCadastroCuidador/CadastroCuidador1.jsx
+=======
+
+>>>>>>> develop:src/components/eleCadastroCuidador/CadastroCuidador1.jsx
 function CadastroCuidador1() {
     const [value, setValue] = React.useState([]);
     const [experiencia, setExperiencia] = React.useState("");

@@ -39,6 +39,47 @@
     align-items: center;
 }
 
+.container .tela{
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    
+}
+.tela  {
+    padding-inline: 12px;
+    padding-left: 46vh;
+    /* align-items: center; */
+}
+
+
+.container .tela h2{
+    width: 23vh;
+    background-color: #252F46;
+}
+
+.container .tela .foto span{
+    width: 10vh;
+    height: 10vh;
+    background-color: #252F46;
+    border-radius: 100%;
+}
+
+
+ 
+
+.container .tela .box{
+   display: flex;
+   justify-content: center;
+}
+
+.container .tela .conversa{
+    margin-top: 2.5vh;
+ }
+
+
+
 
 /* 
 .container .card-sidebar .sidebar img{

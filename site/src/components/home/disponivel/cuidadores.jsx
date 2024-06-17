@@ -63,7 +63,7 @@ import BtBranco from "../../botao/btBranco";
              )}
            </div>
            <div className={Style["btn"]}>
-             <BtBranco  onClick={() => navigate("/procurar")}>
+             <BtBranco  onClick={() => navigate("/login")}>
                Ver Todos Os Cuidadores
              </BtBranco>
            </div>
