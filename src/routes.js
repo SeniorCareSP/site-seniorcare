@@ -72,7 +72,7 @@ function Router() {
         <Route path='/admin/listagemUsuarios' element={<ListagemUsuarios/>}/>
 
 
-        <Route path='/usuarios/perfil' element={<Perfil />} />
+        <Route path='/usuarios/perfil' element  ={<Perfil />} />
 
         <Route path='/atualizar/usuario' element={<AtualizarPerfil />} />
         <Route path='/atualizar/cuidador' element={<AtualizarPerfilCuidador />} />

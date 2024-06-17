@@ -17,7 +17,8 @@ const ChatWindow = () => {
   const messagesEndRef = useRef(null);
   const stompClient = useRef(null);
   const messageTopic = localStorage.getItem('message');
-
+  const conversante = localStorage.getItem('nomeConversante');
+  
   useEffect(() => {
     const fetchMessages = async () => {
       if (recipienteId) {
@@ -120,7 +121,7 @@ const ChatWindow = () => {
             {/* Exibir informações do usuário aqui */}
             <img src={Icone} alt="User" />
             <div className={styles.userInfo}>
-              <div className={styles.userName}>User Name</div>
+              <div className={styles.userName}>{conversante}</div>
               <div className={styles.userDistance}>0,7km</div>
             </div>
           </>

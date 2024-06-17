@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Styles from './ChatList.module.css';
 import apiChat from '../../api/Usuario/apiChat';
+import logo from '../../utils/assets/logo.png';
+import Icone from "../../utils/assets/Ellipse 43.png";
 
 const ChatList = ({ onUserClick }) => {
   const navigate = useNavigate();
@@ -26,10 +28,11 @@ const ChatList = ({ onUserClick }) => {
     fetchUsers();
   }, []); // Chama apenas uma vez ao montar o componente
 
-  const handleUserClick = async (userId, chatId) => {
+  const handleUserClick = async (userId, chatId, nomeConversado) => {
     try {
       localStorage.setItem('recipienteId', userId);
       localStorage.setItem('message', chatId);
+      localStorage.setItem('nomeConversante', nomeConversado);
 
       onUserClick(); // Chama a função passada como prop para recarregar o ChatWindow
     } catch (error) {
@@ -38,14 +41,12 @@ const ChatList = ({ onUserClick }) => {
   };
 
   const filteredUsers = users.filter(user =>
-    user?.usuario2?.nome.toLowerCase().includes(search.toLowerCase()) ||
-    user?.usuario2?.message.toLowerCase().includes(search.toLowerCase())
-  );
+    user.usuario2.nome.toLowerCase().includes(search.toLowerCase())  );
 
   return (
     <div className={Styles.chatList}>
       <div className={Styles.header}>
-        <img src='' alt="Logo" />
+        <img src={logo} alt="Logo" />
         <div className={Styles.titles}>
           <span className={Styles.home}>Home</span>
           <span className={Styles.conversas}>Conversas</span>
@@ -65,9 +66,9 @@ const ChatList = ({ onUserClick }) => {
           <div
             key={user.id}
             className={Styles.user}
-            onClick={() => handleUserClick(user.usuario2.idUsuario, user.chatId)}
+            onClick={() => handleUserClick(user.usuario2.idUsuario, user.chatId, user.usuario2.nome)}
           >
-            <img src={user?.usuario2?.photo} alt={user?.usuario2?.nome} className={Styles.userPhoto} />
+            <img src={Icone} alt={user?.usuario2?.nome} className={Styles.userPhoto} />
             <div className={Styles.userInfo}>
               <div className={Styles.userName}>{user?.usuario2?.nome}</div>
               <div className={Styles.userMessage}>{user?.usuario2?.message}</div>
