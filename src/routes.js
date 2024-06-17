@@ -64,20 +64,20 @@ function Router() {
         <Route path='/admin/editar' element={<Editperfil />} />
         <Route path='/admin/listagemDenuncia' element={<ListagemDenuncia/>}/>
         <Route path='/admin/denuncias' element={<Denuncias />} />
+        <Route path="/chat" element={<Chat />} />
+        <Route path='/admin/listagemUsuarios' element={<ListagemUsuarios/>}/>
+        <Route path='/usuarios/perfil' element  ={<Perfil />} />
+        <Route path='/admin/dashboard' element={<Dashboard />} />
 
         {/*====================================
           =====================================*/ }
 
-        <Route path="/chat" element={<Chat />} />
-        <Route path='/admin/listagemUsuarios' element={<ListagemUsuarios/>}/>
 
 
-        <Route path='/usuarios/perfil' element  ={<Perfil />} />
 
         <Route path='/atualizar/usuario' element={<AtualizarPerfil />} />
         <Route path='/atualizar/cuidador' element={<AtualizarPerfilCuidador />} />
 
-        <Route path='/admin/dashboard' element={<Dashboard />} />
 
         
         <Route path='/admin/analiseDocs' element={<AnaliseDocs />} />

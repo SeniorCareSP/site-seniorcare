@@ -29,7 +29,12 @@ function SidebarDash() {
             openSidebar();
         }
     };
-
+    const handleLogout = () => {
+        // Limpar o armazenamento local
+        localStorage.clear();
+        navigate("/");
+        console.log("Usuário deslogado!");
+    };
     const openSidebar = () => {
         setSize('16vw');
         setPerfil(<a onClick={() => navigate("/editar/perfil")}>Perfil</a>);
@@ -98,7 +103,7 @@ function SidebarDash() {
                             </span>
                         </Stack>
                         <Stack className={Style["iconOut"]}>
-                            <span>
+                            <span onClick={handleLogout}> 
                                 <img src={logouticon} alt="icone de logout" />
                                 {textSair}
                             </span>

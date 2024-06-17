@@ -18,6 +18,7 @@ function Navbar() {
     const navigate = useNavigate();
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
+    const tipoDeUsuario = localStorage.getItem("tipoUsuario");
 
     const handleLogout = () => {
         // Limpar o armazenamento local
@@ -88,8 +89,14 @@ function Navbar() {
                             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                         >
-                            <MenuItem onClick={() => { handleMenuClose(); navigate("/atualizar/usuario"); }}>
-                                <Avatar /> Edita Perfil
+                            <MenuItem onClick={() => {
+                                handleMenuClose();
+                                if (tipoDeUsuario === "RESPONSAVEL") {
+                                    navigate("/atualizar/usuario");
+                                } else {
+                                    navigate("/atualizar/cuidador");
+                                }
+                            }}>                                <Avatar /> Edita Perfil
                             </MenuItem>
                             {/* <MenuItem onClick={handleMenuClose}>
                                 <ListItemIcon>

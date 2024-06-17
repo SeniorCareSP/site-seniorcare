@@ -4,16 +4,16 @@ import * as React from 'react';
 import IconButton from '@mui/joy/IconButton';
 import ToggleButtonGroup from '@mui/joy/ToggleButtonGroup';
 
-function CalendarioPerfil({ onChange, disponibilidade }) {
+function CalendarioEditarPerfil({ onChange, disponibilidade }) {
     const initialDisponibilidade = disponibilidade || Array(7).fill().map(() => Array(3).fill(false));
     const [value, setValue] = React.useState(initialDisponibilidade);
     const [value2, setValue2] = React.useState(initialDisponibilidade);
-    
+
     const handleToggle = (dayIndex, periodIndex) => {
         const newValue = value.map((day, i) =>
             day.map((period, j) => (i === dayIndex && j === periodIndex ? !period : period))
         );
-        
+
         setValue(newValue);
         onChange(newValue);
         setValue2(newValue);  
@@ -57,4 +57,4 @@ function CalendarioPerfil({ onChange, disponibilidade }) {
     );
 }
 
-export default CalendarioPerfil;
+export default CalendarioEditarPerfil;
