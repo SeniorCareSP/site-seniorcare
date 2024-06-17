@@ -16,9 +16,8 @@ function CadastroCuidador3() {
     const handleSave = async () => {
         try {
             const dadosCadastro = localStorage.getItem("cadastro");
-            const imagem = await localStorage.getItem('imagem'); // Obter a imagem do localStorage
 
-            if (dadosCadastro && imagem) {
+            if (dadosCadastro) {
                 const json = JSON.parse(dadosCadastro);
                 
                 json.agendas = {"disponibilidade": calendario};
@@ -28,9 +27,8 @@ function CadastroCuidador3() {
                 const response = await api.post('', json);
                 const idUsuario = response.data.idUsuario; // Suponha que a resposta contenha o ID do usuário
 
-
                 const formData = new FormData();
-                formData.append('file', imagem);
+                formData.append('file', localStorage.getItem('imagem'));
                 formData.append('filename', `${idUsuario}.jpg`);
 
                 await axios.post(`http://localhost:8080/files/upload`, formData, {
@@ -39,7 +37,6 @@ function CadastroCuidador3() {
                     }
                 });
 
-                // Enviar o restante dos dados do cadastro
                 localStorage.clear();
                 navigate("/login");
                 console.log("Cadastro feito com sucesso!");

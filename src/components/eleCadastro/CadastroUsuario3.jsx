@@ -12,10 +12,21 @@ import { MenuItem, TextField } from '@mui/material';
 import axios from 'axios'; // Importa axios
 
 function CadastroUsuario3() {
-    const [idioma, setIdioma] = React.useState([]);
-    const [dtNasc, setDtNasc] = React.useState('');
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [filename, setFilename] = useState('');
+    const [uploadMessage, setUploadMessage] = useState('');
+    const [dtNasc, setDtNasc] = useState('');
     const [selectedStatus, setSelectedStatus] = useState('');
-    const [imagem, setImagem] = useState(null);
+    const [idioma, setIdioma] = useState([]);
+    const navigate = useNavigate();
+
+    const handleFileChange = (event) => {
+        setSelectedFile(event.target.files[0]);
+    };
+
+    const handleFilenameChange = (event) => {
+        setFilename(event.target.value);
+    };
 
     const handleDateChange = (event) => {
         setDtNasc(event.target.value);
@@ -25,23 +36,10 @@ function CadastroUsuario3() {
         setIdioma(newValue);
     };
 
-    const navigate = useNavigate();
-
-    const handleFileChange = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setImagem(reader.result); // Armazena a imagem como uma string base64
-            };
-            reader.readAsDataURL(file);
-        }
-    };
-
     const handleSave = async () => {
         try {
             // Salvar a imagem usando localStorage
-            localStorage.setItem('imagem', imagem);
+            localStorage.setItem('imagem', selectedFile);
 
             const dadosCadastro = localStorage.getItem("cadastro");
             if (dadosCadastro) {
@@ -58,21 +56,22 @@ function CadastroUsuario3() {
                 } else {
                     const response = await api.post('', json);
                     const idUsuario = response.data.idUsuario; // Suponha que a resposta contenha o ID do usuário
-
+                    console.log(response);
+                    setFilename(idUsuario);
                     // Envio da imagem para o servidor
                     const formData = new FormData();
-                    formData.append('file', imagem);
-                    formData.append('filename', `${idUsuario}.jpg`);
+                    formData.append('file', selectedFile);
 
-                    const responseCadastroImagem = await axios.post(`http://localhost:8080/files/upload`, formData, {
+                    const responseCadastroImagem = await axios.post(`http://localhost:8080/files/upload?filename=${idUsuario}.jpg`, formData, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         }
                     });
-                    
+
                     localStorage.clear();
-                    navigate("/login");
                     console.log("Cadastro feito com sucesso!");
+                                        navigate("/login");
+
                 }
             }
         } catch (error) {
@@ -114,6 +113,7 @@ function CadastroUsuario3() {
                             <ButtonAzul component="label" role={undefined} variant="contained" tabIndex={-1}>
                                 Imagem
                                 <input type="file" onChange={handleFileChange} style={{ display: 'none' }} />
+
                             </ButtonAzul>
                         </Stack>
 
