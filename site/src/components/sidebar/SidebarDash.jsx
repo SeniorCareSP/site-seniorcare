@@ -33,10 +33,10 @@ function SidebarDash() {
     const openSidebar = () => {
         setSize('16vw');
         setPerfil(<a onClick={() => navigate("/editar/perfil")}>Perfil</a>);
-        setDash(<a onClick={() => navigate("*")}>Dashboard</a>);
-        setConfig(<a onClick={() => navigate("*")}>Administrar usuarios</a>);
-        setDoc(<a onClick={() => navigate("/admin/analiseDocs")}>Analisar documentos</a>);
-        setI(<a onClick={() => navigate("/editar/perfil")}>Analisar denuncias</a>);
+        setDash(<a onClick={() => navigate("/admin/dashboard")}>Dashboard</a>);
+        setConfig(<a onClick={() => navigate("/admin/listagemUsuarios")}>Administrar usuarios</a>);
+        setDoc(<a onClick={() => navigate("/admin/listagemDocs")}>Analisar documentos</a>);
+        setI(<a onClick={() => navigate("/admin/listagemDenuncia")}>Analisar denuncias</a>);
         setSair(<a onClick={() => navigate("/")}>Sair</a>);
         setIsOpen(true);
     };

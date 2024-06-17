@@ -2,7 +2,11 @@ import Style from "./JunteSe.module.css"
 import React from "react";
 import Imagem from "../../../utils/assets/senhora1.png"
 import Imagem2 from "../../../utils/assets/senhora2.png"
+import { useNavigate } from "react-router-dom";
+
 function JunteSe() {
+    const navigate = useNavigate();
+
     return (
         <>
         <div className={Style["JunteSe"]}>
@@ -10,14 +14,14 @@ function JunteSe() {
             <h1>Junte-se ao time</h1>
             </div>
             <div className={Style["centraliza"]}>
-            <button>Seja um cuidador Senior Care </button>
+            <button onClick={() => navigate("/cadastro")}>Seja um cuidador Senior Care </button>
             <div className={Style["obj4"]}> </div>
             <div className={Style["borda"]}> </div>
             <div className={Style["img1"]}>
            
              <img src={Imagem} alt=""/>
             </div>
-            <button className={Style["botao"]}>Encontre um cuidador </button>
+            <button className={Style["botao"]} onClick={() => navigate("/cadastro")}>Encontre um cuidador </button>
             <div className={Style["obj5"]}> </div>
             <div className={Style["borda1"]}> </div>
             <div className={Style["img2"]}>

@@ -18,6 +18,7 @@ function CadastroCuidador3() {
             const json = JSON.parse(dadosCadastro);
             
             json.agendas = {"disponibilidade": calendario};
+            
             console.log(calendario)
             localStorage.setItem("cadastro", JSON.stringify(json));
 

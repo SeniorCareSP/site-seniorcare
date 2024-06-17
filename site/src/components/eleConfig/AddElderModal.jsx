@@ -28,6 +28,12 @@ function AddElderModal({ open, handleClose }) {
           Adicionando um idoso
         </Typography>
         <form>
+        <TextField
+            fullWidth
+            margin="normal"
+            label="Nome"
+            placeholder="Nome completo"
+          />
           <TextField
             fullWidth
             margin="normal"
@@ -57,12 +63,17 @@ function AddElderModal({ open, handleClose }) {
             control={<Checkbox name="bedridden" />}
             label="O idoso está acamado?"
           />
+           <FormControlLabel
+            control={<Checkbox name="bedridden" />}
+            label="O idoso está lúcido?"
+          />
           <TextField
             fullWidth
             margin="normal"
             label="Possui alguma doença crônica?"
             placeholder="Ex: Alzheimer, Parkinson"
           />
+      
           <Button variant="contained" color="primary" fullWidth type="submit">
             Concluir
           </Button>

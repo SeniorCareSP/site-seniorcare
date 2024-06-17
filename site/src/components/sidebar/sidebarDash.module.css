@@ -11,7 +11,7 @@
     align-items: center;
     width: 15vh;
     height: 90vh;
-    position: absolute;
+    position: fixed;
     background-color: #252F46;
     border-radius: 1vh;
     margin-left: 2vh;

@@ -3,10 +3,10 @@ import Select, { selectClasses } from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 
-export default function SelectIndicator() {
+export default function SelectIndicatorIdoso() {
   return (
     <Select
-      placeholder="Maximo de número de idosos"
+      placeholder="Número máximo de idosos"
       indicator={<KeyboardArrowDown />}
       multiple
       color="primary"
@@ -14,8 +14,8 @@ export default function SelectIndicator() {
       
       sx={{
         borderRadius:8,
-        width: 290,
-        height: 43,
+        width: 280,
+        height: 40,
         '&.MuiSelect-root': {
           backgroundColor: '#135B7A', // Cor desejada
         },
