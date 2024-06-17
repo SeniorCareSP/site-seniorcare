@@ -4,7 +4,7 @@ import * as React from 'react';
 import IconButton from '@mui/joy/IconButton';
 import ToggleButtonGroup from '@mui/joy/ToggleButtonGroup';
 
-function CalendarioEditarPerfil({ onChange, disponibilidade }) {
+function CalendarioPerfil({ onChange, disponibilidade }) {
     const initialDisponibilidade = disponibilidade || Array(7).fill().map(() => Array(3).fill(false));
     const [value, setValue] = React.useState(initialDisponibilidade);
     const [value2, setValue2] = React.useState(initialDisponibilidade);
@@ -57,4 +57,4 @@ function CalendarioEditarPerfil({ onChange, disponibilidade }) {
     );
 }
 
-export default CalendarioEditarPerfil;
+export default CalendarioPerfil;

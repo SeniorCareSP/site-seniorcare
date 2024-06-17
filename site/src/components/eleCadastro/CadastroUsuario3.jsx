@@ -35,20 +35,23 @@ function CadastroUsuario3() {
     const handleIdiomaChange = (event, newValue) => {
         setIdioma(newValue);
     };
+    const dadosCadastro = localStorage.getItem("cadastro");
+
+                const json = JSON.parse(dadosCadastro);
 
     const handleSave = async () => {
         try {
-            // Salvar a imagem usando localStorage
-            localStorage.setItem('imagem', selectedFile);
-
-            const dadosCadastro = localStorage.getItem("cadastro");
             if (dadosCadastro) {
-                const json = JSON.parse(dadosCadastro);
 
                 json.dtNascimento = dtNasc;
                 json.sexoBiologico = selectedStatus;
                 json.idiomas = idioma;
                 localStorage.setItem("cadastro", JSON.stringify(json));
+
+                if (json.tipoDeUsuario === "RESPONSAVEL") {
+                    // Salvar a imagem usando localStorage
+                    localStorage.setItem('imagem', selectedFile);
+                }
 
                 if (json.tipoDeUsuario === "CUIDADOR") {
                     navigate("/cadastro/cuidador");
@@ -58,20 +61,24 @@ function CadastroUsuario3() {
                     const idUsuario = response.data.idUsuario; // Suponha que a resposta contenha o ID do usuário
                     console.log(response);
                     setFilename(idUsuario);
-                    // Envio da imagem para o servidor
-                    const formData = new FormData();
-                    formData.append('file', selectedFile);
 
-                    const responseCadastroImagem = await axios.post(`http://localhost:8080/files/upload?filename=${idUsuario}.jpg`, formData, {
-                        headers: {
-                            'Content-Type': 'multipart/form-data'
-                        }
-                    });
+                    // Envio da imagem para o servidor
+                    if (json.tipoDeUsuario === "RESPONSAVEL" && selectedFile) {
+                        const formData = new FormData();
+                        formData.append('file', selectedFile);
+
+                        const responseCadastroImagem = await axios.post(`http://localhost:8080/files/upload?filename=${idUsuario}.jpg`, formData, {
+                            headers: {
+                                'Content-Type': 'multipart/form-data'
+                            }
+                        });
+
+                        console.log("Imagem enviada com sucesso!");
+                    }
 
                     localStorage.clear();
                     console.log("Cadastro feito com sucesso!");
-                                        navigate("/login");
-
+                    navigate("/login");
                 }
             }
         } catch (error) {
@@ -107,15 +114,17 @@ function CadastroUsuario3() {
                         <DatePicker value={dtNasc} onChange={handleDateChange} />
                         <CustomizedHook value={idioma} onChange={handleIdiomaChange} />
 
-                        <h3>Envie uma foto:</h3>
-
-                        <Stack direction="row" justifyContent={"center"}>
-                            <ButtonAzul component="label" role={undefined} variant="contained" tabIndex={-1}>
-                                Imagem
-                                <input type="file" onChange={handleFileChange} style={{ display: 'none' }} />
-
-                            </ButtonAzul>
-                        </Stack>
+                        {json.tipoDeUsuario === "RESPONSAVEL" &&
+                            <React.Fragment>
+                                <h3>Envie uma foto:</h3>
+                                <Stack direction="row" justifyContent={"center"}>
+                                    <ButtonAzul component="label" role={undefined} variant="contained" tabIndex={-1}>
+                                        Imagem
+                                        <input type="file" onChange={handleFileChange} style={{ display: 'none' }} />
+                                    </ButtonAzul>
+                                </Stack>
+                            </React.Fragment>
+                        }
 
                         <ButtonAzul onClick={handleSave}>Próximo</ButtonAzul>
                         <ButtonBranco onClick={() => navigate("/cadastro2")}>Voltar</ButtonBranco>

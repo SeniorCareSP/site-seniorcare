@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import CalendarioEditarPerfil from "../calendario/CalendarioEditarPerfil";
 import Navbar from "../cuidador/navbar/navbarCuidador";
 import Stack from '@mui/material/Stack';
-import InputTexfield from "../Input/Input";
+import InputTextField from "../Input/Input"; // Corrigido o nome do componente
 import Style from '../../pages/confUser/Atualizar.module.css';
 import ButtonAzul from "../botao/BotaoAzul";
 import ElderList from "./idosoComponent";
 import apiResponsavel from '../../api/Usuario/apiResponsavel';
+import axios from 'axios';
+import Calendario from '../calendario/Calendario';
+import CalendarioPerfil from '../calendario/CalendarioPerfil';
 
 function EleAtualizarPerfil() {
     const [nome, setNome] = useState("");
@@ -17,8 +20,28 @@ function EleAtualizarPerfil() {
     const [bairro, setBairro] = useState("");
     const [numero, setNumero] = useState("");
     const [cidade, setCidade] = useState("");
+    const [calendario, setCalendario] = useState(Array(7).fill().map(() => Array(3).fill(false)));
+
     const [agendaDisponibilidade, setAgendaDisponibilidade] = useState([]);
     const [idosos, setIdosos] = useState([]);
+    const [imagemSrc, setImagemSrc] = useState(null);
+    const idUsuario = localStorage.getItem('idUsuario');
+
+    useEffect(() => {
+        async function fetchImage() {
+            try {
+                const response = await axios.get(`http://localhost:8080/files/view/${idUsuario}.jpg`, {
+                    responseType: 'blob'
+                });
+                const imageObjectURL = URL.createObjectURL(response.data);
+                setImagemSrc(imageObjectURL);
+            } catch (error) {
+                console.error('Erro ao carregar imagem:', error);
+            }
+        }
+
+        fetchImage();
+    }, [idUsuario]);
 
     useEffect(() => {
         const fetchAdminData = async () => {
@@ -31,7 +54,7 @@ function EleAtualizarPerfil() {
                 setApresentacao(data.apresentacao);
                 setEndereco(data.endereco.logradouro); // Ajustado para acessar o logradouro do objeto de endereço
                 setCEP(data.endereco.cep); // Ajustado para acessar o CEP do objeto de endereço
-                setRua(data.endereco.logradouro); // Ajustado para acessar o logradouro do objeto de endereço
+                setRua(data.endereco.complemento); // Ajustado para acessar a rua do objeto de endereço
                 setBairro(data.endereco.bairro); // Ajustado para acessar o bairro do objeto de endereço
                 setNumero(data.endereco.numero); // Ajustado para acessar o número do objeto de endereço
                 setCidade(data.endereco.cidade); // Ajustado para acessar a cidade do objeto de endereço
@@ -51,7 +74,6 @@ function EleAtualizarPerfil() {
 
     const handleSave = async (event) => {
         event.preventDefault();
-        const idUsuario = localStorage.getItem('idUsuario');
         const dadosAtualizarResponsavel = {
             nome: nome,
             apresentacao: apresentacao,
@@ -70,7 +92,6 @@ function EleAtualizarPerfil() {
 
         try {
             await apiResponsavel.put(`/${idUsuario}`, dadosAtualizarResponsavel);
-            localStorage.clear();
             window.location.reload(); // Recarregar a página para refletir as alterações
             console.log("Atualização realizada com sucesso!");
         } catch (error) {
@@ -95,37 +116,39 @@ function EleAtualizarPerfil() {
 
                 <Stack direction="row" className={Style["centraliza"]}>
                     <Stack className={Style["info-usuario"]} spacing={4} marginInline={5}>
-                        <div className={Style["foto-usu"]}></div>
-                        <InputTexfield label="Nome" value={nome} onChange={(e) => handleInputChange(e, setNome)} />
-                        <InputTexfield label="Sobre" value={apresentacao} onChange={(e) => handleInputChange(e, setApresentacao)} size="xl" />
+                        <div className={Style["foto-usu"]}>
+                            <img src={imagemSrc} alt="" width="100%" height="100%" style={{ borderRadius: "50%" }} />
+                        </div>
+                        <InputTextField label="Nome" value={nome} onChange={(e) => handleInputChange(e, setNome)} />
+                        <InputTextField label="Sobre" value={apresentacao} onChange={(e) => handleInputChange(e, setApresentacao)} size="xl" />
                     </Stack>
                     <Stack className={Style["endereco"]}>
                         <Stack direction="row" marginLeft={6} marginTop={2}>
-                            <InputTexfield label="Endereço" value={endereco} onChange={(e) => handleInputChange(e, setEndereco)} sx={{ width: "42vw" }} />
+                            <InputTextField label="Endereço" value={endereco} onChange={(e) => handleInputChange(e, setEndereco)} sx={{ width: "42vw" }} />
                         </Stack>
                         <Stack direction="row" spacing={2} marginLeft={6}>
-                            <InputTexfield label="CEP" value={CEP} onChange={(e) => handleInputChange(e, setCEP)} sx={{ width: "14vw" }} />
-                            <InputTexfield label="Rua" value={rua} onChange={(e) => handleInputChange(e, setRua)} sx={{ width: "27vw" }} />
+                            <InputTextField label="CEP" value={CEP} onChange={(e) => handleInputChange(e, setCEP)} sx={{ width: "14vw" }} />
+                            <InputTextField label="Rua" value={rua} onChange={(e) => handleInputChange(e, setRua)} sx={{ width: "27vw" }} />
                         </Stack>
                         <Stack direction="row" spacing={2} marginLeft={6}>
-                            <InputTexfield label="Bairro" value={bairro} onChange={(e) => handleInputChange(e, setBairro)} sx={{ width: "29vw" }} />
-                            <InputTexfield label="Número" value={numero} onChange={(e) => setNumero(e.target.value)} sx={{ width: "12vw" }} />
+                            <InputTextField label="Bairro" value={bairro} onChange={(e) => handleInputChange(e, setBairro)} sx={{ width: "29vw" }} />
+                            <InputTextField label="Número" value={numero} onChange={(e) => setNumero(e.target.value)} sx={{ width: "12vw" }} />
                         </Stack>
                         <Stack direction="row" spacing={2} marginLeft={6} marginBottom={2}>
-                            <InputTexfield label="Cidade" value={cidade} onChange={(e) => setCidade(e.target.value)} sx={{ width: "42vw" }} />
+                            <InputTextField label="Cidade" value={cidade} onChange={(e) => setCidade(e.target.value)} sx={{ width: "42vw" }} />
                         </Stack>
                     </Stack>
                 </Stack>
 
                 <div className={Style["idoso"]}>
                     <Stack direction="row" spacing="3" className={Style["adiciona"]}>
-                        <ElderList idosos={idosos} setIdosos={setIdosos} />
+                        <ElderList idosos={idosos} /> {/* Passando idosos como propriedade */}
                     </Stack>
                 </div>
 
                 <div className={Style["calendario"]}>
                     <Stack spacing={3} className={Style["itens"]}>
-                        <CalendarioEditarPerfil />
+                        <Calendario onChange={setCalendario} />
                         <ButtonAzul onClick={handleSave}>Salvar Alterações</ButtonAzul>
                     </Stack>
                 </div>

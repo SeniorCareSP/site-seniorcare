@@ -1,8 +1,7 @@
-// AddElderModal.js
 import React, { useState } from 'react';
 import './ElderList.css';
 import { Modal, Box, TextField, FormControlLabel, Checkbox, Button, Typography } from '@mui/material';
-import axios from 'axios'; // Importar o axios para fazer requisições HTTP
+import axios from 'axios';
 
 const modalStyle = {
   position: 'absolute',
@@ -19,29 +18,35 @@ const modalStyle = {
 function AddElderModal({ open, handleClose }) {
   const [nome, setNome] = useState('');
   const [genero, setGenero] = useState('');
-  const [dtNascimento, setDtNascimento] = useState('');
+  const [dtNasc, setDtNascimento] = useState('');
   const [mobilidade, setMobilidade] = useState(false);
   const [acamado, setAcamado] = useState(false);
   const [lucido, setLucido] = useState(false);
   const [doencasCronicas, setDoencasCronicas] = useState('');
   const idUsuario = localStorage.getItem('idUsuario');
+
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Evita o comportamento padrão de submit do formulário
-    const token = localStorage.getItem('token'); // Obter o token do localStorage
+    event.preventDefault();
+
+    const token = localStorage.getItem('token');
 
     const newElder = {
       nome,
       genero,
-      dtNascimento,
+      dtNasc,
       mobilidade,
       acamado,
       lucido,
-      doencasCronicas,
-      responsavel: idUsuario, // Coloque o ID do responsável correto aqui
+      doencasCronicas,      
+      responsavel: idUsuario,
     };
-
+    console.log(token)
+    console.log(newElder)
     try {
-      const response = await axios.post('http://localhost:8080/idosos');
+
+      const response = await axios.post('http://localhost:8080/idosos', newElder);
+      console.log(response)
+      console.log(token)
 
       console.log('Resposta do servidor:', response.data);
       handleClose();
@@ -92,7 +97,7 @@ function AddElderModal({ open, handleClose }) {
             InputLabelProps={{
               shrink: true,
             }}
-            value={dtNascimento}
+            value={dtNasc }
             onChange={(e) => setDtNascimento(e.target.value)}
           />
           <FormControlLabel

@@ -1,4 +1,3 @@
-// ElderList.js
 import React, { useState, useEffect } from 'react';
 import './ElderList.css'; // Importando o arquivo CSS para estilização
 import EditIcon from '@mui/icons-material/Edit';
