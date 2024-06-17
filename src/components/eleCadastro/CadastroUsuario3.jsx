@@ -1,7 +1,7 @@
 import Stack from '@mui/material/Stack';
 import Style from '../../pages/cadastro/Cadastro.module.css';
 import { useNavigate } from "react-router-dom";
-import * as React from 'react';
+import React, { useState } from 'react';
 import ButtonAzul from '../botao/BotaoAzul';
 import ButtonBranco from '../botao/BotaoBranco';
 import Title from '../tituloCadastro/Title';
@@ -9,51 +9,75 @@ import CustomizedHook from '../Input/InpIdioma';
 import api from "../../api/Usuario/apiResponsavel";
 import DatePicker from '../Input/DatePicker';
 import { MenuItem, TextField } from '@mui/material';
-import { useState } from 'react';
+import axios from 'axios'; // Importa axios
 
 function CadastroUsuario3() {
     const [idioma, setIdioma] = React.useState([]);
     const [dtNasc, setDtNasc] = React.useState('');
-
     const [selectedStatus, setSelectedStatus] = useState('');
+    const [imagem, setImagem] = useState(null);
 
     const handleDateChange = (event) => {
-        console.log("Event Target Value:", event.target.value);  // Adicionando log de console
         setDtNasc(event.target.value);
     };
 
     const handleIdiomaChange = (event, newValue) => {
-        console.log("Selected Idiomas: ", newValue);
         setIdioma(newValue);
     };
 
     const navigate = useNavigate();
 
-    const handleSave = () => {
-        const dadosCadastro = localStorage.getItem("cadastro");
-        if (dadosCadastro) {
-            const json = JSON.parse(dadosCadastro);
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImagem(reader.result); // Armazena a imagem como uma string base64
+            };
+            reader.readAsDataURL(file);
+        }
+    };
 
-            json.dtNascimento = dtNasc;
-            json.sexoBiologico = selectedStatus;
-            json.idiomas = idioma;
-            localStorage.setItem("cadastro", JSON.stringify(json));
+    const handleSave = async () => {
+        try {
+            // Salvar a imagem usando localStorage
+            localStorage.setItem('imagem', imagem);
 
-            if (json.tipoDeUsuario === "CUIDADOR") {
-                navigate("/cadastro/cuidador");
-                console.log("Requisição para cadastrar cuidador");
-            } else {
-                api.post('', json)
-                    .then(response => {
-                        localStorage.clear();
-                        navigate("/login");
-                        console.log("Cadastro feito com sucesso!");
-                    })
-                    .catch(error => {
-                        console.log(JSON.stringify(json));
-                        console.log("Ocorreu um erro ao cadastrar, por favor, tente novamente.");
+            const dadosCadastro = localStorage.getItem("cadastro");
+            if (dadosCadastro) {
+                const json = JSON.parse(dadosCadastro);
+
+                json.dtNascimento = dtNasc;
+                json.sexoBiologico = selectedStatus;
+                json.idiomas = idioma;
+                localStorage.setItem("cadastro", JSON.stringify(json));
+
+                if (json.tipoDeUsuario === "CUIDADOR") {
+                    navigate("/cadastro/cuidador");
+                    console.log("Requisição para cadastrar cuidador");
+                } else {
+                    const response = await api.post('', json);
+                    const idUsuario = response.data.idUsuario; // Suponha que a resposta contenha o ID do usuário
+
+                    // Envio da imagem para o servidor
+                    const formData = new FormData();
+                    formData.append('file', imagem);
+                    formData.append('filename', `${idUsuario}.jpg`);
+
+                    const responseCadastroImagem = await axios.post(`http://localhost:8080/files/upload`, formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
                     });
+                    
+                    localStorage.clear();
+                    navigate("/login");
+                    console.log("Cadastro feito com sucesso!");
+                }
             }
+        } catch (error) {
+            console.error('Erro ao salvar imagem:', error);
+            // Lidar com o erro de forma adequada
         }
     };
 
@@ -70,7 +94,7 @@ function CadastroUsuario3() {
                     <Stack spacing={3} className={Style["itens"]}>
                         <TextField
                             select
-                            label="Genero"
+                            label="Gênero"
                             value={selectedStatus}
                             onChange={e => setSelectedStatus(e.target.value)}
                             variant="outlined"
@@ -83,7 +107,17 @@ function CadastroUsuario3() {
                         </TextField>
                         <DatePicker value={dtNasc} onChange={handleDateChange} />
                         <CustomizedHook value={idioma} onChange={handleIdiomaChange} />
-                        <ButtonAzul onClick={handleSave}>Proximo</ButtonAzul>
+
+                        <h3>Envie uma foto:</h3>
+
+                        <Stack direction="row" justifyContent={"center"}>
+                            <ButtonAzul component="label" role={undefined} variant="contained" tabIndex={-1}>
+                                Imagem
+                                <input type="file" onChange={handleFileChange} style={{ display: 'none' }} />
+                            </ButtonAzul>
+                        </Stack>
+
+                        <ButtonAzul onClick={handleSave}>Próximo</ButtonAzul>
                         <ButtonBranco onClick={() => navigate("/cadastro2")}>Voltar</ButtonBranco>
                     </Stack>
                 </Stack>

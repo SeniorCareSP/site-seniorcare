@@ -67,22 +67,11 @@ function CadastroCuidador2() {
                                 <Button value="curativos">Certificado Boa Conduta</Button>
                             </ToggleButtonGroup>
                         </Stack>
-                        <h3>Envie seus certificados</h3>
-                        <Stack direction="row" justifyContent={"center"}>
-                            <ButtonAzul component="label" role={undefined} variant="contained" tabIndex={-1}>
-                                Documento
-                                <VisuallyHiddenInput type="file" />
-                            </ButtonAzul>
-                        </Stack>
                         <h3>Apresente-se</h3>
                         <InputTexfield label="apresentação" value={apresentacao} onChange={(e) => handleInputChange(e, setApresentacao)} />
-                        <h3>Envie uma foto:</h3>
-                        <Stack direction="row" justifyContent={"center"}>
-                            <ButtonAzul component="label" role={undefined} variant="contained" tabIndex={-1}>
-                                Imagem
-                                <VisuallyHiddenInput type="file" />
-                            </ButtonAzul>
-                        </Stack>
+                        
+
+                        
                         <ButtonAzul onClick={() => handleSave()}> Proximo</ButtonAzul>
                         <ButtonBranco onClick={() => navigate("/cadastro/cuidador")} >Voltar</ButtonBranco>
                     </Stack>
