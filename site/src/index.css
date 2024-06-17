@@ -1,9 +1,0 @@
-body {
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
-}
-
-#root {
-    display: flex;
-    height: 100vh;
-}
