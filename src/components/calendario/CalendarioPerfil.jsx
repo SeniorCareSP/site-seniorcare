@@ -8,12 +8,12 @@ function CalendarioPerfil({ onChange, disponibilidade }) {
     const initialDisponibilidade = disponibilidade || Array(7).fill().map(() => Array(3).fill(false));
     const [value, setValue] = React.useState(initialDisponibilidade);
     const [value2, setValue2] = React.useState(initialDisponibilidade);
-    
+
     const handleToggle = (dayIndex, periodIndex) => {
         const newValue = value.map((day, i) =>
             day.map((period, j) => (i === dayIndex && j === periodIndex ? !period : period))
         );
-        
+
         setValue(newValue);
         onChange(newValue);
         setValue2(newValue);  

@@ -14,13 +14,12 @@ import Style from './cuidador.module.css';
 function Procurar() {
   const [cardsData, setCardsData] = useState([]);
   const idUsuario = localStorage.getItem("idUsuario");
-
+  const tipoDeUsuario = localStorage.getItem("tipoUsuario");
   useEffect(() => {
     recuperarValorDoCard();
   }, []);
 
   async function recuperarValorDoCard() {
-    const tipoDeUsuario = localStorage.getItem("tipoUsuario");
     let data;
 
     try {
@@ -115,12 +114,7 @@ function Procurar() {
     
       <Navbar />
       <div className={Style["procura"]}>
-        <div className={Style["filtro"]}>
-          <SelectMax />
-          <SelectTrabalho />
-          <SelectIdade />
-          <Remover />
-        </div>
+      
         <div className={Style["cards"]}>
           {cardsData.map((data, index) => (
             <div key={index}>

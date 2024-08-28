@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from 'react';
+
 import Style from "./navbarCuidador.module.css";
 import Door from "../../../utils/assets/Logout.png";
 import Perfil from "../../../utils/assets/Ellipse 24.png";
@@ -13,11 +14,32 @@ import Avatar from '@mui/material/Avatar';
 import Logout from '@mui/icons-material/Logout';
 import Settings from '@mui/icons-material/Settings';
 import PersonAdd from '@mui/icons-material/PersonAdd';
-
+import axios from 'axios';
 function Navbar() {
     const navigate = useNavigate();
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
+    const tipoDeUsuario = localStorage.getItem("tipoUsuario");
+    const [imagemSrc, setImagemSrc] = useState(null);
+    
+
+    const idUsuario = localStorage.getItem('idUsuario');
+
+    useEffect(() => {
+        async function fetchImage() {
+            try {
+                const response = await axios.get(`http://localhost:8080/files/view/${idUsuario}.jpg`, {
+                    responseType: 'blob'
+                });
+                const imageObjectURL = URL.createObjectURL(response.data);
+                setImagemSrc(imageObjectURL);
+            } catch (error) {
+                console.error('Erro ao carregar imagem:', error);
+            }
+        }
+
+        fetchImage();
+    }, [idUsuario]);
 
     const handleLogout = () => {
         // Limpar o armazenamento local
@@ -50,7 +72,7 @@ function Navbar() {
                         {/* <img className={`${Style["icon"]} ${Style["perfil-icon"]}`} src={Door} alt="Logout" onClick={handleLogout} /> */}
                         <Tooltip title="Account settings">
                             <IconButton onClick={handleMenuClick} size="small" sx={{ ml: 2 }}>
-                                <Avatar src={Perfil} alt="Perfil" sx={{ width: 32, height: 32 }} />
+                                <Avatar src={ imagemSrc || Perfil} alt="Perfil" sx={{ width: 50, height: 50 }} />
                             </IconButton>
                         </Tooltip>
                         <Menu
@@ -88,8 +110,14 @@ function Navbar() {
                             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                         >
-                            <MenuItem onClick={() => { handleMenuClose(); navigate("/atualizar/usuario"); }}>
-                                <Avatar /> Edita Perfil
+                            <MenuItem onClick={() => {
+                                handleMenuClose();
+                                if (tipoDeUsuario === "RESPONSAVEL") {
+                                    navigate("/atualizar/usuario");
+                                } else {
+                                    navigate("/atualizar/cuidador");
+                                }
+                            }}>                                <Avatar /> Edita Perfil
                             </MenuItem>
                             {/* <MenuItem onClick={handleMenuClose}>
                                 <ListItemIcon>

@@ -38,16 +38,13 @@ function Router() {
         <Route path="*" element={<Erro />} />
         <Route path="/" element={<Home />} />
 
+
         <Route path="/reset-password-1" element={<ResetPasswordStep1 />} />
         <Route path="/reset-password-2" element={<ResetPasswordStep2 />} />
         <Route path="/reset-password-3" element={<ResetPasswordStep3 />} />
         <Route path="/reset-password-4" element={<ResetPasswordStep4 />} />
 
-        {/* <Route path="/recuperar-senha" element={<RecuperarSenha />} /> */}
 
-        {/*====================================
-              Relacionandas com o banco
-          =====================================*/ }
         <Route path="/login" element={<Login />} />
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path='/cadastro2' element={<Cadastro2 />} />
@@ -64,22 +61,16 @@ function Router() {
         <Route path='/admin/editar' element={<Editperfil />} />
         <Route path='/admin/listagemDenuncia' element={<ListagemDenuncia/>}/>
         <Route path='/admin/denuncias' element={<Denuncias />} />
-
-        {/*====================================
-          =====================================*/ }
-
         <Route path="/chat" element={<Chat />} />
         <Route path='/admin/listagemUsuarios' element={<ListagemUsuarios/>}/>
-
-
         <Route path='/usuarios/perfil' element  ={<Perfil />} />
+        <Route path='/admin/dashboard' element={<Dashboard />} />
+
 
         <Route path='/atualizar/usuario' element={<AtualizarPerfil />} />
         <Route path='/atualizar/cuidador' element={<AtualizarPerfilCuidador />} />
+      
 
-        <Route path='/admin/dashboard' element={<Dashboard />} />
-
-        
         <Route path='/admin/analiseDocs' element={<AnaliseDocs />} />
         <Route path='/admin/listagemDocs' element={<ListagemDoc />} />
 

@@ -10,30 +10,38 @@ import AccordionTransition from "../../components/home/perguntas/perguntas";
 import JunteSe from "../../components/home/Junte-se/junteSe";
 import Footer from "../../components/home/footer/footer";
 import * as React from 'react';
-// import Button from '@mui/material/Button';
-
-
+import apiVisitas from "../../api/Usuario/apiVIsitas";
 
 function Home() {
 
+  React.useEffect(() => {
+    registrarVisita();
+  }, []);
+
+  const registrarVisita = async () => {
+    try {
+      await apiVisitas.post('/registrar', {
+      });
+      console.log('Visita registrada com sucesso!');
+    } catch (error) {
+      console.error('Erro ao registrar visita:', error);
+    }
+  };
 
   return (
     <>
-
       <Navbar />
       <Apresentacao />
       <Empresa />
       <Servico />
       <Porque />
       <Clientes />
-      <Disponivel/>
-      <AccordionTransition/>
-      <JunteSe/>
-      <Footer/>
-
+      <Disponivel />
+      <AccordionTransition />
+      <JunteSe />
+      <Footer />
     </>
-  )
+  );
 }
 
 export default Home;
-
