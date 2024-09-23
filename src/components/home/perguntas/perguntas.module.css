@@ -1,0 +1,71 @@
+
+.centralizar {
+    height: 60vh;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+
+
+}
+ .centralizar .pergunta{
+    width: 67%;
+    height: 78vh;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    background-color: #252F46;
+}
+
+.pergunta .menu{
+    height: 22vh;
+    width: 78vh;
+    padding-left: 3vh;
+}
+.pergunta .texto{
+    display: flex;
+    width: 100%;
+    padding-left: 60px;
+    padding-right: 60px;
+
+}
+
+.pergunta h1{
+    color: white;
+    padding-bottom: 15vh;
+}
+
+
+.centralizar  img{
+ margin-top: 3px;
+width: 36vw;
+height: 78vh;
+margin-bottom: none;
+}
+
+@media screen and (min-width: 1910px) {
+    .centralizar  img{
+        margin-top: 3px;
+       width: 33vw;
+       height: 78vh;
+       margin-bottom: none;
+       }
+
+       .pergunta .menu{
+        height: 22vh;
+        width: 55vh;
+        padding-left: 3vh;
+    }
+}
+/* .pergunta h1 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #252F46; /* Mantém a cor de fundo para coincidir com o fundo do container */
+   /* padding: 15px 60px; /* Adapte o preenchimento conforme necessário 
+    z-index: 1000; /* Certifica-se de que o título esteja acima de outros elementos 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra suave para destacar o título 
+} */
+
+
+

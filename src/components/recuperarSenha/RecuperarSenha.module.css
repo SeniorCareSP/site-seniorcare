@@ -1,0 +1,53 @@
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.leftSide {
+  flex: 1;
+  background-color: #252F46;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.backButton {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+}
+
+.logo {
+  width: 150px; /* Aumenta o tamanho do logo */
+  height: auto;
+}
+
+.rightSide {
+  flex: 1;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  width: 80%;
+  text-align: center;
+}
+
+h1 {
+  margin: 0 0 40px 0; /* Aumenta a margem inferior para afastar do resto */
+  font-size: 2em;
+}
+
+.email {
+  font-size: 0.8em;
+  margin-bottom: 40px; /* Aumenta o espaço abaixo do email */
+}
+
+.spacing {
+  margin-bottom: 28px; /* Espaçamento entre os componentes */
+}
+

@@ -1,0 +1,101 @@
+.chatList {
+    background-color: #2C7595;
+    color: white;
+    width: 40vw; /* Largura em relação à largura da tela */
+    max-width: 400px; /* Largura máxima */
+    overflow-y: hidden;
+    overflow-x: hidden;
+    height: 100vh; /* Altura da tela */
+  }
+
+  .header {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .header img { 
+    height: 40px;
+  }
+  
+  .titles {
+    display: flex;
+    gap: 30px;
+    margin-left: 10px;
+  }
+  
+  .home {
+    margin-left: 5px;
+    color: darkred;
+    font-weight: 800;
+  }
+  
+  .searchBar {
+    width: 65%;
+    padding: 10px;
+    margin-left: 80px;
+    margin-bottom: 10px;
+    border-radius: 9px;
+    border-style: double;
+    border-color: #80C1DE;
+  }
+  
+  .users {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    margin-left: 1%;
+    height: calc(100% - 50px); 
+  }
+
+  .users::-webkit-scrollbar{
+    background-color: #060f25;
+
+    width: 3px;
+    border-radius: 9px;
+    padding: 9%;
+    /* tentar dar uma separadinha da borda */
+  }
+
+  .users::-webkit-scrollbar-thumb{
+    border-radius: 9px;
+
+    background-color: #80C1DE;
+  }
+  
+  .user {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    height: 5vh;
+    cursor: pointer;
+  }
+  .user:active{
+    color: blue;
+    }
+  .userPhoto {
+    width: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .userInfo {
+    display: flex;
+
+    flex-direction: column;
+  }
+  
+  .userName {
+    font-weight: bold;
+  }
+  
+  .userMessage {
+    color: #ffffff;
+    overflow: hidden; /* Esconde o overflow */
+    white-space: nowrap; /* Não quebra a linha */
+    text-overflow: ellipsis; /* Adiciona reticências quando o texto ultrapassa */
+    max-width: 200px; /* Largura máxima */
+  }
+  
