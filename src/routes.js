@@ -29,6 +29,7 @@ import ResetPasswordStep2 from './components/recuperacaoSenha/ResetPasswordStep2
 import ResetPasswordStep3 from './components/recuperacaoSenha/ResetpasswordStep3.jsx';
 import ResetPasswordStep4 from './components/recuperacaoSenha/ResetPasswordStep4.jsx';
 import RecuperarSenha from './pages/admin/recuperarSenha/RecuperarSenha.jsx';
+import Mapa from './pages/Maps/maps.jsx';
 
 import Denuncias from './pages/admin/Denuncias.jsx';
 function Router() {
@@ -55,6 +56,7 @@ function Router() {
         <Route path='/cadastro/concluido' element={<Finalizado />} />
         <Route path='/procurar' element={<Procurar/>} />
         <Route path='/favoritos' element={<Favorito/>} />
+        <Route path='/geo' element={<Mapa/>} />
 
 
         <Route path='/admin/cadastro' element={<CadastroAdm />} />

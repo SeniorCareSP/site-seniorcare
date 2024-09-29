@@ -10,7 +10,12 @@ import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Flag from '../../utils/assets/Empty Flag.png';
 import CalendarioPerfil from '../calendario/CalendarioPerfil';
 import apiChat from '../../api/Usuario/apiChat';
+import Tabs from '@mui/joy/Tabs';
+import TabList from '@mui/joy/TabList';
+import Tab from '@mui/joy/Tab';
+import TabPanel from '@mui/joy/TabPanel';
 import { useNavigate } from 'react-router-dom';
+import MapComponent from '../../components/Maps/mapsComp';
 
 function Perfil2() {
   const [usuario, setUsuario] = useState(null);
@@ -59,9 +64,8 @@ function Perfil2() {
   }
 
   return (
-    <Box className={Styles.container2} sx={{ width: '100%', backgroundColor: 'white' }}>
+    <Box className={Styles.container2} sx={{ width: '100%', height:'100%',minHeight:'100vh',backgroundColor: 'white' }}>
       <Navbar />
-
       <Box
         className={Styles.tela}
         display="flex"
@@ -69,7 +73,14 @@ function Perfil2() {
         justifyContent="space-around"
         sx={{ paddingTop: '8vh', paddingLeft: '12vh', marginInline: '8vh' }}
       >
-        <Box display="flex" flexDirection="column" alignItems="center" sx={{ marginRight: '4vh' }}>
+        <Box display="flex" flexDirection="column" alignItems="center" 
+        sx={{ marginRight: '2vh',
+          width: '30vh',       
+          backgroundColor: 'rgb(255, 255, 255)',
+          borderRadius: '6px',   
+          boxShadow: '4px 4px 10px 4px rgba(0, 0, 0, 0.2)', 
+          padding: "4vh"
+        }}> 
           <img src={IMG} alt="" width="200px" height="190px" />
           <Typography variant="h6">
             {usuario.nome}, {calcularIdade(usuario.dtNascimento)} Anos
@@ -96,7 +107,7 @@ function Perfil2() {
           >
             Conversar
           </Button>
-
+         {/* Igor -Trocar pela descricao do Responsável*/}
           {usuario.idosos && usuario.idosos.map((idoso, index) => (
             <Box key={index} display="flex" flexDirection="column" alignItems="center" marginTop="2vh">
               <Box display="flex" alignItems="center">
@@ -110,16 +121,47 @@ function Perfil2() {
           ))}
         </Box>
 
-        <Box display="flex" flexDirection="column" sx={{ width: '52vw' }}>
+
+        {/*Informações do idoso e Tabs */}
+        <Box display="flex" flexDirection="column"   sx={{
+          width: '140vh',           // Largura do card
+          height: '70vh',         // Altura do card
+          backgroundColor: 'rgb(255, 255, 255)', // Cor de fundo
+          borderRadius: '6px',    // Bordas do card
+          boxShadow: '4px 4px 10px 4px rgba(0, 0, 0, 0.2)', 
+          padding: "4vh"
+        }}>
+
+        <Tabs>
+        <TabList>
+          <Tab
+            variant="soft"
+            color="primary" sx={{ minWidth: '4vh', fontSize: '2vh',}}>1 -Idoso</Tab>
+            </TabList>
+            <TabPanel value={0}>
+          {/* Aqui vai todas informações do idoso 1 */ }
+            </TabPanel>
+      </Tabs>
           <Stack direction="row" spacing={7} justifyContent="space-between" sx={{ marginBottom: '2vh' }}>
             <Stack width="38vh">
-              <Typography sx={{ color: '#077DB0', fontSize: '2.3vh' }}>Descrição</Typography>
+              <Typography sx={{ color: '#077DB0', fontSize: '2.3vh' }}>Nome do Idoso - Idade</Typography>
               <Typography>
                 {usuario.apresentacao}
               </Typography>
             </Stack>
 
-            <Stack width="43vh">
+              {/* Igor -Trocar pelo campo doenças cronicas*/ }
+            <Stack width="33vh">
+              <Typography sx={{ color: '#077DB0', fontSize: '2.3vh' }}>Doenças crônicas</Typography>
+              {usuario.idiomas.map(idioma => (
+                <Typography key={idioma.idIdioma}>
+                  {idioma.idioma}
+                </Typography>
+              ))}
+            </Stack>
+
+
+            <Stack width="23vh">
               <Typography sx={{ color: '#077DB0', fontSize: '2.3vh' }}>Idiomas</Typography>
               {usuario.idiomas.map(idioma => (
                 <Typography key={idioma.idIdioma}>
@@ -129,7 +171,7 @@ function Perfil2() {
             </Stack>
 
             {localStorage.getItem('tipoUsuario') === 'RESPONSAVEL' && (
-              <Stack width="43vh">
+              <Stack width="23vh">
                 <Typography sx={{ color: '#077DB0', fontSize: '2.3vh' }}>Características:</Typography>
                 {usuario.caracteristicas.map(caracteristica => (
                   <Typography key={caracteristica.idCaracteristica}>
@@ -140,15 +182,55 @@ function Perfil2() {
             )}
           </Stack>
 
-          <Box sx={{ marginLeft: '12vh' }}>
-            <Typography sx={{ color: '#077DB0', fontSize: '3vh', marginBotton: '2vh', alignContent: 'center', justifyContent: 'center', marginLeft: '3vh' }}>
+          <Box sx={{ marginLeft: '1vh', marginTop: '2vh', minHeight: "40vh" }}>
+            {/*<Typography sx={{ color: '#077DB0', fontSize: '2vh', marginBottom: '2vh', alignContent: 'center', justifyContent: 'center', marginLeft: '3vh' }}>
               Dias que precisa de cuidado
-            </Typography>
-            {/* Verifica se usuario.agenda existe antes de passar para CalendarioPerfil */}
+             </Typography>*/}
+                <Stack direction="row"  width= "30vh" sx={{ marginBottom: '3vh', height: "10vh" }}>
+              {/* Verifica se usuario.agenda existe antes de passar para CalendarioPerfil */}
+              <Box sx={{ transform: 'scale(0.7)', transformOrigin: 'top left' }}>
             <CalendarioPerfil disponibilidade={usuario.agenda?.disponibilidade || [[false, false, false], [false, false, false], [false, false, false], [false, false, false], [false, false, false], [false, false, false], [false, false, false]]} />
+              </Box>
+            {/* Igor - Adicionar endereço do usuário */}
+            <Stack direction="column" >
+            <Box sx={{ transform: 'scale(0.8)', transformOrigin: 'top left' }}>
+            <Stack width="13vh" height="7vh" marginTop="2vh" >
+              <Typography sx={{ color: '#077DB0', fontSize: '2.3vh' }}>Endereço</Typography>
+              {usuario.idiomas.map(idioma => (
+                <Typography key={idioma.idIdioma}>
+                  {idioma.idioma}
+                </Typography>
+              ))}
+            </Stack>
+            </Box>
+            <Stack width="55vh" height="35vh" >
+                  <MapComponent></MapComponent>
+                </Stack>
+            </Stack>
+           </Stack>
           </Box>
         </Box>
       </Box>
+{/* 
+      <Box display="flex" flexDirection="column" 
+        sx={{ 
+          width: '182vh',          
+          height: '60vh',         
+          backgroundColor: 'rgb(255, 255, 255)', 
+          borderRadius: '6px',    
+          boxShadow: '4px 4px 10px 4px rgba(0, 0, 0, 0.2)', 
+          padding: "4vh",
+          marginTop: '5vh',
+          marginInline: "20vh"
+        }}> 
+           <Box sx={{ marginLeft: '1vh', marginTop: '2vh' }}>
+                <Box sx={{ transform: 'scale(0.9)', transformOrigin: 'top left' }}>
+            
+              <Stack width="190vh" height="60vh" >
+                  <MapComponent></MapComponent>
+                </Stack>   </Box>
+          </Box>
+          </Box> */}
     </Box>
   );
 }
