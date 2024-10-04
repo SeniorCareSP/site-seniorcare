@@ -10,7 +10,8 @@ import apiCuidador from "../../api/Usuario/apiCuidador";
 import apiResponsavel from "../../api/Usuario/apiResponsavel";
 import apiFavorito from "../../api/Usuario/apiFavoritar";
 import Style from './cuidador.module.css';
-
+import cardUsuario from "../../components/home/Cards/cards-Interno/cardUsuario";
+import CardUsuario from "../../components/home/Cards/cards-Interno/cardUsuario";
 function Procurar() {
   const [cardsData, setCardsData] = useState([]);
   const idUsuario = localStorage.getItem("idUsuario");
@@ -114,7 +115,7 @@ function Procurar() {
     
       <Navbar />
       <div className={Style["procura"]}>
-      
+      <CardUsuario/>
         <div className={Style["cards"]}>
           {cardsData.map((data, index) => (
             <div key={index}>
