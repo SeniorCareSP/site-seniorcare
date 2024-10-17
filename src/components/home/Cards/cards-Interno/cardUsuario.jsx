@@ -2,6 +2,15 @@ import Stack from '@mui/material/Stack';
 import ButtonAzulEscuro from '../../../botao/BotaoAzulEscuro';
 import Style from './cardUsuario.module.css';
 import BtnAzulS from '../../../botao/BtnAzulS';
+import { Checkbox } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import apiCuidador from '../../../../api/Usuario/apiCuidador';
+import apiResponsavel from '../../../../api/Usuario/apiResponsavel';
+import { Favorite, FavoriteBorder, Flag, Label } from '@mui/icons-material';
+import ModalDenuncia from '../../../cuidador/denuncia/denuncia';
+
 function CardUsaurio({ nome, descricao, idade, favoritado, handleToggleFavorite, tipoUsuario, idUsuario, usuarioDenunciador, usuarioDenunciado }) {
     const navigate = useNavigate();
     const [openModal, setOpenModal] = useState(false);
@@ -68,7 +77,7 @@ function CardUsaurio({ nome, descricao, idade, favoritado, handleToggleFavorite,
                                 {"RESPONSAVEL" === localStorage.getItem("tipoUsuario") && (
                                     <Checkbox
                                         defaultChecked={favoritado}
-                                        {...label}
+                                        {...Label}
                                         icon={<FavoriteBorder />}
                                         checkedIcon={<Favorite />}
                                         onClick={handleFavoriteToggle}
