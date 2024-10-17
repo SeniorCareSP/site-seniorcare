@@ -7,8 +7,9 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import apiCuidador from '../../../../api/Usuario/apiCuidador';
+import Flag from '../../../../utils/assets/Empty Flag.png';
 import apiResponsavel from '../../../../api/Usuario/apiResponsavel';
-import { Favorite, FavoriteBorder, Flag, Label } from '@mui/icons-material';
+import { Favorite, FavoriteBorder, Label } from '@mui/icons-material';
 import ModalDenuncia from '../../../cuidador/denuncia/denuncia';
 
 function CardUsaurio({ nome, descricao, idade, favoritado, handleToggleFavorite, tipoUsuario, idUsuario, usuarioDenunciador, usuarioDenunciado }) {
@@ -61,7 +62,7 @@ function CardUsaurio({ nome, descricao, idade, favoritado, handleToggleFavorite,
         <>
             <div className={Style["cardUsuario"]}>
                 <Stack direction="column" spacing={0}>
-                    <img src="" alt="" />
+                    <img src={imagemSrc} alt="Imagem do usuário" />
                     <Stack direction="row" spacing={3}>
                         <Stack direction="column" spacing={1} padding={2}>
                             <h3>{nome}</h3>
@@ -73,7 +74,7 @@ function CardUsaurio({ nome, descricao, idade, favoritado, handleToggleFavorite,
                         </Stack>
                         <Stack direction="column-reverse">
                             <Stack direction="row">
-                                <img src={Flag} alt="Denunciar" onClick={handleOpenModal} style={{ cursor: 'pointer' }} />
+                            <img src={Flag} alt="Denunciar" onClick={handleOpenModal} style={{ cursor: 'pointer' }} />
                                 {"RESPONSAVEL" === localStorage.getItem("tipoUsuario") && (
                                     <Checkbox
                                         defaultChecked={favoritado}

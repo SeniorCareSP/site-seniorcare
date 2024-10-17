@@ -1,5 +1,5 @@
 import Style from './Cadastro.module.css';
-import CadastroUsuario1 from '../../components/eleCadastro/CadastroUsario1';
+import CadastroUsuario1 from '../../components/eleCadastro/CadastroUsuario1';
 import ImgLogin from '../../components/eleLogin/ImgLogin';
 function Cadastro(){
 

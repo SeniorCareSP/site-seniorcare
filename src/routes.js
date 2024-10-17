@@ -47,6 +47,8 @@ function Router() {
 
 
         <Route path="/login" element={<Login />} />
+
+        
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path='/cadastro2' element={<Cadastro2 />} />
         <Route path='/cadastro3' element={<Cadastro3 />} />
@@ -54,6 +56,9 @@ function Router() {
         <Route path='/cadastro/cuidador2' element={<Cuidador2 />} />
         <Route path='/cadastro/cuidador3' element={<Cuidador3 />} />
         <Route path='/cadastro/concluido' element={<Finalizado />} />
+
+
+
         <Route path='/procurar' element={<Procurar/>} />
         <Route path='/favoritos' element={<Favorito/>} />
         <Route path='/geo' element={<Mapa/>} />

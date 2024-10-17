@@ -6,7 +6,8 @@ import Title from '../tituloCadastro/Title';
 import ButtonAzul from '../botao/BotaoAzul';
 import ButtonBranco from '../botao/BotaoBranco';
 import Calendario from '../calendario/Calendario';
-import api from "../../api/Usuario/apiCuidador";
+import apiCuidador from "../../api/Usuario/apiCuidador";
+import apiResponsavel from '../../api/Usuario/apiResponsavel';
 import axios from 'axios'; // Importar o axios
 
 function CadastroCuidador3() {
@@ -14,6 +15,8 @@ function CadastroCuidador3() {
     const [calendario, setCalendario] = React.useState(Array(7).fill().map(() => Array(3).fill(false)));
     const [selectedFile, setSelectedFile] = useState(null);
     const [filename, setFilename] = useState('');
+    const [response, setResponse] = useState('');
+    const [idUsuario, setIdUsuario] = useState('');
 
     const handleSave = async () => {
         try {
@@ -21,49 +24,59 @@ function CadastroCuidador3() {
 
             if (dadosCadastro) {
                 const json = JSON.parse(dadosCadastro);
-
                 json.agendas = { "disponibilidade": calendario };
-
                 localStorage.setItem("cadastro", JSON.stringify(json));
 
                 if (selectedFile) {
-                    // Salvar a imagem usando localStorage
                     localStorage.setItem('imagem', selectedFile);
 
-                    const formData = new FormData();
-                    formData.append('file', selectedFile);
-
-                    const response = await api.post('', json);
-                    const idUsuario = response.data.idUsuario; // Suponha que a resposta contenha o ID do usuário
-                    console.log(response);
-                    setFilename(idUsuario);
-
-                    const responseCadastroImagem = await axios.post(`http://localhost:8080/files/upload?filename=${idUsuario}.jpg`, formData, {
-                        headers: {
-                            'Content-Type': 'multipart/form-data'
+                    try {
+                        let response;
+                        if (json.tipoDeUsuario === "RESPONSAVEL") {
+                            response = await apiResponsavel.post('', json);
+                        } else {
+                            response = await apiCuidador.post('', json);
                         }
-                    });
+                        
+                        const idUsuario = response.data.idUsuario;
+                        setIdUsuario(idUsuario);
 
-                    localStorage.clear();
-                    console.log("Cadastro feito com sucesso!");
-                    // navigate("/login");
+                        const formData = new FormData();
+                        
+                        formData.append('file', selectedFile, `${idUsuario}.jpg`);
+
+                        try {
+                            await axios.post(
+                                `http://localhost:8080/files/upload?filename=${idUsuario}.jpg`, 
+                                formData, 
+                                { headers: { 'Content-Type': 'multipart/form-data' } }
+                            );
+                        } catch (error) {
+                            alert("Erro ao enviar a imagem.");
+                            console.error('Erro ao enviar a imagem:', error);
+                            return;
+                        }
+
+                        localStorage.removeItem('imagem');
+                        localStorage.clear();
+                        console.log("Cadastro feito com sucesso!");
+                        navigate("/login");
+                    } catch (error) {
+                        alert("Erro ao salvar os dados do usuário.");
+                        console.error('Erro ao salvar os dados do usuário:', error);
+                    }
                 } else {
-                    // Caso não tenha imagem selecionada
-                    const response = await api.post('', json);
-                    const idUsuario = response.data.idUsuario; // Suponha que a resposta contenha o ID do usuário
-                    console.log(response);
-                    setFilename(idUsuario);
-
-                    localStorage.clear();
-                    console.log("Cadastro feito com sucesso!");
-                    // navigate("/login");
+                    alert("Por favor, selecione uma imagem.");
+                    console.log("Erro: Nenhuma imagem foi selecionada.");
                 }
             }
         } catch (error) {
-            console.error('Erro ao salvar imagem:', error);
-            // Lidar com o erro de forma adequada
+            alert("Erro ao processar os dados de cadastro.");
+            console.error('Erro ao processar os dados de cadastro:', error);
         }
     };
+
+
 
     const handleFileChange = (event) => {
         setSelectedFile(event.target.files[0]);

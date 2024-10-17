@@ -115,22 +115,19 @@ function Procurar() {
     
       <Navbar />
       <div className={Style["procura"]}>
-      <CardUsuario/>
         <div className={Style["cards"]}>
           {cardsData.map((data, index) => (
             <div key={index}>
-              <Card
-                nome={data.nome}
-                descricao={data.apresentacao}
-                idade={calcularIdade(data.dtNascimento)}
-                favoritado={data.favoritado}
-                handleToggleFavorite={() => handleFavoriteToggle(data.idUsuario)} // Passa a função handleFavoriteToggle com o ID do cuidador como argumento
-                tipoUsuario = {data.tipoDeUsuario}
-                idUsuario={data.idUsuario}
-                usuarioDenunciador={idUsuario}
-                usuarioDenunciado={data.idUsuario}
-
-              />
+                    <CardUsuario
+                    nome={data.nome}
+                    descricao={data.apresentacao}
+                    idade={calcularIdade(data.dtNascimento)}
+                    favoritado={data.favoritado}
+                    handleToggleFavorite={() => handleFavoriteToggle(data.idUsuario)} // Passa a função handleFavoriteToggle com o ID do cuidador como argumento
+                    tipoUsuario = {data.tipoDeUsuario}
+                    idUsuario={data.idUsuario}
+                    usuarioDenunciador={idUsuario}
+                    usuarioDenunciado={data.idUsuario}/>
             </div>
           ))}
         </div>
