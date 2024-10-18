@@ -79,12 +79,12 @@ function CadastroCuidador3() {
 
 
     const handleBack = () => {
-        console.log(dadosCadastro.tipoDeUsuario);
-        // if (json.tipoDeUsuario === "CUIDADOR") {
-        //     navigate("/cadastro/cuidador2");
-        // } else {
-        //     navigate("/cadastro2");
-        // }
+        // console.log(dadosCadastro.tipoDeUsuario);
+        if (dadosCadastro.tipoDeUsuario === "CUIDADOR") {
+            navigate("/cadastro/cuidador2");
+        } else {
+            navigate("/cadastro3");
+        }
     };
 
 
