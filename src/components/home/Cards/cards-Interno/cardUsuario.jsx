@@ -12,7 +12,7 @@ import apiResponsavel from '../../../../api/Usuario/apiResponsavel';
 import { Favorite, FavoriteBorder, Label } from '@mui/icons-material';
 import ModalDenuncia from '../../../cuidador/denuncia/denuncia';
 
-function CardUsaurio({ nome, descricao, idade, favoritado, handleToggleFavorite, tipoUsuario, idUsuario, usuarioDenunciador, usuarioDenunciado }) {
+function CardUsaurio({ nome, descricao, idade, favoritado, handleToggleFavorite, tipoUsuario, idUsuario, usuarioDenunciador, usuarioDenunciado, distancia }) {
     const navigate = useNavigate();
     const [openModal, setOpenModal] = useState(false);
     const [imagemSrc, setImagemSrc] = useState(null);
@@ -63,18 +63,18 @@ function CardUsaurio({ nome, descricao, idade, favoritado, handleToggleFavorite,
             <div className={Style["cardUsuario"]}>
                 <Stack direction="column" spacing={0}>
                     <img src={imagemSrc} alt="Imagem do usuário" />
-                    <Stack direction="row" spacing={3}>
+                    <Stack direction="row" spacing={8}>
                         <Stack direction="column" spacing={1} padding={2}>
                             <h3>{nome}</h3>
                             <p>{descricao}</p>
-                            <p>distancia</p>
+                            <p>{distancia}</p>
                             <BtnAzulS variant="contained" onClick={() => dadosDoUsuario(idUsuario, tipoUsuario)}>
                                 Ver perfil
                             </BtnAzulS>
                         </Stack>
-                        <Stack direction="column-reverse">
-                            <Stack direction="row">
-                            <img src={Flag} alt="Denunciar" onClick={handleOpenModal} style={{ cursor: 'pointer' }} />
+                        <Stack direction="column-reverse" paddingBottom={2}>
+                            <Stack direction="row-reverse" justifyContent="center">
+                            <img src={Flag} alt="Denunciar" onClick={handleOpenModal} style={{ cursor: 'pointer', width: '100%', height:'100%'}} />
                                 {"RESPONSAVEL" === localStorage.getItem("tipoUsuario") && (
                                     <Checkbox
                                         defaultChecked={favoritado}

@@ -69,10 +69,9 @@ function Navbar() {
                         <a onClick={() => navigate("/chat")}>Conversas</a>
                     </div>
                     <div className={Style["cadastro"]}>
-                        {/* <img className={`${Style["icon"]} ${Style["perfil-icon"]}`} src={Door} alt="Logout" onClick={handleLogout} /> */}
                         <Tooltip title="Account settings">
-                            <IconButton onClick={handleMenuClick} size="small" sx={{ ml: 2 }}>
-                                <Avatar src={ imagemSrc || Perfil} alt="Perfil" sx={{ width: 50, height: 50 }} />
+                            <IconButton onClick={handleMenuClick} size="small" >
+                                <img src={ imagemSrc || Perfil} alt="Perfil"/>
                             </IconButton>
                         </Tooltip>
                         <Menu

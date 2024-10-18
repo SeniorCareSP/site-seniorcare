@@ -8,4 +8,6 @@
 .cardUsuario img{
     width: 100%;
     height: 32vh;
+    border-top-left-radius: 2vh;
+    border-top-right-radius: 2vh;
 }

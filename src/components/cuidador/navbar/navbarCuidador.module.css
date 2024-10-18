@@ -74,15 +74,14 @@
      
 }
 
- .header .cadastro a{
-        margin-right: 3vh;
-        text-decoration: underline;
-    }
+.header .cadastro a{
+    margin-right: 3vh;
+    text-decoration: underline;
+}
 
-.header .cadastro  img{
-         width: 5.6vh;
-        height: 7vh;
-      
+.header .cadastro img{
+    width: 4vw;
+    height: 8vh;
  }
 
 .header .cadastro .icon{
