@@ -1,4 +1,4 @@
-import EleAtualizarPerfil from "../../components/eleConfig/EleAtualizarPerfil";
+import EleAtualizarPerfil from "../../components/eleConfig/EditarReponsavel";
 
 function AtualizarPerfil(){
     return(

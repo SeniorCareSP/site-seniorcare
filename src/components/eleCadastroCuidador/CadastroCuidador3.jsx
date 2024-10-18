@@ -17,10 +17,11 @@ function CadastroCuidador3() {
     const [filename, setFilename] = useState('');
     const [response, setResponse] = useState('');
     const [idUsuario, setIdUsuario] = useState('');
+    const dadosCadastro = localStorage.getItem("cadastro");
 
     const handleSave = async () => {
+
         try {
-            const dadosCadastro = localStorage.getItem("cadastro");
 
             if (dadosCadastro) {
                 const json = JSON.parse(dadosCadastro);
@@ -77,6 +78,15 @@ function CadastroCuidador3() {
     };
 
 
+    const handleBack = () => {
+        console.log(dadosCadastro.tipoDeUsuario);
+        // if (json.tipoDeUsuario === "CUIDADOR") {
+        //     navigate("/cadastro/cuidador2");
+        // } else {
+        //     navigate("/cadastro2");
+        // }
+    };
+
 
     const handleFileChange = (event) => {
         setSelectedFile(event.target.files[0]);
@@ -102,7 +112,7 @@ function CadastroCuidador3() {
                         <Calendario onChange={setCalendario} />
 
                         <ButtonAzul onClick={handleSave}>Concluir</ButtonAzul>
-                        <ButtonBranco onClick={() => navigate("/cadastro/cuidador2")}>Voltar</ButtonBranco>
+                        <ButtonBranco onClick={handleBack}>Voltar</ButtonBranco>
                     </Stack>
                 </Stack>
             </div>

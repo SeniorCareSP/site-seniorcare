@@ -10,6 +10,7 @@ import apiResponsavel from '../../api/Usuario/apiResponsavel';
 import axios from 'axios';
 import Calendario from '../calendario/Calendario';
 import CalendarioPerfil from '../calendario/CalendarioPerfil';
+import Voltar from "../../utils/assets/setaVoltar.png"
 
 function EleAtualizarPerfil() {
     const [nome, setNome] = useState("");
@@ -106,7 +107,7 @@ function EleAtualizarPerfil() {
             <div className={Style["corpo"]}>
                 <Stack spacing={2} display="flex" direction="row" justifyContent="space-around" className={Style["ajuste"]}>
                     <div className={Style["img"]}>
-                        <img src="" alt="" width="45vh" height="35vh" />
+                        <img src={Voltar} alt="" width="45vh" height="35vh" />
                         <span>Voltar</span>
                     </div>
                 </Stack>

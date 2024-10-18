@@ -47,7 +47,7 @@ function CadastroUsuario3() {
                 localStorage.setItem("cadastro", JSON.stringify(json));
 
                 if (json.tipoDeUsuario === "RESPONSAVEL") {
-                    navigate("/cadastro/cuidador3");
+                    navigate("/cadastro/cuidador3");    
                 } else if (json.tipoDeUsuario === "CUIDADOR") {
                     console.log("Requisição para cadastrar cuidador");
                     navigate("/cadastro/cuidador");
@@ -62,7 +62,7 @@ function CadastroUsuario3() {
     React.useEffect(() => {
         console.log("Valor de idioma:", idioma);
     }, [idioma]);
-
+    
     return (
         <div className={Style["card-cadastro"]}>
             <div className={Style["linha"]}></div>

@@ -1,4 +1,4 @@
-import AtualizarPerfilCuidador from "../../components/editaCuidador/EditaCuidador";
+import AtualizarPerfilCuidador from "../../components/editaCuidador/EditarCuidador";
 
 function editaIdoso(){
     return(
