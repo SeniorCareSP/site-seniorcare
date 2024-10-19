@@ -57,12 +57,13 @@ function CardUsaurio({ nome, descricao, idade, favoritado, handleToggleFavorite,
             const response = await apiCuidador.get(`/${idUsuario}`);
             data = response.data;
             localStorage.setItem("dadosUsuario", JSON.stringify(data));
-            navigate("/usuarios/perfil");
+            navigate("/usuarios/perfilCuidador");       
         } else {
             const response = await apiResponsavel.get(`/${idUsuario}`);
             data = response.data;
             localStorage.setItem("dadosUsuario", JSON.stringify(data));
-            navigate("/usuarios/perfilCuidador");       
+            navigate("/usuarios/perfil");
+
         }
     }
 
