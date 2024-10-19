@@ -1,4 +1,4 @@
-.container2 {
+/* .container2 {
     width: 100%;
     height: 100%;
     background-color: #ffffff;
@@ -19,7 +19,63 @@ background-color: aqua;
     display: flex;
     align-items: center;
     margin-left:3vh ;
+  } */
+
+
+  .container2 {
+    width: 100%;
+    min-height: 100%;
+    background-color: #ffffff;
+    margin: 0 auto;
   }
+  
+  .container2 .tela {
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  
+  .cardsInfo {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: "2vh";
+    height: auto;
+    background-color: rgb(255, 255, 255);
+    border-radius: 0px;
+    box-shadow: 5px 5px 10px #222222;
+    display: flex;
+    align-items: center;
+    margin-left: 3vh;
+    overflow: auto;
+  }
+  
+  @media (max-width: 768px) {
+    .cardsInfo {
+      flex-direction: column;
+      width: 100%;
+      padding: 2vh;
+    }
+  
+    .container2 .tela {
+      flex-direction: column;
+      padding: 2vh;
+    }
+  }
+  
+  @media (max-width: 1200px) {
+    .cardsInfo {
+      flex-direction: column;
+      width: 100%;
+      padding: 2vh;
+    }
+  
+    .container2 .tela {
+      flex-direction: column;
+      padding: 2vh;
+    }
+  }
+  
   /*
 
   */
