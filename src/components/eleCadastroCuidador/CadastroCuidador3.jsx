@@ -6,6 +6,7 @@ import Title from '../tituloCadastro/Title';
 import ButtonAzul from '../botao/BotaoAzul';
 import ButtonBranco from '../botao/BotaoBranco';
 import Calendario from '../calendario/Calendario';
+import apiUsuario from "../../api/Usuario/apiUsuario";
 import apiCuidador from "../../api/Usuario/apiCuidador";
 import apiResponsavel from '../../api/Usuario/apiResponsavel';
 import axios from 'axios'; // Importar o axios
@@ -79,7 +80,6 @@ function CadastroCuidador3() {
 
 
     const handleBack = () => {
-        // console.log(dadosCadastro.tipoDeUsuario);
         if (dadosCadastro.tipoDeUsuario === "CUIDADOR") {
             navigate("/cadastro/cuidador2");
         } else {

@@ -6,6 +6,7 @@ import SelectMax from "../../components/cuidador/select/selectIdoso";
 import SelectIdade from "../../components/cuidador/select/selecIdade";
 import SelectTrabalho from "../../components/cuidador/select/selectPeriodo";
 import Remover from "../../components/cuidador/checkbox/Button";
+import apiUsuario from "../../api/Usuario/apiUsuario";
 import apiCuidador from "../../api/Usuario/apiCuidador";
 import apiResponsavel from "../../api/Usuario/apiResponsavel";
 import apiFavorito from "../../api/Usuario/apiFavoritar";
@@ -22,21 +23,21 @@ function Procurar() {
 
   async function recuperarValorDoCard() {
     let data;
-
+  
     try {
       if (tipoDeUsuario === "CUIDADOR") {
-        const response = await apiResponsavel.get();
+        const response = await apiUsuario.get(`/listarDistanciaDoCuidador/${idUsuario}`);
         data = response.data;
       } else {
-        const response = await apiCuidador.get();
+        const response = await apiUsuario.get(`/listarDistanciaDoResponsavel/${idUsuario}`);
         data = response.data;
       }
-
+      console.log(data)
       const updatedData = await Promise.all(data.map(async (card) => {
         const favoritado = await verificarFavorito(card.idUsuario);
         return { ...card, favoritado };
       }));
-
+  
       setCardsData(updatedData);
     } catch (error) {
       console.log("Deu erro, tente novamente!");
@@ -119,6 +120,7 @@ function Procurar() {
           {cardsData.map((data, index) => (
             <div key={index}>
                     <CardUsuario
+                    distancia= {data.distancia}
                     nome={data.nome}
                     descricao={data.apresentacao}
                     idade={calcularIdade(data.dtNascimento)}

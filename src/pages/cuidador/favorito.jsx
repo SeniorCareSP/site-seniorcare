@@ -1,14 +1,14 @@
 import Style from './cuidador.module.css';
 import Navbar from '../../components/cuidador/navbar/navbarCuidador';
-import Card from '../../components/home/Cards/cards-Interno/cardInterno';
 import moment from 'moment';
 import Img from '../../utils/assets/Heart.png';
-import apiResponsavel from "../../api/Usuario/apiResponsavel";
 import apiFavorito from "../../api/Usuario/apiFavoritar";
 import React, { useState, useEffect } from "react";
 import ButtonAzulEscuro from '../../components/botao/BotaoAzulEscuro';
 import { useNavigate } from "react-router-dom";
-
+import CardUsuario from "../../components/home/Cards/cards-Interno/cardUsuario";
+import apiUsuario from "../../api/Usuario/apiUsuario";
+import apiResponsavel from '../../api/Usuario/apiResponsavel';
 function Favoritos() {
     const [cardsData, setCardsData] = useState([]);
     const navigate = useNavigate();
@@ -22,12 +22,11 @@ function Favoritos() {
         try {
             const response = await apiResponsavel.get(`/${idUsuario}`);
             const data = response.data.favoritos.map(fav => fav.cuidadorFavoritado);
-
             setCardsData(data);
         } catch (error) {
             console.log("Deu erro, tente novamente!", error);
         }
-    }
+    }   
 
     function calcularIdade(dataNascimento) {
         const hoje = moment();
@@ -40,7 +39,6 @@ function Favoritos() {
             console.error("Id do usuário não encontrado no localStorage.");
             return;
         }
-
         try {
             await apiFavorito.delete(`${idUsuario}/${idCuidador}`);
             console.log("Cuidador desfavoritado.");
@@ -69,14 +67,17 @@ function Favoritos() {
                     <div className={Style["cards"]}>
                         {cardsData.map((data, index) => (
                             <div key={index}>
-                                <Card
+                                <CardUsuario
+                                    distancia={data.distancia}
                                     nome={data.nome}
                                     descricao={data.apresentacao}
                                     idade={calcularIdade(data.dtNascimento)}
-                                    favoritado={true}
+                                    favoritado={data.favoritado}
                                     handleToggleFavorite={() => handleFavoriteToggle(data.idUsuario)}
                                     tipoUsuario={data.tipoDeUsuario}
                                     idUsuario={data.idUsuario}
+                                    usuarioDenunciador={idUsuario}
+                                    usuarioDenunciado={data.idUsuario}
                                 />
                             </div>
                         ))}
@@ -86,7 +87,6 @@ function Favoritos() {
             </div>
         </>
     );
-    
 }
 
 export default Favoritos;

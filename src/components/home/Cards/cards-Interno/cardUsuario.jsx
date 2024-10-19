@@ -16,6 +16,7 @@ function CardUsaurio({ nome, descricao, idade, favoritado, handleToggleFavorite,
     const navigate = useNavigate();
     const [openModal, setOpenModal] = useState(false);
     const [imagemSrc, setImagemSrc] = useState(null);
+    const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
     useEffect(() => {
         async function fetchImage() {
@@ -33,17 +34,38 @@ function CardUsaurio({ nome, descricao, idade, favoritado, handleToggleFavorite,
         fetchImage();
     }, [idUsuario]);
 
+    function formatarDistancia(distancia) {
+        if (!distancia) {
+            return '';
+        }
+
+        const km = Math.floor(distancia);
+        const metros = Math.round((distancia - km) * 1000);
+
+        if (km > 0) {
+            return `${km} km`;
+        } else {
+            return `${metros} m`;
+        }
+    }
+
+
+
     async function dadosDoUsuario(idUsuario, tipo) {
         let data;
         if (tipo === "CUIDADOR") {
             const response = await apiCuidador.get(`/${idUsuario}`);
             data = response.data;
+            localStorage.setItem("dadosUsuario", JSON.stringify(data));
+            navigate("/usuarios/perfil");
+
+
         } else {
             const response = await apiResponsavel.get(`/${idUsuario}`);
             data = response.data;
+            localStorage.setItem("dadosUsuario", JSON.stringify(data));
+            navigate("/usuarios/perfilCuidador");
         }
-        localStorage.setItem("dadosUsuario", JSON.stringify(data));
-        navigate("/usuarios/perfil");
     }
 
     const handleOpenModal = () => {
@@ -55,7 +77,7 @@ function CardUsaurio({ nome, descricao, idade, favoritado, handleToggleFavorite,
     };
 
     const handleFavoriteToggle = () => {
-        handleToggleFavorite(idUsuario); // Chama a função para favoritar/desfavoritar o usuário com o idUsuario
+        handleToggleFavorite(idUsuario); 
     };
 
     return (
@@ -67,32 +89,33 @@ function CardUsaurio({ nome, descricao, idade, favoritado, handleToggleFavorite,
                         <Stack direction="column" spacing={1} padding={2}>
                             <h3>{nome}</h3>
                             <p>{descricao}</p>
-                            <p>{distancia}</p>
+                            <p>Distância: {formatarDistancia(distancia)}</p>
                             <BtnAzulS variant="contained" onClick={() => dadosDoUsuario(idUsuario, tipoUsuario)}>
                                 Ver perfil
                             </BtnAzulS>
                         </Stack>
                         <Stack direction="column-reverse" paddingBottom={2}>
                             <Stack direction="row-reverse" justifyContent="center">
-                            <img src={Flag} alt="Denunciar" onClick={handleOpenModal} style={{ cursor: 'pointer', width: '100%', height:'100%'}} />
+                                <img src={Flag} alt="Denunciar" onClick={handleOpenModal} style={{ cursor: 'pointer', width: '100%', height: '100%' }} />
                                 {"RESPONSAVEL" === localStorage.getItem("tipoUsuario") && (
                                     <Checkbox
-                                        defaultChecked={favoritado}
-                                        {...Label}
-                                        icon={<FavoriteBorder />}
-                                        checkedIcon={<Favorite />}
-                                        onClick={handleFavoriteToggle}
-                                    />
+                                    defaultChecked={favoritado}
+                                    {...label}
+                                    icon={<FavoriteBorder />}
+                                    checkedIcon={<Favorite />}
+                                    onClick={handleFavoriteToggle}
+                                />
                                 )}
                             </Stack>
                         </Stack>
                     </Stack>
                 </Stack>
+                <ModalDenuncia open={openModal} handleClose={handleCloseModal}
+                    usuarioDenunciador={usuarioDenunciador}
+                    usuarioDenunciado={usuarioDenunciado}
+                />
             </div>
-            <ModalDenuncia open={openModal} handleClose={handleCloseModal}
-                usuarioDenunciador={usuarioDenunciador}
-                usuarioDenunciado={usuarioDenunciado}
-            />
+
         </>
     );
 }
