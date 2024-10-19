@@ -1,98 +1,113 @@
 /* font */
-
 @font-face {
     font-family: josefin;
     src: url(../../../utils/font/JosefinSlab-Italic-VariableFont_wght.ttf);
-  }
+}
 
-  @font-face {
+@font-face {
     font-family: spartan;
     src: url(../../../utils/font/LeagueSpartan-VariableFont_wght.ttf);
-  }
+}
 
-
-.logo{
+.logo {
     background-image: url(../../../utils/assets/logo.png);
-    background-size: 100%;
-    width: 40vh;
+    background-size: contain; /* Mantém a proporção */
+    width: 10%;
     height: 10vh;
+    background-repeat: no-repeat; /* Impede a repetição da imagem */
+}
+/* Adicione isso ao seu CSS existente */
+
+.selected {
+    color: black !important; /* Cor do texto para a aba selecionada */
+    font-weight: bold; /* Pode ser negrito ou outro estilo para destaque */
+    border-bottom: 2px solid #80C1DE; /* Adiciona uma linha inferior para indicar seleção */
+
 }
 
 /* header/navbar */
-
-.header{
+.header {
     background-color: #077DB0;
-    padding: 1vh;
-    padding-right: 3vh;
+    padding: 1vh 3vh; /* Padding uniforme */
     height: 7vh;
     display: flex;
-    border-bottom: 0.2vh #ffff solid;
-    justify-content: space-between;
+    justify-content: space-between; /* Espaço entre logo e opções */
     align-items: center;
+    border-bottom: 0.2vh solid #ffff; /* Correção da ordem da cor */
 }
 
-.header div{
+.header .opcoes {
     display: flex;
-    justify-content: space-between;
-    width: 100%;
-    text-align: center;
+    justify-content: space-evenly; /* Centraliza o conteúdo dentro das opções */
     align-items: center;
+    flex-grow: 1; /* Permite que essa seção ocupe o espaço restante */
 }
 
-.header img{
-    width: 15vw;
-}
-
-.header div a{
+.header .opcoes a {
     text-decoration: none;
     font-size: 3vh;
     font-weight: 500;
-    color: #ffff;
-}
-/* 
-.header div button{
-    background-color: #ffff;
-    color: #80C1DE;
-    border-radius: 0.8vh;
-    border: 0;
-    width: 7vw;
-    height: 5.5vh;
     cursor: pointer;
-} */
-
-.header .opcoes{
-    margin-left: 21vw;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+    color: #ffff;
+    margin: 0 15px; /* Espaçamento uniforme entre os links */
+    transition: color 0.3s; /* Adiciona uma transição suave */
 }
 
-.header .cadastro{
-    display: flex;
-    align-items: end;
-    justify-content: end;
-     
+.header .opcoes a:hover {
+    color: #80C1DE; /* Mudança de cor ao passar o mouse */
 }
 
-.header .cadastro a{
-    margin-right: 3vh;
+.header .cadastro {
+    display: flex;
+    align-items: center; /* Alinha verticalmente os itens */
+    justify-content: flex-end; /* Alinha itens à direita */
+    margin-left: auto; /* Para empurrar a seção de cadastro para a direita */
+}
+
+.header .cadastro img {
+    width: 4vw;           /* Largura da imagem */
+    height: 4vw;          /* Altura da imagem */
+    border-radius: 50%;   /* Faz a imagem ficar circular */
+    object-fit: cover;    /* Corta a imagem para preencher o espaço sem distorção */
+    margin-left: 10px;    /* Espaço à esquerda da imagem de perfil */
+    transition: transform 0.3s; /* Adiciona uma transição suave ao hover */
+}
+
+.header .cadastro img:hover {
+    transform: scale(1.1);  /* Levemente aumenta a imagem no hover */
+    cursor: pointer;         /* Muda o cursor para indicar interatividade */
+}
+
+.header .cadastro a {
+    margin-right: 3vh; /* Espaçamento à direita do link */
     text-decoration: underline;
+    color: #ffff; /* Garante que a cor do link na seção de cadastro seja branca */
 }
 
-.header .cadastro img{
-    width: 4vw;
-    height: 8vh;
- }
-
-.header .cadastro .icon{
-    width: 4vh;
-     height: 4vh;
-     padding-bottom: 1.5vh;
-  }
-
-  .icon {
+.icon {
     width: 2px; /* Largura desejada */
     height: 32px; /* Altura desejada */
     object-fit: contain; /* Para manter a proporção da imagem */
 }
 
+/* Responsividade */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column; /* Altera a direção para coluna em telas pequenas */
+        height: auto; /* Ajusta a altura */
+    }
+
+    .header .opcoes {
+        flex-direction: column; /* Coloca os links em coluna */
+        align-items: center; /* Centraliza os links */
+    }
+
+    .header .opcoes a {
+        margin: 10px 0; /* Espaço vertical entre os links */
+    }
+
+    .header .cadastro {
+        justify-content: center; /* Centraliza os itens na seção de cadastro */
+        margin-top: 10px; /* Espaço superior para separar da seção de links */
+    }
+}
