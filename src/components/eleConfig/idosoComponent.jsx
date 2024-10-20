@@ -113,7 +113,6 @@ function ElderList({ idosos, setIdosos }) {
     </div>
   );
 }
-// Função para calcular a idade com base na data de nascimento
 function calculateAge(birthday) {
   const ageDate = new Date(Date.now() - new Date(birthday).getTime());
   return Math.abs(ageDate.getUTCFullYear() - 1970);

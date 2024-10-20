@@ -3,6 +3,8 @@ import { Box, Stack, Typography, Button, Checkbox } from '@mui/material';
 import Styles from './perfil.modules.css';
 import Navbar from '../cuidador/navbar/navbarCuidador';
 import IconChat from '../../utils/assets/Chat.png';
+import Grid from '@mui/material/Grid';
+
 import IMG from '../../utils/assets/Rectangle 53.png';
 import Senhor from '../../utils/assets/Senhor.png';
 import Favorite from '@mui/icons-material/Favorite';
@@ -103,6 +105,7 @@ function Perfil2() {
             textAlign: 'center' // Para centralizar o texto
 
           }}>
+            
           <img src={imagemSrc || IMG} alt="" style={{
             maxWidth: '100%',
             height: 'auto',
@@ -134,18 +137,6 @@ function Perfil2() {
           >
             Conversar
           </Button>
-          {/* Igor -Trocar pela descricao do Responsável*/}
-          {usuario.idosos && usuario.idosos.map((idoso, index) => (
-            <Box key={index} display="flex" flexDirection="column" alignItems="center" marginTop="2vh">
-              <Box display="flex" alignItems="center">
-                <img src={Senhor} alt="" width="60vw" />
-                <Typography marginLeft="1vh">{idoso.nome}</Typography>
-              </Box>
-              <Typography width="15vw" marginTop="2vh" textAlign="center">
-                {idoso.descricao}
-              </Typography>
-            </Box>
-          ))}
         </Box>
 
 
@@ -159,33 +150,102 @@ function Perfil2() {
           padding: "4vh"
         }}>
 
+
           <Tabs>
             <TabList>
-              <Tab
-                variant="soft"
-                color="primary" sx={{ minWidth: '4vh', fontSize: '2vh', }}>1 -Idoso</Tab>
-            </TabList>
-            <TabPanel value={0}>
-              {/* Aqui vai todas informações do idoso 1 */}
-            </TabPanel>
-          </Tabs>
-          <Stack direction="row" spacing={7} justifyContent="space-between" sx={{ marginBottom: '2vh' }}>
-            <Stack width="38vh">
-              <Typography sx={{ color: '#077DB0', fontSize: '2.3vh' }}>Nome do Idoso - Idade</Typography>
-              <Typography>
-                {usuario.apresentacao}
-              </Typography>
-            </Stack>
-
-
-            <Stack width="23vh">
-              <Typography sx={{ color: '#077DB0', fontSize: '2.3vh' }}>Idiomas</Typography>
-              {usuario.idiomas.map(idioma => (
-                <Typography key={idioma.idIdioma}>
-                  {idioma.idioma}
-                </Typography>
+              {usuario.idosos && usuario.idosos.map((idoso, index) => (
+                <Tab
+                  key={index}
+                  variant="soft"
+                  color="primary"
+                  sx={{ minWidth: '4vh', fontSize: '2vh' }}
+                >
+                  {index + 1} - {idoso.nome} {/* Nome do idoso na aba */}
+                </Tab>
               ))}
-            </Stack>
+            </TabList>
+
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                padding: '1.5vh',
+                flexGrow: 1
+              }}
+            >
+              {usuario.idosos && usuario.idosos.map((idoso, index) => (
+                <Box key={index} sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+                  <TabPanel value={index} sx={{ height: '100%', display: 'flex', flexDirection: 'column', padding: 0 }}>
+                    <Stack direction="row" spacing={2} sx={{ flexGrow: 1 }}>
+                      <Box sx={{ flexGrow: 1 }}>
+                        <Typography
+                          sx={{ color: '#077DB0', fontSize: '2.5vh', fontWeight: 'bold' }}
+                        >
+                          Nome: {idoso.nome} - Idade: {calcularIdade(idoso.dtNasc)} anos
+                        </Typography>
+                        <Box
+                          sx={{
+                            backgroundColor: '#f0f4f8',
+                            padding: '1.5vh',
+                            borderRadius: '8px',
+                            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                            height: '100%',
+                          }}
+                        >
+                          <Box>
+                            <Typography variant="body1">
+                              <strong>Descrição:</strong> {idoso.descricao}
+                            </Typography>
+                            <Typography variant="body1">
+                              <strong>Doenças Crônicas:</strong> {idoso.doencasCronicas}
+                            </Typography>
+                            <Typography variant="body1">
+                              <strong>Gênero:</strong> {idoso.genero || "Não informado"}
+                            </Typography>
+                            <Typography variant="body1">
+                              <strong>Data de Nascimento:</strong> {idoso.dtNasc}
+                            </Typography>
+                          </Box>
+                          <Box>
+                            <Typography variant="body1">
+                              <strong>Cuidados Mínimos:</strong> {idoso.cuidadosMin ? "Sim" : "Não"}
+                            </Typography>
+                            <Typography variant="body1">
+                              <strong>Lúcido:</strong> {idoso.lucido ? "Sim" : "Não"}
+                            </Typography>
+                            <Typography variant="body1">
+                              <strong>Mobilidade:</strong> {idoso.mobilidade ? "Sim" : "Não"}
+                            </Typography>
+                          </Box>
+                        </Box>
+                      </Box>
+
+                      <Stack width="23vh">
+                        <Typography sx={{ color: '#077DB0', fontSize: '2.3vh', fontWeight: 'bold' }}>Idiomas</Typography>
+                        {usuario.idiomas && usuario.idiomas.length > 0 ? (
+                          usuario.idiomas.map(idioma => (
+                            <Typography key={idioma.idIdioma}>
+                              {idioma.idioma}
+                            </Typography>
+                          ))
+                        ) : (
+                          <Typography>Nenhum idioma informado</Typography>
+                        )}
+                      </Stack>
+                    </Stack>
+                  </TabPanel>
+                </Box>
+              ))}
+            </Box>
+          </Tabs>
+
+
+
+
+          <Stack direction="row" spacing={7} justifyContent="space-between" sx={{ marginBottom: '2vh' }}>
+
+
+
 
             {localStorage.getItem('tipoUsuario') === 'RESPONSAVEL' && (
               <Stack width="23vh">

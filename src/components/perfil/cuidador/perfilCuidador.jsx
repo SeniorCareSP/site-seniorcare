@@ -105,6 +105,7 @@ function Perfil2() {
           }} />          <Typography variant="h6">
             {usuario.nome}, {calcularIdade(usuario.dtNascimento)} Anos
           </Typography>
+          
           <Box display="flex" alignItems="center">
             <img src={Flag} alt="" style={{ cursor: 'pointer', width: '3.2vh', height: '5vh', marginRight: '1vh' }} />
             {localStorage.getItem('tipoUsuario') === 'RESPONSAVEL' && (
