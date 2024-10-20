@@ -15,7 +15,7 @@ import ListagemDenuncia from './pages/admin/ListgemDenuncia.jsx';
 import CadastroAdm from './components/admCadastro/cadastroAdm.jsx';
 import Favorito from "./pages/cuidador/favorito.jsx";
 import AtualizarPerfil from './pages/confUser/AtualizarPerfil.jsx';
-import AtualizarPerfilCuidador from './pages/cuidador/Editar.jsx';  
+import AtualizarPerfilCuidador from './pages/cuidador/editar.jsx';  
 import AnaliseDocs from './pages/admin/AnaliseDocs.jsx';
 import Erro from './pages/404/erro.jsx';
 import Perfil from './pages/Perfil/perfil2.jsx';

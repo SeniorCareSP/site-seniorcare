@@ -153,10 +153,10 @@ function Perfil2() {
 
         {/*Informações do idoso e Tabs */}
         <Box display="flex" flexDirection="column" sx={{
-          width: '140vh',           // Largura do card
-          minHeight: '70vh',         // Altura do card
-          backgroundColor: 'rgb(255, 255, 255)', // Cor de fundo
-          borderRadius: '6px',    // Bordas do card
+          width: '140vh',           
+          minHeight: '70vh',         
+          backgroundColor: 'rgb(255, 255, 255)', 
+          borderRadius: '6px',    
           boxShadow: '4px 4px 10px 4px rgba(0, 0, 0, 0.2)',
           padding: "4vh"
         }}>
@@ -170,8 +170,8 @@ function Perfil2() {
               </Typography>
               <Typography
                 sx={{
-                  wordWrap: 'break-word',  // Quebra a palavra se ultrapassar a largura
-                  width: '100%',           // Ajusta a largura do texto
+                  wordWrap: 'break-word',  
+                  width: '100%',           
                   maxWidth: '25vh',       // Define um limite máximo para a largura do texto
                   overflowWrap: 'break-word' // Garante a quebra quando necessário
                 }}>

@@ -92,8 +92,9 @@ function Perfil2() {
         display="flex"
         flexDirection="row"
         justifyContent="space-around"
-        sx={{ paddingTop: '8vh', paddingLeft: '12vh', marginInline: '8vh' }}
+        sx={{ paddingTop: '5vh', paddingLeft: '12vh', marginInline: '8vh' }}
       >
+        {/* Css */}
         <Box display="flex" flexDirection="column" alignItems="center"
           sx={{
             marginRight: '2vh',
@@ -102,8 +103,8 @@ function Perfil2() {
             borderRadius: '6px',
             boxShadow: '4px 4px 10px 4px rgba(0, 0, 0, 0.2)',
             padding: "4vh",
-            textAlign: 'center' // Para centralizar o texto
-
+            textAlign: 'center', // Para centralizar o texto
+            marginBottom: "3vh",
           }}>
             
           <img src={imagemSrc || IMG} alt="" style={{
@@ -141,13 +142,16 @@ function Perfil2() {
 
 
         {/*Informações do idoso e Tabs */}
+          {/* Css */}
         <Box display="flex" flexDirection="column" sx={{
           width: '140vh',           // Largura do card
-          height: '70vh',         // Altura do card
+          minHeight: '70vh',         // Altura do card
           backgroundColor: 'rgb(255, 255, 255)', // Cor de fundo
           borderRadius: '6px',    // Bordas do card
           boxShadow: '4px 4px 10px 4px rgba(0, 0, 0, 0.2)',
-          padding: "4vh"
+          padding: "4vh",
+          marginBottom: "3vh",
+          marginRight:"4vh",
         }}>
 
 
@@ -189,15 +193,17 @@ function Perfil2() {
                             padding: '1.5vh',
                             borderRadius: '8px',
                             boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-                            height: '100%',
+                            minHeight: '80%',
                           }}
                         >
                           <Box>
-                            <Typography variant="body1">
+                          <Stack direction="row" spacing={1} justifyContent="space-between" sx={{ marginBottom: '2vh' }}>
+                            <Typography variant="body1" sx={{ wordWrap: 'break-word', width: '100%', maxWidth: '35vh', overflowWrap: 'break-word' }}>
                               <strong>Descrição:</strong> {idoso.descricao}
                             </Typography>
-                            <Typography variant="body1">
-                              <strong>Doenças Crônicas:</strong> {idoso.doencasCronicas}
+                            <Stack width="23vh">
+                            <Typography variant="body1" sx={{ wordWrap: 'break-word', width: '100%', maxWidth: '35vh', overflowWrap: 'break-word' }}>
+                            <strong>Doenças Crônicas:</strong> {idoso.doencasCronicas}
                             </Typography>
                             <Typography variant="body1">
                               <strong>Gênero:</strong> {idoso.genero || "Não informado"}
@@ -205,45 +211,43 @@ function Perfil2() {
                             <Typography variant="body1">
                               <strong>Data de Nascimento:</strong> {idoso.dtNasc}
                             </Typography>
-                          </Box>
-                          <Box>
-                            <Typography variant="body1">
-                              <strong>Cuidados Mínimos:</strong> {idoso.cuidadosMin ? "Sim" : "Não"}
-                            </Typography>
-                            <Typography variant="body1">
-                              <strong>Lúcido:</strong> {idoso.lucido ? "Sim" : "Não"}
-                            </Typography>
-                            <Typography variant="body1">
-                              <strong>Mobilidade:</strong> {idoso.mobilidade ? "Sim" : "Não"}
-                            </Typography>
-                          </Box>
+                            </Stack>
+                              <Stack width="23vh">
+                              <Typography variant="body1">
+                                <strong>Acamado:</strong> {idoso.cuidadosMin ? "Sim" : "Não"}
+                              </Typography>
+                              <Typography variant="body1">
+                                <strong>Lúcido:</strong> {idoso.lucido ? "Sim" : "Não"}
+                              </Typography>
+                              <Typography variant="body1">
+                                <strong>Pouca Mobilidade:</strong> {idoso.mobilidade ? "Sim" : "Não"}
+                              </Typography>
+                            </Stack>
+                            <Stack width="13vh">
+                              <Typography sx={{ color: '#077DB0', fontSize: '2.3vh', fontWeight: 'bold' }}>Idiomas</Typography>
+                              {usuario.idiomas && usuario.idiomas.length > 0 ? (
+                                usuario.idiomas.map(idioma => (
+                                  <Typography key={idioma.idIdioma}>
+                                    {idioma.idioma}
+                                  </Typography>
+                                ))
+                              ) : (
+                                <Typography>Nenhum idioma informado</Typography>
+                              )}
+                            </Stack>
+                            </Stack>
+                        
+                        </Box>
                         </Box>
                       </Box>
 
-                      <Stack width="23vh">
-                        <Typography sx={{ color: '#077DB0', fontSize: '2.3vh', fontWeight: 'bold' }}>Idiomas</Typography>
-                        {usuario.idiomas && usuario.idiomas.length > 0 ? (
-                          usuario.idiomas.map(idioma => (
-                            <Typography key={idioma.idIdioma}>
-                              {idioma.idioma}
-                            </Typography>
-                          ))
-                        ) : (
-                          <Typography>Nenhum idioma informado</Typography>
-                        )}
-                      </Stack>
+                    
                     </Stack>
                   </TabPanel>
                 </Box>
               ))}
             </Box>
           </Tabs>
-
-
-
-
-          <Stack direction="row" spacing={7} justifyContent="space-between" sx={{ marginBottom: '2vh' }}>
-
 
 
 
@@ -257,7 +261,7 @@ function Perfil2() {
                 ))}
               </Stack>
             )}
-          </Stack>
+        
 
           <Box sx={{ marginLeft: '1vh', marginTop: '2vh', minHeight: "40vh" }}>
             <Stack direction="row" width="30vh" sx={{ marginBottom: '3vh', height: "10vh" }}>
