@@ -7,7 +7,7 @@ import Icone from "../../utils/assets/Ellipse 43.png";
 import Emoji from "../../utils/assets/Happy.png";
 import Sent from "../../utils/assets/Sent.png";
 import apiChat from '../../api/Usuario/apiChat';
-
+import axios from 'axios';
 const ChatWindow = () => {
   const [newMessage, setNewMessage] = useState('');
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
@@ -18,7 +18,10 @@ const ChatWindow = () => {
   const stompClient = useRef(null);
   const messageTopic = localStorage.getItem('message');
   const conversante = localStorage.getItem('nomeConversante');
-  
+  const [imagemSrcUsuario, setImagemSrcUsuario] = useState(null);
+  const [imagemSrcRec, setImagemSrcRec] = useState(null);
+
+
   useEffect(() => {
     const fetchMessages = async () => {
       if (recipienteId) {
@@ -36,13 +39,60 @@ const ChatWindow = () => {
   }, [recipienteId, idUsuario]);
 
   useEffect(() => {
+    fetchImageUsuario(); // Carrega a imagem do usuário logado
+    fetchImageRecipient(); // Carrega a imagem do destinatário
+  }, []);
+
+  const fetchImageUsuario = async () => {
+    try {
+      const response = await axios.get(`http://localhost:8080/files/view/${idUsuario}.jpg`, {
+        responseType: 'blob'
+      });
+      const imageObjectURL = URL.createObjectURL(response.data);
+      setImagemSrcUsuario(imageObjectURL);
+    } catch (error) {
+      console.error('Erro ao carregar imagem do usuário:', error);
+    }
+  };
+
+  const fetchImageRecipient = async () => {
+    try {
+      const response = await axios.get(`http://localhost:8080/files/view/${recipienteId}.jpg`, {
+        responseType: 'blob'
+      });
+      const imageObjectURL = URL.createObjectURL(response.data);
+      setImagemSrcRec(imageObjectURL);
+    } catch (error) {
+      console.error('Erro ao carregar imagem do destinatário:', error);
+    }
+  };
+
+  useEffect(() => {
+    const fetchMessages = async () => {
+      if (recipienteId) {
+        try {
+          const response = await apiChat.get(`messages/${idUsuario}/${recipienteId}`);
+          setChatMessages(response.data);
+        } catch (error) {
+          console.error('Erro ao buscar mensagens:', error);
+          setChatMessages([{ content: 'Erro ao carregar mensagens.' }]);
+        }
+      }
+    };
+
+    fetchMessages();
+  }, [recipienteId, idUsuario]);
+
+
+  useEffect(() => {
     const socket = new SockJS('http://localhost:8080/websocket');
     stompClient.current = Stomp.over(socket);
 
     stompClient.current.connect({}, (frame) => {
-      console.log('Conectado:', frame);
 
       stompClient.current.subscribe(`/topic/${messageTopic}`, (message) => {
+        console.log('message ', message)
+        console.log('message body', message.body)
         showMessage(message.body);
       });
     });
@@ -57,24 +107,22 @@ const ChatWindow = () => {
   }, [messageTopic]);
 
   const showMessage = (message) => {
-    console.log('Mensagem recebida:', message);
+    console.log(message);
 
-    // Aqui vamos assumir que a mensagem é um texto simples
-    const parsedMessage = {
-      chatId: messageTopic,
-      senderId: idUsuario,
-      recipientId: recipienteId,
-      content: message,
-      timestamp: new Date().toISOString(),
-    };
+    // Tente fazer o parse da mensagem
+    try {
+      const parsedMessage = JSON.parse(message);
 
-    console.log('Mensagem recebida (JSON):', JSON.stringify(parsedMessage));
-    
+      // Exibir os IDs de remetente e destinatário
+      console.log('ID do Remetente:', parsedMessage.senderId);
+      console.log('ID do Destinatário:', parsedMessage.recipientId);
 
-
-    if (parsedMessage.content.trim()) {
-      setChatMessages(prevMessages => [...prevMessages, parsedMessage]);
-      scrollToBottom();
+      if (parsedMessage.content.trim()) {
+        setChatMessages(prevMessages => [...prevMessages, parsedMessage]);
+        scrollToBottom();
+      }
+    } catch (error) {
+      console.error('Erro ao fazer parse da mensagem:', error);
     }
   };
 
@@ -84,6 +132,7 @@ const ChatWindow = () => {
 
   const handleSendMessage = async () => {
     if (newMessage.trim()) {
+
       const message = {
         chatId: messageTopic,
         senderId: idUsuario,
@@ -92,8 +141,11 @@ const ChatWindow = () => {
         timestamp: new Date().toISOString(),
       };
 
+      console.log('mensagem enviada ', message);
+
       try {
         await apiChat.post('/chat', message);
+
         setNewMessage('');
       } catch (error) {
         console.error('Erro ao enviar mensagem:', error);
@@ -118,8 +170,7 @@ const ChatWindow = () => {
           <div className={styles.noMessages}>Nenhuma conversa iniciada até o momento.</div>
         ) : (
           <>
-            {/* Exibir informações do usuário aqui */}
-            <img src={Icone} alt="User" />
+            <img src={imagemSrcRec || Icone} className={styles.messagePhotoChat} alt="User" /> {/* Exibe a imagem do destinatário ou ícone padrão */}
             <div className={styles.userInfo}>
               <div className={styles.userName}>{conversante}</div>
               <div className={styles.userDistance}>0,7km</div>
@@ -129,17 +180,30 @@ const ChatWindow = () => {
       </div>
 
       <div className={`${styles.messages} ${recipienteId === null ? styles.messagesNoRecipient : ''}`}>
+
         {chatMessages.map((msg, index) => (
           msg.content && (
-            <div key={index} className={`${styles.message} ${msg.senderId === idUsuario ? styles.sentMessage : styles.receivedMessage}`}>
-              <img src="https://via.placeholder.com/50" alt={msg.senderId} className={styles.messagePhoto} />
-              <div className={styles.messageText} style={{
-                backgroundColor: msg.senderId == idUsuario ? '#2C7595' : '#80C1DE'
+
+            <div key={index} className={`${styles.message} `} style={{
+              display: 'flex', justifyContent: msg.senderId == idUsuario ? 'end' : 'start', alignItems: 'center', flexDirection: msg.senderId == idUsuario ? 'row-reverse' : 'row'
+            }}>
+
+              <img
+                src={msg.senderId == idUsuario ? imagemSrcUsuario : imagemSrcRec} // Usa a imagem do remetente ou do destinatário
+                alt={msg.senderId}
+                className={styles.messagePhoto}
+              />
+
+              <div className={styles.message} style={{
+                backgroundColor: msg.senderId == idUsuario ? '#2C7595' : '#80C1DE', borderRadius: '25%', alignItems: 'center'
               }}>{msg.content}</div>
             </div>
-          ) 
+          )
+
         ))}
-        <div ref={messagesEndRef}></div> {/* Elemento de referência para rolar a lista */}
+
+        <div ref={messagesEndRef}></div>
+
       </div>
 
       {recipienteId !== null && (

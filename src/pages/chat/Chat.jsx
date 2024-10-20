@@ -7,7 +7,7 @@ function Chat() {
   const [key, setKey] = useState(0);
 
   const reloadChatWindow = () => {
-    setKey(prevKey => prevKey + 1); // Incrementa a chave para forçar o recarregamento
+    setKey(prevKey => prevKey + 1); 
   };
 
   return (

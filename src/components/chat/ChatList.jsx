@@ -3,20 +3,22 @@ import { useNavigate } from 'react-router-dom';
 import Styles from './ChatList.module.css';
 import apiChat from '../../api/Usuario/apiChat';
 import logo from '../../utils/assets/logo.png';
-import Icone from "../../utils/assets/Ellipse 43.png";
+import axios from 'axios';
 
 const ChatList = ({ onUserClick }) => {
   const navigate = useNavigate();
   const [search, setSearch] = useState('');
   const [users, setUsers] = useState([]);
+  const [userImages, setUserImages] = useState({}); // Para armazenar as imagens dos usuários
 
   useEffect(() => {
     async function fetchUsers() {
-      var idUsuario = localStorage.getItem('idUsuario');
+      const idUsuario = localStorage.getItem('idUsuario');
       try {
         const response = await apiChat.get(`/chats/${idUsuario}`);
         if (Array.isArray(response.data)) {
           setUsers(response.data); // Atualiza o estado com os dados da API se for um array
+          await fetchImages(response.data); // Busca as imagens dos usuários
         } else {
           console.error('Erro: a resposta da API não é um array de usuários.');
         }
@@ -28,20 +30,30 @@ const ChatList = ({ onUserClick }) => {
     fetchUsers();
   }, []); // Chama apenas uma vez ao montar o componente
 
-  const handleUserClick = async (userId, chatId, nomeConversado) => {
-    try {
-      localStorage.setItem('recipienteId', userId);
-      localStorage.setItem('message', chatId);
-      localStorage.setItem('nomeConversante', nomeConversado);
+  const fetchImages = async (users) => {
+    const images = {};
+    await Promise.all(users.map(async (user) => {
+      try {
+        const response = await axios.get(`http://localhost:8080/files/view/${user.usuario2.idUsuario}.jpg`, {
+          responseType: 'blob',
+        });
+        images[user.usuario2.idUsuario] = URL.createObjectURL(response.data); // Armazena a imagem no objeto
+      } catch (error) {
+        console.error('Erro ao carregar imagem:', error);
+      }
+    }));
+    setUserImages(images); // Atualiza o estado com todas as imagens
+  };
 
-      onUserClick(); // Chama a função passada como prop para recarregar o ChatWindow
-    } catch (error) {
-      console.error('Erro ao buscar mensagens:', error);
-    }
+  const handleUserClick = async (userId, chatId, nomeConversado) => {
+    localStorage.setItem('recipienteId', userId);
+    localStorage.setItem('message', chatId);
+    localStorage.setItem('nomeConversante', nomeConversado);
+    onUserClick(); // Chama a função passada como prop para recarregar o ChatWindow
   };
 
   const filteredUsers = users.filter(user =>
-    user.usuario2.nome.toLowerCase().includes(search.toLowerCase())  );
+    user.usuario2.nome.toLowerCase().includes(search.toLowerCase()));
 
   return (
     <div className={Styles.chatList}>
@@ -68,7 +80,7 @@ const ChatList = ({ onUserClick }) => {
             className={Styles.user}
             onClick={() => handleUserClick(user.usuario2.idUsuario, user.chatId, user.usuario2.nome)}
           >
-            <img src={Icone} alt={user?.usuario2?.nome} className={Styles.userPhoto} />
+            <img src={userImages[user.usuario2.idUsuario]} alt={user?.usuario2?.nome} className={Styles.userPhoto} />
             <div className={Styles.userInfo}>
               <div className={Styles.userName}>{user?.usuario2?.nome}</div>
               <div className={Styles.userMessage}>{user?.usuario2?.message}</div>
