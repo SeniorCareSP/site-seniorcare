@@ -86,7 +86,7 @@ function Perfil2() {
         display="flex"
         flexDirection="row"
         justifyContent="space-around"
-        sx={{ paddingTop: '8vh', paddingLeft: '12vh', marginInline: '8vh' }}
+        sx={{ paddingTop: '4vh', paddingLeft: '12vh', marginInline: '8vh' }}
       >
         <Box display="flex" flexDirection="column" alignItems="center"
           sx={{
@@ -96,6 +96,7 @@ function Perfil2() {
             borderRadius: '6px',
             boxShadow: '4px 4px 10px 4px rgba(0, 0, 0, 0.2)',
             padding: "4vh",
+            marginBottom: "3vh",
           }}>
           <img src={imagemSrc || IMG} alt="" style={{
             maxWidth: '100%',
@@ -128,26 +129,13 @@ function Perfil2() {
           >
             Conversar
           </Button>
-          <Stack width="29vh" marginTop="2vh">
-            {usuario.idiomas.map(idioma => (
-              <Typography key={idioma.idIdioma} sx={{ wordWrap: 'break-word', width: '100%', maxWidth: '23vh', overflowWrap: 'break-word' }}>
+          <Stack width="23vh" marginTop= "4vh" >
+              <Typography sx={{ color: '#077DB0', fontSize: '2.3vh' }}>Sobre mim:</Typography>
+              <Typography sx={{ wordWrap: 'break-word', width: '100%', maxWidth: '23vh', overflowWrap: 'break-word' }}>
+                {usuario.apresentacao
+                }
               </Typography>
-            ))}
-          </Stack>
-
-          {/* Igor -Trocar pela descricao do Responsável*/}
-          {usuario.idosos && usuario.idosos.map((idoso, index) => (
-            <Box key={index} display="flex" flexDirection="column" alignItems="center" marginTop="2vh">
-              <Box display="flex" alignItems="center">
-                <img src={Senhor} alt="" width="60vw" />
-                <Typography marginLeft="1vh">{idoso.nome}</Typography>
-              </Box>
-              <Typography width="15vw" marginTop="2vh" textAlign="center">
-                {idoso.descricao}
-                fgkolpsdkfijkmcmijdfrkfd,frifkmjg
-              </Typography>
-            </Box>
-          ))}
+            </Stack>
         </Box>
 
 
@@ -158,11 +146,13 @@ function Perfil2() {
           backgroundColor: 'rgb(255, 255, 255)', 
           borderRadius: '6px',    
           boxShadow: '4px 4px 10px 4px rgba(0, 0, 0, 0.2)',
-          padding: "4vh"
+          padding: "4vh",
+          marginBottom: "3vh",
+          marginRight:"4vh",
         }}>
 
 
-          <Stack direction="row" spacing={7} justifyContent="space-between" sx={{ marginBottom: '2vh' }}>
+          <Stack direction="row" spacing={7} justifyContent="space-between" sx={{ marginBottom: '2vh' }} minHeight= "30%">
             <Stack width="23vh">
               <Typography sx={{ color: '#077DB0', fontSize: '2.3vh' }}>Experiência:</Typography>
               <Typography sx={{ wordWrap: 'break-word', width: '100%', maxWidth: '23vh', overflowWrap: 'break-word' }}>
@@ -175,7 +165,7 @@ function Perfil2() {
                   maxWidth: '25vh',       // Define um limite máximo para a largura do texto
                   overflowWrap: 'break-word' // Garante a quebra quando necessário
                 }}>
-                {/* {usuario.apresentacao} */}
+                 {usuario.apresentacao} 
               </Typography>
             </Stack>
 
@@ -189,16 +179,7 @@ function Perfil2() {
               ))}
             </Stack>
 
-            <Stack width="23vh">
-              <Typography sx={{ color: '#077DB0', fontSize: '2.3vh' }}>Sobre mim:</Typography>
-              <Typography sx={{ wordWrap: 'break-word', width: '100%', maxWidth: '23vh', overflowWrap: 'break-word' }}>
-                {usuario.apresentacao
-                }
-              </Typography>
-            </Stack>
-
-
-            <Stack width="23vh">
+            <Stack width="20vh">
               <Typography sx={{ color: '#077DB0', fontSize: '2.3vh' }}>Idiomas</Typography>
               {usuario.idiomas.map(idioma => (
                 <Typography key={idioma.idIdioma} sx={{ wordWrap: 'break-word', width: '100%', maxWidth: '20vh', overflowWrap: 'break-word' }}>
