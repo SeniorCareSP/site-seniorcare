@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ElderList.css';
 import { Modal, Box, TextField, FormControlLabel, Checkbox, Button, Typography } from '@mui/material';
 import axios from 'axios';
@@ -15,40 +15,62 @@ const modalStyle = {
   p: 4,
 };
 
-function AddElderModal({ open, handleClose }) {
+function AddElderModal({ open, handleClose, elderToEdit, refreshList }) {
   const [nome, setNome] = useState('');
+  const [descricao, setDescricao] = useState('');
   const [genero, setGenero] = useState('');
   const [dtNasc, setDtNascimento] = useState('');
   const [mobilidade, setMobilidade] = useState(false);
-  const [acamado, setAcamado] = useState(false);
+  const [cuidadosMin, setCuidadosMin] = useState(false);
   const [lucido, setLucido] = useState(false);
   const [doencasCronicas, setDoencasCronicas] = useState('');
   const idUsuario = localStorage.getItem('idUsuario');
 
+  useEffect(() => {
+    if (elderToEdit) {
+      setNome(elderToEdit.nome);
+      setDescricao(elderToEdit.descricao);
+      setGenero(elderToEdit.genero);
+      setDtNascimento(elderToEdit.dtNasc);
+      setMobilidade(elderToEdit.mobilidade);
+      setCuidadosMin(elderToEdit.cuidadosMin);
+      setLucido(elderToEdit.lucido);
+      setDoencasCronicas(elderToEdit.doencasCronicas);
+    } else {
+      setNome('');
+      setDescricao('');
+      setGenero('');
+      setDtNascimento('');
+      setMobilidade(false);
+      setCuidadosMin(false);
+      setLucido(false);
+      setDoencasCronicas('');
+    }
+  }, [elderToEdit]);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const token = localStorage.getItem('token');
-
     const newElder = {
       nome,
+      descricao,
       genero,
       dtNasc,
       mobilidade,
-      acamado,
+      cuidadosMin,
       lucido,
-      doencasCronicas,      
+      doencasCronicas,
       responsavel: idUsuario,
     };
-    console.log(token)
-    console.log(newElder)
+
     try {
+      if (elderToEdit) {
+        await axios.put(`http://localhost:8080/idosos/${elderToEdit.idIdoso}`, newElder);
+      } else {
+        await axios.post('http://localhost:8080/idosos', newElder);
+      }
 
-      const response = await axios.post('http://localhost:8080/idosos', newElder);
-      console.log(response)
-      console.log(token)
-
-      console.log('Resposta do servidor:', response.data);
+      refreshList();
       handleClose();
     } catch (error) {
       console.error('Erro ao enviar os dados:', error);
@@ -56,70 +78,23 @@ function AddElderModal({ open, handleClose }) {
   };
 
   return (
-    <Modal
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
-    >
+    <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
       <Box sx={modalStyle}>
         <Typography id="modal-modal-title" variant="h6" component="h2">
-          Adicionando um idoso
+          {elderToEdit ? 'Editando' : 'Adicionando'} um idoso
         </Typography>
         <form onSubmit={handleSubmit}>
-          <TextField
-            fullWidth
-            margin="normal"
-            label="Nome"
-            placeholder="Nome completo"
-            value={nome}
-            onChange={(e) => setNome(e.target.value)}
-          />
-          <TextField
-            fullWidth
-            margin="normal"
-            label="Sexo biológico"
-            select
-            SelectProps={{
-              native: true,
-            }}
-            value={genero}
-            onChange={(e) => setGenero(e.target.value)}
-          >
+          <TextField fullWidth margin="normal" label="Nome" placeholder="Nome completo" value={nome} onChange={(e) => setNome(e.target.value)} />
+          <TextField fullWidth margin="normal" label="Descrição" placeholder="Descrição sobre o Idoso" value={descricao} onChange={(e) => setDescricao(e.target.value)} />
+          <TextField fullWidth margin="normal" label="Sexo biológico" select SelectProps={{ native: true }} value={genero} onChange={(e) => setGenero(e.target.value)}>
             <option value="masculino">Masculino</option>
             <option value="feminino">Feminino</option>
           </TextField>
-          <TextField
-            fullWidth
-            margin="normal"
-            label="Data de nascimento"
-            type="date"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            value={dtNasc }
-            onChange={(e) => setDtNascimento(e.target.value)}
-          />
-          <FormControlLabel
-            control={<Checkbox checked={mobilidade} onChange={(e) => setMobilidade(e.target.checked)} />}
-            label="O idoso tem mobilidade reduzida?"
-          />
-          <FormControlLabel
-            control={<Checkbox checked={acamado} onChange={(e) => setAcamado(e.target.checked)} />}
-            label="O idoso está acamado?"
-          />
-          <FormControlLabel
-            control={<Checkbox checked={lucido} onChange={(e) => setLucido(e.target.checked)} />}
-            label="O idoso está lúcido?"
-          />
-          <TextField
-            fullWidth
-            margin="normal"
-            label="Possui alguma doença crônica?"
-            placeholder="Ex: Alzheimer, Parkinson"
-            value={doencasCronicas}
-            onChange={(e) => setDoencasCronicas(e.target.value)}
-          />
+          <TextField fullWidth margin="normal" label="Data de nascimento" type="date" InputLabelProps={{ shrink: true }} value={dtNasc} onChange={(e) => setDtNascimento(e.target.value)} />
+          <FormControlLabel control={<Checkbox checked={mobilidade} onChange={(e) => setMobilidade(e.target.checked)} />} label="O idoso tem mobilidade reduzida?" />
+          <FormControlLabel control={<Checkbox checked={cuidadosMin} onChange={(e) => setCuidadosMin(e.target.checked)} />} label="O idoso requer cuidados mínimos?" />
+          <FormControlLabel control={<Checkbox checked={lucido} onChange={(e) => setLucido(e.target.checked)} />} label="O idoso está lúcido?" />
+          <TextField fullWidth margin="normal" label="Possui alguma doença crônica?" placeholder="Ex: Alzheimer, Parkinson" value={doencasCronicas} onChange={(e) => setDoencasCronicas(e.target.value)} />
           <Button variant="contained" color="primary" fullWidth type="submit">
             Concluir
           </Button>

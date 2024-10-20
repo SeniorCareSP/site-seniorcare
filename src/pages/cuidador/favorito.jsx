@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import CardUsuario from "../../components/home/Cards/cards-Interno/cardUsuario";
 import apiUsuario from "../../api/Usuario/apiUsuario";
 import apiResponsavel from '../../api/Usuario/apiResponsavel';
+
 function Favoritos() {
     const [cardsData, setCardsData] = useState([]);
     const navigate = useNavigate();

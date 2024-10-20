@@ -4,7 +4,7 @@ import InputTexfield from '../Input/Input';
 import { useNavigate } from "react-router-dom";
 import React, { useState } from 'react';
 import ButtonAzul from "../botao/BotaoAzul";
-import api from "../../api/Usuario/apiUsuario";
+import api from "../../api/Usuario/apiUsuarioLogin";
 import { Alert } from "@mui/joy";
 function EleLogin() {
 

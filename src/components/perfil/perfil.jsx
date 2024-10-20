@@ -206,9 +206,9 @@ function Perfil2() {
               </Box>
               <Stack direction="column" >
                 <Box sx={{ transform: 'scale(0.8)', transformOrigin: 'top left' }}>
-                <Stack width="100%" height="7vh" marginBottom="2vh" >
-                  
-                <Typography sx={{ color: '#077DB0', fontSize: '2.3vh' }}>Endereço</Typography>
+                  <Stack width="100%" height="7vh" marginBottom="2vh" >
+
+                    <Typography sx={{ color: '#077DB0', fontSize: '2.3vh' }}>Endereço</Typography>
                     <Typography>
                       {usuario.endereco.logradouro}, {usuario.endereco.numero}
                     </Typography>
@@ -218,8 +218,14 @@ function Perfil2() {
                     </Typography>
                   </Stack>
                 </Box>
-                <Stack width="55vh" height="35vh" >
-                  <MapComponent></MapComponent>
+                <Stack width="55vh" height="35vh">
+                  {usuario.coordernada &&
+                    usuario.coordernada.latitude !== undefined &&
+                    usuario.coordernada.longitude !== undefined ? (
+                    <MapComponent coordenadas={[usuario.coordernada.latitude, usuario.coordernada.longitude]} />
+                  ) : (
+                    <p>Coordenadas não disponíveis</p>
+                  )}
                 </Stack>
               </Stack>
             </Stack>

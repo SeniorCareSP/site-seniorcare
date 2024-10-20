@@ -62,7 +62,7 @@ function CadastroCuidador2() {
                         </Stack>
                         <Stack direction="row" spacing={2}>
                             <ToggleButtonGroup spacing={2} color="primary" value={value} onChange={(event, newValue) => { setValue(newValue) }}>
-                                <Button value="trabCasa">Diploma de Enfermagem</Button>
+                                <Button value="Diploa de enfermagem">Diploma de Enfermagem</Button>
                                 <Button value="culinaria">Certificado Primeiros Socorros</Button>
                                 <Button value="curativos">Certificado Boa Conduta</Button>
                             </ToggleButtonGroup>

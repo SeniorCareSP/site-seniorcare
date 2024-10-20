@@ -13,9 +13,9 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 });
 
-const MapComponent = () => {
-  const position = [51.505, -0.09]; // Latitude e Longitude (Exemplo: Londres)
+const MapComponent = (coordenadas ) => {
 
+  const position = [coordenadas.coordenadas[0], coordenadas.coordenadas[1]]; 
   return (
     <MapContainer center={position} zoom={13} style={{ height: '100vh', width: '100%' }}>
       <TileLayer

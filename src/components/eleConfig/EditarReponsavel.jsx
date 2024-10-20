@@ -118,7 +118,7 @@ function EleAtualizarPerfil() {
                 <Stack direction="row" className={Style["centraliza"]}>
                     <Stack className={Style["info-usuario"]} spacing={4} marginInline={5}>
                         <div className={Style["foto-usu"]}>
-                            <img src={imagemSrc} alt="" width="100%" height="100%" style={{ borderRadius: "50%" }} />
+                            <img src={imagemSrc} alt="" width="100%" height="100%" style={{ borderRadius: "100%"  }} />
                         </div>
                         <InputTextField label="Nome" value={nome} onChange={(e) => handleInputChange(e, setNome)} />
                         <InputTextField label="Sobre" value={apresentacao} onChange={(e) => handleInputChange(e, setApresentacao)} size="xl" />
