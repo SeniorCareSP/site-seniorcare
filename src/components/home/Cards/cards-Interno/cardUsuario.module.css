@@ -1,6 +1,4 @@
 .cardUsuario{
-    border-radius: 2vh;
-    background-color: #ffffff;
     width: 42vh;
     height: 50vh;
 }
@@ -8,6 +6,69 @@
 .cardUsuario img{
     width: 100%;
     height: 32vh;
-    border-top-left-radius: 2vh;
-    border-top-right-radius: 2vh;
+}
+
+/* cardUsuario.module.css */
+
+.cardUsuario {
+    background-color: #fff; /* Fundo branco para destacar o card */
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra leve para o card */
+    overflow: hidden; /* Para garantir que a imagem não ultrapasse os limites do card */
+    max-width: 400px; /* Tamanho máximo do card */
+    margin: 16px auto; /* Centralizar o card na tela e dar espaço entre os cards */
+    transition: transform 0.2s ease-in-out; /* Efeito de hover para o card */
+}
+
+.cardUsuario:hover {
+    transform: translateY(-5px); /* Pequeno movimento ao passar o mouse */
+}
+
+.cardUsuario img {
+    width: 100%; /* A imagem ocupará toda a largura do card */
+    height: 200px; /* Altura fixa para garantir consistência entre os cards */
+    object-fit: cover; /* A imagem cobrirá toda a área sem distorcer */
+    border-bottom: 1px solid #ddd; /* Linha fina abaixo da imagem para separação */
+}
+
+.cardUsuario h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.cardUsuario p {
+    margin: 4px 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.cardUsuario .MuiButtonBase-root {
+    background-color: #007BFF; /* Cor do botão */
+    color: #fff; /* Cor do texto do botão */
+    font-size: 0.85rem;
+    text-transform: none;
+    box-shadow: none;
+}
+
+.cardUsuario .MuiButtonBase-root:hover {
+    background-color: #0056b3; /* Cor do botão ao passar o mouse */
+}
+
+.cardUsuario .MuiCheckbox-root {
+    padding: 0;
+    color: #f50057; /* Cor do ícone de coração */
+}
+
+.cardUsuario .MuiCheckbox-root.Mui-checked {
+    color: #ff1744; /* Cor quando o checkbox está marcado */
+}
+
+.cardUsuario .stackHeader {
+    padding: 16px; /* Espaçamento em torno do conteúdo */
+}
+
+.cardUsuario .stackFooter {
+    padding: 8px 16px; /* Espaçamento para a parte inferior */
 }

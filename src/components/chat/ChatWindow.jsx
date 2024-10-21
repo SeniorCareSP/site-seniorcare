@@ -192,10 +192,10 @@ const ChatWindow = () => {
                 src={msg.senderId == idUsuario ? imagemSrcUsuario : imagemSrcRec} // Usa a imagem do remetente ou do destinatário
                 alt={msg.senderId}
                 className={styles.messagePhoto}
-              />
+              /> 
 
               <div className={styles.message} style={{
-                backgroundColor: msg.senderId == idUsuario ? '#2C7595' : '#80C1DE', borderRadius: '25%', alignItems: 'center'
+                backgroundColor: msg.senderId == idUsuario ? '#2C7595' : '#80C1DE', borderRadius: '20vh', alignItems: 'center'
               }}>{msg.content}</div>
             </div>
           )
