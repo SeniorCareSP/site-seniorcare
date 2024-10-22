@@ -1,17 +1,9 @@
 import React, { useState, useEffect } from "react";
 import moment from 'moment';
 import Navbar from '../../components/cuidador/navbar/navbarCuidador';
-import Card from '../../components/home/Cards/cards-Interno/cardInterno';
-import SelectMax from "../../components/cuidador/select/selectIdoso";
-import SelectIdade from "../../components/cuidador/select/selecIdade";
-import SelectTrabalho from "../../components/cuidador/select/selectPeriodo";
-import Remover from "../../components/cuidador/checkbox/Button";
 import apiUsuario from "../../api/Usuario/apiUsuario";
-import apiCuidador from "../../api/Usuario/apiCuidador";
-import apiResponsavel from "../../api/Usuario/apiResponsavel";
 import apiFavorito from "../../api/Usuario/apiFavoritar";
 import Style from './cuidador.module.css';
-import cardUsuario from "../../components/home/Cards/cards-Interno/cardUsuario";
 import CardUsuario from "../../components/home/Cards/cards-Interno/cardUsuario";
 function Procurar() {
   const [cardsData, setCardsData] = useState([]);
@@ -19,7 +11,7 @@ function Procurar() {
   const tipoDeUsuario = localStorage.getItem("tipoUsuario");
   useEffect(() => {
     recuperarValorDoCard();
-  }, []);
+  }, [recuperarValorDoCard]);
 
   async function recuperarValorDoCard() {
     let data;
@@ -125,7 +117,7 @@ function Procurar() {
                     descricao={data.apresentacao}
                     idade={calcularIdade(data.dtNascimento)}
                     favoritado={data.favoritado}
-                    handleToggleFavorite={() => handleFavoriteToggle(data.idUsuario)} // Passa a função handleFavoriteToggle com o ID do cuidador como argumento
+                    handleToggleFavorite={() => handleFavoriteToggle(data.idUsuario)} 
                     tipoUsuario = {data.tipoDeUsuario}
                     idUsuario={data.idUsuario}
                     usuarioDenunciador={idUsuario}

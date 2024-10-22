@@ -7,7 +7,6 @@ import React, { useState, useEffect } from "react";
 import ButtonAzulEscuro from '../../components/botao/BotaoAzulEscuro';
 import { useNavigate } from "react-router-dom";
 import CardUsuario from "../../components/home/Cards/cards-Interno/cardUsuario";
-import apiUsuario from "../../api/Usuario/apiUsuario";
 import apiResponsavel from '../../api/Usuario/apiResponsavel';
 
 function Favoritos() {
@@ -22,8 +21,16 @@ function Favoritos() {
     async function recuperarValorDoCard() {
         try {
             const response = await apiResponsavel.get(`/${idUsuario}`);
-            const data = response.data.favoritos.map(fav => fav.cuidadorFavoritado);
-            setCardsData(data);
+            const data = response.data.favoritos;
+
+            // Mapeia os dados para incluir informações necessárias
+            const updatedData = await Promise.all(data.map(async (fav) => {
+                const cuidador = fav.cuidadorFavoritado;
+                const favoritado = true; // Aqui sabemos que é favoritado
+                return { ...cuidador, favoritado }; // Inclui o status de favoritado
+            }));
+            
+            setCardsData(updatedData);
         } catch (error) {
             console.log("Deu erro, tente novamente!", error);
         }
@@ -44,7 +51,7 @@ function Favoritos() {
             await apiFavorito.delete(`${idUsuario}/${idCuidador}`);
             console.log("Cuidador desfavoritado.");
             setCardsData(prevCardsData =>
-                prevCardsData.filter(card => card.idUsuario !== idCuidador)
+                prevCardsData.filter(card => card.idUsuario !== idCuidador) // Remove da lista
             );
         } catch (error) {
             console.error("Erro ao desfavoritar cuidador:", error);
@@ -58,7 +65,7 @@ function Favoritos() {
                 {cardsData.length === 0 ? (
                     <div className={Style["texto"]}>
                         <p>Você ainda não adicionou nenhum <br />
-                            cuidador a sua lista de favoritos.</p>
+                            cuidador à sua lista de favoritos.</p>
                         <img src={Img} alt='Logo' />
                         <ButtonAzulEscuro onClick={() => navigate("/procurar")}>
                             Procurar Cuidadores

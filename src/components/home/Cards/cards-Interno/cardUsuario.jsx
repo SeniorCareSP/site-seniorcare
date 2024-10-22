@@ -94,8 +94,8 @@ function CardUsaurio({ nome, descricao, idade, favoritado, handleToggleFavorite,
                             </BtnAzulS>
                         </Stack>
                         <Stack direction="column-reverse" paddingBottom={2}>
-                            <Stack direction="row-reverse" justifyContent="center" style={{display: 'flex'}}>
-                                <img src={Flag} alt="Denunciar" onClick={handleOpenModal} style={{ cursor: 'pointer', width: '100%', height: '100%',    objectFit: 'cover' 
+                            <Stack direction="row-reverse" justifyContent="center">
+                                <img src={Flag} alt="Denunciar" onClick={handleOpenModal} style={{ cursor: 'pointer', width: '100%', height: '100%',    objectFit: '-moz-   ' 
  }} />
                                 {"RESPONSAVEL" === localStorage.getItem("tipoUsuario") && (
                                     <Checkbox
