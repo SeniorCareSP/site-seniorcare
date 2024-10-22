@@ -11,7 +11,7 @@ function Procurar() {
   const tipoDeUsuario = localStorage.getItem("tipoUsuario");
   useEffect(() => {
     recuperarValorDoCard();
-  }, [recuperarValorDoCard]);
+  }, []);
 
   async function recuperarValorDoCard() {
     let data;
