@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import './ElderList.css';
 import { Modal, Box, TextField, FormControlLabel, Checkbox, Button, Typography } from '@mui/material';
 import axios from 'axios';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
 
 const modalStyle = {
   position: 'absolute',
@@ -86,10 +90,15 @@ function AddElderModal({ open, handleClose, elderToEdit, refreshList }) {
         <form onSubmit={handleSubmit}>
           <TextField fullWidth margin="normal" label="Nome" placeholder="Nome completo" value={nome} onChange={(e) => setNome(e.target.value)} />
           <TextField fullWidth margin="normal" label="Descrição" placeholder="Descrição sobre o Idoso" value={descricao} onChange={(e) => setDescricao(e.target.value)} />
-          <TextField fullWidth margin="normal" label="Sexo biológico" select SelectProps={{ native: true }} value={genero} onChange={(e) => setGenero(e.target.value)}>
-            <option value="masculino">Masculino</option>
-            <option value="feminino">Feminino</option>
-          </TextField>
+          
+          <FormControl fullWidth>
+            <InputLabel id="select-genero">Sexo biológico</InputLabel>
+            <Select labelId="select-genero" fullWidth margin="normal" label="Sexo biológico" select SelectProps={{ native: true }} value={genero} onChange={(e) => setGenero(e.target.value)}>
+              <MenuItem value="masculino">Masculino</MenuItem >
+              <MenuItem value="feminino">Feminino</MenuItem >
+            </Select>
+          </FormControl>
+
           <TextField fullWidth margin="normal" label="Data de nascimento" type="date" InputLabelProps={{ shrink: true }} value={dtNasc} onChange={(e) => setDtNascimento(e.target.value)} />
           <FormControlLabel control={<Checkbox checked={mobilidade} onChange={(e) => setMobilidade(e.target.checked)} />} label="O idoso tem mobilidade reduzida?" />
           <FormControlLabel control={<Checkbox checked={cuidadosMin} onChange={(e) => setCuidadosMin(e.target.checked)} />} label="O idoso requer cuidados mínimos?" />

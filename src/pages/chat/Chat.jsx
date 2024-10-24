@@ -2,19 +2,22 @@ import React, { useState } from 'react';
 import ChatList from '../../components/chat/ChatList';
 import ChatWindow from '../../components/chat/ChatWindow';
 import styles from './chat.module.css';
-
+import Navbar from '../../components/cuidador/navbar/navbarCuidador';
 function Chat() {
   const [key, setKey] = useState(0);
 
   const reloadChatWindow = () => {
-    setKey(prevKey => prevKey + 1); 
+    setKey(prevKey => prevKey + 1);
   };
 
   return (
-    <div className={styles.chatContainer}>
-      <ChatList onUserClick={reloadChatWindow} />
-      <ChatWindow key={key} />
-    </div>
+    <>
+      <Navbar />
+      <div className={styles.chatContainer}>
+        <ChatList onUserClick={reloadChatWindow} />
+        <ChatWindow key={key} />
+      </div>
+    </>
   );
 }
 

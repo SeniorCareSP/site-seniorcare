@@ -1,11 +1,10 @@
 .chatList {
   background-color: #2C7595;
   color: white;
-  width: 40vw; /* Largura em relação à largura da tela */
-  max-width: 400px; /* Largura máxima */
+  width: 30vw;
   overflow-y: hidden;
   overflow-x: hidden;
-  height: 100vh; /* Altura da tela */
+  height: 40vh;
 }
 
 .header {
@@ -29,16 +28,6 @@
   margin-left: 5px;
   color: darkred;
   font-weight: 800;
-}
-
-.searchBar {
-  width: 65%;
-  padding: 10px;
-  margin-left: 80px;
-  margin-bottom: 10px;
-  border-radius: 9px;
-  border-style: double;
-  border-color: #80C1DE;
 }
 
 .users {
@@ -65,21 +54,17 @@
   display: flex;
   align-items: center;
   padding: 10px;
-  border-bottom: 1px solid #ccc;
-  height: 5vh; /* Ajuste conforme necessário */
+  background-color: #2C7595;
+  height: 9vh; 
   cursor: pointer;
 }
 
-.user:active {
-  color: blue;
-}
-
 .userPhoto {
-  width: 50px; /* Largura da imagem */
-  height: 50px; /* Altura da imagem */
-  border-radius: 50%; /* Bordas arredondadas para formato circular */
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
   margin-right: 10px;
-  object-fit: cover; /* Para garantir que a imagem seja redimensionada corretamente */
+  object-fit: cover;
 }
 
 .userInfo {
@@ -93,8 +78,8 @@
 
 .userMessage {
   color: #ffffff;
-  overflow: hidden; /* Esconde o overflow */
-  white-space: nowrap; /* Não quebra a linha */
-  text-overflow: ellipsis; /* Adiciona reticências quando o texto ultrapassa */
-  max-width: 200px; /* Largura máxima */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 200px;
 }

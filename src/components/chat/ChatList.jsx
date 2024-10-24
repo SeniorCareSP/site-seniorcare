@@ -4,7 +4,8 @@ import Styles from './ChatList.module.css';
 import apiChat from '../../api/Usuario/apiChat';
 import logo from '../../utils/assets/logo.png';
 import axios from 'axios';
-
+import { Stack, TextField } from '@mui/material';
+import InputPesquisa from '../Input/InputPesquisa';
 const ChatList = ({ onUserClick }) => {
   const navigate = useNavigate();
   const [search, setSearch] = useState('');
@@ -57,21 +58,15 @@ const ChatList = ({ onUserClick }) => {
 
   return (
     <div className={Styles.chatList}>
-      <div className={Styles.header}>
-        <img src={logo} alt="Logo" />
-        <div className={Styles.titles}>
-          <span className={Styles.home}>Home</span>
-          <span className={Styles.conversas}>Conversas</span>
-          <span className={Styles.favoritos}>Favoritos</span>
-        </div>
-      </div>
-      <input
-        type="text"
-        placeholder="Pesquisar..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className={Styles.searchBar}
-      />
+      <Stack alignItems='center' paddingTop='2vh'>
+        <InputPesquisa
+          sx={{backgroundColor:'white', borderRadius:'2vh'}}
+          type="text"
+          placeholder="Pesquisar..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </Stack>
       <hr />
       <div className={Styles.users}>
         {filteredUsers.map(user => (
@@ -83,7 +78,6 @@ const ChatList = ({ onUserClick }) => {
             <img src={userImages[user.usuario2.idUsuario]} alt={user?.usuario2?.nome} className={Styles.userPhoto} />
             <div className={Styles.userInfo}>
               <div className={Styles.userName}>{user?.usuario2?.nome}</div>
-              <div className={Styles.userMessage}>{user?.usuario2?.message}</div>
             </div>
           </div>
         ))}

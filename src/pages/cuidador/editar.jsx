@@ -3,7 +3,6 @@ import AtualizarPerfilCuidador from "../../components/editaCuidador/EditarCuidad
 function editaIdoso(){
     return(
         <>
-              
             <AtualizarPerfilCuidador/>
         </>
     )

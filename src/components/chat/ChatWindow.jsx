@@ -91,8 +91,6 @@ const ChatWindow = () => {
     stompClient.current.connect({}, (frame) => {
 
       stompClient.current.subscribe(`/topic/${messageTopic}`, (message) => {
-        console.log('message ', message)
-        console.log('message body', message.body)
         showMessage(message.body);
       });
     });
@@ -108,23 +106,25 @@ const ChatWindow = () => {
 
   const showMessage = (message) => {
     console.log(message);
-
-    // Tente fazer o parse da mensagem
+  
     try {
       const parsedMessage = JSON.parse(message);
-
+  
       // Exibir os IDs de remetente e destinatário
       console.log('ID do Remetente:', parsedMessage.senderId);
       console.log('ID do Destinatário:', parsedMessage.recipientId);
-
+  
       if (parsedMessage.content.trim()) {
         setChatMessages(prevMessages => [...prevMessages, parsedMessage]);
         scrollToBottom();
       }
     } catch (error) {
-      console.error('Erro ao fazer parse da mensagem:', error);
+      console.warn('Mensagem não é JSON, adicionando como mensagem simples:', message);
+      // setChatMessages(prevMessages => [...prevMessages, { content: message }]);
+      scrollToBottom();
     }
   };
+  
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
