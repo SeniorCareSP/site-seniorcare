@@ -2,31 +2,33 @@ import React, { useEffect, useState } from 'react';
 import CalendarioEditarPerfil from "../calendario/CalendarioEditarPerfil";
 import Navbar from "../cuidador/navbar/navbarCuidador";
 import Stack from '@mui/material/Stack';
-import InputTextField from "../Input/Input"; // Corrigido o nome do componente
+import InputTextField from "../Input/Input";
 import Style from '../../pages/confUser/Atualizar.module.css';
 import ButtonAzul from "../botao/BotaoAzul";
 import ElderList from "./idosoComponent";
 import apiResponsavel from '../../api/Usuario/apiResponsavel';
 import axios from 'axios';
 import Calendario from '../calendario/Calendario';
-import CalendarioPerfil from '../calendario/CalendarioPerfil';
-import Voltar from "../../utils/assets/setaVoltar.png"
+import Voltar from "../../utils/assets/setaVoltar.png";
 
 function EleAtualizarPerfil() {
     const [nome, setNome] = useState("");
     const [apresentacao, setApresentacao] = useState("");
-    const [endereco, setEndereco] = useState("");
+    const [telefone, setTelefone] = useState("");
+    const [enderecoCompleto, setEnderecoCompleto] = useState("");
     const [CEP, setCEP] = useState("");
-    const [rua, setRua] = useState("");
+    const [logradouro, setLogradouro] = useState("");
     const [bairro, setBairro] = useState("");
     const [numero, setNumero] = useState("");
     const [cidade, setCidade] = useState("");
     const [calendario, setCalendario] = useState(Array(7).fill().map(() => Array(3).fill(false)));
-
     const [agendaDisponibilidade, setAgendaDisponibilidade] = useState([]);
     const [idosos, setIdosos] = useState([]);
     const [imagemSrc, setImagemSrc] = useState(null);
     const idUsuario = localStorage.getItem('idUsuario');
+
+    const [originalData, setOriginalData] = useState({});
+    const [isDirty, setIsDirty] = useState(false);
 
     useEffect(() => {
         async function fetchImage() {
@@ -52,15 +54,17 @@ function EleAtualizarPerfil() {
                 const data = response.data;
                 console.log(data);
                 setNome(data.nome);
+                setTelefone(data.telefone);
                 setApresentacao(data.apresentacao);
-                setEndereco(data.endereco.logradouro); // Ajustado para acessar o logradouro do objeto de endereço
-                setCEP(data.endereco.cep); // Ajustado para acessar o CEP do objeto de endereço
-                setRua(data.endereco.complemento); // Ajustado para acessar a rua do objeto de endereço
-                setBairro(data.endereco.bairro); // Ajustado para acessar o bairro do objeto de endereço
-                setNumero(data.endereco.numero); // Ajustado para acessar o número do objeto de endereço
-                setCidade(data.endereco.cidade); // Ajustado para acessar a cidade do objeto de endereço
-                setAgendaDisponibilidade(data.agenda.disponibilidade || []); // Inicializando com array vazio se não houver dados
-                setIdosos(data.idosos || []); // Inicializando com array vazio se não houver dados de idosos
+                setLogradouro(data.endereco.logradouro);
+                setEnderecoCompleto(`${data.endereco.logradouro}, ${data.endereco.numero}, ${data.endereco.bairro}, ${data.endereco.cidade} - ${data.endereco.cep}`);
+                setCEP(data.endereco.cep);
+                setBairro(data.endereco.bairro);
+                setNumero(data.endereco.numero);
+                setCidade(data.endereco.cidade);
+                setAgendaDisponibilidade(data.agenda.disponibilidade || []);
+                setIdosos(data.idosos || []);
+                setOriginalData(data);
             } catch (error) {
                 console.error("Erro ao buscar dados do responsável:", error);
             }
@@ -71,6 +75,22 @@ function EleAtualizarPerfil() {
 
     const handleInputChange = (event, setStateFunction) => {
         setStateFunction(event.target.value);
+        checkIfDirty();
+    };
+
+    const checkIfDirty = () => {
+        const hasChanges = (
+            nome !== originalData.nome ||
+            apresentacao !== originalData.apresentacao ||
+            telefone !== originalData.telefone ||
+            logradouro !== originalData.endereco.logradouro ||
+            enderecoCompleto !== `${originalData.endereco.logradouro}, ${originalData.endereco.numero}, ${originalData.endereco.bairro}, ${originalData.endereco.cidade} - ${originalData.endereco.cep}` ||
+            CEP !== originalData.endereco.cep ||
+            bairro !== originalData.endereco.bairro ||
+            numero !== originalData.endereco.numero ||
+            cidade !== originalData.endereco.cidade
+        );
+        setIsDirty(hasChanges);
     };
 
     const handleSave = async (event) => {
@@ -79,7 +99,7 @@ function EleAtualizarPerfil() {
             nome: nome,
             apresentacao: apresentacao,
             endereco: {
-                logradouro: endereco,
+                logradouro: logradouro,
                 cep: CEP,
                 numero: numero,
                 bairro: bairro,
@@ -88,12 +108,12 @@ function EleAtualizarPerfil() {
             agenda: {
                 disponibilidade: agendaDisponibilidade
             },
-            idosos: idosos // Incluindo os dados dos idosos para salvar
+            idosos: idosos
         };
 
         try {
             await apiResponsavel.put(`/${idUsuario}`, dadosAtualizarResponsavel);
-            window.location.reload(); // Recarregar a página para refletir as alterações
+            window.location.reload();
             console.log("Atualização realizada com sucesso!");
         } catch (error) {
             console.error("Erro ao atualizar responsável:", error);
@@ -103,56 +123,89 @@ function EleAtualizarPerfil() {
     return (
         <>
             <Navbar />
-
             <div className={Style["corpo"]}>
-                <Stack spacing={2} display="flex" direction="row" justifyContent="space-around" className={Style["ajuste"]}>
-                    <div className={Style["img"]}>
-                        <img src={Voltar} alt="" width="45vh" height="35vh" />
-                        <span>Voltar</span>
-                    </div>
-                </Stack>
-                <div className={Style["texto"]}>
-                    <h2>Edição de perfil</h2>
-                </div>
+                <Stack alignItems={'center'}>
 
-                <Stack direction="row" className={Style["centraliza"]}>
-                    <Stack className={Style["info-usuario"]} spacing={4} marginInline={5}>
-                        <div className={Style["foto-usu"]}>
-                            <img src={imagemSrc} alt="" width="100%" height="100%" style={{ borderRadius: "100%"  }} />
+                    <Stack spacing={2} direction="row" className={Style["ajuste"]}>
+                        <div className={Style["img"]}>
+                            <img src={Voltar} alt="" width="45vh" height="35vh" />
+                            <span>Voltar</span>
                         </div>
-                        <InputTextField label="Nome" value={nome} onChange={(e) => handleInputChange(e, setNome)} />
-                        <InputTextField label="Sobre" value={apresentacao} onChange={(e) => handleInputChange(e, setApresentacao)} size="xl" />
+                        <div className={Style["texto"]}>
+                            <h2>Edição de perfil</h2>
+                        </div>
                     </Stack>
-                    <Stack className={Style["endereco"]}>
-                        <Stack direction="row" marginLeft={6} marginTop={2}>
-                            <InputTextField label="Endereço" value={endereco} onChange={(e) => handleInputChange(e, setEndereco)} sx={{ width: "42vw" }} />
-                        </Stack>
-                        <Stack direction="row" spacing={2} marginLeft={6}>
-                            <InputTextField label="CEP" value={CEP} onChange={(e) => handleInputChange(e, setCEP)} sx={{ width: "14vw" }} />
-                            <InputTextField label="Rua" value={rua} onChange={(e) => handleInputChange(e, setRua)} sx={{ width: "27vw" }} />
-                        </Stack>
-                        <Stack direction="row" spacing={2} marginLeft={6}>
-                            <InputTextField label="Bairro" value={bairro} onChange={(e) => handleInputChange(e, setBairro)} sx={{ width: "29vw" }} />
-                            <InputTextField label="Número" value={numero} onChange={(e) => setNumero(e.target.value)} sx={{ width: "12vw" }} />
-                        </Stack>
-                        <Stack direction="row" spacing={2} marginLeft={6} marginBottom={2}>
-                            <InputTextField label="Cidade" value={cidade} onChange={(e) => setCidade(e.target.value)} sx={{ width: "42vw" }} />
-                        </Stack>
-                    </Stack>
-                </Stack>
 
-                <div className={Style["idoso"]}>
+                    <Stack direction="row" className={Style["centraliza"]}>
+                        <Stack className={Style["info-usuario"]} spacing={4} marginInline={5}>
+                            <Stack justifyContent='center'  direction='row'>
+                                <img className={Style["foto-usu"]} src={imagemSrc} alt=""/>
+                            </Stack>
+                            <Stack direction='column' alignItems='center' spacing={3}>
+                                <InputTextField label="Nome" value={nome} onChange={(e) => handleInputChange(e, setNome)} />
+                                <InputTextField label="Sobre" value={apresentacao} onChange={(e) => handleInputChange(e, setApresentacao)} size="xl" />
+                                <InputTextField label="Telefone" value={telefone} onChange={(e) => handleInputChange(e, setTelefone)} size="xl" />
+                                <ElderList idosos={idosos} Style={{width:'20vh'}}/>
+                            </Stack>
+                        </Stack>
+                        <Stack className={Style["endereco"]}  >
+                            <Stack marginLeft={3} marginRight={3}>
+                                <Stack direction="row" marginTop={3}>
+                                    <InputTextField
+                                        label="Endereço Completo"
+                                        value={enderecoCompleto}
+                                        disabled
+                                        sx={{ width: "42vw" }}
+                                    />
+                                </Stack>
+                                <Stack direction="row" spacing={2} marginTop={3} >
+                                    <InputTextField label="CEP" value={CEP} onChange={(e) => handleInputChange(e, setCEP)} sx={{ width: "12vw" }} />
+                                    <InputTextField label="Rua" value={logradouro} onChange={(e) => handleInputChange(e, setLogradouro)} sx={{ width: "29vw" }} />
+                                </Stack>
+                                <Stack direction="row" spacing={2} marginTop={3} >
+
+                                    <InputTextField label="Bairro" value={bairro} onChange={(e) => handleInputChange(e, setBairro)} sx={{ width: "29vw" }} />
+                                    <InputTextField label="Número" value={numero} onChange={(e) => handleInputChange(e, setNumero)} sx={{ width: "12vw" }} />
+                                </Stack>
+                                <Stack direction="row" spacing={2} marginTop={3} marginBottom={2}>
+                                    <InputTextField label="Cidade" value={cidade} onChange={(e) => handleInputChange(e, setCidade)} sx={{ width: "42vw" }} />
+                                </Stack>
+
+
+                            </Stack>
+                            <Stack className={Style["calendario"]} marginBottom={3}>
+                                <Calendario onChange={setCalendario} />
+                            </Stack>
+                        </Stack>
+                    </Stack>
+
+                    <Stack direction="row" className={Style["centraliza"]} spacing={5} marginInline={5}>
+                        {/* <Stack direction="row" spacing="3" className={Style["info-usuario"]}>
+                        <ElderList idosos={idosos} />
+                        </Stack> */}
+                        {/* <Stack spacing={3} className={Style["endereco"]}>
+                        <Calendario onChange={setCalendario} />
+                    </Stack> */}
+                    </Stack>
+
+
+                    {/* <div className={Style["idoso"]}>
                     <Stack direction="row" spacing="3" className={Style["adiciona"]}>
-                        <ElderList idosos={idosos} /> {/* Passando idosos como propriedade */}
-                    </Stack>
-                </div>
-
-                <div className={Style["calendario"]}>
+                        <ElderList idosos={idosos} />
+                        </Stack>
+                        
+                        </div>
+                        
+                        <div className={Style["calendario"]}>
                     <Stack spacing={3} className={Style["itens"]}>
                         <Calendario onChange={setCalendario} />
-                        <ButtonAzul onClick={handleSave}>Salvar Alterações</ButtonAzul>
                     </Stack>
-                </div>
+                </div> */}
+
+                    <div className={Style["botao-fixo"]}>
+                        <ButtonAzul onClick={handleSave} disabled={!isDirty}>Salvar Alterações</ButtonAzul>
+                    </div>
+                </Stack>
             </div>
         </>
     );

@@ -12,6 +12,12 @@ const ButtonAzul = styled(Button)({
     '&:hover': {
         backgroundColor: '#077DB0',
     },
+    '&:disabled': {
+        backgroundColor: '#a0c4e1', 
+        color: '#ffffff',   
+        opacity: 0.7, 
+        cursor: 'not-allowed', 
+    },
 });
 
 

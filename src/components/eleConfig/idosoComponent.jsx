@@ -3,31 +3,23 @@ import './ElderList.css'; // Importando o arquivo CSS para estilização
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import { IconButton, Box, Button } from '@mui/material';
+import { IconButton, Box } from '@mui/material';
 import AddElderModal from './AddElderModal';
 import axios from 'axios';
 
-function ElderCard({ id, name, condition, age,onEdit, onDelete }) {
-
+function ElderCard({ id, name, condition, age, onEdit, onDelete }) {
   const handleEdit = () => {
     onEdit(id);
   };
 
-  const handleDelete = async (elderId) => {
-    if (!elderId) {
-      console.error('ID inválido:', elderId);
-      return;
-    }
-
+  const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:8080/idosos/${elderId}`);
-      onDelete(elderId);
+      await axios.delete(`http://localhost:8080/idosos/${id}`);
+      onDelete(id);
     } catch (error) {
       console.error('Erro ao deletar o idoso:', error);
-      console.error('Detalhes da resposta:', error.response?.data);
     }
   };
-
 
   return (
     <div className="elder-card">
@@ -39,7 +31,7 @@ function ElderCard({ id, name, condition, age,onEdit, onDelete }) {
           <IconButton onClick={handleEdit}>
             <EditIcon />
           </IconButton>
-          <IconButton onClick={() => handleDelete(id)}>
+          <IconButton onClick={handleDelete}>
             <DeleteIcon />
           </IconButton>
         </Box>
@@ -61,9 +53,7 @@ function ElderList({ idosos, setIdosos }) {
   const [elderToEdit, setElderToEdit] = useState(null);
   const [elders, setElders] = useState([]);
 
-
   useEffect(() => {
-    console.log('idoso ',idosos)
     setElders(idosos);
   }, [idosos]);
 
@@ -77,42 +67,56 @@ function ElderList({ idosos, setIdosos }) {
     const updatedElders = elders.filter(elder => elder.idIdoso !== elderId);
     setElders(updatedElders);
   };
+
   const refreshList = async () => {
-    setElders([]);
     try {
       const response = await axios.get('http://localhost:8080/idosos');
+
       setElders(response.data);
+      setIdosos(response.data);
     } catch (error) {
       console.error('Erro ao buscar a lista de idosos:', error);
     }
   };
+
   const handleEditElder = (elderId) => {
     const elder = elders.find((e) => e.idIdoso === elderId);
     setElderToEdit(elder);
     handleOpenModal();
   };
 
+  const handleModalClose = () => {
+    handleCloseModal();
+    refreshList(); // Atualiza a lista após fechar o modal
+  };
+
   return (
     <div className="elder-list-container">
       <h2>Idosos cadastrados</h2>
       <div className="elder-list">
-        {elders.map((elder, index) => (
+        {elders.map((elder) => (
           <ElderCard
-            key={index}
+            key={elder.idIdoso}
             id={elder.idIdoso}
             name={elder.nome}
             condition={elder.descricao || 'Sem descrição'}
             age={elder.dtNasc ? calculateAge(elder.dtNasc) : 'Data de nascimento não especificada'}
-            onEdit={handleEditElder} // Passando a função para permitir a edição
+            onEdit={handleEditElder}
             onDelete={handleDeleteElder}
           />
         ))}
       </div>
       <AddElderButton onClick={handleOpenModal} />
-      <AddElderModal open={modalOpen} handleClose={handleCloseModal} elderToEdit={elderToEdit} refreshList={refreshList} />
+      <AddElderModal
+        open={modalOpen}
+        handleClose={handleModalClose} // Usa a função que atualiza a lista ao fechar
+        elderToEdit={elderToEdit}
+        refreshList={refreshList}
+      />
     </div>
   );
 }
+
 function calculateAge(birthday) {
   const ageDate = new Date(Date.now() - new Date(birthday).getTime());
   return Math.abs(ageDate.getUTCFullYear() - 1970);
