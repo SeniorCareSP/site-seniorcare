@@ -19,6 +19,8 @@ function EleAtualizarPerfil() {
     const [CEP, setCEP] = useState("");
     const [logradouro, setLogradouro] = useState("");
     const [bairro, setBairro] = useState("");
+    const [email, setEmail] = useState("");
+    const [selectedFile, setSelectedFile] = useState(null);
     const [numero, setNumero] = useState("");
     const [cidade, setCidade] = useState("");
     const [calendario, setCalendario] = useState(Array(7).fill().map(() => Array(3).fill(false)));
@@ -26,7 +28,6 @@ function EleAtualizarPerfil() {
     const [idosos, setIdosos] = useState([]);
     const [imagemSrc, setImagemSrc] = useState(null);
     const idUsuario = localStorage.getItem('idUsuario');
-
     const [originalData, setOriginalData] = useState({});
     const [isDirty, setIsDirty] = useState(false);
 
@@ -42,19 +43,17 @@ function EleAtualizarPerfil() {
                 console.error('Erro ao carregar imagem:', error);
             }
         }
-
         fetchImage();
     }, [idUsuario]);
 
     useEffect(() => {
         const fetchAdminData = async () => {
-            const idUsuario = localStorage.getItem('idUsuario');
             try {
                 const response = await apiResponsavel.get(`/${idUsuario}`);
                 const data = response.data;
                 console.log(data);
                 setNome(data.nome);
-                setTelefone(data.telefone);
+                setEmail(data.email);
                 setApresentacao(data.apresentacao);
                 setLogradouro(data.endereco.logradouro);
                 setEnderecoCompleto(`${data.endereco.logradouro}, ${data.endereco.numero}, ${data.endereco.bairro}, ${data.endereco.cidade} - ${data.endereco.cep}`);
@@ -65,13 +64,22 @@ function EleAtualizarPerfil() {
                 setAgendaDisponibilidade(data.agenda.disponibilidade || []);
                 setIdosos(data.idosos || []);
                 setOriginalData(data);
+                if (data.telefone) {
+                    setTelefone(phoneFormatter(data.telefone));
+                } else {
+                    setTelefone("");
+                }
             } catch (error) {
                 console.error("Erro ao buscar dados do responsável:", error);
             }
         };
 
         fetchAdminData();
-    }, []);
+    }, [idUsuario]);
+
+    useEffect(() => {
+        checkIfDirty();
+    }, [nome, email, apresentacao, telefone, logradouro, enderecoCompleto, CEP, bairro, numero, cidade]);
 
     const handleInputChange = (event, setStateFunction) => {
         setStateFunction(event.target.value);
@@ -81,6 +89,7 @@ function EleAtualizarPerfil() {
     const checkIfDirty = () => {
         const hasChanges = (
             nome !== originalData.nome ||
+            email !== originalData.email ||
             apresentacao !== originalData.apresentacao ||
             telefone !== originalData.telefone ||
             logradouro !== originalData.endereco.logradouro ||
@@ -93,11 +102,40 @@ function EleAtualizarPerfil() {
         setIsDirty(hasChanges);
     };
 
+    const phoneFormatter = (value) => {
+        const cleaned = value.replace(/\D/g, '');
+        const match = cleaned.match(/(\d{2})(\d{4,5})(\d{4})/);
+        if (match) {
+            return `(${match[1]}) ${match[2]}-${match[3]}`;
+        }
+        return value;
+    };
+
+    const handlePhoneChange = (event) => {
+        const formattedValue = phoneFormatter(event.target.value);
+        setTelefone(formattedValue);
+    };
+
+    const handleFileChange = (event) => {
+        setSelectedFile(event.target.files[0]);
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImagemSrc(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     const handleSave = async (event) => {
         event.preventDefault();
+
         const dadosAtualizarResponsavel = {
             nome: nome,
             apresentacao: apresentacao,
+            email: email,
+            telefone: telefone.replace(/\D/g, ''),
             endereco: {
                 logradouro: logradouro,
                 cep: CEP,
@@ -107,11 +145,12 @@ function EleAtualizarPerfil() {
             },
             agenda: {
                 disponibilidade: agendaDisponibilidade
-            },
-            idosos: idosos
+            }
         };
 
         try {
+            console.log(dadosAtualizarResponsavel);
+            // Atualiza os dados do responsável
             await apiResponsavel.put(`/${idUsuario}`, dadosAtualizarResponsavel);
             window.location.reload();
             console.log("Atualização realizada com sucesso!");
@@ -120,12 +159,33 @@ function EleAtualizarPerfil() {
         }
     };
 
+    const handleImageUpload = async () => {
+        if (!selectedFile) {
+            alert("Selecione uma imagem antes de fazer o upload.");
+            return;
+        }
+
+        try {
+            const formData = new FormData();
+            formData.append('file', selectedFile, `${idUsuario}.jpg`);
+            await axios.post(
+                `http://localhost:8080/files/upload?filename=${idUsuario}.jpg`,
+                formData,
+                { headers: { 'Content-Type': 'multipart/form-data' } }
+            );
+            alert("Imagem enviada com sucesso!");
+            setSelectedFile(null); // Limpa a seleção após o upload
+        } catch (error) {
+            alert("Erro ao enviar a imagem.");
+            console.error('Erro ao enviar a imagem:', error);
+        }
+    };
+
     return (
         <>
             <Navbar />
             <div className={Style["corpo"]}>
                 <Stack alignItems={'center'}>
-
                     <Stack spacing={2} direction="row" className={Style["ajuste"]}>
                         <div className={Style["img"]}>
                             <img src={Voltar} alt="" width="45vh" height="35vh" />
@@ -138,17 +198,40 @@ function EleAtualizarPerfil() {
 
                     <Stack direction="row" className={Style["centraliza"]}>
                         <Stack className={Style["info-usuario"]} spacing={4} marginInline={5}>
-                            <Stack justifyContent='center'  direction='row'>
-                                <img className={Style["foto-usu"]} src={imagemSrc} alt=""/>
+                            <Stack justifyContent='center' direction='row'>
+                                <img className={Style["foto-usu"]} src={imagemSrc} alt="" />
+                            </Stack>
+                            <Stack direction='column' alignItems='center' spacing={3} justifyContent='center'>
+                                <label htmlFor="file-upload" style={{
+                                    cursor: 'pointer',
+                                    color: 'black',
+                                    textAlign: 'center',
+                                    alignItems: 'center',
+                                    height: '5vh',
+                                    width: '100%',
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                }}>
+                                    {selectedFile ? selectedFile.name : "Selecione uma imagem"}
+                                </label>
+                                <input
+                                    style={{ cursor: 'pointer', display: 'none' }}
+                                    id="file-upload"
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={handleFileChange}
+                                />
+                                <ButtonAzul onClick={handleImageUpload} disabled={!selectedFile}>Salvar Foto</ButtonAzul>
                             </Stack>
                             <Stack direction='column' alignItems='center' spacing={3}>
                                 <InputTextField label="Nome" value={nome} onChange={(e) => handleInputChange(e, setNome)} />
+                                <InputTextField label="Email" value={email} onChange={(e) => handleInputChange(e, setEmail)} />
                                 <InputTextField label="Sobre" value={apresentacao} onChange={(e) => handleInputChange(e, setApresentacao)} size="xl" />
-                                <InputTextField label="Telefone" value={telefone} onChange={(e) => handleInputChange(e, setTelefone)} size="xl" />
-                                <ElderList idosos={idosos} Style={{width:'20vh'}}/>
+                                <InputTextField label="Telefone" value={telefone} onChange={handlePhoneChange} size="xl" />
+                                <ElderList idosos={idosos} Style={{ width: '20vh' }} />
                             </Stack>
                         </Stack>
-                        <Stack className={Style["endereco"]}  >
+                        <Stack className={Style["endereco"]}>
                             <Stack marginLeft={3} marginRight={3}>
                                 <Stack direction="row" marginTop={3}>
                                     <InputTextField
@@ -158,49 +241,23 @@ function EleAtualizarPerfil() {
                                         sx={{ width: "42vw" }}
                                     />
                                 </Stack>
-                                <Stack direction="row" spacing={2} marginTop={3} >
+                                <Stack direction="row" spacing={2} marginTop={3}>
                                     <InputTextField label="CEP" value={CEP} onChange={(e) => handleInputChange(e, setCEP)} sx={{ width: "12vw" }} />
                                     <InputTextField label="Rua" value={logradouro} onChange={(e) => handleInputChange(e, setLogradouro)} sx={{ width: "29vw" }} />
                                 </Stack>
-                                <Stack direction="row" spacing={2} marginTop={3} >
-
+                                <Stack direction="row" spacing={2} marginTop={3}>
                                     <InputTextField label="Bairro" value={bairro} onChange={(e) => handleInputChange(e, setBairro)} sx={{ width: "29vw" }} />
                                     <InputTextField label="Número" value={numero} onChange={(e) => handleInputChange(e, setNumero)} sx={{ width: "12vw" }} />
                                 </Stack>
                                 <Stack direction="row" spacing={2} marginTop={3} marginBottom={2}>
                                     <InputTextField label="Cidade" value={cidade} onChange={(e) => handleInputChange(e, setCidade)} sx={{ width: "42vw" }} />
                                 </Stack>
-
-
                             </Stack>
                             <Stack className={Style["calendario"]} marginBottom={3}>
                                 <Calendario onChange={setCalendario} />
                             </Stack>
                         </Stack>
                     </Stack>
-
-                    <Stack direction="row" className={Style["centraliza"]} spacing={5} marginInline={5}>
-                        {/* <Stack direction="row" spacing="3" className={Style["info-usuario"]}>
-                        <ElderList idosos={idosos} />
-                        </Stack> */}
-                        {/* <Stack spacing={3} className={Style["endereco"]}>
-                        <Calendario onChange={setCalendario} />
-                    </Stack> */}
-                    </Stack>
-
-
-                    {/* <div className={Style["idoso"]}>
-                    <Stack direction="row" spacing="3" className={Style["adiciona"]}>
-                        <ElderList idosos={idosos} />
-                        </Stack>
-                        
-                        </div>
-                        
-                        <div className={Style["calendario"]}>
-                    <Stack spacing={3} className={Style["itens"]}>
-                        <Calendario onChange={setCalendario} />
-                    </Stack>
-                </div> */}
 
                     <div className={Style["botao-fixo"]}>
                         <ButtonAzul onClick={handleSave} disabled={!isDirty}>Salvar Alterações</ButtonAzul>

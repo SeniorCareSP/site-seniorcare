@@ -109,7 +109,7 @@ function ElderList({ idosos, setIdosos }) {
       <AddElderButton onClick={handleOpenModal} />
       <AddElderModal
         open={modalOpen}
-        handleClose={handleModalClose} // Usa a função que atualiza a lista ao fechar
+        handleClose={handleModalClose}
         elderToEdit={elderToEdit}
         refreshList={refreshList}
       />

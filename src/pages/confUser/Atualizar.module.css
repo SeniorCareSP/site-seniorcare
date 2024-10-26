@@ -1,5 +1,5 @@
 .corpo {
-  background-color: white;
+  background-color: #F5F5DC;
   min-height: 130vh;
   max-height: auto;
 }
@@ -9,7 +9,8 @@
   height: 100%;
   width: 25vw;
   background-color: white;
-  box-shadow: 5px 5px 5px #222222;
+  box-shadow: 5px 5px 10px rgba(34, 34, 34, 0.2); 
+  border-radius: 3vh;
 }
 
 .corpo .ajuste {
@@ -31,7 +32,8 @@
 .corpo .endereco {
   background-color: white;
   border-radius: 0px;
-  box-shadow: 5px 5px 10px #222222;
+  box-shadow: 5px 5px 10px rgba(34, 34, 34, 0.2); 
+  border-radius: 3vh;
   display: flex;
 }
 
@@ -46,7 +48,9 @@
   justify-content: center;
   align-items: center;
   border-radius: 0px;
-  box-shadow: 5px 5px 10px #222222;
+  box-shadow: 5px 5px 10px rgba(34, 34, 34, 0.2); 
+  border-radius: 3vh;
+
   background-color: white;
   width: 65vw;
   height: 85vh;
@@ -58,7 +62,7 @@
   justify-content: space-around;
   align-items: center;
   border-radius: 0px;
-  box-shadow: 5px 5px 10px #222222;
+  box-shadow: 5px 5px 10px rgba(34, 34, 34, 0.2); 
   background-color: white;
   width: 60vw;
   height: 60vh;

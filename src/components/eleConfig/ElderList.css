@@ -2,11 +2,13 @@
 .elder-list-container {
     padding: 16px;
     border-radius: 8px;
+    min-width: 90%;
   }
   
   .elder-list {
+    max-height: 30vh;
     color: white;
-    max-height: 300px; /* Definindo a altura máxima da lista */
+    /* max-height: 300px;  */
     overflow-y: auto; /* Adicionando barra de rolagem vertical quando necessário */
   }
   
