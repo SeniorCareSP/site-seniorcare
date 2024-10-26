@@ -8,6 +8,7 @@ import Emoji from "../../utils/assets/Happy.png";
 import Sent from "../../utils/assets/Sent.png";
 import apiChat from '../../api/Usuario/apiChat';
 import axios from 'axios';
+import { Stack } from '@mui/material';
 const ChatWindow = () => {
   const [newMessage, setNewMessage] = useState('');
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
@@ -106,14 +107,14 @@ const ChatWindow = () => {
 
   const showMessage = (message) => {
     console.log(message);
-  
+
     try {
       const parsedMessage = JSON.parse(message);
-  
+
       // Exibir os IDs de remetente e destinatário
       console.log('ID do Remetente:', parsedMessage.senderId);
       console.log('ID do Destinatário:', parsedMessage.recipientId);
-  
+
       if (parsedMessage.content.trim()) {
         setChatMessages(prevMessages => [...prevMessages, parsedMessage]);
         scrollToBottom();
@@ -124,7 +125,7 @@ const ChatWindow = () => {
       scrollToBottom();
     }
   };
-  
+
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -170,11 +171,13 @@ const ChatWindow = () => {
           <div className={styles.noMessages}>Nenhuma conversa iniciada até o momento.</div>
         ) : (
           <>
-            <img src={imagemSrcRec || Icone} className={styles.messagePhotoChat} alt="User" /> {/* Exibe a imagem do destinatário ou ícone padrão */}
-            <div className={styles.userInfo}>
-              <div className={styles.userName}>{conversante}</div>
-              <div className={styles.userDistance}>0,7km</div>
-            </div>
+            <Stack direction='row' spacing={4} alignItems='center'>
+              <img src={imagemSrcRec || Icone} className={styles.messagePhotoChat} alt="User" />
+              <Stack direction='column'>
+                <div className={styles.userName}>{conversante}</div>
+                <div className={styles.userDistance}>0,7km</div>
+              </Stack>
+            </Stack>
           </>
         )}
       </div>
@@ -192,7 +195,7 @@ const ChatWindow = () => {
                 src={msg.senderId == idUsuario ? imagemSrcUsuario : imagemSrcRec} // Usa a imagem do remetente ou do destinatário
                 alt={msg.senderId}
                 className={styles.messagePhoto}
-              /> 
+              />
 
               <div className={styles.message} style={{
                 backgroundColor: msg.senderId == idUsuario ? '#2C7595' : '#80C1DE', borderRadius: '20vh', alignItems: 'center'

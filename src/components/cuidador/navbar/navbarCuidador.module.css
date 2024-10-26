@@ -11,36 +11,36 @@
 
 .logo {
     background-image: url(../../../utils/assets/logo.png);
-    background-size: contain; /* Mantém a proporção */
+    background-size: contain;
     width: 10%;
     height: 10vh;
-    background-repeat: no-repeat; /* Impede a repetição da imagem */
+    background-repeat: no-repeat;
 }
-/* Adicione isso ao seu CSS existente */
+
 
 .selected {
-    color: black !important; /* Cor do texto para a aba selecionada */
-    font-weight: bold; /* Pode ser negrito ou outro estilo para destaque */
-    border-bottom: 2px solid #80C1DE; /* Adiciona uma linha inferior para indicar seleção */
+    color: black !important; 
+    font-weight: bold;
+    border-bottom: 2px solid #80C1DE;
 
 }
 
 /* header/navbar */
 .header {
     background-color: #077DB0;
-    padding: 1vh 3vh; /* Padding uniforme */
+    padding: 1vh 3vh;
     height: 7vh;
     display: flex;
-    justify-content: space-between; /* Espaço entre logo e opções */
+    justify-content: space-between; 
     align-items: center;
-    border-bottom: 0.2vh solid #ffff; /* Correção da ordem da cor */
+    border-bottom: 0.2vh solid #ffff;
 }
 
 .header .opcoes {
     display: flex;
-    justify-content: space-evenly; /* Centraliza o conteúdo dentro das opções */
+    justify-content: space-evenly; 
     align-items: center;
-    flex-grow: 1; /* Permite que essa seção ocupe o espaço restante */
+    flex-grow: 1; 
 }
 
 .header .opcoes a {
@@ -49,45 +49,45 @@
     font-weight: 500;
     cursor: pointer;
     color: #ffff;
-    margin: 0 15px; /* Espaçamento uniforme entre os links */
-    transition: color 0.3s; /* Adiciona uma transição suave */
+    margin: 0 15px; 
+    transition: color 0.3s; 
 }
 
 .header .opcoes a:hover {
-    color: #80C1DE; /* Mudança de cor ao passar o mouse */
+    color: #80C1DE; 
 }
 
 .header .cadastro {
     display: flex;
-    align-items: center; /* Alinha verticalmente os itens */
-    justify-content: flex-end; /* Alinha itens à direita */
-    margin-left: auto; /* Para empurrar a seção de cadastro para a direita */
+    align-items: center; 
+    justify-content: flex-end; 
+    margin-left: auto; 
 }
 
 .header .cadastro img {
-    width: 4vw;           /* Largura da imagem */
-    height: 4vw;          /* Altura da imagem */
-    border-radius: 50%;   /* Faz a imagem ficar circular */
-    object-fit: cover;    /* Corta a imagem para preencher o espaço sem distorção */
-    margin-left: 10px;    /* Espaço à esquerda da imagem de perfil */
-    transition: transform 0.3s; /* Adiciona uma transição suave ao hover */
+    width: 4vw;           
+    height: 4vw;          
+    border-radius: 50%;   
+    object-fit: cover;    
+    margin-left: 10px;    
+    transition: transform 0.3s; 
 }
 
 .header .cadastro img:hover {
-    transform: scale(1.1);  /* Levemente aumenta a imagem no hover */
-    cursor: pointer;         /* Muda o cursor para indicar interatividade */
+    transform: scale(1.1);  
+    cursor: pointer;         
 }
 
 .header .cadastro a {
-    margin-right: 3vh; /* Espaçamento à direita do link */
+    margin-right: 3vh; 
     text-decoration: underline;
-    color: #ffff; /* Garante que a cor do link na seção de cadastro seja branca */
+    color: #ffff; 
 }
 
 .icon {
-    width: 2px; /* Largura desejada */
-    height: 32px; /* Altura desejada */
-    object-fit: contain; /* Para manter a proporção da imagem */
+    width: 2px; 
+    height: 32px;
+    object-fit: contain;
 }
 
 /* Responsividade */

@@ -1,33 +1,10 @@
 .chatList {
-  background-color: #2C7595;
+  background-color: #077DB0;
   color: white;
-  width: 30vw;
+  width: 25vw;
   overflow-y: hidden;
   overflow-x: hidden;
-  height: 40vh;
-}
-
-.header {
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  padding: 20px;
-}
-
-.header img { 
-  height: 40px;
-}
-
-.titles {
-  display: flex;
-  gap: 30px;
-  margin-left: 10px;
-}
-
-.home {
-  margin-left: 5px;
-  color: darkred;
-  font-weight: 800;
+  height: auto;
 }
 
 .users {
@@ -35,35 +12,44 @@
   flex-direction: column;
   overflow-y: auto;
   margin-left: 1%;
-  height: calc(100% - 50px); 
+  height: 100%; 
 }
 
 .users::-webkit-scrollbar {
   background-color: #060f25;
-  width: 3px;
-  border-radius: 9px;
+  width: 2vw;
+  border-radius: 2vh;
   padding: 9%;
 }
 
 .users::-webkit-scrollbar-thumb {
-  border-radius: 9px;
+  border-radius: 2vh;
   background-color: #80C1DE;
 }
 
 .user {
   display: flex;
   align-items: center;
-  padding: 10px;
-  background-color: #2C7595;
-  height: 9vh; 
+  background-color: #0d5f83;
+  padding: 2vh;
+  border-radius: 2vh;
+  height: 8vh;
+  margin-right: 1vh; 
+  margin-left: 1vh;
   cursor: pointer;
+  transition: 0.5s;
+}
+
+.user:hover{
+  transition: 0.5s;
+  background-color: #80C1DE;
 }
 
 .userPhoto {
-  width: 50px;
-  height: 50px;
+  width: 4.5vw;
+  height: 9vh;
   border-radius: 100%;
-  margin-right: 10px;
+  margin-right: 2vh;
   object-fit: cover;
 }
 
@@ -74,12 +60,4 @@
 
 .userName {
   font-weight: bold;
-}
-
-.userMessage {
-  color: #ffffff;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  max-width: 200px;
 }

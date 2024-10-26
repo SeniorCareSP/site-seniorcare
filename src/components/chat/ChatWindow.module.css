@@ -1,14 +1,14 @@
 .chatWindow {
   display: flex;
   flex-direction: column;
-  width: 90vw; /* Largura em relação à largura da tela */
-  max-width: calc(100% - 300px); /* Largura máxima */
+  width: 80vw;
+  height: 90.6vh;
   overflow-x: hidden;
   overflow-y: hidden;
 }
 
 .header {
-  padding-left: 5%;
+  padding: 2vh;
   display: flex;
   align-items: center;
   background-color: #ffffff;
@@ -16,12 +16,8 @@
   height: 13vh;
 }
 
-.userInfo {
-  margin: 5%;
-}
-
 .userName {
-  font-size: 16px;
+  font-size: 3vh;
   font-weight: 900;
 }
 
@@ -37,34 +33,26 @@
   align-items: center;
   padding: 10px;
 }
+
 .messagePhotoChat{
-  border-radius: 50%; /* Para deixar a imagem redonda */
-  width: 80px; /* Largura fixa */
-  height: 80px; /* Altura fixa */
-  object-fit: cover; /* Mantém a proporção da imagem e preenche o espaço */
-  margin: 0 10px; /* Margem uniforme */
-}
-.messagePhoto {
-  border-radius: 50%; /* Para deixar a imagem redonda */
-  width: 40px; /* Largura fixa */
-  height: 40px; /* Altura fixa */
-  object-fit: cover; /* Mantém a proporção da imagem e preenche o espaço */
-  margin: 0 10px; /* Margem uniforme */
+  border-radius: 50%;
+  width: 4.5vw;
+  height: 9vh;
+  object-fit: cover;
 }
 
-.messageText {
-  background-color: #016894;
-  color: #ffffff;
-  padding: 10px;
-  border-radius: 10px;
-  max-width: 80%; /* Largura máxima */
-  word-wrap: break-word; /* Quebra a linha */
+.messagePhoto {
+  border-radius: 50%;
+  width: 2.5vw;
+  height: 5vh;
+  object-fit: cover;
+  margin: 1vh;
 }
 
 .inputBar {
   display: flex;
   align-items: center;
-  padding: 10px;
+  padding: 2vh;
   background-color: #016894;
   height: 15%;
   width: 100%;
@@ -80,17 +68,14 @@
 }
 
 .sentMessage {
-  height: 50px;
-  margin-right: 20px;
+  width: 3vw;
+  margin-right: 2vh;
 }
 
 .navbarItems {
   display: flex;
 }
 
-.navbarItem {
-  margin-right: 10px;
-}
 
 .emojiButton,
 .sendButton {
@@ -104,14 +89,8 @@
 .input {
   flex-grow: 1;
   padding: 10px;
-  margin: 0 10px;
+  margin:   10px;
   border-radius: 5px;
   border: none;
 }
 
-.emojiPickerContainer {
-  position: absolute;
-  bottom: 50px;
-  left: 10px;
-  z-index: 1;
-}
