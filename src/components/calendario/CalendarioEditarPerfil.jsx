@@ -49,11 +49,13 @@ function CalendarioEditarPerfil({ onChange, disponibilidade }) {
                                     selected={value[dayIndex][periodIndex]}
                                     onClick={() => handleToggle(dayIndex, periodIndex)}
                                     sx={{
+                                        
                                         backgroundColor: value[dayIndex][periodIndex] ? '#077DB0' : 'transparent',
                                         color: value[dayIndex][periodIndex] ? '#077DB0' : 'inherit',
                                         border: `1px solid ${value[dayIndex][periodIndex] ? '#077DB0' : '#077DB0'}`,
-                                        opacity: value[dayIndex][periodIndex] ? 0.3 : 1,
-                                        transition: 'opacity 0.3s ease'
+                                        opacity: value[dayIndex][periodIndex] ? 0.5 : 1,
+                                        transition: 'opacity 0.3s ease, background-color 0.3s ease',
+
                                         
                                     }}
                                 >

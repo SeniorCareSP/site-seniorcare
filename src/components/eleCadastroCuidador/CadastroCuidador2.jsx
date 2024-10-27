@@ -55,16 +55,16 @@ function CadastroCuidador2() {
                         <h3>Sobre você:</h3>
                         <Stack direction="row" spacing={2}>
                             <ToggleButtonGroup spacing={2} color="primary" value={value} onChange={(event, newValue) => { setValue(newValue) }}>
-                                <Button value="dirigir">Sei dirigir</Button>
-                                <Button value="fumo">Fumo</Button>
-                                <Button value="cuidados">Certificado de Cuidados Geriatricos</Button>
+                                <Button value="Dirigir">Sei dirigir</Button>
+                                <Button value="Fumo">Fumo</Button>
+                                <Button value="Cuidados">Certificado de Cuidados Geriatricos</Button>
                             </ToggleButtonGroup>
                         </Stack>
                         <Stack direction="row" spacing={2}>
                             <ToggleButtonGroup spacing={2} color="primary" value={value} onChange={(event, newValue) => { setValue(newValue) }}>
                                 <Button value="Diploa de enfermagem">Diploma de Enfermagem</Button>
-                                <Button value="culinaria">Certificado Primeiros Socorros</Button>
-                                <Button value="curativos">Certificado Boa Conduta</Button>
+                                <Button value="Culinaria">Certificado Primeiros Socorros</Button>
+                                <Button value="Curativos">Certificado Boa Conduta</Button>
                             </ToggleButtonGroup>
                         </Stack>
                         <h3>Apresente-se</h3>

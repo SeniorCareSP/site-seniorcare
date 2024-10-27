@@ -11,6 +11,8 @@ import axios from 'axios';
 import Calendario from '../calendario/Calendario';
 import Voltar from "../../utils/assets/setaVoltar.png";
 import { useNavigate } from "react-router-dom";
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 
 function EleAtualizarPerfil() {
     const [nome, setNome] = useState("");
@@ -32,7 +34,9 @@ function EleAtualizarPerfil() {
     const [originalData, setOriginalData] = useState({});
     const [isDirty, setIsDirty] = useState(false);
     const navigate = useNavigate();
-
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState('');
+    const [snackbarSeverity, setSnackbarSeverity] = useState('error');
     useEffect(() => {
         async function fetchImage() {
             try {
@@ -54,14 +58,14 @@ function EleAtualizarPerfil() {
                 const response = await apiResponsavel.get(`/${idUsuario}`);
                 const data = response.data;
                 console.log(data);
-                setNome(data.nome);
-                setEmail(data.email);
-                setApresentacao(data.apresentacao);
-                setLogradouro(data.endereco.logradouro);
+                setNome(data.nome || '');
+                setEmail(data.email || '');
+                setApresentacao(data.apresentacao || '');
+                setLogradouro(data.endereco.logradouro || '');
                 setEnderecoCompleto(`${data.endereco.logradouro}, ${data.endereco.numero}, ${data.endereco.bairro}, ${data.endereco.cidade} - ${data.endereco.cep}`);
-                setCEP(data.endereco.cep);
-                setBairro(data.endereco.bairro);
-                setNumero(data.endereco.numero);
+                setCEP(data.endereco.cep || '');
+                setBairro(data.endereco.bairro || '');
+                setNumero(data.endereco.numero || '');
                 setCalendario(data.agenda.disponibilidade || [])
                 setCidade(data.endereco.cidade);
                 setAgendaDisponibilidade(data.agenda.disponibilidade || []);
@@ -102,7 +106,7 @@ function EleAtualizarPerfil() {
             numero !== originalData.endereco.numero ||
             cidade !== originalData.endereco.cidade ||
             calendario !== originalData.agenda.disponibilidade
-            
+
         );
         setIsDirty(hasChanges);
     };
@@ -156,10 +160,15 @@ function EleAtualizarPerfil() {
         try {
             console.log(dadosAtualizarResponsavel);
             await apiResponsavel.put(`/${idUsuario}`, dadosAtualizarResponsavel);
-            window.location.reload();
-            console.log("Atualização realizada com sucesso!");
+            setSnackbarMessage("Atualização realizada com sucesso!");
+            setSnackbarSeverity("success");
+            setSnackbarOpen(true);
+
         } catch (error) {
             console.error("Erro ao atualizar responsável:", error);
+            setSnackbarMessage("Erro ao atualizar os dados.");
+            setSnackbarSeverity("error");
+            setSnackbarOpen(true);
         }
     };
 
@@ -177,13 +186,17 @@ function EleAtualizarPerfil() {
                 formData,
                 { headers: { 'Content-Type': 'multipart/form-data' } }
             );
-            alert("Imagem enviada com sucesso!");
-            setSelectedFile(null);
-            window.location.reload();
 
+            setSnackbarMessage("Imagem atualizada com sucesso!");
+            setSnackbarSeverity("success");
+            setSnackbarOpen(true);
+            setSelectedFile(null);
         } catch (error) {
             alert("Erro ao enviar a imagem.");
             console.error('Erro ao enviar a imagem:', error);
+            setSnackbarMessage("Erro ao enviar a imagem.");
+            setSnackbarSeverity("error");
+            setSnackbarOpen(true);
         }
     };
 
@@ -194,7 +207,7 @@ function EleAtualizarPerfil() {
                 <Stack alignItems={'center'}>
                     <Stack spacing={2} direction="row" className={Style["ajuste"]} >
                         <div className={Style["img"]} >
-                            <img src={Voltar} alt="" width="45vh" height="35vh"  onClick={() => navigate(`/procurar`)} />
+                            <img src={Voltar} alt="" width="45vh" height="35vh" onClick={() => navigate(`/procurar`)} />
                             <span>Voltar</span>
                         </div>
                         <div className={Style["texto"]}>
@@ -260,7 +273,7 @@ function EleAtualizarPerfil() {
                                 </Stack>
                             </Stack>
                             <Stack className={Style["calendario"]} marginBottom={3}>
-                                <CalendarioEditarPerfil onChange={setCalendario}disponibilidade = {calendario} />
+                                <CalendarioEditarPerfil onChange={setCalendario} disponibilidade={calendario} />
                             </Stack>
                         </Stack>
                     </Stack>
@@ -268,6 +281,21 @@ function EleAtualizarPerfil() {
                     <div className={Style["botao-fixo"]}>
                         <ButtonAzul onClick={handleSave} disabled={!isDirty}>Salvar Alterações</ButtonAzul>
                     </div>
+                    <Snackbar
+                        open={snackbarOpen}
+                        autoHideDuration={6000}
+                        onClose={() => setSnackbarOpen(false)}
+                        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                    >
+                        <Alert
+                            onClose={() => setSnackbarOpen(false)}
+                            severity={snackbarSeverity}
+                            sx={{ width: '100%' }}
+                        >
+                            {snackbarMessage}
+                        </Alert>
+                    </Snackbar>
+
                 </Stack>
             </div>
         </>

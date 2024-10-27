@@ -14,6 +14,10 @@ import { useNavigate } from "react-router-dom";
 import apiCuidador from '../../api/Usuario/apiCuidador';
 import apiAdm from '../../api/Usuario/apiAdm';
 import axios from 'axios';
+import InputTextField from "../Input/Input";
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+import CalendarioEditarPerfil from "../calendario/CalendarioEditarPerfil";
 
 function AtualizarPerfilCuidador() {
     const [value, setValue] = React.useState([]);
@@ -22,10 +26,15 @@ function AtualizarPerfilCuidador() {
     const handleInputChange = (event, setStateFunction) => {
         setStateFunction(event.target.value);
     }
-
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState('');
+    const [snackbarSeverity, setSnackbarSeverity] = useState('error');
+    const navigate = useNavigate();
+    const [selectedFile, setSelectedFile] = useState(null);
     const [email, setEmail] = useState("");
     const [nome, setNome] = useState("");
-    const [sobre, setSobre] = useState("");
+    const [apresentacao, setApresentacao] = useState("");
+    const [telefone, setTelefone] = useState("");
     const [endereco, setEndereco] = useState("");
     const [CEP, setCEP] = useState("");
     const [rua, setRua] = useState("");
@@ -34,8 +43,10 @@ function AtualizarPerfilCuidador() {
     const [cidade, setCidade] = useState("");
     const [precoHora, setPrecoHora] = useState("");
     const [imagemSrc, setImagemSrc] = useState(null);
-
-    // const navigate = useNavigate();
+    const [enderecoCompleto, setEnderecoCompleto] = useState("");
+    const [logradouro, setLogradouro] = useState("");
+    const [calendario, setCalendario] = useState(Array(7).fill().map(() => Array(3).fill(false)));
+    const [experiencia, setExperiencia] = useState("");
 
     useEffect(() => {
         async function fetchImage() {
@@ -53,6 +64,46 @@ function AtualizarPerfilCuidador() {
 
         fetchImage();
     }, []);
+
+    const handleFileChange = (event) => {
+        setSelectedFile(event.target.files[0]);
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImagemSrc(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const handleImageUpload = async () => {
+        if (!selectedFile) {
+            alert("Selecione uma imagem antes de fazer o upload.");
+            return;
+        }
+
+        try {
+            const formData = new FormData();
+            formData.append('file', selectedFile, `${idUsuario}.jpg`);
+            await axios.post(
+                `http://localhost:8080/files/upload?filename=${idUsuario}.jpg`,
+                formData,
+                { headers: { 'Content-Type': 'multipart/form-data' } }
+            );
+
+            setSnackbarMessage("Imagem atualizada com sucesso!");
+            setSnackbarSeverity("success");
+            setSnackbarOpen(true);
+            setSelectedFile(null);
+        } catch (error) {
+            alert("Erro ao enviar a imagem.");
+            console.error('Erro ao enviar a imagem:', error);
+            setSnackbarMessage("Erro ao enviar a imagem.");
+            setSnackbarSeverity("error");
+            setSnackbarOpen(true);
+        }
+    };
     useEffect(() => {
         const fetchAdminData = async () => {
             const idUsuario = localStorage.getItem('idUsuario');
@@ -60,14 +111,23 @@ function AtualizarPerfilCuidador() {
                 const response = await apiCuidador.get(`/${idUsuario}`);
                 const data = response.data;
                 console.log(data);
-                setNome(data.nome);
-                setSobre(data.apresentacao);
-                setEndereco(data.endereco.logradouro);
-                setCEP(data.endereco.cep);
-                setRua(data.endereco.complemento);
-                setBairro(data.endereco.bairro);
-                setNumero(data.endereco.numero);
-                setCidade(data.endereco.cidade);
+                setNome(data.nome || '');
+                setEmail(data.email|| '');
+                setCalendario(data.agenda.disponibilidade || [])
+                setApresentacao(data.apresentacao || '');
+                setLogradouro(data.endereco.logradouro || '');
+                setExperiencia(data.experiencia|| '')
+                setEnderecoCompleto(`${data.endereco.logradouro|| ''}, ${data.endereco.numero|| ''}, ${data.endereco.bairro|| ''}, ${data.endereco.cidade|| ''} - ${data.endereco.cep|| ''}`);
+                setCEP(data.endereco.cep || '');
+                setRua(data.endereco.complemento || '');
+                setBairro(data.endereco.bairro || '');
+                setNumero(data.endereco.numero|| '');
+                setCidade(data.endereco.cidade|| '');
+                if (data.telefone) {
+                    setTelefone(phoneFormatter(data.telefone));
+                } else {
+                    setTelefone("");
+                }
             } catch (error) {
                 console.error("Erro ao buscar dados do responsável:", error);
             }
@@ -82,7 +142,7 @@ function AtualizarPerfilCuidador() {
         const dadosAtualizarCuidador = {
             nome: nome,
             email: email,
-            sobre: sobre,
+            setApresentacao: apresentacao,
             endereco: endereco,
             CEP: CEP,
             rua: rua,
@@ -90,7 +150,6 @@ function AtualizarPerfilCuidador() {
             numero: numero,
             cidade: cidade,
             precoHora: precoHora,
-            tipoDeUsuario: "ADMINISTRADOR",
         };
         console.log(dadosAtualizarCuidador);
         try {
@@ -104,56 +163,72 @@ function AtualizarPerfilCuidador() {
     };
 
 
+    const phoneFormatter = (value) => {
+        const cleaned = value.replace(/\D/g, '');
+        const match = cleaned.match(/(\d{2})(\d{4,5})(\d{4})/);
+        if (match) {
+            return `(${match[1]}) ${match[2]}-${match[3]}`;
+        }
+        return value;
+    };
+
+    const handlePhoneChange = (event) => {
+        const formattedValue = phoneFormatter(event.target.value);
+        setTelefone(formattedValue);
+    };
+
     return (
         <>
             <Navbar />
 
             <div className={Style["corpo"]}>
-                <Stack spacing={2} display="flex" direction="row" justifyContent="space-around" className={Style["ajuste"]}>
-                    <div className={Style["img"]}>
-                        <img src={Voltar} alt="" width="45vh" height="35vh" />
-                        <span>Voltar</span>
-                    </div>
-                </Stack>
-                <div className={Style["texto"]}>
-                    <h2>Edição de perfil</h2>
-                </div>
-
-
-
-                <Stack direction="row" className={Style["centraliza"]} >
-                    <Stack className={Style["info-usuario"]} spacing={4} marginInline={5}>
-                        <div className={Style["foto-usu"]}>
-                            <img src={imagemSrc} alt="" width="100%" height="100%" style={{ borderRadius: "50%" }} />
-
+                <Stack alignItems={'center'}>
+                    <Stack spacing={2} display="flex" direction="row" justifyContent="space-around" className={Style["ajuste"]}>
+                        <div className={Style["img"]} >
+                            <img src={Voltar} alt="" width="45vh" height="35vh" onClick={() => navigate(`/procurar`)} />
+                            <span>Voltar</span>
                         </div>
-                        <InputTexfield label="Nome" value={nome} onChange={(e) => handleInputChange(e, setNome)} />
-                        <InputTexfield label="Sobre" value={sobre} onChange={(e) => handleInputChange(e, setSobre)} size="xl" />
+                        <div className={Style["texto"]}>
+                            <h2>Edição de perfil</h2>
+                        </div>
                     </Stack>
-                    {/* info-suario */}
-                    <Stack className={Style["endereco"]} >
-                        <Stack direction="row" marginLeft={6} marginTop={2}>
-                            <InputTexfield label="Endereço" value={endereco} sx={{ width: "42vw" }} />
-                        </Stack>
-                        <Stack direction="row" spacing={2} marginLeft={6}  >
-                            <InputTexfield label="CEP" value={CEP} onChange={(e) => handleInputChange(e, setCEP)} sx={{ width: "14vw" }} />
-                            <InputTexfield label="Rua" value={rua} onChange={(e) => handleInputChange(e, setRua)} sx={{ width: "27vw" }} />
-                        </Stack>
-                        <Stack direction="row" spacing={2} marginLeft={6} >
-                            <InputTexfield label="Bairro" value={bairro} onChange={(e) => handleInputChange(e, setBairro)} sx={{ width: "29vw" }} />
-                            <InputTexfield label="Número" value={numero} onChange={(e) => handleInputChange(e, setNumero)} sx={{ width: "12vw" }} />
-                        </Stack>
-                        <Stack direction="row" spacing={2} marginLeft={6} marginBottom={2}>
-                            <InputTexfield label="Cidade" value={cidade} onChange={(e) => handleInputChange(e, setCidade)} sx={{ width: "42vw" }} />
-                        </Stack>
-                    </Stack>
-                </Stack>
 
-                <div className={Style["idoso"]}>
-                    <Stack display="flex" direction="row" spacing="3" className={Style["adiciona"]}>
-                        {/* <ElderList/> */}
-                        <Stack spacing={4} display="display" justifyContent="space-around" direction="row" >
-                            <Stack display="flex" >
+                    <Stack direction="row" className={Style["centraliza"]} marginBottom={2} >
+                        <Stack className={Style["info-usuario"]} spacing={4} marginInline={5}>
+                            <Stack justifyContent='center' direction='row'>
+                                <img className={Style["foto-usu"]} src={imagemSrc} alt="" />
+                            </Stack>
+                            <Stack direction='column' alignItems='center' spacing={3} justifyContent='center'>
+                                <label htmlFor="file-upload" style={{
+                                    cursor: 'pointer',
+                                    color: 'black',
+                                    textAlign: 'center',
+                                    alignItems: 'center',
+                                    height: '5vh',
+                                    width: '100%',
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                }}>
+                                    {selectedFile ? selectedFile.name : "Selecione uma imagem"}
+                                </label>
+                                <input
+                                    style={{ cursor: 'pointer', display: 'none' }}
+                                    id="file-upload"
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={handleFileChange}
+                                />
+                                <ButtonAzul onClick={handleImageUpload} disabled={!selectedFile}>Salvar Foto</ButtonAzul>
+                            </Stack>
+                            <Stack direction='column' alignItems='center' spacing={3}>
+                                <InputTextField label="Nome" value={nome} onChange={(e) => handleInputChange(e, setNome)} />
+                                <InputTextField label="Email" value={email} onChange={(e) => handleInputChange(e, setEmail)} />
+                                <InputTextField label="Experiência" value={experiencia} onChange={(e) => handleInputChange(e, setExperiencia)} />
+                                <InputTextField label="Apresentação" value={apresentacao} onChange={(e) => handleInputChange(e, setApresentacao)} size="xl" />
+                                <InputTextField label="Telefone" value={telefone} onChange={handlePhoneChange} size="xl" />
+                                <InputTexfield label="Preço por Hora" type='number' value={precoHora} onChange={(e) => handleInputChange(e, setPrecoHora)} />
+                            </Stack>
+                            <Stack direction='column' alignItems='center' marginBottom={2} spacing={3} justifyContent='center'>
                                 <Typography >
                                     Posso ajudar com:
                                 </Typography>
@@ -161,44 +236,85 @@ function AtualizarPerfilCuidador() {
                                     <Stack spacing={3} className={Style["opcoes"]}>
                                         <Stack direction="row" spacing={2}>
                                             <ToggleButtonGroup spacing={2} color="primary" value={value} onChange={(event, newValue) => { setValue(newValue) }}>
-                                                <Button value="dirigir">Trabalho de casa</Button>
-                                                <Button value="fumo">Culinária</Button>
-                                                <Button value="cuidados">Curativos</Button>
+                                                <Button value="Trabalho de casa">Trabalho Doméstico</Button>
+                                                <Button value="Culinária">Culinária</Button>
+                                                <Button value="Curativos">Curativos</Button>
                                             </ToggleButtonGroup>
                                         </Stack>
                                         <Stack direction="row" spacing={2} justifyContent={"center"}>
-                                            <ToggleButtonGroup spacing={2} color="primary" value={value} onChange={(event, newValue) => { setValue(newValue) }}>
-                                                <Button value="trabCasa">Banho</Button>
+                                            <ToggleButtonGroup spacing={2} marginBottom={2} color="primary" value={value} onChange={(event, newValue) => { setValue(newValue) }}>
+                                                <Button value="Banho">Banho</Button>
                                             </ToggleButtonGroup>
                                         </Stack>
                                     </Stack>
                                 </div>
                             </Stack>
-                            <Stack display="flex" j spacing={2}>
-                                <Stack>
-                                    <Typography>
-                                        Preço por hora:
-                                    </Typography>
-                                    <InputTexfield value={precoHora} onChange={(e) => handleInputChange(e, setPrecoHora)} />
+                        </Stack>
+                        {/* info-suario */}
+                        <Stack className={Style["endereco"]} >
+                            <Stack marginLeft={3} marginRight={3}>
+                                <Stack direction="row" marginTop={3}>
+                                    <InputTextField
+                                        label="Endereço Completo"
+                                        value={enderecoCompleto}
+                                        disabled
+                                        sx={{ width: "42vw" }}
+                                    />
                                 </Stack>
-                                <Stack>
-                                    <Typography>
-                                        Quantos idosos posso cuidar:
-                                    </Typography>
-                                    < BasicSelectIdoso />
+                                <Stack direction="row" spacing={2} marginTop={3}>
+                                    <InputTextField label="CEP" value={CEP} onChange={(e) => handleInputChange(e, setCEP)} sx={{ width: "12vw" }} />
+                                    <InputTextField label="Rua" value={logradouro} onChange={(e) => handleInputChange(e, setLogradouro)} sx={{ width: "29vw" }} />
+                                </Stack>
+                                <Stack direction="row" spacing={2} marginTop={3}>
+                                    <InputTextField label="Bairro" value={bairro} onChange={(e) => handleInputChange(e, setBairro)} sx={{ width: "29vw" }} />
+                                    <InputTextField label="Número" value={numero} onChange={(e) => handleInputChange(e, setNumero)} sx={{ width: "12vw" }} />
+                                </Stack>
+                                <Stack direction="row" spacing={2} marginTop={3} marginBottom={2}>
+                                    <InputTextField label="Cidade" value={cidade} onChange={(e) => handleInputChange(e, setCidade)} sx={{ width: "42vw" }} />
+                                </Stack>
+                                <Stack className={Style["calendario"]} marginBottom={3}>
+                                    <CalendarioEditarPerfil onChange={setCalendario} disponibilidade={calendario} />
+                                </Stack>
+                                <Stack direction='column' alignItems='center' marginBottom={2} spacing={3} justifyContent='center'>
+                                    <h3>Sobre você:</h3>
+                                    <Stack direction="row" spacing={2}>
+                                        <ToggleButtonGroup spacing={2} color="primary" value={value} onChange={(event, newValue) => { setValue(newValue) }}>
+                                            <Button value="Dirigir">Sei dirigir</Button>
+                                            <Button value="Fumo">Fumo</Button>
+                                            <Button value="Cuidados">Certificado de Cuidados Geriatricos</Button>
+                                        </ToggleButtonGroup>
+                                    </Stack>
+                                    <Stack direction="row" spacing={2}>
+                                        <ToggleButtonGroup spacing={2} color="primary" value={value} onChange={(event, newValue) => { setValue(newValue) }}>
+                                            <Button value="Diploa de enfermagem">Diploma de Enfermagem</Button>
+                                            <Button value="Culinaria">Certificado Primeiros Socorros</Button>
+                                            <Button value="Curativos">Certificado Boa Conduta</Button>
+                                        </ToggleButtonGroup>
+                                    </Stack>
                                 </Stack>
                             </Stack>
+
                         </Stack>
                     </Stack>
 
+                </Stack>
+                <div className={Style["botao-fixo"]}>
+                    <ButtonAzul onClick={handleSave} >Salvar Alterações</ButtonAzul>
                 </div>
-
-                <div className={Style["calendario"]}>
-                    <Stack spacing={3} className={Style["itens"]}>
-                        <Calendario />
-                        <ButtonAzul onClick={handleSave}>Salvar Alterações</ButtonAzul>
-                    </Stack>
-                </div>
+                <Snackbar
+                    open={snackbarOpen}
+                    autoHideDuration={6000}
+                    onClose={() => setSnackbarOpen(false)}
+                    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                >
+                    <Alert
+                        onClose={() => setSnackbarOpen(false)}
+                        severity={snackbarSeverity}
+                        sx={{ width: '100%' }}
+                    >
+                        {snackbarMessage}
+                    </Alert>
+                </Snackbar>
             </div>
 
         </>

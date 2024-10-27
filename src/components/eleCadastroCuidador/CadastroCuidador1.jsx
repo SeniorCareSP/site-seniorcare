@@ -1,9 +1,9 @@
-import Stack from '@mui/material/Stack'
+import Stack from '@mui/material/Stack';
 import Style from '../../pages/cadastro/Cadastro.module.css';
 import { useNavigate } from "react-router-dom";
 import * as React from 'react';
 import InputTexfield from '../Input/Input';
-import Title from '../tituloCadastro/Title'
+import Title from '../tituloCadastro/Title';
 import ButtonAzul from '../botao/BotaoAzul';
 import ButtonBranco from '../botao/BotaoBranco';
 import ToggleButtonGroup from '@mui/joy/ToggleButtonGroup';
@@ -16,38 +16,49 @@ function CadastroCuidador1() {
 
     const navigate = useNavigate();
 
+    const formatarPreco = (valor) => {
+        const cleanedValue = valor.replace(/\D/g, ''); // Remove tudo que não é número
+        const numberValue = parseInt(cleanedValue, 10);
 
+        if (isNaN(numberValue)) return "R$ 0,00";
 
-    const handleInputChange = (event, setStateFunction) => {
-        console.log(event.target.value);
-        setStateFunction(event.target.value);
-        console.log(value);
+        const inteiro = Math.floor(numberValue / 100);
+        const centavos = String(numberValue % 100).padStart(2, '0'); // Garante 2 dígitos
+
+        return `R$ ${inteiro.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")},${centavos}`;
     };
 
+    const handleInputChangePreco = (event) => {
+        const { value } = event.target;
+        const formattedValue = formatarPreco(value);
+        setPrecoHora(formattedValue);
+    };
+    const handleInputChange = (event, setStateFunction) => {
+        setStateFunction(event.target.value);
+    }
 
     const handleSave = () => {
         const dadosCadastro = localStorage.getItem("cadastro");
         if (dadosCadastro) {
             const json = JSON.parse(dadosCadastro);
             json.experiencia = experiencia;
-            json.precoHora = precoHora;
+
+            // Converte o preço por hora para double
+            const cleanedPrecoHora = precoHora.replace(/[R$ ]/g, '').replace(',', '.');
+            const precoDouble = parseFloat(cleanedPrecoHora);
+            json.precoHora = !isNaN(precoDouble) ? precoDouble : 0; // Se não for um número, usa 0
 
             var ajudas = [];
-    
             for (let index = 0; index < value.length; index++) {
-                ajudas[index] = {"nome":value[index]};       
+                ajudas[index] = { "nome": value[index] };
             }
-            json.ajudas = ajudas;
+            json.ajuda = ajudas;
             localStorage.setItem("cadastro", JSON.stringify(json));
 
             console.log(json);
             navigate("/cadastro/cuidador2");
-
- 
         }
     };
-
-
 
     return (
         <div className={Style["card-cadastro"]}>
@@ -56,8 +67,16 @@ function CadastroCuidador1() {
                 <Stack spacing={6}>
                     <Title />
                     <Stack spacing={3} className={Style["itens"]}>
-                        <InputTexfield value={experiencia} label="Experiencia" onChange={(e) => handleInputChange(e, setExperiencia)} />
-                        <InputTexfield value={precoHora} label="Preço por hora" onChange={(e) => handleInputChange(e, setPrecoHora)} />
+                        <InputTexfield
+                            value={experiencia}
+                            label="Experiência"
+                            onChange={(e) => handleInputChange(e, setExperiencia)}
+                        />
+                        <InputTexfield
+                            value={precoHora}
+                            label="Preço por hora"
+                            onChange={handleInputChangePreco}
+                        />
                         <div className={Style["div_ajuda"]}>
                             <h3>Como posso ajudar:</h3>
                             <Stack direction="row" spacing={3} className={Style["dias-semana"]}>
@@ -73,13 +92,12 @@ function CadastroCuidador1() {
                                 </ToggleButtonGroup>
                             </Stack>
                         </div>
-                        <ButtonAzul onClick={() => handleSave()}> Proximo</ButtonAzul>
-                        <ButtonBranco onClick={() => navigate("/cadastro3")} >Voltar</ButtonBranco>
+                        <ButtonAzul onClick={handleSave}> Próximo</ButtonAzul>
+                        <ButtonBranco onClick={() => navigate("/cadastro3")}>Voltar</ButtonBranco>
                     </Stack>
                 </Stack>
             </div>
         </div>
-
     );
 }
 

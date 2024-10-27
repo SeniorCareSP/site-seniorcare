@@ -224,11 +224,11 @@ function Perfil2() {
                   </Stack>
                 </Box>
                 <Stack width="55vh" height="35vh">
-                  {usuario.coordernada &&
-                    usuario.coordernada.latitude !== undefined &&
-                    usuario.coordernada.longitude !== undefined ? (
-                    <MapComponent coordenadas={[usuario.coordernada.latitude, usuario.coordernada.longitude]} />
-                  ) : (
+                  {usuario.endereco &&
+                    usuario.endereco.latidude !== undefined &&
+                    usuario.endereco.longitude !== undefined ? (
+                      <MapComponent coordenadas={[usuario.endereco.latidude, usuario.endereco.longitude]} />
+                    ) : (
                     <p>Coordenadas não disponíveis</p>
                   )}
                 </Stack>
