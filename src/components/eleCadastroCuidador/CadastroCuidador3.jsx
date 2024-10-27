@@ -9,14 +9,17 @@ import Calendario from '../calendario/Calendario';
 import apiCuidador from "../../api/Usuario/apiCuidador";
 import apiResponsavel from '../../api/Usuario/apiResponsavel';
 import axios from 'axios'; // Importar o axios
-
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 function CadastroCuidador3() {
     const navigate = useNavigate();
     const [calendario, setCalendario] = React.useState(Array(7).fill().map(() => Array(3).fill(false)));
     const [selectedFile, setSelectedFile] = useState(null);
     const [idUsuario, setIdUsuario] = useState('');
     const dadosCadastro = localStorage.getItem("cadastro");
-
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState('');
+    const [snackbarSeverity, setSnackbarSeverity] = useState('error');
     const handleSave = async () => {
         try {
             if (dadosCadastro) {
@@ -34,7 +37,7 @@ function CadastroCuidador3() {
                         } else {
                             response = await apiCuidador.post('', json);
                         }
-                        
+
                         const idUsuario = response.data.idUsuario;
                         setIdUsuario(idUsuario);
 
@@ -43,31 +46,43 @@ function CadastroCuidador3() {
 
                         try {
                             await axios.post(
-                                `http://localhost:8080/files/upload?filename=${idUsuario}.jpg`, 
-                                formData, 
+                                `http://localhost:8080/files/upload?filename=${idUsuario}.jpg`,
+                                formData,
                                 { headers: { 'Content-Type': 'multipart/form-data' } }
                             );
+
+                            setSnackbarMessage("Cadastro feito com sucesso!");
+                            setSnackbarSeverity("success");
+                            setSnackbarOpen(true);
+
+                            localStorage.removeItem('imagem');
+                            localStorage.clear();
+                            navigate("/login");
                         } catch (error) {
-                            alert("Erro ao enviar a imagem.");
+                            setSnackbarMessage("Erro ao enviar a imagem.");
+                            setSnackbarSeverity("error");
+                            setSnackbarOpen(true);
                             console.error('Erro ao enviar a imagem:', error);
                             return;
                         }
-
-                        localStorage.removeItem('imagem');
-                        localStorage.clear();
-                        console.log("Cadastro feito com sucesso!");
-                        navigate("/login");
                     } catch (error) {
-                        alert("Erro ao salvar os dados do usuário.");
-                        console.error('Erro ao salvar os dados do usuário:', error);
-                    }
+                        const errorMessage = error.response?.data || "Erro ao salvar os dados do usuário.";
+                        setSnackbarMessage(typeof errorMessage === 'string' ? errorMessage : JSON.stringify(errorMessage));
+                        setSnackbarSeverity("error");
+                        setSnackbarOpen(true);
+                        console.error('Erro ao salvar os dados do usuário:', error.response);
+                    }                    
                 } else {
-                    alert("Por favor, selecione uma imagem.");
+                    setSnackbarMessage("Por favor, selecione uma imagem.");
+                    setSnackbarSeverity("warning");
+                    setSnackbarOpen(true);
                     console.log("Erro: Nenhuma imagem foi selecionada.");
                 }
             }
         } catch (error) {
-            alert("Erro ao processar os dados de cadastro.");
+            setSnackbarMessage("Erro ao processar os dados de cadastro.");
+            setSnackbarSeverity("error");
+            setSnackbarOpen(true);
             console.error('Erro ao processar os dados de cadastro:', error);
         }
     };
@@ -109,7 +124,7 @@ function CadastroCuidador3() {
                         {selectedFile && (
                             <div style={{ textAlign: 'center' }}>
                                 <h4>Nome do arquivo: {selectedFile.name} - {(selectedFile.size / 1024).toFixed(2)} KB</h4>
-                                
+
                                 <ButtonBranco onClick={handleRemoveImage} style={{ marginTop: '10px' }}>
                                     Remover Imagem
                                 </ButtonBranco>
@@ -124,6 +139,20 @@ function CadastroCuidador3() {
                     </Stack>
                 </Stack>
             </div>
+            <Snackbar
+                open={snackbarOpen}
+                autoHideDuration={6000}
+                onClose={() => setSnackbarOpen(false)}
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+            >
+                <Alert
+                    onClose={() => setSnackbarOpen(false)}
+                    severity={snackbarSeverity}
+                    sx={{ width: '100%' }}
+                >
+                    {snackbarMessage}
+                </Alert>
+            </Snackbar>
         </div>
     );
 }

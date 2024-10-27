@@ -117,7 +117,7 @@ function Navbar() {
                         <Avatar
                             src={imagemSrc || Perfil}
                             alt="Perfil"
-                            style={{ width: 32, height: 32, objectFit: 'cover' }} // Definindo tamanho e ajuste da imagem
+                            style={{ width: 32, height: 32, objectFit: 'cover' }}
                         />
                         Editar Perfil
                     </MenuItem>

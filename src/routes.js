@@ -40,16 +40,13 @@ function Router() {
         <Route path="*" element={<Erro />} />
         <Route path="/" element={<Home />} />
 
-
         <Route path="/reset-password-1" element={<ResetPasswordStep1 />} />
         <Route path="/reset-password-2" element={<ResetPasswordStep2 />} />
         <Route path="/reset-password-3" element={<ResetPasswordStep3 />} />
         <Route path="/reset-password-4" element={<ResetPasswordStep4 />} />
 
-
         <Route path="/login" element={<Login />} />
 
-        
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path='/cadastro2' element={<Cadastro2 />} />
         <Route path='/cadastro3' element={<Cadastro3 />} />
@@ -58,12 +55,9 @@ function Router() {
         <Route path='/cadastro/cuidador3' element={<Cuidador3 />} />
         <Route path='/cadastro/concluido' element={<Finalizado />} />
 
-
-
         <Route path='/procurar' element={<Procurar/>} />
         <Route path='/favoritos' element={<Favorito/>} />
         <Route path='/geo' element={<Mapa/>} />
-
 
         <Route path='/admin/cadastro' element={<CadastroAdm />} />
         <Route path='/admin/editar' element={<Editperfil />} />

@@ -1,15 +1,14 @@
-import Stack from '@mui/material/Stack'
+import Stack from '@mui/material/Stack';
 import Style from '../../pages/cadastro/Cadastro.module.css';
 import { useNavigate } from "react-router-dom";
 import InputTexfield from '../Input/Input';
 import ButtonAzul from '../botao/BotaoAzul';
-import Title from '../tituloCadastro/Title'
+import Title from '../tituloCadastro/Title';
 import React, { useEffect, useState } from "react";
 import Button from '@mui/joy/Button';
 import axios from "axios";
 import ToggleButtonGroup from '@mui/joy/ToggleButtonGroup';
 import FormHelperText from '@mui/joy/FormHelperText';
-
 
 function CadastroUsuario1() {
     const [tipoUsuario, setValue] = React.useState();
@@ -40,31 +39,25 @@ function CadastroUsuario1() {
         setValue(newValue);
     };
 
-
     const handleInputChange = (event, setStateFunction) => {
         setStateFunction(event.target.value);
-    }
+    };
 
     const validate = () => {
         let isValid = true;
 
-        // validação email
         if (!email) {
-
             setErrorEmail(true);
-            setMensagemEmail("Preencha este campo")
+            setMensagemEmail("Preencha este campo");
             isValid = false;
         } else if (!/\S+@\S+\.\S+/.test(email)) {
-
             setErrorEmail(true);
-            setMensagemEmail("Insira um email valido")
+            setMensagemEmail("Insira um email valido");
             isValid = false;
         } else {
             setErrorEmail(false);
-            setMensagemEmail("")
+            setMensagemEmail("");
         }
-
-        // validação de nome
         if (!nome) {
             setErrorNome(true);
             setMensagemNome("Preecha este campo");
@@ -73,8 +66,6 @@ function CadastroUsuario1() {
             setMensagemNome("");
             setErrorNome(false);
         }
-
-        // validação de senha
         if (!senha) {
             setErrorSenha(true);
             setMensagemSenha("Preencha este campo");
@@ -87,8 +78,6 @@ function CadastroUsuario1() {
             setErrorSenha(false);
             setMensagemSenha("");
         }
-
-        // validação de confirmar senha
         if (!confirmarSenha) {
             setErrorConfSenha(true);
             setMensagemConfSenha("Preencha este campo");
@@ -101,13 +90,11 @@ function CadastroUsuario1() {
             setErrorConfSenha(false);
             setMensagemConfSenha("");
         }
-
-        // validação de cep
         if (!cep) {
             setErrorCep(true);
             setMensagemCep("Preencha este campo");
             isValid = false;
-        } else if (cep.length != 8) {
+        } else if (cep.length !== 8) {
             setErrorCep(true);
             setMensagemCep("CEP Invalido");
             isValid = false;
@@ -115,20 +102,18 @@ function CadastroUsuario1() {
             setErrorCep(false);
             setMensagemCep("");
         }
+
         console.log(isValid);
-
         return isValid;
-
     };
 
     const handleSave = async (event) => {
-        event.preventDefault(); // Aqui está ocorrendo o erro
+        event.preventDefault(); 
         var vali = validate();
-        
+
         console.log(validate());
 
-
-        if (vali == true) {
+        if (vali === true) {
             try {
                 const response = await axios.get("https://viacep.com.br/ws/" + cep + "/json/");
                 const endereco = response.data;
@@ -154,7 +139,19 @@ function CadastroUsuario1() {
                 console.error("Erro ao buscar informações do CEP:", error);
             }
         }
-    }
+    };
+
+    useEffect(() => {
+        const dadosCadastros = JSON.parse(localStorage.getItem("cadastro"));
+        if (dadosCadastros) {
+            setNome(dadosCadastros.nome || "");
+            setEmail(dadosCadastros.email || "");
+            setSenha(dadosCadastros.senha || "");
+            setConfirmarSenha(dadosCadastros.senha || "");
+            setCep(dadosCadastros.endereco.cep || "");
+            setValue(dadosCadastros.tipoDeUsuario || ""); 
+        }
+    }, []);
 
     return (
         <div className={Style["card-cadastro"]}>
@@ -163,19 +160,46 @@ function CadastroUsuario1() {
                 <Stack spacing={6}>
                     <Title />
                     <Stack spacing={2} className={Style["itens"]}>
-                        <InputTexfield helperText={mensgemEmail} error={errorEmail} label="Email" value={email} onChange={(e) => handleInputChange(e, setEmail)} />
-                        
-                        <InputTexfield helperText={mensagemNome} error={errorNome} label="Nome" value={nome} onChange={(e) => handleInputChange(e, setNome)} />
-                        
-                        <InputTexfield helperText={mensagemSenha} error={errorSenha} label="senha" value={senha} type={"password"} onChange={(e) => handleInputChange(e, setSenha)} />
-                        
-                        <InputTexfield helperText={mensagemConfSenha} error={errorConfSenha} label="confirmar senha" type={"password"} value={confirmarSenha} onChange={(e) => handleInputChange(e, setConfirmarSenha)} />
-                        
-                        <InputTexfield helperText={mensagemCep} error={errorCep} label="CEP" value={cep} onChange={(e) => handleInputChange(e, setCep)} />
-                        
+                        <InputTexfield 
+                            helperText={mensgemEmail} 
+                            error={errorEmail} 
+                            label="Email" 
+                            value={email} 
+                            onChange={(e) => handleInputChange(e, setEmail)} 
+                        />
+                        <InputTexfield 
+                            helperText={mensagemNome} 
+                            error={errorNome} 
+                            label="Nome" 
+                            value={nome} 
+                            onChange={(e) => handleInputChange(e, setNome)} 
+                        />
+                        <InputTexfield 
+                            helperText={mensagemSenha} 
+                            error={errorSenha} 
+                            label="senha" 
+                            value={senha} 
+                            type={"password"} 
+                            onChange={(e) => handleInputChange(e, setSenha)} 
+                        />
+                        <InputTexfield 
+                            helperText={mensagemConfSenha} 
+                            error={errorConfSenha} 
+                            label="confirmar senha" 
+                            type={"password"} 
+                            value={confirmarSenha} 
+                            onChange={(e) => handleInputChange(e, setConfirmarSenha)} 
+                        />
+                        <InputTexfield 
+                            helperText={mensagemCep} 
+                            error={errorCep} 
+                            label="CEP" 
+                            value={cep} 
+                            onChange={(e) => handleInputChange(e, setCep)} 
+                        />
                         <Stack direction="row" spacing={2}>
                             <ToggleButtonGroup value={tipoUsuario} spacing={2} color="primary" onChange={handleChange}>
-                                <Button value="CUIDADOR"  >Cuidador</Button>
+                                <Button value="CUIDADOR">Cuidador</Button>
                                 <Button value="RESPONSAVEL">Responsavel</Button>
                             </ToggleButtonGroup>
                         </Stack>
@@ -187,4 +211,5 @@ function CadastroUsuario1() {
         </div>
     );
 }
+
 export default CadastroUsuario1;

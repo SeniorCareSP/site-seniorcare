@@ -20,9 +20,9 @@ function Favoritos() {
 
     async function recuperarValorDoCard() {
         try {
-            const response = await apiResponsavel.get(`/${idUsuario}`);
+            const response = await apiResponsavel.get(`/favoritos/${idUsuario}`);
             const data = response.data.favoritos;
-
+            console.log(response);
             // Mapeia os dados para incluir informações necessárias
             const updatedData = await Promise.all(data.map(async (fav) => {
                 const cuidador = fav.cuidadorFavoritado;

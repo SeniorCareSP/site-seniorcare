@@ -10,6 +10,7 @@ import apiResponsavel from '../../api/Usuario/apiResponsavel';
 import axios from 'axios';
 import Calendario from '../calendario/Calendario';
 import Voltar from "../../utils/assets/setaVoltar.png";
+import { useNavigate } from "react-router-dom";
 
 function EleAtualizarPerfil() {
     const [nome, setNome] = useState("");
@@ -30,6 +31,7 @@ function EleAtualizarPerfil() {
     const idUsuario = localStorage.getItem('idUsuario');
     const [originalData, setOriginalData] = useState({});
     const [isDirty, setIsDirty] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         async function fetchImage() {
@@ -60,6 +62,7 @@ function EleAtualizarPerfil() {
                 setCEP(data.endereco.cep);
                 setBairro(data.endereco.bairro);
                 setNumero(data.endereco.numero);
+                setCalendario(data.agenda.disponibilidade || [])
                 setCidade(data.endereco.cidade);
                 setAgendaDisponibilidade(data.agenda.disponibilidade || []);
                 setIdosos(data.idosos || []);
@@ -79,7 +82,7 @@ function EleAtualizarPerfil() {
 
     useEffect(() => {
         checkIfDirty();
-    }, [nome, email, apresentacao, telefone, logradouro, enderecoCompleto, CEP, bairro, numero, cidade]);
+    }, [nome, email, apresentacao, telefone, logradouro, enderecoCompleto, CEP, bairro, numero, cidade, calendario]);
 
     const handleInputChange = (event, setStateFunction) => {
         setStateFunction(event.target.value);
@@ -91,13 +94,15 @@ function EleAtualizarPerfil() {
             nome !== originalData.nome ||
             email !== originalData.email ||
             apresentacao !== originalData.apresentacao ||
-            telefone !== originalData.telefone ||
+            telefone.replace(/\D/g, '') !== originalData.telefone.replace(/\D/g, '') ||
             logradouro !== originalData.endereco.logradouro ||
             enderecoCompleto !== `${originalData.endereco.logradouro}, ${originalData.endereco.numero}, ${originalData.endereco.bairro}, ${originalData.endereco.cidade} - ${originalData.endereco.cep}` ||
             CEP !== originalData.endereco.cep ||
             bairro !== originalData.endereco.bairro ||
             numero !== originalData.endereco.numero ||
-            cidade !== originalData.endereco.cidade
+            cidade !== originalData.endereco.cidade ||
+            calendario !== originalData.agenda.disponibilidade
+            
         );
         setIsDirty(hasChanges);
     };
@@ -143,14 +148,13 @@ function EleAtualizarPerfil() {
                 bairro: bairro,
                 cidade: cidade
             },
-            agenda: {
-                disponibilidade: agendaDisponibilidade
+            agendas: {
+                disponibilidade: calendario
             }
         };
 
         try {
             console.log(dadosAtualizarResponsavel);
-            // Atualiza os dados do responsável
             await apiResponsavel.put(`/${idUsuario}`, dadosAtualizarResponsavel);
             window.location.reload();
             console.log("Atualização realizada com sucesso!");
@@ -174,7 +178,9 @@ function EleAtualizarPerfil() {
                 { headers: { 'Content-Type': 'multipart/form-data' } }
             );
             alert("Imagem enviada com sucesso!");
-            setSelectedFile(null); // Limpa a seleção após o upload
+            setSelectedFile(null);
+            window.location.reload();
+
         } catch (error) {
             alert("Erro ao enviar a imagem.");
             console.error('Erro ao enviar a imagem:', error);
@@ -186,9 +192,9 @@ function EleAtualizarPerfil() {
             <Navbar />
             <div className={Style["corpo"]}>
                 <Stack alignItems={'center'}>
-                    <Stack spacing={2} direction="row" className={Style["ajuste"]}>
-                        <div className={Style["img"]}>
-                            <img src={Voltar} alt="" width="45vh" height="35vh" />
+                    <Stack spacing={2} direction="row" className={Style["ajuste"]} >
+                        <div className={Style["img"]} >
+                            <img src={Voltar} alt="" width="45vh" height="35vh"  onClick={() => navigate(`/procurar`)} />
                             <span>Voltar</span>
                         </div>
                         <div className={Style["texto"]}>
@@ -254,7 +260,7 @@ function EleAtualizarPerfil() {
                                 </Stack>
                             </Stack>
                             <Stack className={Style["calendario"]} marginBottom={3}>
-                                <Calendario onChange={setCalendario} />
+                                <CalendarioEditarPerfil onChange={setCalendario}disponibilidade = {calendario} />
                             </Stack>
                         </Stack>
                     </Stack>
