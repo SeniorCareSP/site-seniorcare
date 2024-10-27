@@ -57,7 +57,7 @@ function CardUsaurio({ nome, descricao, idade, favoritado, handleToggleFavorite,
             const response = await apiCuidador.get(`/${idUsuario}`);
             data = response.data;
             localStorage.setItem("dadosUsuario", JSON.stringify(data));
-            navigate("/usuarios/perfilCuidador");       
+            navigate("/usuarios/perfilCuidador");
         } else {
             const response = await apiResponsavel.get(`/${idUsuario}`);
             data = response.data;
@@ -76,7 +76,7 @@ function CardUsaurio({ nome, descricao, idade, favoritado, handleToggleFavorite,
     };
 
     const handleFavoriteToggle = () => {
-        handleToggleFavorite(idUsuario); 
+        handleToggleFavorite(idUsuario);
     };
 
     return (
@@ -84,28 +84,29 @@ function CardUsaurio({ nome, descricao, idade, favoritado, handleToggleFavorite,
             <div className={Style["cardUsuario"]}>
                 <Stack direction="column" spacing={0}>
                     <img src={imagemSrc} alt="Imagem do usuário" />
-                    <Stack direction="row" spacing={8}>
+                    <Stack direction="column" spacing={8}>
                         <Stack direction="column" spacing={1} padding={2}>
                             <h3>{nome}</h3>
-                            <p>{descricao}</p>
+                            <p style={{textOverflow: 'ellipsis', overflow: 'hidden'}}>{descricao}</p>
                             <p>Distância: {formatarDistancia(distancia)}</p>
-                            <BtnAzulS variant="contained" onClick={() => dadosDoUsuario(idUsuario, tipoUsuario)}>
-                                Ver perfil
-                            </BtnAzulS>
-                        </Stack>
-                        <Stack direction="column-reverse" paddingBottom={2}>
-                            <Stack direction="row-reverse" justifyContent="center">
-                                <img src={Flag} alt="Denunciar" onClick={handleOpenModal} style={{ cursor: 'pointer', width: '100%', height: '100%',    objectFit: '-moz-   ' 
- }} />
-                                {"RESPONSAVEL" === localStorage.getItem("tipoUsuario") && (
-                                    <Checkbox
-                                    defaultChecked={favoritado}
-                                    {...label}
-                                    icon={<FavoriteBorder />}
-                                    checkedIcon={<Favorite />}
-                                    onClick={handleFavoriteToggle}
-                                />
-                                )}
+                            <Stack direction="row" spacing={8} alignItems='center'>
+                                <BtnAzulS variant="contained" onClick={() => dadosDoUsuario(idUsuario, tipoUsuario)}>
+                                    Ver perfil
+                                </BtnAzulS>
+                                <Stack direction='row' alignItems='center' spacing={1}>
+                                    <img src={Flag} alt="Denunciar" onClick={handleOpenModal} style={{
+                                        cursor: 'pointer', width: '40%', height: '40%'
+                                    }} />
+                                    {"RESPONSAVEL" === localStorage.getItem("tipoUsuario") && (
+                                        <Checkbox
+                                        defaultChecked={favoritado}
+                                        {...label}
+                                        icon={<FavoriteBorder />}
+                                        checkedIcon={<Favorite />}
+                                        onClick={handleFavoriteToggle}
+                                        />
+                                    )}
+                                </Stack>
                             </Stack>
                         </Stack>
                     </Stack>
@@ -115,7 +116,6 @@ function CardUsaurio({ nome, descricao, idade, favoritado, handleToggleFavorite,
                     usuarioDenunciado={usuarioDenunciado}
                 />
             </div>
-
         </>
     );
 }

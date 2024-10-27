@@ -197,7 +197,7 @@ const ChatWindow = () => {
                 className={styles.messagePhoto}
               />
 
-              <div className={styles.message} style={{
+              <div className={styles.message} style={{color: msg.senderId == idUsuario ? 'white' : 'black',
                 backgroundColor: msg.senderId == idUsuario ? '#2C7595' : '#80C1DE', borderRadius: '20vh', alignItems: 'center'
               }}>{msg.content}</div>
             </div>

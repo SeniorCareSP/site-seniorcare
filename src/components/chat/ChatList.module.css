@@ -4,7 +4,8 @@
   width: 25vw;
   overflow-y: hidden;
   overflow-x: hidden;
-  height: auto;
+  min-height: 90.5vh;
+  max-height: auto;
 }
 
 .users {
