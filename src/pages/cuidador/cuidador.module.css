@@ -1,6 +1,7 @@
 .procura{
     background-color: #F5F5DC;
-    height: 120vh;
+    min-height: 120vh;
+    max-height: auto;
     display: flex;
     align-items: center;
     flex-direction: column;
