@@ -9,8 +9,6 @@ import CustomizedHook from '../Input/InpIdioma';
 import api from "../../api/Usuario/apiResponsavel";
 import DatePicker from '../Input/DatePicker';
 import { MenuItem, TextField } from '@mui/material';
-import axios from 'axios'; // Importa axios
-import Calendario from '../calendario/Calendario';
 
 function CadastroUsuario3() {
 

@@ -112,17 +112,17 @@ function AtualizarPerfilCuidador() {
                 const data = response.data;
                 console.log(data);
                 setNome(data.nome || '');
-                setEmail(data.email|| '');
+                setEmail(data.email || '');
                 setCalendario(data.agenda.disponibilidade || [])
                 setApresentacao(data.apresentacao || '');
                 setLogradouro(data.endereco.logradouro || '');
-                setExperiencia(data.experiencia|| '')
-                setEnderecoCompleto(`${data.endereco.logradouro|| ''}, ${data.endereco.numero|| ''}, ${data.endereco.bairro|| ''}, ${data.endereco.cidade|| ''} - ${data.endereco.cep|| ''}`);
+                setExperiencia(data.experiencia || '')
+                setEnderecoCompleto(`${data.endereco.logradouro || ''}, ${data.endereco.numero || ''}, ${data.endereco.bairro || ''}, ${data.endereco.cidade || ''} - ${data.endereco.cep || ''}`);
                 setCEP(data.endereco.cep || '');
                 setRua(data.endereco.complemento || '');
                 setBairro(data.endereco.bairro || '');
-                setNumero(data.endereco.numero|| '');
-                setCidade(data.endereco.cidade|| '');
+                setNumero(data.endereco.numero || '');
+                setCidade(data.endereco.cidade || '');
                 if (data.telefone) {
                     setTelefone(phoneFormatter(data.telefone));
                 } else {
@@ -136,6 +136,23 @@ function AtualizarPerfilCuidador() {
         fetchAdminData();
     }, []);
 
+    const formatarPreco = (valor) => {
+        const cleanedValue = valor.replace(/\D/g, ''); // Remove tudo que não é número
+        const numberValue = parseInt(cleanedValue, 10);
+
+        if (isNaN(numberValue)) return "R$ 0,00";
+
+        const inteiro = Math.floor(numberValue / 100);
+        const centavos = String(numberValue % 100).padStart(2, '0');
+
+        return `R$ ${inteiro.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")},${centavos}`;
+    };
+
+    const handleInputChangePreco = (event) => {
+        const { value } = event.target;
+        const formattedValue = formatarPreco(value);
+        setPrecoHora(formattedValue);
+    };
     const handleSave = async (event) => {
         event.preventDefault();
         const idUsuario = localStorage.getItem('idUsuario');
@@ -226,8 +243,11 @@ function AtualizarPerfilCuidador() {
                                 <InputTextField label="Experiência" value={experiencia} onChange={(e) => handleInputChange(e, setExperiencia)} />
                                 <InputTextField label="Apresentação" value={apresentacao} onChange={(e) => handleInputChange(e, setApresentacao)} size="xl" />
                                 <InputTextField label="Telefone" value={telefone} onChange={handlePhoneChange} size="xl" />
-                                <InputTexfield label="Preço por Hora" type='number' value={precoHora} onChange={(e) => handleInputChange(e, setPrecoHora)} />
-                            </Stack>
+                                <InputTexfield
+                                    value={precoHora}
+                                    label="Preço por hora"
+                                    onChange={handleInputChangePreco}
+                                />                            </Stack>
                             <Stack direction='column' alignItems='center' marginBottom={2} spacing={3} justifyContent='center'>
                                 <Typography >
                                     Posso ajudar com:
@@ -248,6 +268,7 @@ function AtualizarPerfilCuidador() {
                                         </Stack>
                                     </Stack>
                                 </div>
+                                <div></div>
                             </Stack>
                         </Stack>
                         {/* info-suario */}

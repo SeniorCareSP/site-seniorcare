@@ -33,6 +33,7 @@ function CadastroCuidador1() {
         const formattedValue = formatarPreco(value);
         setPrecoHora(formattedValue);
     };
+    
     const handleInputChange = (event, setStateFunction) => {
         setStateFunction(event.target.value);
     }
