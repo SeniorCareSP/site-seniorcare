@@ -184,8 +184,8 @@ function AtualizarPerfilCuidador() {
             <div className={Style["corpo"]}>
                 <Stack alignItems={'center'}>
                     <Stack spacing={2} display="flex" direction="row" justifyContent="space-around" className={Style["ajuste"]}>
-                        <div className={Style["img"]} >
-                            <img src={Voltar} alt="" width="45vh" height="35vh" onClick={() => navigate(`/procurar`)} />
+                        <div className={Style["img"]} onClick={() => navigate(`/procurar`)}>
+                            <img src={Voltar} alt="" width="45vh" height="35vh"  />
                             <span>Voltar</span>
                         </div>
                         <div className={Style["texto"]}>

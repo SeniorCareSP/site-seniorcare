@@ -9,6 +9,7 @@ import Sent from "../../utils/assets/Sent.png";
 import apiChat from '../../api/Usuario/apiChat';
 import axios from 'axios';
 import { Stack } from '@mui/material';
+
 const ChatWindow = () => {
   const [newMessage, setNewMessage] = useState('');
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
@@ -198,7 +199,7 @@ const ChatWindow = () => {
               />
 
               <div className={styles.message} style={{color: msg.senderId == idUsuario ? 'white' : 'black',
-                backgroundColor: msg.senderId == idUsuario ? '#2C7595' : '#80C1DE', borderRadius: '20vh', alignItems: 'center'
+                backgroundColor: msg.senderId == idUsuario ? '#2C7595' : '#80C1DE', borderRadius: '20vh', alignItems: 'center', maxWidth: '50vh', height: 'auto'
               }}>{msg.content}</div>
             </div>
           )

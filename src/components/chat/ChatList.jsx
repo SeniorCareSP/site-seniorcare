@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import Styles from './ChatList.module.css';
 import apiChat from '../../api/Usuario/apiChat';
 import axios from 'axios';
-import { Stack, TextField } from '@mui/material';
+import { Stack, Slide } from '@mui/material';
 import InputPesquisa from '../Input/InputPesquisa';
+
 const ChatList = ({ onUserClick }) => {
   const navigate = useNavigate();
   const [search, setSearch] = useState('');
@@ -68,7 +69,7 @@ const ChatList = ({ onUserClick }) => {
             onChange={(e) => setSearch(e.target.value)}
           />
         </Stack>
-        <div className={Styles.users}>
+        <div className={Styles.users} direction="down" >
           {filteredUsers.map(user => (
             <div
               key={user.id}
@@ -76,9 +77,13 @@ const ChatList = ({ onUserClick }) => {
               onClick={() => handleUserClick(user.usuario2.idUsuario, user.chatId, user.usuario2.nome)}
             >
               <img src={userImages[user.usuario2.idUsuario]} alt={user?.usuario2?.nome} className={Styles.userPhoto} />
-              <div className={Styles.userInfo}>
-                <div className={Styles.userName}>{user?.usuario2?.nome}</div>
-              </div>
+              <Stack direction='row' sx={{justifyContent: 'space-between', width: '100%'}} alignItems='center'>
+                <Stack direction='column' spacing={1}>
+                  <h2>{user?.usuario2?.nome}</h2>
+                  <h4>oi</h4>
+                </Stack>
+                <h5>23:38</h5>
+              </Stack>
             </div>
           ))}
         </div>

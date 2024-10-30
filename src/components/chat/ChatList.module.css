@@ -2,23 +2,21 @@
   background-color: #077DB0;
   color: white;
   width: 25vw;
-  overflow-y: hidden;
-  overflow-x: hidden;
-  min-height: 90.5vh;
-  max-height: auto;
+  height: 90.6vh;
 }
 
 .users {
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
   margin-left: 1%;
-  height: 100%; 
+  height: 79vh; 
+  overflow-y: auto; /* ou scroll */
+  overflow-x: hidden;
 }
 
 .users::-webkit-scrollbar {
-  background-color: #060f25;
-  width: 2vw;
+  background-color: #0d5f83;
+  width: 0.5vw;
   border-radius: 2vh;
   padding: 9%;
 }
@@ -39,6 +37,7 @@
   margin-left: 1vh;
   cursor: pointer;
   transition: 0.5s;
+  margin-bottom: 2vh;
 }
 
 .user:hover{
@@ -52,11 +51,6 @@
   border-radius: 100%;
   margin-right: 2vh;
   object-fit: cover;
-}
-
-.userInfo {
-  display: flex;
-  flex-direction: column;
 }
 
 .userName {

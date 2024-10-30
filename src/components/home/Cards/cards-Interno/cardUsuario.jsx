@@ -95,7 +95,7 @@ function CardUsaurio({ nome, descricao, idade, favoritado, handleToggleFavorite,
                                 </BtnAzulS>
                                 <Stack direction='row' alignItems='center' spacing={1}>
                                     <img src={Flag} alt="Denunciar" onClick={handleOpenModal} style={{
-                                        cursor: 'pointer', width: '40%', height: '40%'
+                                        cursor: 'pointer', width: "RESPONSAVEL" === localStorage.getItem("tipoUsuario") ? '40%':'100%', height: "RESPONSAVEL" === localStorage.getItem("tipoUsuario") ? '40%':'100%'
                                     }} />
                                     {"RESPONSAVEL" === localStorage.getItem("tipoUsuario") && (
                                         <Checkbox
