@@ -8,7 +8,7 @@ import Emoji from "../../utils/assets/Happy.png";
 import Sent from "../../utils/assets/Sent.png";
 import apiChat from '../../api/Usuario/apiChat';
 import axios from 'axios';
-import { Stack } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 
 const ChatWindow = () => {
   const [newMessage, setNewMessage] = useState('');
@@ -22,7 +22,36 @@ const ChatWindow = () => {
   const conversante = localStorage.getItem('nomeConversante');
   const [imagemSrcUsuario, setImagemSrcUsuario] = useState(null);
   const [imagemSrcRec, setImagemSrcRec] = useState(null);
+  const [distancia, setDistancia] = useState();
 
+  useEffect(() => {
+    const pegarDistancia = async () => {
+      try {
+        const response = await apiChat.get(`pegar-distancia?senderId=${idUsuario}&recipientId=${recipienteId}`);
+        setDistancia(response.data);
+        console.log(response)
+      } catch (error) {
+        console.error('Erro ao pegar distância:', error);
+      }
+    };
+    pegarDistancia();
+  }, [recipienteId, idUsuario]);
+
+
+  function formatarDistancia(distancia) {
+    if (!distancia) {
+      return '';
+    }
+
+    const km = Math.floor(distancia);
+    const metros = Math.round((distancia - km) * 1000);
+
+    if (km > 0) {
+      return `${km} km`;
+    }else{
+      return `${metros} m`;
+    }
+  }
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -175,8 +204,8 @@ const ChatWindow = () => {
             <Stack direction='row' spacing={4} alignItems='center'>
               <img src={imagemSrcRec || Icone} className={styles.messagePhotoChat} alt="User" />
               <Stack direction='column'>
-                <div className={styles.userName}>{conversante}</div>
-                <div className={styles.userDistance}>0,7km</div>
+                <Typography>{conversante}</Typography>
+                <Typography>{formatarDistancia(distancia)}</Typography>
               </Stack>
             </Stack>
           </>
@@ -198,9 +227,11 @@ const ChatWindow = () => {
                 className={styles.messagePhoto}
               />
 
-              <div className={styles.message} style={{color: msg.senderId == idUsuario ? 'white' : 'black',
-                backgroundColor: msg.senderId == idUsuario ? '#2C7595' : '#80C1DE', borderRadius: '20vh', alignItems: 'center', maxWidth: '50vh', height: 'auto'
-              }}>{msg.content}</div>
+              <Typography sx={{ wordBreak: 'break-word', maxWidth: '50%'}} className={styles.message} 
+              style={{color: msg.senderId == idUsuario ? 'white' : 'black',
+                backgroundColor: msg.senderId == idUsuario ? '#2C7595' : '#80C1DE', borderRadius: '20vh', alignItems: 'center' 
+              }}>{msg.content}
+              </Typography>
             </div>
           )
 

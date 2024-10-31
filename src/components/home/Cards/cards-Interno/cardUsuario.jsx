@@ -2,7 +2,7 @@ import Stack from '@mui/material/Stack';
 import ButtonAzulEscuro from '../../../botao/BotaoAzulEscuro';
 import Style from './cardUsuario.module.css';
 import BtnAzulS from '../../../botao/BtnAzulS';
-import { Checkbox } from '@mui/material';
+import { Checkbox, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -86,8 +86,8 @@ function CardUsaurio({ nome, descricao, idade, favoritado, handleToggleFavorite,
                     <img src={imagemSrc} alt="Imagem do usuário" />
                     <Stack direction="column" spacing={8}>
                         <Stack direction="column" spacing={1} padding={2}>
-                            <h3>{nome}</h3>
-                            <p style={{textOverflow: 'ellipsis', overflow: 'hidden'}}>{descricao}</p>
+                            <Typography variant='h3'>{nome}</Typography>
+                            <p style={{overflow:'hidden', height: '4vh', width: '100%'}}>{descricao}</p>
                             <p>Distância: {formatarDistancia(distancia)}</p>
                             <Stack direction="row" spacing={8} alignItems='center'>
                                 <BtnAzulS variant="contained" onClick={() => dadosDoUsuario(idUsuario, tipoUsuario)}>

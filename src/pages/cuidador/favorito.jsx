@@ -91,7 +91,6 @@ function Favoritos() {
                         ))}
                     </div>
                 )}
-                <div className={Style["linha"]}></div>
             </div>
         </>
     );

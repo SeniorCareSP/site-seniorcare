@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Styles from './ChatList.module.css';
 import apiChat from '../../api/Usuario/apiChat';
 import axios from 'axios';
-import { Stack, Slide } from '@mui/material';
+import { Stack, Slide, Typography } from '@mui/material';
 import InputPesquisa from '../Input/InputPesquisa';
 
 const ChatList = ({ onUserClick }) => {
@@ -11,6 +11,7 @@ const ChatList = ({ onUserClick }) => {
   const [search, setSearch] = useState('');
   const [users, setUsers] = useState([]);
   const [userImages, setUserImages] = useState({});
+
 
   useEffect(() => {
     async function fetchUsers() {
@@ -79,16 +80,16 @@ const ChatList = ({ onUserClick }) => {
               <img src={userImages[user.recipientId]} alt={user?.nome} className={Styles.userPhoto} />
               <Stack direction='row' sx={{ justifyContent: 'space-between', width: '100%' }} alignItems='center'>
                 <Stack direction='column' spacing={1}>
-                  <h2>{user?.nome}</h2>
-                  <h4>{user?.content}</h4>
+                  <Typography variant='h6'>{user?.nome}</Typography>
+                  <Typography variant='inherit' maxWidth='10vh' overflow='hidden'>{user?.content}</Typography>
                 </Stack>
-                <h5>{new Date(user?.timestamp).toLocaleDateString('pt-BR', {
+                <Typography variant='inherit'>{new Date(user?.timestamp).toLocaleDateString('pt-BR', {
                   day: '2-digit',
                   month: '2-digit',
                   year: 'numeric',
                   hour: '2-digit',
                   minute: '2-digit'
-                })}</h5>
+                })}</Typography>
               </Stack>
             </div>
           ))}
