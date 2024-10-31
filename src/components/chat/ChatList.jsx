@@ -16,7 +16,7 @@ const ChatList = ({ onUserClick }) => {
     async function fetchUsers() {
       const idUsuario = localStorage.getItem('idUsuario');
       try {
-        const response = await apiChat.get(`/chats/${idUsuario}`);
+        const response = await apiChat.get(`/with-last-messages/by-sender?senderId=${idUsuario}`);
         if (Array.isArray(response.data)) {
           setUsers(response.data);
           await fetchImages(response.data);
@@ -35,10 +35,10 @@ const ChatList = ({ onUserClick }) => {
     const images = {};
     await Promise.all(users.map(async (user) => {
       try {
-        const response = await axios.get(`http://localhost:8080/files/view/${user.usuario2.idUsuario}.jpg`, {
+        const response = await axios.get(`http://localhost:8080/files/view/${user.recipientId}.jpg`, {
           responseType: 'blob',
         });
-        images[user.usuario2.idUsuario] = URL.createObjectURL(response.data); // Armazena a imagem no objeto
+        images[user.recipientId] = URL.createObjectURL(response.data);
       } catch (error) {
         console.error('Erro ao carregar imagem:', error);
       }
@@ -54,7 +54,7 @@ const ChatList = ({ onUserClick }) => {
   };
 
   const filteredUsers = users.filter(user =>
-    user.usuario2.nome.toLowerCase().includes(search.toLowerCase()));
+    user.nome.toLowerCase().includes(search.toLowerCase()));
 
   return (
     <div className={Styles.chatList}>
@@ -74,15 +74,21 @@ const ChatList = ({ onUserClick }) => {
             <div
               key={user.id}
               className={Styles.user}
-              onClick={() => handleUserClick(user.usuario2.idUsuario, user.chatId, user.usuario2.nome)}
+              onClick={() => handleUserClick(user.recipientId, user.chatId, user.nome)}
             >
-              <img src={userImages[user.usuario2.idUsuario]} alt={user?.usuario2?.nome} className={Styles.userPhoto} />
-              <Stack direction='row' sx={{justifyContent: 'space-between', width: '100%'}} alignItems='center'>
+              <img src={userImages[user.recipientId]} alt={user?.nome} className={Styles.userPhoto} />
+              <Stack direction='row' sx={{ justifyContent: 'space-between', width: '100%' }} alignItems='center'>
                 <Stack direction='column' spacing={1}>
-                  <h2>{user?.usuario2?.nome}</h2>
-                  <h4>oi</h4>
+                  <h2>{user?.nome}</h2>
+                  <h4>{user?.content}</h4>
                 </Stack>
-                <h5>23:38</h5>
+                <h5>{new Date(user?.timestamp).toLocaleDateString('pt-BR', {
+                  day: '2-digit',
+                  month: '2-digit',
+                  year: 'numeric',
+                  hour: '2-digit',
+                  minute: '2-digit'
+                })}</h5>
               </Stack>
             </div>
           ))}
