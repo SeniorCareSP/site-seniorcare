@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiFavorito = axios.create({
-    baseURL: "http://localhost:8080/favoritos"
+    baseURL: "http://localhost:8080/api/favoritos"
 })
 
 apiFavorito.interceptors.request.use(

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiDenuncia = axios.create({
-    baseURL: "http://localhost:8080/denuncias"
+    baseURL: "http://localhost:8080/api/denuncias"
 })
 
 apiDenuncia.interceptors.request.use(

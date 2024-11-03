@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiDashBoard = axios.create({
-    baseURL: "http://localhost:8080/dasboard"  // Corrigido para "dashboard"
+    baseURL: "http://localhost:8080/api/dasboard"  // Corrigido para "dashboard"
 });
 
 apiDashBoard.interceptors.request.use(

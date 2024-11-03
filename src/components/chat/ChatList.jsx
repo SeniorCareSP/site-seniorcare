@@ -36,7 +36,7 @@ const ChatList = ({ onUserClick }) => {
     const images = {};
     await Promise.all(users.map(async (user) => {
       try {
-        const response = await axios.get(`http://localhost:8080/files/view/${user.recipientId}.jpg`, {
+        const response = await axios.get(`http://localhost:8080/api/files/view/${user.recipientId}.jpg`, {
           responseType: 'blob',
         });
         images[user.recipientId] = URL.createObjectURL(response.data);

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiResponsavel = axios.create({
-    baseURL: "http://localhost:8080/responsaveis"
+    baseURL: "http://localhost:8080/api/responsaveis"
 })
 
 apiResponsavel.interceptors.request.use(
