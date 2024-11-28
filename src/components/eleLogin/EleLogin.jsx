@@ -66,7 +66,7 @@ function EleLogin() {
       email,
       senha
     }).then(response => {
-      const { userId, email, tipoUsuario, nome, token, status } = response.data;
+      const { imagemUrl, userId, email, tipoUsuario, nome, token, status } = response.data;
       if (response.status == 204){
         console.log('usuario não encontrado');
         setMensagemLogin(<Alert severity="error">Usuário não existe ou senha incorreta</Alert>)
@@ -84,6 +84,7 @@ function EleLogin() {
       //console.log(`Email: ${email}`);
       //console.log(`Token: ${token}`);
       localStorage.setItem('idUsuario', userId);
+      localStorage.setItem('imagemUrl', imagemUrl);
       localStorage.setItem('tipoUsuario', tipoUsuario);
       localStorage.setItem('token', token);
       console.log("Login feito com sucesso!");
@@ -91,7 +92,7 @@ function EleLogin() {
       if (tipoUsuario === "ADMINISTRADOR") {
         navigate("/admin/dashboard")
       } else {
-        navigate("/procurar");
+        // navigate("/procurar");
       }
     }).catch(() => {
       console.log(JSON.stringify(objetoAdicionado));

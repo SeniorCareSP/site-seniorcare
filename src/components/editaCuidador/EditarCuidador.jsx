@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Calendario from "../calendario/Calendario";
 import Navbar from "../cuidador/navbar/navbarCuidador";
 import Stack from '@mui/material/Stack'
 import InputTexfield from "../Input/Input";
@@ -7,9 +6,8 @@ import Style from '../../pages/confUser/Atualizar.module.css'
 import ButtonAzul from "../botao/BotaoAzul";
 import ToggleButtonGroup from '@mui/joy/ToggleButtonGroup';
 import Button from '@mui/joy/Button';
-import { Typography, getFormHelperTextUtilityClasses } from '@mui/material';
+import { Typography } from '@mui/material';
 import Voltar from "../../utils/assets/setaVoltar.png"
-import BasicSelectIdoso from "./SelectIdoso";
 import { useNavigate } from "react-router-dom";
 import apiCuidador from '../../api/Usuario/apiCuidador';
 import apiAdm from '../../api/Usuario/apiAdm';
@@ -48,22 +46,6 @@ function AtualizarPerfilCuidador() {
     const [calendario, setCalendario] = useState(Array(7).fill().map(() => Array(3).fill(false)));
     const [experiencia, setExperiencia] = useState("");
 
-    useEffect(() => {
-        async function fetchImage() {
-            try {
-                const response = await axios.get(`http://localhost:8080/api/files/view/${idUsuario}.jpg`, {
-                    responseType: 'blob'
-                });
-                const imageObjectURL = URL.createObjectURL(response.data);
-                setImagemSrc(imageObjectURL);
-            } catch (error) {
-                console.error('Erro ao carregar imagem:', error);
-            }
-        }
-
-
-        fetchImage();
-    }, []);
 
     const handleFileChange = (event) => {
         setSelectedFile(event.target.files[0]);
@@ -82,36 +64,49 @@ function AtualizarPerfilCuidador() {
             alert("Selecione uma imagem antes de fazer o upload.");
             return;
         }
-
+    
+        const idUsuario = localStorage.getItem('idUsuario');
+        const formData = new FormData();
+        formData.append('file', selectedFile, `${idUsuario}.jpg`);
+        
+        for (let pair of formData.entries()) {
+            console.log(`${pair[0]}: ${pair[1]}`);
+        }
         try {
-            const formData = new FormData();
-            formData.append('file', selectedFile, `${idUsuario}.jpg`);
-            await axios.post(
-                `http://localhost:8080/files/upload?filename=${idUsuario}.jpg`,
+            const response = await axios.post(
+                `http://localhost:8080/api/files/upload?idUsuario=${idUsuario}`,
                 formData,
-                { headers: { 'Content-Type': 'multipart/form-data' } }
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                }
             );
-
-            setSnackbarMessage("Imagem atualizada com sucesso!");
-            setSnackbarSeverity("success");
+            console.log('repsonse', response);
+            setSnackbarMessage('Imagem atualizada com sucesso!');
+            setSnackbarSeverity('success');
             setSnackbarOpen(true);
-            setSelectedFile(null);
+            console.log('Upload feito com sucesso:', response.data);
+            localStorage.setItem("imagemUrl", response.data)
+            setImagemSrc(URL.createObjectURL(selectedFile));
         } catch (error) {
-            alert("Erro ao enviar a imagem.");
-            console.error('Erro ao enviar a imagem:', error);
-            setSnackbarMessage("Erro ao enviar a imagem.");
-            setSnackbarSeverity("error");
+            console.error('Erro ao fazer upload da imagem:', error);
+            setSnackbarMessage('Erro ao atualizar imagem. Tente novamente.');
+            setSnackbarSeverity('error');
             setSnackbarOpen(true);
         }
     };
+    
     useEffect(() => {
         const fetchAdminData = async () => {
             const idUsuario = localStorage.getItem('idUsuario');
+            
             try {
                 const response = await apiCuidador.get(`/${idUsuario}`);
                 const data = response.data;
                 console.log(data);
                 setNome(data.nome || '');
+                setImagemSrc(data.imagemUrl);
                 setEmail(data.email || '');
                 setCalendario(data.agenda.disponibilidade || [])
                 setApresentacao(data.apresentacao || '');
@@ -197,7 +192,6 @@ function AtualizarPerfilCuidador() {
     return (
         <>
             <Navbar />
-
             <div className={Style["corpo"]}>
                 <Stack alignItems={'center'}>
                     <Stack spacing={2} display="flex" direction="row" justifyContent="space-around" className={Style["ajuste"]}>
@@ -337,7 +331,6 @@ function AtualizarPerfilCuidador() {
                     </Alert>
                 </Snackbar>
             </div>
-
         </>
     )
 }

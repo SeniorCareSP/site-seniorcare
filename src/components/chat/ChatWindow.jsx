@@ -20,9 +20,11 @@ const ChatWindow = () => {
   const stompClient = useRef(null);
   const messageTopic = localStorage.getItem('message');
   const conversante = localStorage.getItem('nomeConversante');
-  const [imagemSrcUsuario, setImagemSrcUsuario] = useState(null);
-  const [imagemSrcRec, setImagemSrcRec] = useState(null);
+  const imagemSrcUsuario = localStorage.getItem('imagemUrl');
+  const imagemSrcRec = localStorage.getItem('imagemUrlConversante');;
   const [distancia, setDistancia] = useState();
+
+  
 
   useEffect(() => {
     const pegarDistancia = async () => {
@@ -69,34 +71,9 @@ const ChatWindow = () => {
     fetchMessages();
   }, [recipienteId, idUsuario]);
 
-  useEffect(() => {
-    fetchImageUsuario(); // Carrega a imagem do usuário logado
-    fetchImageRecipient(); // Carrega a imagem do destinatário
-  }, []);
 
-  const fetchImageUsuario = async () => {
-    try {
-      const response = await axios.get(`http://localhost:8080/api/files/view/${idUsuario}.jpg`, {
-        responseType: 'blob'
-      });
-      const imageObjectURL = URL.createObjectURL(response.data);
-      setImagemSrcUsuario(imageObjectURL);
-    } catch (error) {
-      console.error('Erro ao carregar imagem do usuário:', error);
-    }
-  };
+  
 
-  const fetchImageRecipient = async () => {
-    try {
-      const response = await axios.get(`http://localhost:8080/files/view/${recipienteId}.jpg`, {
-        responseType: 'blob'
-      });
-      const imageObjectURL = URL.createObjectURL(response.data);
-      setImagemSrcRec(imageObjectURL);
-    } catch (error) {
-      console.error('Erro ao carregar imagem do destinatário:', error);
-    }
-  };
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -116,7 +93,7 @@ const ChatWindow = () => {
 
 
   useEffect(() => {
-    const socket = new SockJS('http://localhost:8080/websocket');
+    const socket = new SockJS('http://localhost:8080/api/websocket');
     stompClient.current = Stomp.over(socket);
 
     stompClient.current.connect({}, (frame) => {

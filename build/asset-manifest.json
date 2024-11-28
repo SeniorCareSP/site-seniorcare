@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/static/css/main.226b00c1.css",
+    "main.js": "/static/js/main.29e40379.js",
+    "static/media/Rectangle-velho.png": "/static/media/Rectangle-velho.8de88a73c02001794e87.png",
+    "static/media/idosos.png": "/static/media/idosos.700d9c9103bb577eeab4.png",
+    "static/media/idoso-e-cuidador.png": "/static/media/idoso-e-cuidador.323208ae8a882b0c43c1.png",
+    "static/media/Montserrat-VariableFont_wght.ttf": "/static/media/Montserrat-VariableFont_wght.7e687123cd4528224ce5.ttf",
+    "static/media/mulher-loira-de-meia-idade-confusa-olhando-para-a-frente-fazendo-um-gesto-nao-sei-isolado-na-parede-amarela-removebg-preview1.png": "/static/media/mulher-loira-de-meia-idade-confusa-olhando-para-a-frente-fazendo-um-gesto-nao-sei-isolado-na-parede-amarela-removebg-preview1.a1fbbe13175da19d2993.png",
+    "static/media/senhora1.png": "/static/media/senhora1.3d856448ddd3d295c6c9.png",
+    "static/media/senhora2.png": "/static/media/senhora2.490983fcd68215fe14ea.png",
+    "static/media/LeagueSpartan-VariableFont_wght.ttf": "/static/media/LeagueSpartan-VariableFont_wght.373d611ec44856608b96.ttf",
+    "static/media/Ellipse 26.png": "/static/media/Ellipse 26.3e439a6982acedb1451d.png",
+    "static/media/logo.png": "/static/media/logo.3262a07b595b533aa77a.png",
+    "static/media/logo.svg": "/static/media/logo.dc740bd9b68c320533b0babe32f79d16.svg",
+    "static/media/logoapertadinha.svg": "/static/media/logoapertadinha.65c5bc5c2d02d5a7ecdad58c9ba851c2.svg",
+    "static/media/JosefinSlab-Italic-VariableFont_wght.ttf": "/static/media/JosefinSlab-Italic-VariableFont_wght.1d8585582e78dadddffa.ttf",
+    "static/media/Ellipse 25.png": "/static/media/Ellipse 25.a6c9136466e0dfcd48db.png",
+    "static/media/Rectangle 53.png": "/static/media/Rectangle 53.9fc1a8f32ac1b38c8be7.png",
+    "static/media/Ellipse 43.png": "/static/media/Ellipse 43.3faab3b73c9131a82e9c.png",
+    "static/media/Checkmark.png": "/static/media/Checkmark.e74f19037386ad5c6ace.png",
+    "static/media/Ellipse 24.png": "/static/media/Ellipse 24.515c176555644db133cc.png",
+    "static/media/slick.svg": "/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/index.html",
+    "main.226b00c1.css.map": "/static/css/main.226b00c1.css.map",
+    "main.29e40379.js.map": "/static/js/main.29e40379.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.226b00c1.css",
+    "static/js/main.29e40379.js"
+  ]
+}

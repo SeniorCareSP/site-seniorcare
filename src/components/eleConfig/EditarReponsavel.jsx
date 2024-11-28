@@ -29,7 +29,6 @@ function EleAtualizarPerfil() {
     const [calendario, setCalendario] = useState(Array(7).fill().map(() => Array(3).fill(false)));
     const [agendaDisponibilidade, setAgendaDisponibilidade] = useState([]);
     const [idosos, setIdosos] = useState([]);
-    const [imagemSrc, setImagemSrc] = useState(null);
     const idUsuario = localStorage.getItem('idUsuario');
     const [originalData, setOriginalData] = useState({});
     const [isDirty, setIsDirty] = useState(false);
@@ -37,29 +36,22 @@ function EleAtualizarPerfil() {
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [snackbarSeverity, setSnackbarSeverity] = useState('error');
-    useEffect(() => {
-        async function fetchImage() {
-            try {
-                const response = await axios.get(`http://localhost:8080/api/files/view/${idUsuario}.jpg`, {
-                    responseType: 'blob'
-                });
-                const imageObjectURL = URL.createObjectURL(response.data);
-                setImagemSrc(imageObjectURL);
-            } catch (error) {
-                console.error('Erro ao carregar imagem:', error);
-            }
-        }
-        fetchImage();
-    }, [idUsuario]);
+    const [imagemURL, setImagemUrl] = useState('');
+    const [imagemSrc, setImagemSrc] = useState(null);
 
     useEffect(() => {
+        setImagemUrl(localStorage.getItem('imagemUrl'));
+
+
         const fetchAdminData = async () => {
+
             try {
                 const response = await apiResponsavel.get(`/${idUsuario}`);
                 const data = response.data;
                 console.log(data);
                 setNome(data.nome || '');
                 setEmail(data.email || '');
+                setImagemSrc(data.imagemUrl);
                 setApresentacao(data.apresentacao || '');
                 setLogradouro(data.endereco.logradouro || '');
                 setEnderecoCompleto(`${data.endereco.logradouro}, ${data.endereco.numero}, ${data.endereco.bairro}, ${data.endereco.cidade} - ${data.endereco.cep}`);
@@ -76,7 +68,7 @@ function EleAtualizarPerfil() {
                 } else {
                     setTelefone("");
                 }
-            } catch (error) {
+            } catch (error) {   
                 console.error("Erro ao buscar dados do responsável:", error);
             }
         };
@@ -179,13 +171,36 @@ function EleAtualizarPerfil() {
         }
 
         try {
+            const idUsuario = localStorage.getItem('idUsuario');
             const formData = new FormData();
             formData.append('file', selectedFile, `${idUsuario}.jpg`);
-            await axios.post(
-                `http://localhost:8080/files/upload?filename=${idUsuario}.jpg`,
-                formData,
-                { headers: { 'Content-Type': 'multipart/form-data' } }
-            );
+            
+            for (let pair of formData.entries()) {
+                console.log(`${pair[0]}: ${pair[1]}`);
+            }
+            try {
+                const response = await axios.post(
+                    `http://localhost:8080/api/files/upload?idUsuario=${idUsuario}`,
+                    formData,
+                    {
+                        headers: {
+                            'Content-Type': 'multipart/form-data',
+                        },
+                    }
+                );
+                console.log('repsonse', response);
+                setSnackbarMessage('Imagem atualizada com sucesso!');
+                setSnackbarSeverity('success');
+                setSnackbarOpen(true);
+                console.log('Upload feito com sucesso:', response.data);
+                localStorage.setItem("imagemUrl", response.data)
+                setImagemSrc(URL.createObjectURL(selectedFile));
+            } catch (error) {
+                console.error('Erro ao fazer upload da imagem:', error);
+                setSnackbarMessage('Erro ao atualizar imagem. Tente novamente.');
+                setSnackbarSeverity('error');
+                setSnackbarOpen(true);
+            }
 
             setSnackbarMessage("Imagem atualizada com sucesso!");
             setSnackbarSeverity("success");

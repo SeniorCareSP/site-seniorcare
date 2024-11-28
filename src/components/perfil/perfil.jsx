@@ -25,23 +25,6 @@ function Perfil2() {
   const idUsuario = localStorage.getItem('idUsuario');
   const navigate = useNavigate();
   const dadosUsuario = JSON.parse(localStorage.getItem('dadosUsuario'));
-  const [imagemSrc, setImagemSrc] = useState(null);
-
-  useEffect(() => {
-    async function fetchImage() {
-      try {
-        const response = await axios.get(`http://localhost:8080/files/view/${dadosUsuario.idUsuario}.jpg`, {
-          responseType: 'blob'
-        });
-        const imageObjectURL = URL.createObjectURL(response.data);
-        setImagemSrc(imageObjectURL);
-      } catch (error) {
-        console.error('Erro ao carregar imagem:', error);
-      }
-    }
-
-    fetchImage();
-  }, [idUsuario]);
 
 
   useEffect(() => {
@@ -103,11 +86,11 @@ function Perfil2() {
             borderRadius: '6px',
             boxShadow: '4px 4px 10px 4px rgba(0, 0, 0, 0.2)',
             padding: "4vh",
-            textAlign: 'center', // Para centralizar o texto
+            textAlign: 'center', 
             marginBottom: "3vh",
           }}>
             
-          <img src={imagemSrc || IMG} alt="" style={{
+          <img src={usuario.imagemUrl} alt="" style={{
             maxWidth: '100%',
             height: 'auto',
             borderRadius: '6px',

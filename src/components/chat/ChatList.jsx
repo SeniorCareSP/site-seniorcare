@@ -20,7 +20,6 @@ const ChatList = ({ onUserClick }) => {
         const response = await apiChat.get(`/with-last-messages/by-sender?senderId=${idUsuario}`);
         if (Array.isArray(response.data)) {
           setUsers(response.data);
-          await fetchImages(response.data);
         } else {
           console.error('Erro: a resposta da API não é um array de usuários.');
         }
@@ -28,27 +27,12 @@ const ChatList = ({ onUserClick }) => {
         console.error('Erro ao buscar usuários:', error);
       }
     }
-
     fetchUsers();
   }, []);
 
-  const fetchImages = async (users) => {
-    const images = {};
-    await Promise.all(users.map(async (user) => {
-      try {
-        const response = await axios.get(`http://localhost:8080/api/files/view/${user.recipientId}.jpg`, {
-          responseType: 'blob',
-        });
-        images[user.recipientId] = URL.createObjectURL(response.data);
-      } catch (error) {
-        console.error('Erro ao carregar imagem:', error);
-      }
-    }));
-    setUserImages(images);
-  };
-
-  const handleUserClick = async (userId, chatId, nomeConversado) => {
+  const handleUserClick = async (userId, chatId, nomeConversado, imagemUrl) => {
     localStorage.setItem('recipienteId', userId);
+    localStorage.setItem('imagemUrlConversante', imagemUrl)
     localStorage.setItem('message', chatId);
     localStorage.setItem('nomeConversante', nomeConversado);
     onUserClick();
@@ -75,9 +59,9 @@ const ChatList = ({ onUserClick }) => {
             <div
               key={user.id}
               className={Styles.user}
-              onClick={() => handleUserClick(user.recipientId, user.chatId, user.nome)}
+              onClick={() => handleUserClick(user.recipientId, user.chatId, user.nome, user.imagemUrl)}
             >
-              <img src={userImages[user.recipientId]} alt={user?.nome} className={Styles.userPhoto} />
+              <img src={[user.imagemUrl]} alt={user?.nome} className={Styles.userPhoto} />
               <Stack direction='row' sx={{ justifyContent: 'space-between', width: '100%' }} alignItems='center'>
                 <Stack direction='column' spacing={1}>
                   <Typography variant='h6'>{user?.nome}</Typography>

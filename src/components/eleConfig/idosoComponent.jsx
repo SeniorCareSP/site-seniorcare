@@ -14,7 +14,7 @@ function ElderCard({ id, name, condition, age, onEdit, onDelete }) {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:8080/idosos/${id}`);
+      await axios.delete(`http://localhost:8080/api/idosos/${id}`);
       onDelete(id);
     } catch (error) {
       console.error('Erro ao deletar o idoso:', error);
@@ -70,7 +70,7 @@ function ElderList({ idosos, setIdosos }) {
 
   const refreshList = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/idosos');
+      const response = await axios.get('http://localhost:8080/api/idosos');
 
       setElders(response.data);
       setIdosos(response.data);

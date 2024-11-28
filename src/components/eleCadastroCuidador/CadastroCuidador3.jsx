@@ -8,9 +8,10 @@ import ButtonBranco from '../botao/BotaoBranco';
 import Calendario from '../calendario/Calendario';
 import apiCuidador from "../../api/Usuario/apiCuidador";
 import apiResponsavel from '../../api/Usuario/apiResponsavel';
-import axios from 'axios'; // Importar o axios
+import axios from 'axios';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+
 function CadastroCuidador3() {
     const navigate = useNavigate();
     const [calendario, setCalendario] = React.useState(Array(7).fill().map(() => Array(3).fill(false)));
@@ -20,16 +21,17 @@ function CadastroCuidador3() {
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [snackbarSeverity, setSnackbarSeverity] = useState('error');
+
     const handleSave = async () => {
         try {
             if (dadosCadastro) {
                 const json = JSON.parse(dadosCadastro);
                 json.agendas = { "disponibilidade": calendario };
                 localStorage.setItem("cadastro", JSON.stringify(json));
-
+                
                 if (selectedFile) {
                     localStorage.setItem('imagem', selectedFile);
-
+                    console.log('Json: ',json)
                     try {
                         let response;
                         if (json.tipoDeUsuario === "RESPONSAVEL") {
@@ -45,8 +47,9 @@ function CadastroCuidador3() {
                         formData.append('file', selectedFile, `${idUsuario}.jpg`);
 
                         try {
+                            // Atualizar URL do upload para enviar para o backend correto
                             await axios.post(
-                                `http://localhost:8080/files/upload?filename=${idUsuario}.jpg`,
+                                `http://3.86.115.91/api/files/upload?idUsuario=${idUsuario}`,
                                 formData,
                                 { headers: { 'Content-Type': 'multipart/form-data' } }
                             );

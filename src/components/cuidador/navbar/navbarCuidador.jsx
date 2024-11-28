@@ -16,27 +16,11 @@ function Navbar() {
     const navigate = useNavigate();
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
-    const [imagemSrc, setImagemSrc] = useState(null);
+    const imagemURL = localStorage.getItem('imagemUrl');
     const idUsuario = localStorage.getItem('idUsuario');
 
-    // Estado para a aba selecionada
     const [selectedTab, setSelectedTab] = useState("");
 
-    useEffect(() => {
-        async function fetchImage() {
-            try {
-                const response = await axios.get(`http://localhost:8080/api/files/view/${idUsuario}.jpg`, {
-                    responseType: 'blob'
-                });
-                const imageObjectURL = URL.createObjectURL(response.data);
-                setImagemSrc(imageObjectURL);
-            } catch (error) {
-                console.error('Erro ao carregar imagem:', error);
-            }
-        }
-
-        fetchImage();
-    }, [idUsuario]);
 
     const handleLogout = () => {
         localStorage.clear();
@@ -85,7 +69,7 @@ function Navbar() {
             <div className={Style["cadastro"]}>
                 <Tooltip title="Account settings">
                     <IconButton onClick={handleMenuClick} >
-                        <img src={imagemSrc || Perfil} alt="Perfil" />
+                        <img src={imagemURL} alt="Perfil" />
                     </IconButton>
                 </Tooltip>
                 <Menu
@@ -115,7 +99,7 @@ function Navbar() {
                         navigate("/atualizar/" + (localStorage.getItem("tipoUsuario") === "RESPONSAVEL" ? "usuario" : "cuidador"));
                     }}>
                         <Avatar
-                            src={imagemSrc || Perfil}
+                            src={imagemURL}
                             alt="Perfil"
                             style={{ width: 32, height: 32, objectFit: 'cover' }}
                         />

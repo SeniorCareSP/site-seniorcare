@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiVisitas = axios.create({
-    baseURL: "http://localhost:8080/api/visitas"
+    baseURL: "/api/denuncias" // isso funciona com o proxy configurado no package.json
 })
 
 export default apiVisitas;

@@ -121,7 +121,8 @@ function Procurar() {
                     tipoUsuario = {data.tipoDeUsuario}
                     idUsuario={data.idUsuario}
                     usuarioDenunciador={idUsuario}
-                    usuarioDenunciado={data.idUsuario}/>
+                    usuarioDenunciado={data.idUsuario}
+                    imagemUrl={data.imagemUrl}/>
             </div>
           ))}
         </div>

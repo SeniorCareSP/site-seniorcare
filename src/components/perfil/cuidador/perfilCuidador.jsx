@@ -26,23 +26,12 @@ function Perfil2() {
   const dadosUsuario = JSON.parse(localStorage.getItem('dadosUsuario'));
 
   useEffect(() => {
-    fetchImage();
 
     setUsuario(dadosUsuario);
     console.log(dadosUsuario);
   }, []);
 
-  async function fetchImage() {
-    try {
-      const response = await axios.get(`http://localhost:8080/files/view/${dadosUsuario.idUsuario}.jpg`, {
-        responseType: 'blob'
-      });
-      const imageObjectURL = URL.createObjectURL(response.data);
-      setImagemSrc(imageObjectURL);
-    } catch (error) {
-      console.error('Erro ao carregar imagem:', error);
-    }
-  }
+
 
   function calcularIdade(dtNascimento) {
     const hoje = new Date();
@@ -98,7 +87,7 @@ function Perfil2() {
             padding: "4vh",
             marginBottom: "3vh",
           }}>
-          <img src={imagemSrc || IMG} alt="" style={{
+          <img src={usuario.imagemUrl} alt="" style={{
             maxWidth: '100%',
             height: 'auto',
             borderRadius: '6px',
@@ -162,8 +151,8 @@ function Perfil2() {
                 sx={{
                   wordWrap: 'break-word',  
                   width: '100%',           
-                  maxWidth: '25vh',       // Define um limite máximo para a largura do texto
-                  overflowWrap: 'break-word' // Garante a quebra quando necessário
+                  maxWidth: '25vh',
+                  overflowWrap: 'break-word' 
                 }}>
                  {usuario.apresentacao} 
               </Typography>
@@ -209,7 +198,7 @@ function Perfil2() {
               <Box sx={{ transform: 'scale(0.7)', transformOrigin: 'top left' }}>
                 <CalendarioPerfil disponibilidade={usuario.agenda?.disponibilidade || [[false, false, false], [false, false, false], [false, false, false], [false, false, false], [false, false, false], [false, false, false], [false, false, false]]} />
               </Box>
-              {/* Igor - Adicionar endereço do usuário */}
+
               <Stack direction="column" >
                 <Box sx={{ transform: 'scale(0.8)', transformOrigin: 'top left' }}>
                   <Stack width="100%" height="7vh" marginBottom="2vh" >

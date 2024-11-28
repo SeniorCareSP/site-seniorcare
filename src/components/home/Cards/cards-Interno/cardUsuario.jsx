@@ -12,28 +12,11 @@ import apiResponsavel from '../../../../api/Usuario/apiResponsavel';
 import { Favorite, FavoriteBorder, Label } from '@mui/icons-material';
 import ModalDenuncia from '../../../cuidador/denuncia/denuncia';
 
-function CardUsaurio({ nome, descricao, idade, favoritado, handleToggleFavorite, tipoUsuario, idUsuario, usuarioDenunciador, usuarioDenunciado, distancia }) {
+function CardUsaurio({ nome, descricao, idade, favoritado, handleToggleFavorite, tipoUsuario, idUsuario, usuarioDenunciador, usuarioDenunciado, distancia, imagemUrl }) {
     const navigate = useNavigate();
     const [openModal, setOpenModal] = useState(false);
-    const [imagemSrc, setImagemSrc] = useState(null);
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-
-    useEffect(() => {
-        async function fetchImage() {
-            try {
-                const response = await axios.get(`http://localhost:8080/api/files/view/${idUsuario}.jpg`, {
-                    responseType: 'blob'
-                });
-                const imageObjectURL = URL.createObjectURL(response.data);
-                setImagemSrc(imageObjectURL);
-            } catch (error) {
-                console.error('Erro ao carregar imagem:', error);
-            }
-        }
-
-        fetchImage();
-    }, [idUsuario]);
-
+    
     function formatarDistancia(distancia) {
         if (!distancia) {
             return '';
@@ -83,7 +66,7 @@ function CardUsaurio({ nome, descricao, idade, favoritado, handleToggleFavorite,
         <>
             <div className={Style["cardUsuario"]}>
                 <Stack direction="column" spacing={0}>
-                    <img src={imagemSrc} alt="Imagem do usuário" />
+                    <img src={imagemUrl} alt="Imagem do usuário" />
                     <Stack direction="column" spacing={8}>
                         <Stack direction="column" spacing={1} padding={2}>
                             <Typography variant='h3'>{nome}</Typography>

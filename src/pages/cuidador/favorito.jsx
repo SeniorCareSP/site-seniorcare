@@ -86,6 +86,7 @@ function Favoritos() {
                                     idUsuario={data.idUsuario}
                                     usuarioDenunciador={idUsuario}
                                     usuarioDenunciado={data.idUsuario}
+                                    imagemUrl={data.imagemUrl}
                                 />
                             </div>
                         ))}

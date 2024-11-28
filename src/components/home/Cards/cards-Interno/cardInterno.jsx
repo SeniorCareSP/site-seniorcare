@@ -19,21 +19,6 @@ function CardIdoso({ nome, descricao, idade, favoritado, handleToggleFavorite, t
     const [openModal, setOpenModal] = useState(false);
     const [imagemSrc, setImagemSrc] = useState(null);
 
-    useEffect(() => {
-        async function fetchImage() {
-            try {
-                const response = await axios.get(`http://localhost:8080/api/files/view/${idUsuario}.jpg`, {
-                    responseType: 'blob'
-                });
-                const imageObjectURL = URL.createObjectURL(response.data);
-                setImagemSrc(imageObjectURL);
-            } catch (error) {
-                console.error('Erro ao carregar imagem:', error);
-            }
-        }
-
-        fetchImage();
-    }, [idUsuario]);
 
     async function dadosDoUsuario(idUsuario, tipo) {
         let data;

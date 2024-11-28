@@ -69,9 +69,9 @@ function AddElderModal({ open, handleClose, elderToEdit, refreshList }) {
 
     try {
       if (elderToEdit) {
-        await axios.put(`http://localhost:8080/idosos/${elderToEdit.idIdoso}`, newElder);
+        await axios.put(`http://localhost:8080/api/idosos/${elderToEdit.idIdoso}`, newElder);
       } else {
-        await axios.post('http://localhost:8080/idosos', newElder);
+        await axios.post('http://localhost:8080/api/idosos', newElder);
       }
 
       refreshList();
