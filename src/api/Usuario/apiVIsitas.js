@@ -1,7 +1,7 @@
 import axios from "axios";
-
+import ip from "../ipAws";
 const apiVisitas = axios.create({
-    baseURL: "/api/denuncias" // isso funciona com o proxy configurado no package.json
+    baseURL: "http://"+ip+"/api/denuncias"
 })
 
 export default apiVisitas;

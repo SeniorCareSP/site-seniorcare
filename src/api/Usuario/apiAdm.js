@@ -1,7 +1,7 @@
 import axios from "axios";
-
+import ip from "../ipAws";
 const apiAdm = axios.create({
-    baseURL: "http://54.82.210.113/api/administradores"
+    baseURL: "http://"+ip+"/api/administradores"
 })
 
 apiAdm.interceptors.request.use(

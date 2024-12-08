@@ -1,7 +1,8 @@
 import axios from "axios";
+import ip from "../ipAws";
 
 const apiFavorito = axios.create({
-    baseURL: "http://localhost:8080/api/favoritos"
+    baseURL: "http://"+ip+"/api/favoritos"
 })
 
 apiFavorito.interceptors.request.use(

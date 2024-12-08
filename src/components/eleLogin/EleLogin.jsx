@@ -92,7 +92,7 @@ function EleLogin() {
       if (tipoUsuario === "ADMINISTRADOR") {
         navigate("/admin/dashboard")
       } else {
-        // navigate("/procurar");
+        navigate("/procurar");
       }
     }).catch(() => {
       console.log(JSON.stringify(objetoAdicionado));

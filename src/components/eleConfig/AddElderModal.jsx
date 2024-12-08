@@ -6,6 +6,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
+import ip from '../../api/ipAws';
 
 const modalStyle = {
   position: 'absolute',
@@ -69,9 +70,9 @@ function AddElderModal({ open, handleClose, elderToEdit, refreshList }) {
 
     try {
       if (elderToEdit) {
-        await axios.put(`http://localhost:8080/api/idosos/${elderToEdit.idIdoso}`, newElder);
+        await axios.put(`http://${ip}/api/idosos/${elderToEdit.idIdoso}`, newElder);
       } else {
-        await axios.post('http://localhost:8080/api/idosos', newElder);
+        await axios.post('http://'+ip+'/api/idosos', newElder);
       }
 
       refreshList();

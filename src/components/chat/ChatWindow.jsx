@@ -9,7 +9,7 @@ import Sent from "../../utils/assets/Sent.png";
 import apiChat from '../../api/Usuario/apiChat';
 import axios from 'axios';
 import { Stack, Typography } from '@mui/material';
-
+import ip from '../../api/ipAws';
 const ChatWindow = () => {
   const [newMessage, setNewMessage] = useState('');
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
@@ -93,7 +93,7 @@ const ChatWindow = () => {
 
 
   useEffect(() => {
-    const socket = new SockJS('http://localhost:8080/api/websocket');
+    const socket = new SockJS('http://'+ip+'/api/websocket');
     stompClient.current = Stomp.over(socket);
 
     stompClient.current.connect({}, (frame) => {

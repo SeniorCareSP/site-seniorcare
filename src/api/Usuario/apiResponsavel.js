@@ -1,7 +1,8 @@
 import axios from "axios";
+import ip from "../ipAws";
 
 const apiResponsavel = axios.create({
-    baseURL: "http://localhost:8080/api/responsaveis"
+    baseURL: "http://"+ip+"/api/responsaveis"
 })
 
 apiResponsavel.interceptors.request.use(

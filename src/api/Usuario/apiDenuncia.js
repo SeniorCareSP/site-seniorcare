@@ -1,7 +1,8 @@
 import axios from "axios";
+import ip from "../ipAws";
 
 const apiDenuncia = axios.create({
-    baseURL: "http://localhost:8080/api/denuncias"
+    baseURL: "http://"+ip+"/api/denuncias"
 })
 
 apiDenuncia.interceptors.request.use(

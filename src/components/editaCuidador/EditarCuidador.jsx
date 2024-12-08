@@ -16,6 +16,7 @@ import InputTextField from "../Input/Input";
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import CalendarioEditarPerfil from "../calendario/CalendarioEditarPerfil";
+import ip from '../../api/ipAws';
 
 function AtualizarPerfilCuidador() {
     const [value, setValue] = React.useState([]);
@@ -74,7 +75,7 @@ function AtualizarPerfilCuidador() {
         }
         try {
             const response = await axios.post(
-                `http://localhost:8080/api/files/upload?idUsuario=${idUsuario}`,
+                `http://${ip}/api/files/upload?idUsuario=${idUsuario}`,
                 formData,
                 {
                     headers: {

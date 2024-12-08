@@ -1,7 +1,8 @@
 import axios from "axios";
+import ip from "../ipAws";
 
 const apiChat = axios.create({
-    baseURL: "http://localhost:8080/api/notification"
+    baseURL: "http://"+ip+"/api/notification"
 })
 
 apiChat.interceptors.request.use(

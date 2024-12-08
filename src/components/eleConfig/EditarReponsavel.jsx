@@ -13,6 +13,7 @@ import Voltar from "../../utils/assets/setaVoltar.png";
 import { useNavigate } from "react-router-dom";
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+import ip from '../../api/ipAws';
 
 function EleAtualizarPerfil() {
     const [nome, setNome] = useState("");
@@ -180,7 +181,7 @@ function EleAtualizarPerfil() {
             }
             try {
                 const response = await axios.post(
-                    `http://localhost:8080/api/files/upload?idUsuario=${idUsuario}`,
+                    `http://${ip}/api/files/upload?idUsuario=${idUsuario}`,
                     formData,
                     {
                         headers: {

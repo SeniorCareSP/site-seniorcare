@@ -6,6 +6,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { IconButton, Box } from '@mui/material';
 import AddElderModal from './AddElderModal';
 import axios from 'axios';
+import ip from '../../api/ipAws';
 
 function ElderCard({ id, name, condition, age, onEdit, onDelete }) {
   const handleEdit = () => {
@@ -14,7 +15,7 @@ function ElderCard({ id, name, condition, age, onEdit, onDelete }) {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:8080/api/idosos/${id}`);
+      await axios.delete(`http://${ip}/api/idosos/${id}`);
       onDelete(id);
     } catch (error) {
       console.error('Erro ao deletar o idoso:', error);
@@ -70,7 +71,7 @@ function ElderList({ idosos, setIdosos }) {
 
   const refreshList = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/idosos');
+      const response = await axios.get('http://'+ip+'/api/idosos');
 
       setElders(response.data);
       setIdosos(response.data);

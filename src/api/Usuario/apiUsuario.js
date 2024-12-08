@@ -1,7 +1,8 @@
 import axios from "axios";
+import ip from "../ipAws";
 
 const apiUsuario = axios.create({
-    baseURL: "http://localhost:8080/api/usuarios"
+    baseURL: "http://"+ip+"/api/usuarios"
 })
 
 apiUsuario.interceptors.request.use(

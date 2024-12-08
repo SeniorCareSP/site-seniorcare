@@ -11,7 +11,7 @@ import apiResponsavel from '../../api/Usuario/apiResponsavel';
 import axios from 'axios';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
-
+import ip from '../../api/ipAws';
 function CadastroCuidador3() {
     const navigate = useNavigate();
     const [calendario, setCalendario] = React.useState(Array(7).fill().map(() => Array(3).fill(false)));
@@ -49,7 +49,7 @@ function CadastroCuidador3() {
                         try {
                             // Atualizar URL do upload para enviar para o backend correto
                             await axios.post(
-                                `http://3.86.115.91/api/files/upload?idUsuario=${idUsuario}`,
+                                `http://${ip}/api/files/upload?idUsuario=${idUsuario}`,
                                 formData,
                                 { headers: { 'Content-Type': 'multipart/form-data' } }
                             );
