@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.226b00c1.css",
-    "main.js": "/static/js/main.29e40379.js",
+    "main.js": "/static/js/main.0e0442a4.js",
     "static/media/Rectangle-velho.png": "/static/media/Rectangle-velho.8de88a73c02001794e87.png",
     "static/media/idosos.png": "/static/media/idosos.700d9c9103bb577eeab4.png",
     "static/media/idoso-e-cuidador.png": "/static/media/idoso-e-cuidador.323208ae8a882b0c43c1.png",
@@ -26,10 +26,10 @@
     "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/index.html",
     "main.226b00c1.css.map": "/static/css/main.226b00c1.css.map",
-    "main.29e40379.js.map": "/static/js/main.29e40379.js.map"
+    "main.0e0442a4.js.map": "/static/js/main.0e0442a4.js.map"
   },
   "entrypoints": [
     "static/css/main.226b00c1.css",
-    "static/js/main.29e40379.js"
+    "static/js/main.0e0442a4.js"
   ]
 }
